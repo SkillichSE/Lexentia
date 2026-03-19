@@ -4,25 +4,25 @@
     "model_name": "Llama 3.1 8B",
     "provider": "Groq",
     "size": "8B",
-    "timestamp": "2026-03-19T21:04:16.196288",
+    "timestamp": "2026-03-19T21:16:35.844227",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 545.92,
+        "avg_tokens_per_sec": 494.47,
         "details": [
           {
             "test": "simple",
-            "time": 0.24991679191589355,
-            "tokens_per_sec": 236.07857458355872
+            "time": 0.1903383731842041,
+            "tokens_per_sec": 304.72047769300434
           },
           {
             "test": "medium",
-            "time": 0.44535303115844727,
-            "tokens_per_sec": 689.3407668101754
+            "time": 0.5837392807006836,
+            "tokens_per_sec": 495.08403760854117
           },
           {
             "test": "long",
-            "time": 0.7650918960571289,
-            "tokens_per_sec": 712.332731281871
+            "time": 0.7972335815429688,
+            "tokens_per_sec": 683.6139528207091
           }
         ]
       },
@@ -32,29 +32,29 @@
           {
             "test": "easy",
             "score": 100,
-            "code": "## Checking if a Number is Prime\n### Function Description\nThe function `is_prime(n)` checks if a given number `n` is prime. A prime number is a natural number greater than 1 that has no positive divis"
+            "code": "**Prime Number Checker Function in Python**\n=====================================================\n\nHere's a simple function that checks if a number is prime:\n\n```python\ndef is_prime(n):\n    \"\"\"\n    Ch"
           },
           {
             "test": "medium",
             "score": 100,
-            "code": "**Binary Search Implementation in Python**\n=====================================================\n\nBinary search is an efficient algorithm for finding an item from a sorted list of items. It works by r"
+            "code": "**Binary Search Implementation in Python**\n=============================================\n\n### Overview\n\nBinary search is an efficient algorithm for finding an item from a sorted list of items. It work"
           },
           {
             "test": "hard",
             "score": 100,
-            "code": "**LRU Cache Implementation in Python**\n=====================================================\n\nWe will use the `collections` module's `OrderedDict` to implement a Least Recently Used (LRU) cache in Pyt"
+            "code": "Here's an implementation of a Least Recently Used (LRU) cache using Python's `collections.OrderedDict`:\n\n```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity)"
           }
         ]
       }
     },
-    "overall_score": 77.3
+    "overall_score": 74.72
   },
   {
     "model_id": "llama-70b",
     "model_name": "Llama 3.1 70B",
     "provider": "Groq",
     "size": "70B",
-    "timestamp": "2026-03-19T21:04:03.789104",
+    "timestamp": "2026-03-19T21:16:23.184313",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -72,7 +72,7 @@
     "model_name": "Mixtral 8x7B",
     "provider": "Groq",
     "size": "8x7B",
-    "timestamp": "2026-03-19T21:04:31.539431",
+    "timestamp": "2026-03-19T21:16:51.554736",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -90,7 +90,7 @@
     "model_name": "Gemini 1.5 Flash",
     "provider": "Google",
     "size": "N/A",
-    "timestamp": "2026-03-19T21:04:43.882282",
+    "timestamp": "2026-03-19T21:17:04.075303",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -108,7 +108,7 @@
     "model_name": "Gemini 1.5 Pro",
     "provider": "Google",
     "size": "N/A",
-    "timestamp": "2026-03-19T21:04:56.435271",
+    "timestamp": "2026-03-19T21:17:16.741119",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
