@@ -403,10 +403,15 @@ class ModelBenchmark:
         date_str = datetime.now().strftime("%Y-%m-%d")
         Path("../docs/data/results").mkdir(parents=True, exist_ok=True)
 
-        speeds = [r["raw_speed"] for r in self.results if r["raw_speed"] > 0]
-        max_speed = max(speeds) if speeds else 1
-        for r in self.results:
-            r["speed_score"] = round(r["raw_speed"] / max_speed * 100, 1)
+        # Normalize speed_score PER CATEGORY so 8B vs 120B are never compared directly.
+        # Each model gets a score of 0–100 relative to the fastest model in its own size tier.
+        categories = ["small", "medium", "large", "unknown"]
+        for cat in categories:
+            cat_results = [r for r in self.results if r.get("size_category") == cat and r["raw_speed"] > 0]
+            max_speed = max((r["raw_speed"] for r in cat_results), default=1)
+            for r in self.results:
+                if r.get("size_category") == cat:
+                    r["speed_score"] = round(r["raw_speed"] / max_speed * 100, 1)
 
         daily_path = Path(f"../docs/data/results/{date_str}.json")
         if self.merge and daily_path.exists():
@@ -425,10 +430,29 @@ class ModelBenchmark:
             json.dump({"date": date_str, "timestamp": datetime.now().isoformat(),
                        "results": self.results}, f, indent=2)
 
-        q_board = sorted(self.results, key=lambda x: x["quality_score"], reverse=True)
+        # Leaderboard: exclude models that failed entirely (quality=0 AND speed=0),
+        # as these are rate-limit failures, not real scores. Also deduplicate same
+        # model+name by keeping the best-scoring result (e.g. Llama 3.3 70B via Groq
+        # vs OpenRouter — keep the one that actually ran).
+        def best_per_model(results, sort_key):
+            seen = {}
+            for r in sorted(results, key=lambda x: x.get(sort_key, 0), reverse=True):
+                # Skip total failures (rate-limited with no data at all)
+                if r.get("quality_score", 0) == 0 and r.get("raw_speed", 0) == 0:
+                    continue
+                # Deduplicate by model name — keep highest scoring entry
+                name = r["model_name"]
+                if name not in seen:
+                    seen[name] = r
+            return list(seen.values())
+
+        q_board = sorted(best_per_model(self.results, "quality_score"),
+                         key=lambda x: x["quality_score"], reverse=True)
         with open("../docs/data/results/leaderboard.json", "w") as f:
             json.dump(q_board, f, indent=2)
-        s_board = sorted(self.results, key=lambda x: x["raw_speed"], reverse=True)
+
+        s_board = sorted(best_per_model(self.results, "raw_speed"),
+                         key=lambda x: x["raw_speed"], reverse=True)
         with open("../docs/data/results/leaderboard_speed.json", "w") as f:
             json.dump(s_board, f, indent=2)
 

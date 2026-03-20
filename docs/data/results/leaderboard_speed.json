@@ -6,27 +6,27 @@
     "size": "8B",
     "size_category": "small",
     "context": "128k",
-    "timestamp": "2026-03-20T16:24:49.551824",
+    "timestamp": "2026-03-20T13:46:52.052158",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 635.21,
+        "avg_tokens_per_sec": 602.59,
         "details": [
           {
             "test": "simple",
-            "time": 0.137,
-            "tokens_per_sec": 423.13,
+            "time": 0.233,
+            "tokens_per_sec": 249.39,
             "tokens": 58
           },
           {
             "test": "medium",
-            "time": 0.401,
-            "tokens_per_sec": 737.3,
-            "tokens": 296
+            "time": 0.374,
+            "tokens_per_sec": 824.46,
+            "tokens": 308
           },
           {
             "test": "long",
-            "time": 0.467,
-            "tokens_per_sec": 745.19,
+            "time": 0.474,
+            "tokens_per_sec": 733.93,
             "tokens": 348
           }
         ]
@@ -153,7 +153,7 @@
             "test": "speed_math",
             "correct": false,
             "score": 0,
-            "answer_given": "To determine which train is faster, we need to calculate their speeds.\n\nThe firs"
+            "answer_given": "To determine which train is faster, we need to calculate their speeds. \n\nSpeed o"
           },
           {
             "test": "river_crossing",
@@ -219,7 +219,7 @@
       }
     },
     "quality_score": 70.0,
-    "raw_speed": 635.21,
+    "raw_speed": 602.59,
     "overall_score": 70.0,
     "speed_score": 100.0
   },
@@ -230,27 +230,27 @@
     "size": "120B",
     "size_category": "large",
     "context": "128k",
-    "timestamp": "2026-03-20T16:27:35.787194",
+    "timestamp": "2026-03-20T13:49:35.316509",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 467.82,
+        "avg_tokens_per_sec": 548.42,
         "details": [
           {
             "test": "simple",
-            "time": 0.772,
-            "tokens_per_sec": 491.21,
+            "time": 0.708,
+            "tokens_per_sec": 535.27,
             "tokens": 379
           },
           {
             "test": "medium",
-            "time": 0.759,
-            "tokens_per_sec": 502.09,
+            "time": 0.687,
+            "tokens_per_sec": 554.57,
             "tokens": 381
           },
           {
             "test": "long",
-            "time": 0.936,
-            "tokens_per_sec": 410.15,
+            "time": 0.691,
+            "tokens_per_sec": 555.41,
             "tokens": 384
           }
         ]
@@ -443,8 +443,232 @@
       }
     },
     "quality_score": 80.0,
-    "raw_speed": 467.82,
+    "raw_speed": 548.42,
     "overall_score": 80.0,
+    "speed_score": 100.0
+  },
+  {
+    "model_id": "qwen3-32b",
+    "model_name": "Qwen 3 32B",
+    "provider": "Groq",
+    "size": "32B",
+    "size_category": "medium",
+    "context": "32k",
+    "timestamp": "2026-03-20T13:48:48.900589",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 403.53,
+        "details": [
+          {
+            "test": "simple",
+            "time": 0.888,
+            "tokens_per_sec": 355.86,
+            "tokens": 316
+          },
+          {
+            "test": "medium",
+            "time": 0.689,
+            "tokens_per_sec": 466.05,
+            "tokens": 321
+          },
+          {
+            "test": "long",
+            "time": 0.831,
+            "tokens_per_sec": 388.68,
+            "tokens": 323
+          }
+        ]
+      },
+      "code": {
+        "avg_score": 0.0,
+        "details": [
+          {
+            "test": "prime",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 5,
+            "details": [
+              {
+                "input": "2",
+                "expected": "True",
+                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
+                "passed": false
+              },
+              {
+                "input": "3",
+                "expected": "True",
+                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
+                "passed": false
+              },
+              {
+                "input": "4",
+                "expected": "False",
+                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
+                "passed": false
+              },
+              {
+                "input": "17",
+                "expected": "True",
+                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
+                "passed": false
+              },
+              {
+                "input": "100",
+                "expected": "False",
+                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
+                "passed": false
+              }
+            ]
+          },
+          {
+            "test": "fibonacci",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 4,
+            "details": [
+              {
+                "input": "0",
+                "expected": "0",
+                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
+                "passed": false
+              },
+              {
+                "input": "1",
+                "expected": "1",
+                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
+                "passed": false
+              },
+              {
+                "input": "7",
+                "expected": "13",
+                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
+                "passed": false
+              },
+              {
+                "input": "10",
+                "expected": "55",
+                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
+                "passed": false
+              }
+            ]
+          },
+          {
+            "test": "palindrome",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 4,
+            "details": [
+              {
+                "input": "'racecar'",
+                "expected": "True",
+                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "passed": false
+              },
+              {
+                "input": "'hello'",
+                "expected": "False",
+                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "passed": false
+              },
+              {
+                "input": "'A man a plan a canal Panama'",
+                "expected": "True",
+                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "passed": false
+              },
+              {
+                "input": "'world'",
+                "expected": "False",
+                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "passed": false
+              }
+            ]
+          }
+        ]
+      },
+      "reasoning": {
+        "score": 20.0,
+        "correct": 1,
+        "total": 5,
+        "details": [
+          {
+            "test": "syllogism",
+            "correct": false,
+            "score": 0,
+            "answer_given": "<think>\nOkay, let's see. The question is about whether all bloops are definitely"
+          },
+          {
+            "test": "speed_math",
+            "correct": false,
+            "score": 0,
+            "answer_given": "<think>\nOkay, let's see. I need to figure out which train is faster between the "
+          },
+          {
+            "test": "river_crossing",
+            "correct": true,
+            "score": 100,
+            "answer_given": "<think>\nOkay, let's see. The farmer has a fox, a chicken, and a bag of grain. He"
+          },
+          {
+            "test": "coin_flip",
+            "correct": false,
+            "score": 0,
+            "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the fo"
+          },
+          {
+            "test": "counting",
+            "correct": false,
+            "score": 0,
+            "answer_given": "<think>\nOkay, let's see. The question is asking how many letters are in the word"
+          }
+        ]
+      },
+      "instruction": {
+        "avg_score": 66.7,
+        "details": [
+          {
+            "test": "json",
+            "score": 100,
+            "reason": "all keys present"
+          },
+          {
+            "test": "list",
+            "score": 100,
+            "found": 5,
+            "expected": 5
+          },
+          {
+            "test": "word_count",
+            "score": 0,
+            "found": 19,
+            "expected": 3
+          }
+        ]
+      },
+      "translation": {
+        "avg_score": 66.7,
+        "details": [
+          {
+            "test": "en_ru",
+            "score": 0,
+            "cyrillic_ratio": 0.13
+          },
+          {
+            "test": "ru_en",
+            "score": 100,
+            "latin_ratio": 0.66
+          },
+          {
+            "test": "en_es",
+            "score": 100,
+            "keywords_found": 12
+          }
+        ]
+      }
+    },
+    "quality_score": 21.7,
+    "raw_speed": 403.53,
+    "overall_score": 21.7,
     "speed_score": 100.0
   },
   {
@@ -454,27 +678,27 @@
     "size": "70B",
     "size_category": "large",
     "context": "128k",
-    "timestamp": "2026-03-20T16:25:26.850788",
+    "timestamp": "2026-03-20T13:47:29.129598",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 403.15,
+        "avg_tokens_per_sec": 329.15,
         "details": [
           {
             "test": "simple",
-            "time": 0.262,
-            "tokens_per_sec": 232.64,
+            "time": 0.269,
+            "tokens_per_sec": 226.58,
             "tokens": 61
           },
           {
             "test": "medium",
-            "time": 0.609,
-            "tokens_per_sec": 431.94,
-            "tokens": 263
+            "time": 0.816,
+            "tokens_per_sec": 332.25,
+            "tokens": 271
           },
           {
             "test": "long",
-            "time": 0.639,
-            "tokens_per_sec": 544.87,
+            "time": 0.812,
+            "tokens_per_sec": 428.61,
             "tokens": 348
           }
         ]
@@ -587,8 +811,8 @@
         ]
       },
       "reasoning": {
-        "score": 80.0,
-        "correct": 4,
+        "score": 60.0,
+        "correct": 3,
         "total": 5,
         "details": [
           {
@@ -601,7 +825,7 @@
             "test": "speed_math",
             "correct": false,
             "score": 0,
-            "answer_given": "To determine which train is faster, we need to calculate the speed of each train"
+            "answer_given": "To determine which train is faster, we need to calculate their speeds. \n\nThe spe"
           },
           {
             "test": "river_crossing",
@@ -611,9 +835,9 @@
           },
           {
             "test": "coin_flip",
-            "correct": true,
-            "score": 100,
-            "answer_given": "The probability of getting heads on the 4th flip is 1/2. \n\nThe previous flips do"
+            "correct": false,
+            "score": 0,
+            "answer_given": "Since the coin is fair, the probability of getting heads on any given flip is 1/"
           },
           {
             "test": "counting",
@@ -666,233 +890,9 @@
         ]
       }
     },
-    "quality_score": 75.0,
-    "raw_speed": 403.15,
-    "overall_score": 75.0,
-    "speed_score": 100.0
-  },
-  {
-    "model_id": "qwen3-32b",
-    "model_name": "Qwen 3 32B",
-    "provider": "Groq",
-    "size": "32B",
-    "size_category": "medium",
-    "context": "32k",
-    "timestamp": "2026-03-20T16:26:47.605583",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 374.29,
-        "details": [
-          {
-            "test": "simple",
-            "time": 1.3,
-            "tokens_per_sec": 243.01,
-            "tokens": 316
-          },
-          {
-            "test": "medium",
-            "time": 0.699,
-            "tokens_per_sec": 459.21,
-            "tokens": 321
-          },
-          {
-            "test": "long",
-            "time": 0.768,
-            "tokens_per_sec": 420.65,
-            "tokens": 323
-          }
-        ]
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "details": [
-              {
-                "input": "2",
-                "expected": "True",
-                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
-                "passed": false
-              },
-              {
-                "input": "3",
-                "expected": "True",
-                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
-                "passed": false
-              },
-              {
-                "input": "4",
-                "expected": "False",
-                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
-                "passed": false
-              },
-              {
-                "input": "17",
-                "expected": "True",
-                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
-                "passed": false
-              },
-              {
-                "input": "100",
-                "expected": "False",
-                "got": "File \"<string>\", line 6\n    Then, for numbers 2 and up, I need to check if any number between 2 and ",
-                "passed": false
-              }
-            ]
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "details": [
-              {
-                "input": "0",
-                "expected": "0",
-                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
-                "passed": false
-              },
-              {
-                "input": "1",
-                "expected": "1",
-                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
-                "passed": false
-              },
-              {
-                "input": "7",
-                "expected": "13",
-                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
-                "passed": false
-              },
-              {
-                "input": "10",
-                "expected": "55",
-                "got": "File \"<string>\", line 2\n    Okay, I need to write a Python function called fibonacci(n) that returns",
-                "passed": false
-              }
-            ]
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "details": [
-              {
-                "input": "'racecar'",
-                "expected": "True",
-                "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
-                "passed": false
-              },
-              {
-                "input": "'hello'",
-                "expected": "False",
-                "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
-                "passed": false
-              },
-              {
-                "input": "'A man a plan a canal Panama'",
-                "expected": "True",
-                "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
-                "passed": false
-              },
-              {
-                "input": "'world'",
-                "expected": "False",
-                "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
-                "passed": false
-              }
-            ]
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 20.0,
-        "correct": 1,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0,
-            "answer_given": "<think>\nOkay, let's see. The question is about whether all bloops are definitely"
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0,
-            "answer_given": "<think>\nOkay, let's see. I need to figure out which train is faster between the "
-          },
-          {
-            "test": "river_crossing",
-            "correct": true,
-            "score": 100,
-            "answer_given": "<think>\nOkay, let's see. The farmer has a fox, a chicken, and a bag of grain. He"
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0,
-            "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the 4t"
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0,
-            "answer_given": "<think>\nOkay, so I need to figure out how many letters are in the word \"MISSISSI"
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 66.7,
-        "details": [
-          {
-            "test": "json",
-            "score": 100,
-            "reason": "all keys present"
-          },
-          {
-            "test": "list",
-            "score": 100,
-            "found": 5,
-            "expected": 5
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "found": 20,
-            "expected": 3
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 66.7,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0,
-            "cyrillic_ratio": 0.08
-          },
-          {
-            "test": "ru_en",
-            "score": 100,
-            "latin_ratio": 0.67
-          },
-          {
-            "test": "en_es",
-            "score": 100,
-            "keywords_found": 12
-          }
-        ]
-      }
-    },
-    "quality_score": 21.7,
-    "raw_speed": 374.29,
-    "overall_score": 21.7,
+    "quality_score": 70.0,
+    "raw_speed": 329.15,
+    "overall_score": 70.0,
     "speed_score": 100.0
   },
   {
@@ -902,27 +902,27 @@
     "size": "17Bx16E",
     "size_category": "medium",
     "context": "131k",
-    "timestamp": "2026-03-20T16:26:06.226149",
+    "timestamp": "2026-03-20T13:48:08.194931",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 276.41,
+        "avg_tokens_per_sec": 316.34,
         "details": [
           {
             "test": "simple",
-            "time": 0.621,
-            "tokens_per_sec": 56.37,
-            "tokens": 35
+            "time": 0.111,
+            "tokens_per_sec": 298.33,
+            "tokens": 33
           },
           {
             "test": "medium",
-            "time": 0.712,
-            "tokens_per_sec": 382.15,
-            "tokens": 272
+            "time": 1.155,
+            "tokens_per_sec": 277.09,
+            "tokens": 320
           },
           {
             "test": "long",
-            "time": 0.827,
-            "tokens_per_sec": 390.7,
+            "time": 0.865,
+            "tokens_per_sec": 373.61,
             "tokens": 323
           }
         ]
@@ -1049,7 +1049,7 @@
             "test": "speed_math",
             "correct": false,
             "score": 0,
-            "answer_given": "## Step 1: Calculate the speed of the first train\nTo determine the speed of the "
+            "answer_given": "## Step 1: Calculate the speed of the first train\nTo determine which train is fa"
           },
           {
             "test": "river_crossing",
@@ -1115,7 +1115,7 @@
       }
     },
     "quality_score": 65.0,
-    "raw_speed": 276.41,
+    "raw_speed": 316.34,
     "overall_score": 65.0,
     "speed_score": 100.0
   },
@@ -1126,71 +1126,40 @@
     "size": "196B",
     "size_category": "large",
     "context": "256k",
-    "timestamp": "2026-03-20T16:28:16.458176",
+    "timestamp": "2026-03-20T13:50:15.513480",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 49.87,
+        "avg_tokens_per_sec": 54.07,
         "details": [
           {
             "test": "simple",
-            "time": 5.302,
-            "tokens_per_sec": 60.36,
+            "time": 6.12,
+            "tokens_per_sec": 52.29,
             "tokens": 320
           },
           {
             "test": "medium",
-            "time": 5.985,
-            "tokens_per_sec": 53.8,
+            "time": 5.224,
+            "tokens_per_sec": 61.64,
             "tokens": 322
           },
           {
             "test": "long",
-            "time": 9.199,
-            "tokens_per_sec": 35.44,
+            "time": 6.751,
+            "tokens_per_sec": 48.29,
             "tokens": 326
           }
         ]
       },
       "code": {
-        "avg_score": 33.3,
+        "avg_score": 0.0,
         "details": [
           {
             "test": "prime",
-            "pass_rate": 1.0,
-            "passed": 5,
+            "pass_rate": 0.0,
+            "passed": 0,
             "total": 5,
-            "details": [
-              {
-                "input": "2",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "3",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "4",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              },
-              {
-                "input": "17",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "100",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              }
-            ]
+            "error": "empty response"
           },
           {
             "test": "fibonacci",
@@ -1209,8 +1178,8 @@
         ]
       },
       "reasoning": {
-        "score": 60.0,
-        "correct": 3,
+        "score": 100.0,
+        "correct": 5,
         "total": 5,
         "details": [
           {
@@ -1227,14 +1196,15 @@
           },
           {
             "test": "river_crossing",
-            "correct": false,
-            "score": 0
+            "correct": true,
+            "score": 100,
+            "answer_given": "Chicken"
           },
           {
             "test": "coin_flip",
-            "correct": false,
-            "score": 0,
-            "answer_given": "The probability of getting heads on any single flip of a fair coin is always \\( "
+            "correct": true,
+            "score": 100,
+            "answer_given": "1/2"
           },
           {
             "test": "counting",
@@ -1245,18 +1215,17 @@
         ]
       },
       "instruction": {
-        "avg_score": 100.0,
+        "avg_score": 33.3,
         "details": [
           {
             "test": "json",
-            "score": 100,
-            "reason": "all keys present"
+            "score": 0,
+            "reason": "empty response"
           },
           {
             "test": "list",
-            "score": 100,
-            "found": 5,
-            "expected": 5
+            "score": 0,
+            "reason": "empty response"
           },
           {
             "test": "word_count",
@@ -1287,9 +1256,9 @@
         ]
       }
     },
-    "quality_score": 50.0,
-    "raw_speed": 49.87,
-    "overall_score": 50.0,
+    "quality_score": 40.0,
+    "raw_speed": 54.07,
+    "overall_score": 40.0,
     "speed_score": 100.0
   },
   {
@@ -1299,7 +1268,7 @@
     "size": "120B",
     "size_category": "large",
     "context": "262k",
-    "timestamp": "2026-03-20T16:30:28.710214",
+    "timestamp": "2026-03-20T13:52:13.365965",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -1413,7 +1382,7 @@
     "size": "120B",
     "size_category": "large",
     "context": "131k",
-    "timestamp": "2026-03-20T16:31:04.556384",
+    "timestamp": "2026-03-20T13:52:49.188412",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -1427,14 +1396,14 @@
             "pass_rate": 0.0,
             "passed": 0,
             "total": 5,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
           },
           {
             "test": "fibonacci",
             "pass_rate": 0.0,
             "passed": 0,
             "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
           },
           {
             "test": "palindrome",
@@ -1527,7 +1496,7 @@
     "size": "20B",
     "size_category": "medium",
     "context": "131k",
-    "timestamp": "2026-03-20T16:31:44.499038",
+    "timestamp": "2026-03-20T13:53:28.388158",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -1541,21 +1510,21 @@
             "pass_rate": 0.0,
             "passed": 0,
             "total": 5,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
+            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
           },
           {
             "test": "fibonacci",
             "pass_rate": 0.0,
             "passed": 0,
             "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
+            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
           },
           {
             "test": "palindrome",
             "pass_rate": 0.0,
             "passed": 0,
             "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
+            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
           }
         ]
       },
@@ -1597,17 +1566,17 @@
           {
             "test": "json",
             "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
           },
           {
             "test": "list",
             "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
           },
           {
             "test": "word_count",
             "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
+            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
           }
         ]
       },
@@ -1641,7 +1610,7 @@
     "size": "24B",
     "size_category": "medium",
     "context": "128k",
-    "timestamp": "2026-03-20T16:32:23.784846",
+    "timestamp": "2026-03-20T13:54:07.656581",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -1755,7 +1724,7 @@
     "size": "N/A",
     "size_category": "unknown",
     "context": "197k",
-    "timestamp": "2026-03-20T16:33:00.380974",
+    "timestamp": "2026-03-20T13:54:44.150276",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -1869,7 +1838,7 @@
     "size": "70B",
     "size_category": "large",
     "context": "66k",
-    "timestamp": "2026-03-20T16:33:39.727704",
+    "timestamp": "2026-03-20T13:55:22.638557",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,
@@ -1939,17 +1908,17 @@
           {
             "test": "json",
             "score": 0,
-            "error": "Status 429 - Provider returned error"
+            "error": "Status 429 - Rate limit exceeded: limit_rpm/meta-llama/llama-3.3-70b-instruct/839b2e30-a1b4-4974-b980-3e534b5873b1. High demand for m"
           },
           {
             "test": "list",
             "score": 0,
-            "error": "Status 429 - Provider returned error"
+            "error": "Status 429 - Rate limit exceeded: limit_rpm/meta-llama/llama-3.3-70b-instruct/839b2e30-a1b4-4974-b980-3e534b5873b1. High demand for m"
           },
           {
             "test": "word_count",
             "score": 0,
-            "error": "Status 429 - Provider returned error"
+            "error": "Status 429 - Rate limit exceeded: limit_rpm/meta-llama/llama-3.3-70b-instruct/839b2e30-a1b4-4974-b980-3e534b5873b1. High demand for m"
           }
         ]
       },
@@ -1983,7 +1952,7 @@
     "size": "4B",
     "size_category": "small",
     "context": "41k",
-    "timestamp": "2026-03-20T16:34:17.584862",
+    "timestamp": "2026-03-20T13:55:59.019371",
     "tests": {
       "speed": {
         "avg_tokens_per_sec": 0,

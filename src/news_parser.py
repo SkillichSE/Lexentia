@@ -5,6 +5,7 @@ Fetches AI news from reliable RSS feeds.
 
 import json
 import re
+import time
 import feedparser
 from datetime import datetime, timezone
 from pathlib import Path
@@ -37,6 +38,21 @@ RSS_FEEDS = [
         "source": "Together AI",
         "keywords": ["model", "release", "open", "inference", "fine-tun"]
     },
+    {
+        "url": "https://openai.com/news/rss.xml",
+        "source": "OpenAI",
+        "keywords": ["model", "release", "gpt", "update", "api"]
+    },
+    {
+        "url": "https://www.anthropic.com/rss.xml",
+        "source": "Anthropic",
+        "keywords": ["claude", "model", "release", "update", "api"]
+    },
+    {
+        "url": "https://mistral.ai/feed",
+        "source": "Mistral AI",
+        "keywords": ["model", "release", "mistral", "update"]
+    },
 ]
 
 KEYWORDS_ALWAYS_INCLUDE = [
@@ -44,6 +60,10 @@ KEYWORDS_ALWAYS_INCLUDE = [
     "qwen", "deepseek", "release", "launched", "benchmark", "open source",
     "open-source", "api", "fine-tun", "instruct", "inference"
 ]
+
+# feedparser timeout workaround — set socket timeout via urllib
+import socket
+_DEFAULT_TIMEOUT = 15
 
 
 def parse_date(entry) -> str:
@@ -76,6 +96,27 @@ def clean_html(text: str) -> str:
     return text[:280]
 
 
+def fetch_feed_with_retry(url: str, retries: int = 2) -> feedparser.FeedParserDict:
+    """Parse feed with timeout and retry support."""
+    old_timeout = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(_DEFAULT_TIMEOUT)
+    try:
+        for attempt in range(retries + 1):
+            try:
+                feed = feedparser.parse(url)
+                # feedparser returns bozo=True on errors but still may have entries
+                if feed.entries or attempt == retries:
+                    return feed
+                time.sleep(2)
+            except Exception:
+                if attempt == retries:
+                    raise
+                time.sleep(2)
+        return feedparser.parse(url)
+    finally:
+        socket.setdefaulttimeout(old_timeout)
+
+
 def fetch_all_news() -> list:
     items = []
     seen_titles = set()
@@ -83,17 +124,21 @@ def fetch_all_news() -> list:
     for feed_cfg in RSS_FEEDS:
         print(f"  📡 {feed_cfg['source']}...", end=" ", flush=True)
         try:
-            feed = feedparser.parse(feed_cfg["url"])
+            feed = fetch_feed_with_retry(feed_cfg["url"])
             count = 0
-            for entry in feed.entries[:15]:
+            for entry in feed.entries[:20]:
                 title   = entry.get("title", "").strip()
                 link    = entry.get("link", "")
                 summary = clean_html(entry.get("summary", entry.get("description", "")))
 
                 if not title or title in seen_titles:
                     continue
+                # Relaxed filtering: include if title alone matches, even without summary
                 if not is_relevant(title, summary, feed_cfg["keywords"]):
-                    continue
+                    # Still include any entry from trusted AI-focused sources
+                    if feed_cfg["source"] not in ("Hugging Face", "Together AI", "OpenAI",
+                                                   "Anthropic", "Mistral AI"):
+                        continue
 
                 seen_titles.add(title)
                 items.append({
@@ -141,3 +186,4 @@ if __name__ == "__main__":
     items = fetch_all_news()
     save_news(items)
     print("✨ Done!")
+
