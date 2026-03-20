@@ -62,8 +62,18 @@
         const el=document.getElementById('last-update');
         if(el) el.textContent='Updated '+new Date(data.updated).toLocaleString();
         allNews=data.items||[];
+        
+        // If no news items, show placeholder immediately
+        if(allNews.length === 0){
+          document.getElementById('news-feed').innerHTML='';
+          document.getElementById('no-news').style.display='block';
+          return;
+        }
+        
         displayNews();
       }catch(e){
+        console.error('Error loading news:', e);
+        document.getElementById('news-feed').innerHTML='';
         document.getElementById('no-news').style.display='block';
       }
     }
@@ -72,7 +82,13 @@
       const feed=document.getElementById('news-feed');
       const none=document.getElementById('no-news');
       const filtered=currentSource==='all'?allNews:allNews.filter(i=>i.source===currentSource);
-      if(!filtered.length){feed.innerHTML='';none.style.display='block';return;}
+      
+      if(!filtered.length){
+        feed.innerHTML='';
+        none.style.display='block';
+        return;
+      }
+      
       none.style.display='none';
       feed.innerHTML=filtered.map(item=>`
         <div class="news-item">
