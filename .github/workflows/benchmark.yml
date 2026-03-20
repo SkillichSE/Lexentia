@@ -164,11 +164,29 @@ jobs:
         run: |
           git config user.name  "Benchmark Bot"
           git config user.email "bot@benchmark.ai"
+          
+          echo "📂 Files in docs/data/results/:"
+          ls -lh docs/data/results/
+          
+          echo ""
+          echo "📰 News file contents:"
+          head -20 docs/data/results/news.json
+          
+          echo ""
+          echo "➕ Adding files..."
           git add docs/data/results/ || true
+          
+          echo ""
+          echo "📝 Git status:"
+          git status --short
+          
+          echo ""
           if git diff --staged --quiet; then
-            echo "✅ No changes to commit"
+            echo "⚠️  No changes to commit (files unchanged or already committed)"
+            echo "This might mean news.json was already saved with the same content."
           else
+            echo "💾 Committing changes..."
             git commit -m "📊 Benchmark results — $(date +'%Y-%m-%d')"
             git push
-            echo "✅ Pushed"
+            echo "✅ Pushed to GitHub"
           fi

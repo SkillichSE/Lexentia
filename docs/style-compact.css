@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPACT DESIGN - Remove clutter, increase breathing room
+   Add AFTER style.css and style-light.css
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Hide verbose "Why ModelArena" section - keep site focused on data */
+.why-section {
+  display: none !important;
+}
+
+/* Reduce hero text verbosity */
+.hero-subtitle {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* More compact stats */
+.stats-grid {
+  margin-bottom: 48px !important;
+}
+
+/* Reduce legend text */
+.legend {
+  font-size: 0.75rem !important;
+}
+
+/* More compact category labels */
+.category-label {
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+}
+
+/* Cleaner model cards - less text density */
+.model-card {
+  position: relative;
+}
+
+/* Hide overly detailed explanatory text */
+p.text-tertiary,
+.hero-meta small {
+  display: none;
+}
+
+/* Keep only essential hero meta */
+.hero-meta {
+  font-size: 0.85rem !important;
+}
+
+/* Compact footer */
+.footer {
+  padding: 40px 0 !important;
+}
+
+.footer p {
+  font-size: 0.8rem !important;
+}
+
+/* Remove verbose descriptions, keep data */
+.feature-text {
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Less padding on explanatory sections */
+section > p:first-of-type {
+  margin-bottom: 24px !important;
+}
+
+/* Tighter news items */
+.news-summary {
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Compact search results */
+.search-input::placeholder {
+  font-size: 0.9rem;
+}
+
+/* Less verbose metric labels */
+.metric-label,
+.score-line-label {
+  font-size: 0.65rem !important;
+}
+
+/* Reduce excessive spacing in lists */
+ul {
+  line-height: 1.6 !important;
+}
+
+/* Hide redundant help text */
+.help-text,
+.hint-text {
+  display: none !important;
+}
