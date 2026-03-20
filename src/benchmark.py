@@ -65,7 +65,7 @@ class ModelBenchmark:
             "model": model_id,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.1,
-            "max_tokens": 400,
+            "max_tokens": 300,
         }
         start = time.time()
         try:
@@ -103,9 +103,10 @@ class ModelBenchmark:
             return {"success": False, "error": "GOOGLE_API_KEY not set"}
         url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
                f"{model_id}:generateContent?key={self.google_key}")
+        # Shorter output = faster + fewer rate limit hits on free tier
         data = {
             "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.1, "maxOutputTokens": 400},
+            "generationConfig": {"temperature": 0.1, "maxOutputTokens": 300},
         }
         for attempt in range(retries + 1):
             start = time.time()

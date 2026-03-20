@@ -87,6 +87,9 @@ jobs:
           cd src
           python benchmark.py --providers google --models gemini-2.0-flash --merge
 
+      - name: ⏸️ Google rate-limit pause
+        run: sleep 30
+
       - name: 🤖 Gemini 2.0 Flash Lite
         continue-on-error: true
         timeout-minutes: 20
