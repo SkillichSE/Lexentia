@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <script>(function(){
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ModelLens — Free AI Model Rankings</title>
@@ -16,10 +19,11 @@
 </head>
 <body>
 
-<header class="header">
+<!-- ═══ Top App Bar ═══════════════════════════════════════════ -->
+<header class="header" id="app-bar">
   <div class="header-content">
     <a href="index.html" class="logo">
-      <span class="logo-icon">🔍</span><span>ModelLens</span>
+      <span class="logo-icon">🔍</span>ModelLens
     </a>
     <nav class="nav">
       <a href="index.html" class="nav-link active">Rankings</a>
@@ -28,433 +32,497 @@
       <a href="news.html" class="nav-link">News</a>
       <a href="trends.html" class="nav-link">Trends</a>
     </nav>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-      <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
-    </button>
+    <div class="theme-switch-wrap">
+      <span class="theme-switch-label" id="theme-label">Dark</span>
+      <label class="theme-switch" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-toggle">
+        <span class="theme-switch-track"></span>
+        <span class="theme-switch-thumb" id="thumb-icon">🌙</span>
+      </label>
+    </div>
   </div>
 </header>
 
+<!-- ═══ Hero / Banner ═════════════════════════════════════════ -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-text">
-      <h1 class="hero-title" id="hero-title">ModelLens</h1>
-      <p class="hero-subtitle" id="hero-subtitle">Free AI models, ranked daily</p>
-      <p class="hero-meta" id="last-update"><span class="live-dot"></span>&ensp;loading…</p>
-    </div>
-    <div class="hero-search">
-      <div class="search-wrap-hero">
-        <span class="search-ico-hero">🔍</span>
-        <input class="search-input-hero" id="hero-search" type="text"
-               placeholder="Filter by model name or provider…" autocomplete="off">
-      </div>
+    <h1 class="hero-headline" id="hero-headline">ModelLens</h1>
+    <p class="hero-sub">
+      <span id="hero-sub-text">Free AI models, ranked daily</span>
+      <span class="hero-updated" id="last-update">
+        <span class="live-dot"></span>loading…
+      </span>
+    </p>
+    <div class="size-filter-row">
+      <span class="size-filter-label">Show:</span>
+      <button class="size-chip active" data-size="all">All sizes</button>
+      <button class="size-chip" data-size="large">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;">Large</span> 50B+
+      </button>
+      <button class="size-chip" data-size="medium">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;">Medium</span> 10–50B
+      </button>
+      <button class="size-chip" data-size="small">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;">Small</span> ≤10B
+      </button>
     </div>
   </div>
 </div>
 
+<!-- ═══ Main content ══════════════════════════════════════════ -->
 <main class="container">
 
+  <!-- stat cards -->
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-icon stat-icon-blue">🤖</div>
-      <div class="stat-body">
-        <div class="stat-value" id="stat-models">–</div>
-        <div class="stat-label">Models Tested</div>
-      </div>
+      <div class="stat-card-icon primary-cont">🤖</div>
+      <div class="stat-value" id="stat-models">–</div>
+      <div class="stat-label">Models Tested</div>
     </div>
     <div class="stat-card">
-      <div class="stat-icon stat-icon-green">⚡</div>
-      <div class="stat-body">
-        <div class="stat-value" id="stat-fastest">–</div>
-        <div class="stat-label">Fastest tok/s</div>
-      </div>
+      <div class="stat-card-icon tertiary-cont">⚡</div>
+      <div class="stat-value" id="stat-fastest">–</div>
+      <div class="stat-label">Fastest tok/s</div>
     </div>
     <div class="stat-card">
-      <div class="stat-icon stat-icon-purple">🎯</div>
-      <div class="stat-body">
-        <div class="stat-value" id="stat-quality">–</div>
-        <div class="stat-label">Top Quality Score</div>
-      </div>
+      <div class="stat-card-icon secondary-cont">🎯</div>
+      <div class="stat-value" id="stat-quality">–</div>
+      <div class="stat-label">Top Score /100</div>
     </div>
     <div class="stat-card">
-      <div class="stat-icon stat-icon-amber">📐</div>
-      <div class="stat-body">
-        <div class="stat-value">3</div>
-        <div class="stat-label">Size Categories</div>
-      </div>
+      <div class="stat-card-icon error-cont">📐</div>
+      <div class="stat-value">3</div>
+      <div class="stat-label">Size Categories</div>
     </div>
   </div>
 
-  <section>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;gap:16px;flex-wrap:wrap;">
+  <!-- rankings -->
+  <section style="margin-bottom:64px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:16px;flex-wrap:wrap;">
       <div>
-        <h2 style="font-size:22px;font-weight:500;margin-bottom:4px;">Rankings</h2>
-        <p style="font-size:13px;color:var(--m3-on-surf-var);margin:0;">
-          Models grouped by size — compare within the same tier for fair results
+        <h2 class="section-title">Rankings</h2>
+        <p class="section-sub" style="margin-bottom:0;">
+          Scores are normalized within each size tier — a Small model's #1 rank is against other Small models only
         </p>
       </div>
-      <div class="tab-bar">
-        <button class="tab-btn active" data-tab="quality">Quality</button>
-        <button class="tab-btn" data-tab="speed">Speed</button>
+      <div class="seg-btn-group" style="margin-top:4px;">
+        <button class="seg-btn active" data-tab="quality">Quality</button>
+        <button class="seg-btn" data-tab="speed">Speed</button>
       </div>
     </div>
 
-    <div class="legend" id="quality-legend">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--cat-code)"></span>HumanEval · code</span>
-      <span class="legend-item"><span class="legend-dot" style="background:var(--cat-reason)"></span>GSM8K · reasoning</span>
-      <span class="legend-item"><span class="legend-dot" style="background:var(--cat-mmlu)"></span>MMLU · knowledge</span>
-      <span class="legend-item"><span class="legend-dot" style="background:var(--cat-trans)"></span>Translation</span>
+    <div class="legend" id="quality-legend" style="margin-top:16px;">
+      <span class="legend-item"><span class="legend-dot" style="background:var(--metric-code)"></span>HumanEval · code</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--metric-reason)"></span>GSM8K · reasoning</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--metric-mmlu)"></span>MMLU · knowledge</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--metric-trans)"></span>Translation</span>
     </div>
-    <div class="legend" id="speed-legend" style="display:none;">
-      <span class="legend-item"><span class="legend-dot" style="background:var(--cat-speed)"></span>Tokens/second · avg over 3 prompt lengths · ranked within tier</span>
+    <div class="legend" id="speed-legend" style="display:none;margin-top:16px;">
+      <span class="legend-item"><span class="legend-dot" style="background:var(--color-primary)"></span>Tokens/second — averaged over short, medium, and long prompts</span>
     </div>
 
+    <!-- quality panel -->
     <div class="leaderboard-panel active" id="panel-quality">
-      <div class="category-section">
-        <div class="category-label">
-          <span><span class="size-badge size-large">Large</span>&ensp;50B+ parameters</span>
-          <div class="sort-bar" data-cat="large"></div>
+      <div class="category-section" data-tier="large">
+        <div class="category-header">
+          <div class="category-header-left">
+            <span class="size-badge large">Large</span>
+            <span class="category-name">50B+ parameters</span>
+          </div>
+          <div class="sort-row" id="sort-quality-large"></div>
         </div>
-        <div id="quality-board-large"></div>
+        <div class="grid-cards" id="quality-board-large"></div>
       </div>
-      <div class="category-section">
-        <div class="category-label">
-          <span><span class="size-badge size-medium">Medium</span>&ensp;10–50B parameters</span>
-          <div class="sort-bar" data-cat="medium"></div>
+      <div class="category-section" data-tier="medium">
+        <div class="category-header">
+          <div class="category-header-left">
+            <span class="size-badge medium">Medium</span>
+            <span class="category-name">10–50B parameters</span>
+          </div>
+          <div class="sort-row" id="sort-quality-medium"></div>
         </div>
-        <div id="quality-board-medium"></div>
+        <div class="grid-cards" id="quality-board-medium"></div>
       </div>
-      <div class="category-section">
-        <div class="category-label">
-          <span><span class="size-badge size-small">Small</span>&ensp;≤10B parameters</span>
-          <div class="sort-bar" data-cat="small"></div>
+      <div class="category-section" data-tier="small">
+        <div class="category-header">
+          <div class="category-header-left">
+            <span class="size-badge small">Small</span>
+            <span class="category-name">≤10B parameters</span>
+          </div>
+          <div class="sort-row" id="sort-quality-small"></div>
         </div>
-        <div id="quality-board-small"></div>
+        <div class="grid-cards" id="quality-board-small"></div>
       </div>
     </div>
 
+    <!-- speed panel -->
     <div class="leaderboard-panel" id="panel-speed">
-      <div class="category-section">
-        <div class="category-label">
-          <span><span class="size-badge size-large">Large</span>&ensp;50B+ parameters</span>
+      <div class="category-section" data-tier="large">
+        <div class="category-header">
+          <div class="category-header-left">
+            <span class="size-badge large">Large</span>
+            <span class="category-name">50B+ parameters</span>
+          </div>
         </div>
-        <div id="speed-board-large"></div>
+        <div class="grid-cards" id="speed-board-large"></div>
       </div>
-      <div class="category-section">
-        <div class="category-label">
-          <span><span class="size-badge size-medium">Medium</span>&ensp;10–50B parameters</span>
+      <div class="category-section" data-tier="medium">
+        <div class="category-header">
+          <div class="category-header-left">
+            <span class="size-badge medium">Medium</span>
+            <span class="category-name">10–50B parameters</span>
+          </div>
         </div>
-        <div id="speed-board-medium"></div>
+        <div class="grid-cards" id="speed-board-medium"></div>
       </div>
-      <div class="category-section">
-        <div class="category-label">
-          <span><span class="size-badge size-small">Small</span>&ensp;≤10B parameters</span>
+      <div class="category-section" data-tier="small">
+        <div class="category-header">
+          <div class="category-header-left">
+            <span class="size-badge small">Small</span>
+            <span class="category-name">≤10B parameters</span>
+          </div>
         </div>
-        <div id="speed-board-small"></div>
+        <div class="grid-cards" id="speed-board-small"></div>
       </div>
     </div>
   </section>
 
-  <section style="margin-top:64px;">
-    <h2 style="font-size:22px;font-weight:500;margin-bottom:4px;">What We Test</h2>
-    <p style="font-size:13px;color:var(--m3-on-surf-var);margin-bottom:24px;">
-      Industry-standard benchmarks — no invented metrics
-    </p>
-    <div class="grid grid-3">
-      <div style="background:var(--m3-surface);border-radius:var(--m3-shape-lg);padding:20px;box-shadow:var(--m3-elev1);">
-        <div style="width:40px;height:40px;border-radius:12px;background:var(--m3-tertiary-cont);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;">💻</div>
-        <div style="font-family:'Google Sans',sans-serif;font-size:15px;font-weight:500;margin-bottom:2px;">HumanEval</div>
-        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--cat-code);margin-bottom:10px;">Code quality</div>
-        <p style="font-size:13px;color:var(--m3-on-surf-var);line-height:1.6;margin:0;">Functions are executed against real test cases. Syntax and edge-case logic must pass.</p>
+  <!-- what we test -->
+  <section style="margin-bottom:64px;">
+    <h2 class="section-title">What We Test</h2>
+    <p class="section-sub">Industry-standard benchmarks — no invented metrics</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:var(--color-tertiary-cont);">💻</div>
+        <div class="feature-name">HumanEval</div>
+        <div class="feature-metric" style="color:var(--metric-code);">Code quality</div>
+        <div class="feature-desc">Functions are executed against real test cases. Syntax and edge-case logic must pass.</div>
       </div>
-      <div style="background:var(--m3-surface);border-radius:var(--m3-shape-lg);padding:20px;box-shadow:var(--m3-elev1);">
-        <div style="width:40px;height:40px;border-radius:12px;background:#f0e6ff;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;">🧮</div>
-        <div style="font-family:'Google Sans',sans-serif;font-size:15px;font-weight:500;margin-bottom:2px;">GSM8K</div>
-        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--cat-reason);margin-bottom:10px;">Reasoning</div>
-        <p style="font-size:13px;color:var(--m3-on-surf-var);line-height:1.6;margin:0;">Math word problems and multi-step logic. Verified correct answers only, no partial credit.</p>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:var(--color-secondary-cont);">🧮</div>
+        <div class="feature-name">GSM8K</div>
+        <div class="feature-metric" style="color:var(--metric-reason);">Reasoning</div>
+        <div class="feature-desc">Math word problems and multi-step logic. Verified correct answers only, no partial credit.</div>
       </div>
-      <div style="background:var(--m3-surface);border-radius:var(--m3-shape-lg);padding:20px;box-shadow:var(--m3-elev1);">
-        <div style="width:40px;height:40px;border-radius:12px;background:var(--m3-primary-cont);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;">📚</div>
-        <div style="font-family:'Google Sans',sans-serif;font-size:15px;font-weight:500;margin-bottom:2px;">MMLU</div>
-        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--cat-mmlu);margin-bottom:10px;">Knowledge &amp; instructions</div>
-        <p style="font-size:13px;color:var(--m3-on-surf-var);line-height:1.6;margin:0;">Instruction following, format compliance, and multi-domain knowledge checks.</p>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:var(--color-primary-cont);">📚</div>
+        <div class="feature-name">MMLU</div>
+        <div class="feature-metric" style="color:var(--metric-mmlu);">Knowledge &amp; instructions</div>
+        <div class="feature-desc">Instruction following, format compliance, and multi-domain knowledge checks.</div>
       </div>
-      <div style="background:var(--m3-surface);border-radius:var(--m3-shape-lg);padding:20px;box-shadow:var(--m3-elev1);">
-        <div style="width:40px;height:40px;border-radius:12px;background:#fff0d6;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;">🌐</div>
-        <div style="font-family:'Google Sans',sans-serif;font-size:15px;font-weight:500;margin-bottom:2px;">Translation</div>
-        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--cat-trans);margin-bottom:10px;">Multilingual</div>
-        <p style="font-size:13px;color:var(--m3-on-surf-var);line-height:1.6;margin:0;">English ↔ Russian, English ↔ Spanish. Scored via script detection and vocabulary matching.</p>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:color-mix(in srgb,var(--metric-trans) 15%,transparent);">🌐</div>
+        <div class="feature-name">Translation</div>
+        <div class="feature-metric" style="color:var(--metric-trans);">Multilingual</div>
+        <div class="feature-desc">English ↔ Russian, English ↔ Spanish. Scored via script detection and vocabulary matching.</div>
       </div>
-      <div style="background:var(--m3-surface);border-radius:var(--m3-shape-lg);padding:20px;box-shadow:var(--m3-elev1);">
-        <div style="width:40px;height:40px;border-radius:12px;background:var(--m3-primary-cont);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;">⚡</div>
-        <div style="font-family:'Google Sans',sans-serif;font-size:15px;font-weight:500;margin-bottom:2px;">Throughput</div>
-        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--cat-speed);margin-bottom:10px;">Speed</div>
-        <p style="font-size:13px;color:var(--m3-on-surf-var);line-height:1.6;margin:0;">Tokens/second averaged over short, medium, and long prompts. Ranked per size tier.</p>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:var(--color-primary-cont);">⚡</div>
+        <div class="feature-name">Throughput</div>
+        <div class="feature-metric" style="color:var(--color-primary);">Speed</div>
+        <div class="feature-desc">Tokens/second averaged over short, medium, and long prompts. Ranked per size tier.</div>
       </div>
-      <div style="background:var(--m3-surface);border-radius:var(--m3-shape-lg);padding:20px;box-shadow:var(--m3-elev1);">
-        <div style="width:40px;height:40px;border-radius:12px;background:var(--m3-tertiary-cont);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;">🔄</div>
-        <div style="font-family:'Google Sans',sans-serif;font-size:15px;font-weight:500;margin-bottom:2px;">Daily Updates</div>
-        <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--m3-tertiary);margin-bottom:10px;">Automated</div>
-        <p style="font-size:13px;color:var(--m3-on-surf-var);line-height:1.6;margin:0;">GitHub Actions runs every 24 hours. Results reflect the current state of each model.</p>
-      </div>
-    </div>
-  </section>
-
-  <section style="margin-top:48px;">
-    <h2 style="font-size:22px;font-weight:500;margin-bottom:4px;">Why Size Tiers Matter</h2>
-    <p style="font-size:14px;line-height:1.7;color:var(--m3-on-surf-var);max-width:720px;margin-bottom:20px;">
-      Comparing an 8B model to a 405B model isn't fair — they're built for different constraints.
-      Three tiers help you find the <strong style="color:var(--m3-on-surf);font-weight:500;">best model within your hardware budget</strong>.
-    </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
-      <div style="background:var(--m3-tertiary-cont);border-radius:var(--m3-shape-lg);padding:16px 18px;">
-        <span class="size-badge size-small" style="margin-left:0;margin-bottom:10px;display:inline-flex;">Small ≤10B</span>
-        <p style="font-size:13px;color:var(--m3-on-tertiary-cont);margin:0;line-height:1.5;">100–300+ tok/s · low VRAM · edge &amp; mobile</p>
-      </div>
-      <div style="background:#f0e6ff;border-radius:var(--m3-shape-lg);padding:16px 18px;">
-        <span class="size-badge size-medium" style="margin-left:0;margin-bottom:10px;display:inline-flex;">Medium 10–50B</span>
-        <p style="font-size:13px;color:#3b1178;margin:0;line-height:1.5;">30–100 tok/s · balanced · 1–2 GPU</p>
-      </div>
-      <div style="background:var(--m3-error-cont);border-radius:var(--m3-shape-lg);padding:16px 18px;">
-        <span class="size-badge size-large" style="margin-left:0;margin-bottom:10px;display:inline-flex;">Large 50B+</span>
-        <p style="font-size:13px;color:var(--m3-error);margin:0;line-height:1.5;">5–40 tok/s · maximum quality · multi-GPU</p>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:var(--color-tertiary-cont);">🔄</div>
+        <div class="feature-name">Daily Updates</div>
+        <div class="feature-metric" style="color:var(--color-tertiary);">Automated</div>
+        <div class="feature-desc">GitHub Actions runs every 24 hours. Results reflect the current state of each model.</div>
       </div>
     </div>
   </section>
 
-  <section style="margin-top:56px;">
+  <!-- news -->
+  <section style="margin-bottom:0;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-      <h2 style="font-size:22px;font-weight:500;">Latest AI News</h2>
-      <a href="news.html" style="font-family:'Google Sans',sans-serif;font-size:14px;font-weight:500;color:var(--m3-primary);text-decoration:none;">View all →</a>
+      <h2 class="section-title">Latest AI News</h2>
+      <a href="news.html" style="font-family:'Google Sans',sans-serif;font-size:14px;font-weight:500;color:var(--color-primary);text-decoration:none;">View all →</a>
     </div>
     <div id="news-preview"></div>
   </section>
 
 </main>
 
-<footer class="footer">
-  <div class="footer-links">
-    <a href="https://github.com/SkillichSE/ModelLens" class="footer-link">GitHub</a>
-    <a href="about.html" class="footer-link">About</a>
-    <a href="methodology.html" class="footer-link">Methodology</a>
-    <a href="news.html" class="footer-link">News</a>
-  </div>
-  <p style="margin-top:8px;">Open source · Updated daily via GitHub Actions · All models are free to use</p>
-</footer>
-
-<div class="compare-bar" id="compare-bar">
-  <span id="compare-count" style="font-size:14px;font-weight:500;color:var(--m3-on-surf-var);">0 selected</span>
-  <button class="btn-m3-filled" id="compare-go" style="height:36px;padding:0 20px;font-size:13px;">Compare</button>
-  <button class="btn-m3-tonal" id="compare-clear" style="height:36px;padding:0 16px;font-size:13px;">Clear</button>
+<div style="border-top:1px solid var(--color-outline-var);margin-top:48px;">
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://github.com/SkillichSE/ModelLens" class="footer-link">GitHub</a>
+      <a href="about.html" class="footer-link">About</a>
+      <a href="methodology.html" class="footer-link">Methodology</a>
+      <a href="news.html" class="footer-link">News</a>
+    </div>
+    <div class="footer-copy">Open source · Updated daily via GitHub Actions · All models are free to use</div>
+  </footer>
 </div>
 
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
-    <h2 style="font-size:20px;font-weight:500;margin-bottom:4px;">Model Comparison</h2>
-    <p style="font-size:13px;color:var(--m3-on-surf-var);margin-bottom:0;">Radar charts show relative strengths · highlighted cells = best in category</p>
-    <div class="radar-wrap" id="radar-wrap"></div>
-    <table class="compare-table" id="compare-table"></table>
+<!-- compare FAB -->
+<div class="compare-bar" id="compare-bar">
+  <span class="compare-bar-label" id="compare-count">0 selected</span>
+  <button class="btn-filled" id="compare-go" style="height:36px;padding:0 20px;font-size:13px;">Compare</button>
+  <button class="btn-tonal" id="compare-clear" style="height:36px;padding:0 16px;font-size:13px;">Clear</button>
+</div>
+
+<!-- compare dialog -->
+<div class="dialog-scrim" id="dialog-scrim">
+  <div class="dialog">
+    <div class="dialog-header">
+      <div>
+        <h2 class="dialog-title">Model Comparison</h2>
+        <p style="font-size:13px;color:var(--color-on-surface-var);margin-top:2px;">Radar charts show relative strengths · highlighted = best in row</p>
+      </div>
+      <button class="dialog-close" id="dialog-close" aria-label="Close">✕</button>
+    </div>
+    <div class="dialog-body">
+      <div class="radar-grid" id="radar-grid"></div>
+      <table class="cmp-table" id="cmp-table"></table>
+    </div>
   </div>
 </div>
 
 <script>
-window.addEventListener('scroll', () =>
-  document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 0));
+/* ── theme switch ──────────────────────────────────────────── */
+const themeToggle = document.getElementById('theme-toggle');
+const themeLabel  = document.getElementById('theme-label');
+const thumbIcon   = document.getElementById('thumb-icon');
 
-const selectedModels = new Map();
-let allResults = [];
-
-function scaledPct(val) {
-  if (val <= 0) return 0;
-  return 50 + (val / 100) * 50;
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+  const dark = t === 'dark';
+  themeToggle.checked = dark;
+  themeLabel.textContent = dark ? 'Dark' : 'Light';
+  thumbIcon.textContent  = dark ? '🌙' : '☀️';
 }
 
-function scoreLine(label, val, cls, tipText) {
-  const w = scaledPct(val);
-  return `<div class="score-line">
-    <span class="score-line-label">${label}</span>
-    <span class="score-line-wrap">
-      <span class="score-line-bar">
-        <span class="score-line-fill ${cls}" style="width:${w}%"></span>
-      </span>
-      <span class="score-line-tip">${tipText}</span>
+applyTheme(localStorage.getItem('theme') || 'dark');
+
+themeToggle.addEventListener('change', () => {
+  applyTheme(themeToggle.checked ? 'dark' : 'light');
+});
+
+/* ── scroll elevation ──────────────────────────────────────── */
+window.addEventListener('scroll', () =>
+  document.getElementById('app-bar').classList.toggle('scrolled', window.scrollY > 0));
+
+/* ── state ─────────────────────────────────────────────────── */
+const compareMap = new Map();
+let allResults = [];
+let activeTier = 'all';
+
+/* ── helpers ───────────────────────────────────────────────── */
+function scalePct(val) { return val <= 0 ? 0 : 50 + (val / 100) * 50; }
+
+function rankMeta(i) {
+  const classes = ['gold','silver','bronze','other'];
+  const labels  = ['#1','#2','#3','#'+( i+1)];
+  return { cls: classes[Math.min(i,3)], label: labels[Math.min(i,3)] || '#'+(i+1) };
+}
+function cardClass(i) { return i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : ''; }
+
+/* ── score bar with tooltip ────────────────────────────────── */
+function scoreRow(label, val, fillClass, tip) {
+  const w = scalePct(val);
+  return `<div class="score-row">
+    <span class="score-label">${label}</span>
+    <span class="score-bar-wrap">
+      <span class="score-bar-fill ${fillClass}" style="width:${w}%"></span>
+      <span class="score-tooltip">${tip}</span>
     </span>
-    <span class="score-line-val">${Math.round(val)}</span>
+    <span class="score-val">${Math.round(val)}</span>
   </div>`;
 }
 
-function rankClass(i) { return ['rank-1','rank-2','rank-3'][i] ?? ''; }
-function rankCardClass(i) { return ['rank-1-card','rank-2-card','rank-3-card'][i] ?? ''; }
-
+/* ── compare toggle ────────────────────────────────────────── */
 function toggleCompare(btn) {
-  const m = JSON.parse(atob(btn.dataset.model));
+  const m   = JSON.parse(atob(btn.dataset.model));
   const key = m.model_id || m.model_name;
-  if (selectedModels.has(key)) {
-    selectedModels.delete(key);
+  if (compareMap.has(key)) {
+    compareMap.delete(key);
   } else {
-    if (selectedModels.size >= 4) return;
-    selectedModels.set(key, m);
+    if (compareMap.size >= 4) return;
+    compareMap.set(key, m);
   }
-  document.querySelectorAll(`.compare-btn[data-key="${CSS.escape(key)}"]`).forEach(b => {
-    const sel = selectedModels.has(key);
+  const sel = compareMap.has(key);
+  document.querySelectorAll(`.cmp-chip[data-key="${CSS.escape(key)}"]`).forEach(b => {
     b.classList.toggle('selected', sel);
     b.textContent = sel ? '✓ Selected' : '+ Compare';
   });
-  const n = selectedModels.size;
+  const n = compareMap.size;
   document.getElementById('compare-bar').classList.toggle('visible', n > 0);
   document.getElementById('compare-count').textContent = `${n} model${n !== 1 ? 's' : ''} selected`;
 }
 
-function renderQualityCards(list, containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  if (!list.length) {
-    container.innerHTML = `<div style="padding:32px;text-align:center;color:var(--m3-on-surf-var);background:var(--m3-surf1);border-radius:var(--m3-shape-lg);">No models in this tier yet</div>`;
-    return;
-  }
-  let html = '<div class="grid grid-2">';
-  list.forEach((m, i) => {
-    const q   = m.quality_score || 0;
-    const c   = m.tests?.code?.avg_score || 0;
-    const rs  = m.tests?.reasoning?.score || 0;
-    const ins = m.tests?.instruction?.avg_score || 0;
-    const tr  = m.tests?.translation?.avg_score || 0;
-    const key = m.model_id || m.model_name;
-    const sel = selectedModels.has(key);
-    const enc = btoa(JSON.stringify(m));
-    html += `<div class="model-card ${rankCardClass(i)}">
-      <div class="model-header">
-        <div style="flex:1;min-width:0;">
-          <div class="model-name">${m.model_name}</div>
-          <div class="model-provider">${m.provider} · ${m.size}</div>
-        </div>
-        <div class="model-header-right">
-          <span class="rank-badge ${rankClass(i)}">#${i + 1}</span>
-          <button class="compare-btn ${sel ? 'selected' : ''}" data-key="${key}" data-model="${enc}" onclick="toggleCompare(this)">${sel ? '✓ Selected' : '+ Compare'}</button>
-        </div>
+/* ── render quality card ───────────────────────────────────── */
+function renderCard(m, i) {
+  const q   = m.quality_score || 0;
+  const c   = m.tests?.code?.avg_score || 0;
+  const rs  = m.tests?.reasoning?.score || 0;
+  const ins = m.tests?.instruction?.avg_score || 0;
+  const tr  = m.tests?.translation?.avg_score || 0;
+  const key = m.model_id || m.model_name;
+  const sel = compareMap.has(key);
+  const enc = btoa(JSON.stringify(m));
+  const rm  = rankMeta(i);
+
+  return `<div class="model-card ${cardClass(i)}">
+    <div class="card-header">
+      <div class="card-title-wrap">
+        <div class="card-model-name">${m.model_name}</div>
+        <div class="card-model-meta">${m.provider} · ${m.size}</div>
       </div>
-      <div class="score-row">
-        ${scoreLine('HumanEval', c,   'fill-code',        `HumanEval ${c.toFixed(1)}/100 — code execution`)}
-        ${scoreLine('GSM8K',     rs,  'fill-reasoning',   `GSM8K ${rs.toFixed(1)}/100 — math & reasoning`)}
-        ${scoreLine('MMLU',      ins, 'fill-instruction', `MMLU ${ins.toFixed(1)}/100 — knowledge & instructions`)}
-        ${scoreLine('Translate', tr,  'fill-translation', `Translation ${tr.toFixed(1)}/100 — EN↔RU, EN↔ES`)}
+      <div class="card-right">
+        <span class="rank-num ${rm.cls}">${rm.label}</span>
+        <button class="cmp-chip ${sel ? 'selected' : ''}"
+                data-key="${key}" data-model="${enc}"
+                onclick="toggleCompare(this)">${sel ? '✓ Selected' : '+ Compare'}</button>
       </div>
-      <div class="quality-footer">
-        <span class="quality-label">Quality score</span>
-        <span class="quality-score">${Math.round(q)}<span>/100</span></span>
-      </div>
-    </div>`;
-  });
-  html += '</div>';
-  container.innerHTML = html;
+    </div>
+    <div class="score-block">
+      ${scoreRow('HumanEval', c,   'fill-code',   `HumanEval ${c.toFixed(1)}/100 — code execution pass rate`)}
+      ${scoreRow('GSM8K',     rs,  'fill-reason', `GSM8K ${rs.toFixed(1)}/100 — math & reasoning`)}
+      ${scoreRow('MMLU',      ins, 'fill-mmlu',   `MMLU ${ins.toFixed(1)}/100 — knowledge & instructions`)}
+      ${scoreRow('Translate', tr,  'fill-trans',  `Translation ${tr.toFixed(1)}/100 — EN↔RU, EN↔ES`)}
+    </div>
+    <div class="card-score-footer">
+      <span class="score-footer-label">Quality score</span>
+      <span class="score-footer-val">${Math.round(q)}<span>/100</span></span>
+    </div>
+  </div>`;
 }
 
-function buildSortBar(container, list, cat, onSort) {
-  const btns = [
+/* ── render speed card ─────────────────────────────────────── */
+function renderSpeedCard(m, i, maxSpd) {
+  const spd = m.raw_speed || 0;
+  const pct = maxSpd > 0 ? spd / maxSpd * 100 : 0;
+  const rm  = rankMeta(i);
+  return `<div class="model-card ${cardClass(i)}">
+    <div class="card-header">
+      <div class="card-title-wrap">
+        <div class="card-model-name">${m.model_name}</div>
+        <div class="card-model-meta">${m.provider} · ${m.size}</div>
+      </div>
+      <span class="rank-num ${rm.cls}">${rm.label}</span>
+    </div>
+    <div style="font-family:'Google Sans',sans-serif;font-size:30px;font-weight:400;color:var(--color-on-surface);font-variant-numeric:tabular-nums;line-height:1;margin:12px 0 14px;">
+      ${Math.round(spd)}<span style="font-size:15px;font-weight:400;color:var(--color-on-surface-var);margin-left:4px;">tok/s</span>
+    </div>
+    <div class="score-block">
+      <div class="score-row">
+        <span class="score-label">Speed</span>
+        <span class="score-bar-wrap">
+          <span class="score-bar-fill fill-speed" style="width:${pct}%"></span>
+          <span class="score-tooltip">${Math.round(spd)} tok/s — ${pct.toFixed(0)}% of tier best</span>
+        </span>
+        <span class="score-val">${Math.round(pct)}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ── empty state ───────────────────────────────────────────── */
+function emptyState(tier) {
+  return `<div style="padding:32px;text-align:center;color:var(--color-on-surface-var);
+    background:var(--color-surf-cont-low);border-radius:var(--md-sys-shape-corner-large,16px);">
+    No ${tier} models tested yet</div>`;
+}
+
+/* ── sort helpers ──────────────────────────────────────────── */
+function sortList(list, key) {
+  return [...list].sort((a, b) => {
+    if (key === 'quality')   return (b.quality_score||0) - (a.quality_score||0);
+    if (key === 'speed')     return (b.raw_speed||0) - (a.raw_speed||0);
+    if (key === 'code')      return (b.tests?.code?.avg_score||0) - (a.tests?.code?.avg_score||0);
+    if (key === 'reasoning') return (b.tests?.reasoning?.score||0) - (a.tests?.reasoning?.score||0);
+    return 0;
+  });
+}
+
+function buildSortRow(el, list, renderFn) {
+  const defs = [
     { key: 'quality',   label: 'Score' },
     { key: 'speed',     label: 'Speed' },
     { key: 'code',      label: 'Code' },
     { key: 'reasoning', label: 'Logic' },
   ];
   let active = 'quality';
-  container.innerHTML = btns.map(b =>
-    `<button class="sort-btn ${b.key === active ? 'active' : ''}" data-sort="${b.key}">${b.label}</button>`
+  el.innerHTML = defs.map(d =>
+    `<button class="sort-chip ${d.key === active ? 'active' : ''}" data-key="${d.key}">${d.label}</button>`
   ).join('');
-  container.querySelectorAll('.sort-btn').forEach(btn => {
+  el.querySelectorAll('.sort-chip').forEach(btn => {
     btn.addEventListener('click', () => {
-      container.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+      el.querySelectorAll('.sort-chip').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      active = btn.dataset.sort;
-      onSort(active);
+      active = btn.dataset.key;
+      renderFn(sortList(list, active));
     });
   });
 }
 
-function sortModels(list, key) {
-  return [...list].sort((a, b) => {
-    if (key === 'quality')   return (b.quality_score || 0) - (a.quality_score || 0);
-    if (key === 'speed')     return (b.raw_speed || 0) - (a.raw_speed || 0);
-    if (key === 'code')      return (b.tests?.code?.avg_score || 0) - (a.tests?.code?.avg_score || 0);
-    if (key === 'reasoning') return (b.tests?.reasoning?.score || 0) - (a.tests?.reasoning?.score || 0);
-    return 0;
-  });
-}
-
+/* ── build quality board ───────────────────────────────────── */
 function buildQualityBoard(results) {
   const groups = { large: [], medium: [], small: [], unknown: [] };
-  [...results].sort((a, b) => (b.quality_score || 0) - (a.quality_score || 0))
-    .forEach(m => (groups[m.size_category || 'unknown'] || groups.unknown).push(m));
+  sortList(results, 'quality').forEach(m =>
+    (groups[m.size_category || 'unknown'] || groups.unknown).push(m));
 
-  ['large', 'medium', 'small'].forEach(cat => {
-    renderQualityCards(groups[cat], `quality-board-${cat}`);
-    const sb = document.querySelector(`.sort-bar[data-cat="${cat}"]`);
-    if (sb) buildSortBar(sb, groups[cat], cat, key => {
-      renderQualityCards(sortModels(groups[cat], key), `quality-board-${cat}`);
-    });
+  ['large', 'medium', 'small'].forEach(tier => {
+    const board = document.getElementById(`quality-board-${tier}`);
+    const sortEl = document.getElementById(`sort-quality-${tier}`);
+    if (!board) return;
+    const list = groups[tier];
+    const render = (items) => {
+      board.innerHTML = items.length
+        ? items.map((m, i) => renderCard(m, i)).join('')
+        : emptyState(tier);
+    };
+    render(list);
+    if (sortEl && list.length > 1) buildSortRow(sortEl, list, render);
   });
 }
 
+/* ── build speed board ─────────────────────────────────────── */
 function buildSpeedBoard(results) {
   const groups = { large: [], medium: [], small: [], unknown: [] };
-  [...results].sort((a, b) => (b.raw_speed || 0) - (a.raw_speed || 0))
-    .forEach(m => (groups[m.size_category || 'unknown'] || groups.unknown).push(m));
+  sortList(results, 'speed').forEach(m =>
+    (groups[m.size_category || 'unknown'] || groups.unknown).push(m));
 
-  ['large', 'medium', 'small'].forEach(cat => {
-    const list = groups[cat];
-    const container = document.getElementById(`speed-board-${cat}`);
-    if (!container) return;
-    if (!list.length) {
-      container.innerHTML = `<div style="padding:32px;text-align:center;color:var(--m3-on-surf-var);background:var(--m3-surf1);border-radius:var(--m3-shape-lg);">No ${cat} models yet</div>`;
-      return;
-    }
+  ['large', 'medium', 'small'].forEach(tier => {
+    const board = document.getElementById(`speed-board-${tier}`);
+    if (!board) return;
+    const list = groups[tier];
+    if (!list.length) { board.innerHTML = emptyState(tier); return; }
     const maxSpd = list[0]?.raw_speed || 1;
-    let html = '<div class="grid grid-2">';
-    list.forEach((m, i) => {
-      const spd = m.raw_speed || 0;
-      const pct = spd / maxSpd * 100;
-      html += `<div class="model-card ${rankCardClass(i)}">
-        <div class="model-header">
-          <div>
-            <div class="model-name">${m.model_name}</div>
-            <div class="model-provider">${m.provider} · ${m.size}</div>
-          </div>
-          <span class="rank-badge ${rankClass(i)}">#${i + 1}</span>
-        </div>
-        <div style="margin-top:14px;">
-          <div style="font-family:'Google Sans',sans-serif;font-size:28px;font-weight:500;color:var(--m3-on-surf);font-variant-numeric:tabular-nums;line-height:1;">
-            ${Math.round(spd)}<span style="font-size:14px;font-weight:400;color:var(--m3-on-surf-var);margin-left:4px;">tok/s</span>
-          </div>
-          <div class="score-row" style="margin-top:12px;">
-            <div class="score-line">
-              <span class="score-line-label">Speed</span>
-              <span class="score-line-wrap">
-                <span class="score-line-bar">
-                  <span class="score-line-fill fill-speed" style="width:${pct}%"></span>
-                </span>
-                <span class="score-line-tip">${Math.round(spd)} tok/s — ${pct.toFixed(0)}% of tier best</span>
-              </span>
-              <span class="score-line-val">${Math.round(pct)}</span>
-            </div>
-          </div>
-        </div>
-      </div>`;
-    });
-    html += '</div>';
-    container.innerHTML = html;
+    board.innerHTML = list.map((m, i) => renderSpeedCard(m, i, maxSpd)).join('');
   });
 }
 
-function buildCompareModal() {
-  const models = [...selectedModels.values()];
+/* ── tier filter ───────────────────────────────────────────── */
+function applyTierFilter(tier) {
+  activeTier = tier;
+  document.querySelectorAll('.category-section').forEach(sec => {
+    const t = sec.dataset.tier;
+    sec.style.display = (tier === 'all' || tier === t) ? '' : 'none';
+  });
+  document.querySelectorAll('.size-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.size === tier);
+  });
+}
+
+document.querySelectorAll('.size-chip').forEach(chip => {
+  chip.addEventListener('click', () => applyTierFilter(chip.dataset.size));
+});
+
+/* ── compare modal ─────────────────────────────────────────── */
+function openCompare() {
+  const models = [...compareMap.values()];
   if (!models.length) return;
 
-  const radarWrap = document.getElementById('radar-wrap');
-  const table = document.getElementById('compare-table');
-  radarWrap.innerHTML = '';
-  document.getElementById('modal-overlay').classList.add('visible');
+  const radarGrid = document.getElementById('radar-grid');
+  const cmpTable  = document.getElementById('cmp-table');
+  radarGrid.innerHTML = '';
+  document.getElementById('dialog-scrim').classList.add('open');
 
   const LABELS = ['HumanEval', 'GSM8K', 'MMLU', 'Translation'];
-  const colors  = ['#1a73e8', '#1e8e3e', '#8430ce', '#e37400'];
+  const COLORS  = ['#1a73e8', '#1e8e3e', '#9334ea', '#e37400'];
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
 
   models.forEach((m, idx) => {
     const data = [
@@ -463,25 +531,24 @@ function buildCompareModal() {
       m.tests?.instruction?.avg_score || 0,
       m.tests?.translation?.avg_score || 0,
     ];
-    const wrap = document.createElement('div');
-    wrap.className = 'radar-card';
-    wrap.innerHTML = `
-      <div style="font-family:'Google Sans',sans-serif;font-size:14px;font-weight:500;margin-bottom:2px;">${m.model_name}</div>
-      <div style="font-size:12px;color:var(--m3-on-surf-var);margin-bottom:12px;">${m.provider} · ${m.size}</div>
-      <canvas id="rc-${idx}" width="220" height="190"></canvas>`;
-    radarWrap.appendChild(wrap);
+    const card = document.createElement('div');
+    card.className = 'radar-card';
+    card.innerHTML = `
+      <div class="radar-card-name">${m.model_name}</div>
+      <div class="radar-card-meta">${m.provider} · ${m.size}</div>
+      <canvas id="rc-${idx}" width="210" height="180"></canvas>`;
+    radarGrid.appendChild(card);
 
-    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     new Chart(document.getElementById(`rc-${idx}`), {
       type: 'radar',
       data: {
         labels: LABELS,
         datasets: [{
           data,
-          backgroundColor: colors[idx] + '22',
-          borderColor: colors[idx],
+          backgroundColor: COLORS[idx] + '20',
+          borderColor:     COLORS[idx],
           borderWidth: 2,
-          pointBackgroundColor: colors[idx],
+          pointBackgroundColor: COLORS[idx],
           pointRadius: 3,
         }],
       },
@@ -490,9 +557,9 @@ function buildCompareModal() {
           r: {
             min: 0, max: 100,
             ticks: { display: false },
-            grid: { color: dark ? 'rgba(255,255,255,.1)' : 'rgba(0,0,0,.08)' },
+            grid:  { color: dark ? 'rgba(255,255,255,.1)' : 'rgba(0,0,0,.08)' },
             pointLabels: {
-              color: dark ? 'rgba(255,255,255,.45)' : 'rgba(0,0,0,.45)',
+              color: dark ? 'rgba(255,255,255,.5)' : 'rgba(0,0,0,.45)',
               font: { size: 10, family: 'Roboto' },
             },
           },
@@ -507,86 +574,112 @@ function buildCompareModal() {
     ['Provider',    m => m.provider,                                          false],
     ['Size',        m => m.size,                                              false],
     ['Context',     m => m.context || 'N/A',                                  false],
-    ['HumanEval',   m => (m.tests?.code?.avg_score        || 0).toFixed(1),  true],
-    ['GSM8K',       m => (m.tests?.reasoning?.score       || 0).toFixed(1),  true],
-    ['MMLU',        m => (m.tests?.instruction?.avg_score || 0).toFixed(1),  true],
-    ['Translation', m => (m.tests?.translation?.avg_score || 0).toFixed(1),  true],
-    ['Quality',     m => (m.quality_score || 0).toFixed(1),                  true],
-    ['Speed tok/s', m => Math.round(m.raw_speed || 0),                       true],
+    ['HumanEval',   m => (m.tests?.code?.avg_score        || 0).toFixed(1),  true ],
+    ['GSM8K',       m => (m.tests?.reasoning?.score       || 0).toFixed(1),  true ],
+    ['MMLU',        m => (m.tests?.instruction?.avg_score || 0).toFixed(1),  true ],
+    ['Translation', m => (m.tests?.translation?.avg_score || 0).toFixed(1),  true ],
+    ['Quality',     m => (m.quality_score || 0).toFixed(1),                  true ],
+    ['Speed tok/s', m => Math.round(m.raw_speed || 0),                       true ],
   ];
 
   let html = `<thead><tr><th>Metric</th>${models.map(m => `<th>${m.model_name}</th>`).join('')}</tr></thead><tbody>`;
-  rows.forEach(([label, fn, isNum]) => {
+  rows.forEach(([label, fn, numeric]) => {
     const vals = models.map(m => fn(m));
     let best = -1;
-    if (isNum && models.length > 1) {
+    if (numeric && models.length > 1) {
       best = vals.map(v => parseFloat(v)).reduce((bi, v, i, a) => v > a[bi] ? i : bi, 0);
     }
-    html += `<tr><td class="metric-label">${label}</td>`;
-    vals.forEach((v, i) => { html += `<td class="${i === best ? 'winner' : ''}">${v}</td>`; });
+    html += `<tr><td class="row-label">${label}</td>`;
+    vals.forEach((v, i) => { html += `<td class="${i === best ? 'best' : ''}">${v}</td>`; });
     html += '</tr>';
   });
-  html += '</tbody>';
-  table.innerHTML = html;
+  cmpTable.innerHTML = html + '</tbody>';
 }
 
+document.getElementById('compare-go').addEventListener('click', openCompare);
+document.getElementById('compare-clear').addEventListener('click', () => {
+  compareMap.clear();
+  document.querySelectorAll('.cmp-chip').forEach(b => {
+    b.classList.remove('selected');
+    b.textContent = '+ Compare';
+  });
+  document.getElementById('compare-bar').classList.remove('visible');
+});
+document.getElementById('dialog-close').addEventListener('click', () =>
+  document.getElementById('dialog-scrim').classList.remove('open'));
+document.getElementById('dialog-scrim').addEventListener('click', e => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+
+/* ── tab switch ────────────────────────────────────────────── */
+document.querySelectorAll('.seg-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.leaderboard-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    document.getElementById('quality-legend').style.display = btn.dataset.tab === 'quality' ? '' : 'none';
+    document.getElementById('speed-legend').style.display   = btn.dataset.tab === 'speed'   ? '' : 'none';
+  });
+});
+
+/* ── load data ─────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     const today = new Date().toISOString().split('T')[0];
     let data;
-    const todayR = await fetch(`data/results/${today}.json`);
-    if (todayR.ok) {
-      data = { date: today, timestamp: new Date().toISOString(), results: await todayR.json() };
+    const r = await fetch(`data/results/${today}.json`);
+    if (r.ok) {
+      data = { date: today, timestamp: new Date().toISOString(), results: await r.json() };
     } else {
-      const r = await fetch('data/results/latest.json');
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      data = await r.json();
+      const r2 = await fetch('data/results/latest.json');
+      if (!r2.ok) throw new Error(`HTTP ${r2.status}`);
+      data = await r2.json();
     }
 
     const all = (data.results || []).map(m => ({
       ...m,
       quality_score: m.quality_score ?? m.overall_score ?? 0,
-      raw_speed: m.raw_speed ?? m.tests?.speed?.avg_tokens_per_sec ?? 0,
+      raw_speed:     m.raw_speed ?? m.tests?.speed?.avg_tokens_per_sec ?? 0,
       size_category: m.size_category ?? 'unknown',
     }));
     allResults = all.filter(m => m.quality_score > 0 || m.raw_speed > 0);
 
     const ts = new Date(data.timestamp);
     document.getElementById('last-update').innerHTML =
-      `<span class="live-dot"></span>&ensp;last updated ${ts.toLocaleString()}`;
+      `<span class="live-dot"></span>last updated ${ts.toLocaleString()}`;
 
     if (!allResults.length) {
-      document.getElementById('hero-subtitle').textContent = 'No results yet — benchmark is running';
+      document.getElementById('hero-sub-text').textContent = 'No results yet — benchmark is running';
       return;
     }
 
-    const top     = [...allResults].sort((a, b) => (b.quality_score || 0) - (a.quality_score || 0))[0];
-    const fastest = [...allResults].sort((a, b) => (b.raw_speed || 0) - (a.raw_speed || 0))[0];
+    const byQ = [...allResults].sort((a, b) => (b.quality_score||0) - (a.quality_score||0));
+    const byS = [...allResults].sort((a, b) => (b.raw_speed||0) - (a.raw_speed||0));
 
-    if (top) {
-      document.getElementById('hero-title').innerHTML =
-        `<em>${top.model_name}</em> leads quality &middot; <em>${fastest.model_name}</em> leads speed`;
-      document.title = `${top.model_name} #1 today — ModelLens`;
+    /* hero — per-tier leaders */
+    const tierLeaders = {};
+    ['large','medium','small'].forEach(t => {
+      const t_models = byQ.filter(m => m.size_category === t);
+      if (t_models[0]) tierLeaders[t] = t_models[0].model_name;
+    });
+    const parts = Object.entries(tierLeaders).map(([t,n]) =>
+      `<em>${n}</em> leads ${t}`).join(' · ');
+    if (parts) {
+      document.getElementById('hero-headline').innerHTML = parts;
+      document.title = `${byQ[0].model_name} #1 today — ModelLens`;
     }
-    document.getElementById('hero-subtitle').textContent =
+    document.getElementById('hero-sub-text').textContent =
       `${allResults.length} free models benchmarked · real code execution · verified answers`;
 
-    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-    set('stat-models',  allResults.length);
-    set('stat-fastest', Math.round(Math.max(...allResults.map(r => r.raw_speed || 0))));
-    set('stat-quality', Math.round(Math.max(...allResults.map(r => r.quality_score || 0))));
+    const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    s('stat-models',  allResults.length);
+    s('stat-fastest', Math.round(Math.max(...allResults.map(r => r.raw_speed||0))));
+    s('stat-quality', Math.round(Math.max(...allResults.map(r => r.quality_score||0))));
 
     buildQualityBoard(allResults);
     buildSpeedBoard(allResults);
-
-    document.getElementById('hero-search').addEventListener('input', e => {
-      const q = e.target.value.toLowerCase().trim();
-      document.querySelectorAll('.model-card').forEach(card => {
-        const name = (card.querySelector('.model-name')?.textContent || '').toLowerCase();
-        const prov = (card.querySelector('.model-provider')?.textContent || '').toLowerCase();
-        card.style.display = (!q || name.includes(q) || prov.includes(q)) ? '' : 'none';
-      });
-    });
+    applyTierFilter('all');
 
     try {
       const news = await fetch('data/results/news.json').then(r => r.json());
@@ -605,53 +698,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('ModelLens error:', err);
     document.querySelector('main.container').innerHTML = `
       <div style="text-align:center;padding:64px;">
-        <h2 style="font-family:'Google Sans',sans-serif;font-weight:500;margin-bottom:12px;">Could not load results</h2>
-        <p style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--m3-on-surf-var);">${err.message}</p>
+        <h2 style="font-family:'Google Sans',sans-serif;font-weight:400;margin-bottom:12px;">Could not load results</h2>
+        <code style="font-size:12px;color:var(--color-on-surface-var);">${err.message}</code>
       </div>`;
   }
 });
-
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.leaderboard-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-    document.getElementById('quality-legend').style.display = btn.dataset.tab === 'quality' ? '' : 'none';
-    document.getElementById('speed-legend').style.display   = btn.dataset.tab === 'speed'   ? '' : 'none';
-  });
-});
-
-document.getElementById('compare-go').addEventListener('click', buildCompareModal);
-
-document.getElementById('compare-clear').addEventListener('click', () => {
-  selectedModels.clear();
-  document.querySelectorAll('.compare-btn').forEach(b => {
-    b.classList.remove('selected');
-    b.textContent = '+ Compare';
-  });
-  document.getElementById('compare-bar').classList.remove('visible');
-});
-
-document.getElementById('modal-close').addEventListener('click', () => {
-  document.getElementById('modal-overlay').classList.remove('visible');
-});
-document.getElementById('modal-overlay').addEventListener('click', e => {
-  if (e.target === e.currentTarget) e.currentTarget.classList.remove('visible');
-});
-</script>
-
-<script>
-(function () {
-  function applyTheme(t) {
-    document.documentElement.setAttribute('data-theme', t);
-    localStorage.setItem('theme', t);
-  }
-  const btn = document.getElementById('theme-toggle');
-  if (btn) btn.addEventListener('click', () => {
-    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
-})();
 </script>
 
 </body>
