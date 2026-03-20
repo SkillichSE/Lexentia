@@ -2,7 +2,7 @@
 Configuration for AI model benchmarks
 """
 
-# Models to test (all free tier - VERIFIED WORKING)
+# Models to test
 MODELS = {
     "groq": {
         "llama-3.1-8b": {
@@ -19,28 +19,81 @@ MODELS = {
             "size": "70B",
             "context": "128k"
         },
-        "llama-3.3-70b-specdec": {
-            "id": "llama-3.3-70b-specdec",
-            "name": "Llama 3.3 70B SpecDec",
+        "gemma2-9b": {
+            "id": "gemma2-9b-it",
+            "name": "Gemma 2 9B",
             "provider": "Groq",
-            "size": "70B",
+            "size": "9B",
             "context": "8k"
+        },
+        "mixtral-8x7b": {
+            "id": "mixtral-8x7b-32768",
+            "name": "Mixtral 8x7B",
+            "provider": "Groq",
+            "size": "8x7B",
+            "context": "32k"
         }
     },
     "google": {
-        "gemini-flash": {
-            "id": "gemini-1.5-flash",
-            "name": "Gemini 1.5 Flash",
+        "gemini-2.0-flash": {
+            "id": "gemini-2.0-flash",
+            "name": "Gemini 2.0 Flash",
             "provider": "Google",
             "size": "N/A",
             "context": "1M"
         },
-        "gemini-pro": {
-            "id": "gemini-1.5-pro",
-            "name": "Gemini 1.5 Pro",
+        "gemini-2.0-flash-lite": {
+            "id": "gemini-2.0-flash-lite",
+            "name": "Gemini 2.0 Flash Lite",
             "provider": "Google",
             "size": "N/A",
-            "context": "2M"
+            "context": "1M"
+        }
+    },
+    # OpenRouter gives access to many models via a single API key.
+    # Set OPENROUTER_API_KEY in GitHub Secrets to enable these.
+    "openrouter": {
+        "deepseek-r1": {
+            "id": "deepseek/deepseek-r1",
+            "name": "DeepSeek R1",
+            "provider": "OpenRouter",
+            "size": "671B",
+            "context": "64k"
+        },
+        "deepseek-v3": {
+            "id": "deepseek/deepseek-chat-v3-5",
+            "name": "DeepSeek V3",
+            "provider": "OpenRouter",
+            "size": "671B",
+            "context": "64k"
+        },
+        "claude-haiku": {
+            "id": "anthropic/claude-haiku-4-5",
+            "name": "Claude Haiku 4.5",
+            "provider": "OpenRouter",
+            "size": "N/A",
+            "context": "200k"
+        },
+        "qwen-3-235b": {
+            "id": "qwen/qwen3-235b-a22b",
+            "name": "Qwen 3 235B",
+            "provider": "OpenRouter",
+            "size": "235B",
+            "context": "41k"
+        },
+        "mistral-small": {
+            "id": "mistralai/mistral-small-3.2-24b-instruct",
+            "name": "Mistral Small 3.2 24B",
+            "provider": "OpenRouter",
+            "size": "24B",
+            "context": "128k"
+        },
+        "llama-4-maverick": {
+            "id": "meta-llama/llama-4-maverick",
+            "name": "Llama 4 Maverick",
+            "provider": "OpenRouter",
+            "size": "17Bx128E",
+            "context": "1M"
         }
     }
 }
@@ -119,6 +172,7 @@ NEWS_SOURCES = {
 RATE_LIMITS = {
     "groq": 30,
     "google": 60,
+    "openrouter": 20,
     "together": 20,
     "huggingface": 10
 }
