@@ -289,7 +289,18 @@ function buildChampions(results){
 
 document.addEventListener('DOMContentLoaded',async()=>{
   try{
-    const data=await fetch('data/results/latest.json').then(r=>r.json());
+    // Try today's date file first, then fall back to latest.json
+    const today = new Date().toISOString().split('T')[0];
+    let data;
+    const todayResp = await fetch(`data/results/${today}.json`);
+    if(todayResp.ok) {
+      const todayData = await todayResp.json();
+      data = { date: today, timestamp: new Date().toISOString(), results: todayData };
+    } else {
+      const resp = await fetch('data/results/latest.json');
+      if(!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.url}`);
+      data = await resp.json();
+    }
     // Normalise both old and new format
     const allResults=(data.results||[]).map(m=>({
       ...m,
@@ -333,10 +344,11 @@ document.addEventListener('DOMContentLoaded',async()=>{
       });
     }catch(e){}
   }catch(err){
-    console.error(err);
+    console.error('ModelArena load error:', err);
     document.querySelector('main.container').innerHTML=`<div class="card" style="text-align:center;padding:48px;">
-      <h2>⏳ First benchmark running...</h2>
-      <p style="color:var(--text-secondary);margin-top:16px;">Results will appear here after the first automated test completes.</p>
+      <h2 style="margin-bottom:16px;">Could not load results</h2>
+      <p style="color:var(--md-on-surface-var);font-family:monospace;font-size:12px;background:var(--md-surface-2);padding:12px;border-radius:8px;text-align:left;">${err.message}</p>
+      <p style="color:var(--md-on-surface-var);margin-top:16px;font-size:14px;">Check the browser console for details.</p>
     </div>`;
   }
 });
