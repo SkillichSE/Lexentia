@@ -1,274 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme init: prevent flash -->
-  <script>
-    (function(){
-      var t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', t);
-    })();
-  </script>
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Models - ModelArena</title>
+  <title>Search — ModelArena</title>
+  <meta name="description" content="Search and compare free AI models by name, provider, speed or quality.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="header-content">
-      <a href="index.html" class="logo">
-        <span class="logo-icon">⚔️</span>
-        <span>ModelArena</span>
-      </a>
+      <a href="index.html" class="logo"><span class="logo-icon">⚔️</span><span>ModelArena</span></a>
       <nav class="nav">
         <a href="index.html" class="nav-link">Rankings</a>
-        <a href="methodology.html" class="nav-link">Methodology</a>
+        <a href="methodology.html" class="nav-link">How it works</a>
         <a href="search.html" class="nav-link active">Search</a>
         <a href="news.html" class="nav-link">News</a>
         <a href="trends.html" class="nav-link">Trends</a>
-        <a href="about.html" class="nav-link">About</a>
       </nav>
-      <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
       </button>
     </div>
   </header>
 
   <main class="container">
-    <h1>Search AI Models</h1>
-    <p style="color: var(--text-secondary); margin-bottom: 32px;">
-      Find and compare models by name, provider, or performance
-    </p>
+    <div class="section-header" style="margin-bottom:var(--sp-lg);">
+      <h1 class="section-title" style="font-size:28px;">Search models</h1>
+    </div>
 
-    <!-- Search & Filters -->
     <div class="search-container">
       <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input 
-          type="text" 
-          class="search-input" 
-          id="search-input"
-          placeholder="Search by model name (e.g., Llama, Gemini, Mixtral...)"
-        >
+        <span class="search-icon">⌕</span>
+        <input type="text" class="search-input" id="search-input" placeholder="Llama, Gemini, Mistral...">
       </div>
-
-      <div style="margin-bottom: 16px;">
-        <strong style="font-size: 0.875rem; color: var(--text-secondary);">PROVIDER</strong>
-        <div class="filters" id="provider-filters" style="margin-top: 8px;">
-          <button class="filter-btn active" data-provider="all">All</button>
-          <button class="filter-btn" data-provider="Groq">Groq</button>
-          <button class="filter-btn" data-provider="Google">Google</button>
-          <button class="filter-btn" data-provider="Together">Together AI</button>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--md-on-surface-low);margin-bottom:8px;">Provider</div>
+          <div class="filters" id="provider-filters">
+            <button class="filter-btn active" data-provider="all">All</button>
+            <button class="filter-btn" data-provider="Groq">Groq</button>
+            <button class="filter-btn" data-provider="Google">Google</button>
+            <button class="filter-btn" data-provider="OpenRouter">OpenRouter</button>
+          </div>
         </div>
-      </div>
-
-      <div style="margin-bottom: 24px;">
-        <strong style="font-size: 0.875rem; color: var(--text-secondary);">SORT BY</strong>
-        <div class="filters" id="sort-filters" style="margin-top: 8px;">
-          <button class="filter-btn active" data-sort="overall">Overall Score</button>
-          <button class="filter-btn" data-sort="speed">Speed</button>
-          <button class="filter-btn" data-sort="code">Code Quality</button>
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--md-on-surface-low);margin-bottom:8px;">Sort by</div>
+          <div class="filters" id="sort-filters">
+            <button class="filter-btn active" data-sort="quality">Quality</button>
+            <button class="filter-btn" data-sort="speed">Speed</button>
+            <button class="filter-btn" data-sort="code">Code</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Results -->
-    <div id="results-count" style="margin-bottom: 16px; color: var(--text-secondary);"></div>
-    <div class="grid grid-2" id="search-results">
-      <!-- Populated by JS -->
-    </div>
-
-    <!-- No results message -->
-    <div id="no-results" style="display: none; text-align: center; padding: 48px;">
-      <div style="font-size: 3rem; margin-bottom: 16px;">🔍</div>
-      <h3>No models found</h3>
-      <p style="color: var(--text-secondary); margin-top: 8px;">
-        Try adjusting your filters or search query
-      </p>
+    <div id="results-count" style="font-size:13px;color:var(--md-on-surface-low);margin-bottom:16px;"></div>
+    <div class="grid grid-2" id="search-results"></div>
+    <div id="no-results" style="display:none;text-align:center;padding:64px;color:var(--md-on-surface-var);">
+      No models match your search.
     </div>
   </main>
 
   <footer class="footer">
     <div class="footer-links">
-      <a href="https://github.com/yourusername/ai-benchmarker" class="footer-link">GitHub</a>
-      <a href="#" class="footer-link">API Docs</a>
-      <a href="about.html" class="footer-link">About</a>
+      <a href="https://github.com/SkillichSE/ModelArena" class="footer-link">GitHub</a>
+      <a href="methodology.html" class="footer-link">How it works</a>
     </div>
-    <p>Open source project • Updated daily</p>
+    <p>Free AI models, tested daily</p>
   </footer>
 
   <script>
-    let allModels = [];
-    let filteredModels = [];
-    let currentProvider = 'all';
-    let currentSort = 'overall';
-    let searchQuery = '';
+    let allModels=[], currentProvider='all', currentSort='quality', searchQuery='';
 
-    // Load data
-    async function loadData() {
-      try {
-        const response = await fetch('data/results/latest.json');
-        const data = await response.json();
-        allModels = data.results;
-        filterAndDisplay();
-      } catch (error) {
-        console.error('Error loading data:', error);
-      }
+    function sizeBadge(cat){
+      const m={small:'size-small',medium:'size-medium',large:'size-large',unknown:'size-unknown'};
+      const l={small:'small',medium:'medium',large:'large',unknown:'?'};
+      return `<span class="size-badge ${m[cat]||'size-unknown'}">${l[cat]||cat}</span>`;
     }
 
-    // Filter and sort models
-    function filterAndDisplay() {
-      // Filter by provider
-      filteredModels = currentProvider === 'all' 
-        ? [...allModels]
-        : allModels.filter(m => m.provider === currentProvider);
+    function scoreLine(label,val,cls){
+      return `<div class="score-line">
+        <span class="score-line-label">${label}</span>
+        <span class="score-line-bar"><span class="score-line-fill ${cls}" style="width:${val}%"></span></span>
+        <span class="score-line-val">${Math.round(val)}</span>
+      </div>`;
+    }
 
-      // Filter by search query
-      if (searchQuery) {
-        filteredModels = filteredModels.filter(m => 
-          m.model_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          m.provider.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      }
-
-      // Sort
-      filteredModels.sort((a, b) => {
-        if (currentSort === 'speed') {
-          return (b.tests.speed?.avg_tokens_per_sec || 0) - (a.tests.speed?.avg_tokens_per_sec || 0);
-        } else if (currentSort === 'code') {
-          return (b.tests.code?.avg_score || 0) - (a.tests.code?.avg_score || 0);
+    async function loadData(){
+      try{
+        const today=new Date().toISOString().split('T')[0];
+        let data;
+        const todayR=await fetch(`data/results/${today}.json`);
+        if(todayR.ok){
+          const arr=await todayR.json();
+          data={results:arr};
         } else {
-          return b.overall_score - a.overall_score;
+          const r=await fetch('data/results/latest.json');
+          data=await r.json();
         }
+        allModels=(data.results||[]).map(m=>({
+          ...m,
+          quality_score: m.quality_score??m.overall_score??0,
+          raw_speed: m.raw_speed??m.tests?.speed?.avg_tokens_per_sec??0,
+          size_category: m.size_category??'unknown',
+        })).filter(m=>m.quality_score>0||m.raw_speed>0);
+        filterAndDisplay();
+      }catch(e){console.error(e);}
+    }
+
+    function filterAndDisplay(){
+      let list=currentProvider==='all'?[...allModels]:allModels.filter(m=>m.provider===currentProvider);
+      if(searchQuery) list=list.filter(m=>
+        m.model_name.toLowerCase().includes(searchQuery)||
+        m.provider.toLowerCase().includes(searchQuery)
+      );
+      list.sort((a,b)=>{
+        if(currentSort==='speed') return (b.raw_speed||0)-(a.raw_speed||0);
+        if(currentSort==='code')  return (b.tests?.code?.avg_score||0)-(a.tests?.code?.avg_score||0);
+        return (b.quality_score||0)-(a.quality_score||0);
       });
 
-      displayResults();
-    }
+      const rc=document.getElementById('results-count');
+      const nr=document.getElementById('no-results');
+      const sr=document.getElementById('search-results');
 
-    // Display results
-    function displayResults() {
-      const resultsContainer = document.getElementById('search-results');
-      const resultsCount = document.getElementById('results-count');
-      const noResults = document.getElementById('no-results');
-
-      if (filteredModels.length === 0) {
-        resultsContainer.style.display = 'none';
-        noResults.style.display = 'block';
-        resultsCount.textContent = '';
+      if(!list.length){
+        sr.innerHTML=''; sr.style.display='none';
+        nr.style.display='block';
+        rc.textContent='';
         return;
       }
+      nr.style.display='none';
+      sr.style.display='grid';
+      rc.textContent=`${list.length} model${list.length!==1?'s':''} found`;
 
-      resultsContainer.style.display = 'grid';
-      noResults.style.display = 'none';
-      resultsCount.textContent = `${filteredModels.length} model${filteredModels.length !== 1 ? 's' : ''} found`;
-
-      resultsContainer.innerHTML = filteredModels.map((model, index) => {
-        const speedScore = model.tests.speed?.avg_tokens_per_sec || 0;
-        const codeScore = model.tests.code?.avg_score || 0;
-        const providerColor = {
-          'Groq': 'chip-blue',
-          'Google': 'chip-green',
-          'Together': 'chip-yellow'
-        }[model.provider] || 'chip-gray';
-
-        return `
-          <div class="model-card">
-            <div class="model-header">
-              <div>
-                <div class="model-name">${model.model_name}</div>
-                <div style="margin-top: 8px;">
-                  <span class="chip ${providerColor}">${model.provider}</span>
-                  <span class="chip chip-gray">${model.size}</span>
-                </div>
-              </div>
-              <div class="model-rank">#${index + 1}</div>
+      sr.innerHTML=list.map((m,i)=>{
+        const q=m.quality_score||0;
+        const c=m.tests?.code?.avg_score||0;
+        const rs=m.tests?.reasoning?.score||0;
+        const spd=m.raw_speed||0;
+        return `<div class="model-card">
+          <div class="model-header">
+            <div>
+              <div class="model-name">${m.model_name}${sizeBadge(m.size_category)}</div>
+              <div class="model-provider">${m.provider} · ${m.size}</div>
             </div>
-            
-            <div class="model-metrics">
-              <div class="metric">
-                <span class="metric-label">Speed</span>
-                <span class="metric-value">${Math.round(speedScore)}</span>
-                <span style="font-size: 0.75rem; color: var(--text-tertiary);">tokens/sec</span>
-              </div>
-              <div class="metric">
-                <span class="metric-label">Code Quality</span>
-                <span class="metric-value">${Math.round(codeScore)}%</span>
-              </div>
-            </div>
-            
-            <div style="margin-top: 16px;">
-              <div class="metric-label">Overall Performance</div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: ${model.overall_score}%"></div>
-              </div>
-              <div style="text-align: right; font-size: 0.875rem; color: var(--text-secondary); margin-top: 4px;">
-                ${Math.round(model.overall_score)}/100
-              </div>
-            </div>
+            <div class="rank-badge">#${i+1}</div>
           </div>
-        `;
+          <div class="score-row">
+            ${scoreLine('Quality',q,'fill-quality')}
+            ${scoreLine('Code',c,'fill-code')}
+            ${scoreLine('Reasoning',rs,'fill-reasoning')}
+          </div>
+          <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--md-outline-var);">
+            <span style="font-size:12px;color:var(--md-on-surface-low);">${Math.round(spd)} tok/s</span>
+            <span style="font-size:18px;font-weight:700;color:var(--md-primary);">${Math.round(q)}<span style="font-size:11px;font-weight:400;color:var(--md-on-surface-low);">/100</span></span>
+          </div>
+        </div>`;
       }).join('');
     }
 
-    // Event listeners
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded',()=>{
       loadData();
-
-      // Search input
-      document.getElementById('search-input').addEventListener('input', (e) => {
-        searchQuery = e.target.value;
+      document.getElementById('search-input').addEventListener('input',e=>{searchQuery=e.target.value.toLowerCase();filterAndDisplay();});
+      document.getElementById('provider-filters').addEventListener('click',e=>{
+        if(!e.target.classList.contains('filter-btn'))return;
+        document.querySelectorAll('#provider-filters .filter-btn').forEach(b=>b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentProvider=e.target.dataset.provider;
         filterAndDisplay();
       });
-
-      // Provider filters
-      document.getElementById('provider-filters').addEventListener('click', (e) => {
-        if (e.target.classList.contains('filter-btn')) {
-          document.querySelectorAll('#provider-filters .filter-btn').forEach(btn => {
-            btn.classList.remove('active');
-          });
-          e.target.classList.add('active');
-          currentProvider = e.target.dataset.provider;
-          filterAndDisplay();
-        }
-      });
-
-      // Sort filters
-      document.getElementById('sort-filters').addEventListener('click', (e) => {
-        if (e.target.classList.contains('filter-btn')) {
-          document.querySelectorAll('#sort-filters .filter-btn').forEach(btn => {
-            btn.classList.remove('active');
-          });
-          e.target.classList.add('active');
-          currentSort = e.target.dataset.sort;
-          filterAndDisplay();
-        }
+      document.getElementById('sort-filters').addEventListener('click',e=>{
+        if(!e.target.classList.contains('filter-btn'))return;
+        document.querySelectorAll('#sort-filters .filter-btn').forEach(b=>b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentSort=e.target.dataset.sort;
+        filterAndDisplay();
       });
     });
   </script>
   <script>
-    // Theme toggle
-    (function() {
-      function applyTheme(t) {
-        document.documentElement.setAttribute('data-theme', t);
-        localStorage.setItem('theme', t);
-      }
-      var btn = document.getElementById('theme-toggle');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          var current = document.documentElement.getAttribute('data-theme') || 'dark';
-          applyTheme(current === 'dark' ? 'light' : 'dark');
-        });
-      }
+    (function(){
+      function applyTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);}
+      var btn=document.getElementById('theme-toggle');
+      if(btn)btn.addEventListener('click',function(){applyTheme((document.documentElement.getAttribute('data-theme')||'dark')==='dark'?'light':'dark');});
+      window.addEventListener('scroll',function(){document.querySelector('.header').classList.toggle('scrolled',window.scrollY>0);});
     })();
   </script>
-
-<script>
-window.addEventListener('scroll', function() {
-  document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 0);
-});
-</script>
-
 </body>
 </html>

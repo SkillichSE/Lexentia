@@ -23,19 +23,19 @@ RSS_FEEDS = [
         "keywords": ["gemini", "model", "ai", "release", "update"]
     },
     {
-        "url": "https://openai.com/blog/rss/",
-        "source": "OpenAI",
-        "keywords": ["model", "release", "gpt", "update", "api"]
+        "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+        "source": "AWS ML Blog",
+        "keywords": ["model", "llm", "inference", "release", "bedrock", "sagemaker"]
     },
     {
-        "url": "https://www.anthropic.com/news/rss.xml",
-        "source": "Anthropic",
-        "keywords": ["claude", "model", "release", "update", "api"]
+        "url": "https://developer.nvidia.com/blog/feed/",
+        "source": "NVIDIA Developer",
+        "keywords": ["model", "llm", "inference", "release", "nim", "gpu"]
     },
     {
-        "url": "https://mistral.ai/news/rss",
-        "source": "Mistral AI",
-        "keywords": ["model", "release", "mistral", "update"]
+        "url": "https://www.together.ai/blog/rss.xml",
+        "source": "Together AI",
+        "keywords": ["model", "release", "open", "inference", "fine-tun"]
     },
 ]
 
