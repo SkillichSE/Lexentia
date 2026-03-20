@@ -23,7 +23,7 @@ from config import MODELS, TESTS
 GROQ_API       = "https://api.groq.com/openai/v1/chat/completions"
 OPENROUTER_API = "https://openrouter.ai/api/v1/chat/completions"
 
-REQUEST_DELAY = {"groq": 2, "google": 8, "openrouter": 3}
+REQUEST_DELAY = {"groq": 2, "google": 8, "openrouter": 1}
 
 # ── Ground-truth answers for reasoning tests ──────────────────────────────────
 REASONING_ANSWERS = {
@@ -70,7 +70,7 @@ class ModelBenchmark:
             "model": model_id,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.3,   # lower = more deterministic for evals
-            "max_tokens": 600,
+            "max_tokens": 350,
         }
         start = time.time()
         try:
@@ -161,7 +161,7 @@ class ModelBenchmark:
             "HTTP-Referer": "https://github.com/ModelArena",
             "X-Title": "ModelArena Benchmark",
         }
-        return self._openai_post(OPENROUTER_API, headers, model_id, prompt, timeout=90)
+        return self._openai_post(OPENROUTER_API, headers, model_id, prompt, timeout=45)
 
     def _call(self, provider, model_id, prompt):
         return {"groq": self.call_groq, "google": self.call_google,
