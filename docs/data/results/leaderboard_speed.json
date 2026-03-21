@@ -6,27 +6,27 @@
     "size": "8B",
     "size_category": "small",
     "context": "128k",
-    "timestamp": "2026-03-20T13:46:52.052158",
+    "timestamp": "2026-03-21T04:27:55.516205",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 602.59,
+        "avg_tokens_per_sec": 582.05,
         "details": [
           {
             "test": "simple",
-            "time": 0.233,
-            "tokens_per_sec": 249.39,
+            "time": 0.229,
+            "tokens_per_sec": 253.24,
             "tokens": 58
           },
           {
             "test": "medium",
-            "time": 0.374,
-            "tokens_per_sec": 824.46,
-            "tokens": 308
+            "time": 0.408,
+            "tokens_per_sec": 742.4,
+            "tokens": 303
           },
           {
             "test": "long",
-            "time": 0.474,
-            "tokens_per_sec": 733.93,
+            "time": 0.464,
+            "tokens_per_sec": 750.5,
             "tokens": 348
           }
         ]
@@ -139,8 +139,8 @@
         ]
       },
       "reasoning": {
-        "score": 60.0,
-        "correct": 3,
+        "score": 80.0,
+        "correct": 4,
         "total": 5,
         "details": [
           {
@@ -153,13 +153,13 @@
             "test": "speed_math",
             "correct": false,
             "score": 0,
-            "answer_given": "To determine which train is faster, we need to calculate their speeds. \n\nSpeed o"
+            "answer_given": "To determine which train is faster, we need to calculate their speeds.\n\nThe firs"
           },
           {
             "test": "river_crossing",
-            "correct": false,
-            "score": 0,
-            "answer_given": "Grain."
+            "correct": true,
+            "score": 100,
+            "answer_given": "Chicken."
           },
           {
             "test": "coin_flip",
@@ -181,7 +181,7 @@
           {
             "test": "json",
             "score": 100,
-            "reason": "all keys present"
+            "reason": "ok"
           },
           {
             "test": "list",
@@ -218,233 +218,9 @@
         ]
       }
     },
-    "quality_score": 70.0,
-    "raw_speed": 602.59,
-    "overall_score": 70.0,
-    "speed_score": 100.0
-  },
-  {
-    "model_id": "gpt-oss-120b",
-    "model_name": "GPT-OSS 120B",
-    "provider": "Groq",
-    "size": "120B",
-    "size_category": "large",
-    "context": "128k",
-    "timestamp": "2026-03-20T13:49:35.316509",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 548.42,
-        "details": [
-          {
-            "test": "simple",
-            "time": 0.708,
-            "tokens_per_sec": 535.27,
-            "tokens": 379
-          },
-          {
-            "test": "medium",
-            "time": 0.687,
-            "tokens_per_sec": 554.57,
-            "tokens": 381
-          },
-          {
-            "test": "long",
-            "time": 0.691,
-            "tokens_per_sec": 555.41,
-            "tokens": 384
-          }
-        ]
-      },
-      "code": {
-        "avg_score": 100.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 1.0,
-            "passed": 5,
-            "total": 5,
-            "details": [
-              {
-                "input": "2",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "3",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "4",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              },
-              {
-                "input": "17",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "100",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              }
-            ]
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 1.0,
-            "passed": 4,
-            "total": 4,
-            "details": [
-              {
-                "input": "0",
-                "expected": "0",
-                "got": "0",
-                "passed": true
-              },
-              {
-                "input": "1",
-                "expected": "1",
-                "got": "1",
-                "passed": true
-              },
-              {
-                "input": "7",
-                "expected": "13",
-                "got": "13",
-                "passed": true
-              },
-              {
-                "input": "10",
-                "expected": "55",
-                "got": "55",
-                "passed": true
-              }
-            ]
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 1.0,
-            "passed": 4,
-            "total": 4,
-            "details": [
-              {
-                "input": "'racecar'",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "'hello'",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              },
-              {
-                "input": "'A man a plan a canal Panama'",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "'world'",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              }
-            ]
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 100.0,
-        "correct": 5,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": true,
-            "score": 100,
-            "answer_given": "Yes"
-          },
-          {
-            "test": "speed_math",
-            "correct": true,
-            "score": 100,
-            "answer_given": "Same"
-          },
-          {
-            "test": "river_crossing",
-            "correct": true,
-            "score": 100,
-            "answer_given": "Chicken"
-          },
-          {
-            "test": "coin_flip",
-            "correct": true,
-            "score": 100,
-            "answer_given": "1/2"
-          },
-          {
-            "test": "counting",
-            "correct": true,
-            "score": 100,
-            "answer_given": "11"
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 100.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 100,
-            "reason": "all keys present"
-          },
-          {
-            "test": "list",
-            "score": 100,
-            "found": 5,
-            "expected": 5
-          },
-          {
-            "test": "word_count",
-            "score": 100,
-            "found": 3,
-            "expected": 3
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 100.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 100,
-            "cyrillic_ratio": 0.89
-          },
-          {
-            "test": "ru_en",
-            "score": 100,
-            "latin_ratio": 0.87
-          },
-          {
-            "test": "en_es",
-            "score": 100,
-            "keywords_found": 10
-          }
-        ]
-      }
-    },
-    "quality_score": 80.0,
-    "raw_speed": 548.42,
-    "overall_score": 80.0,
+    "quality_score": 75.0,
+    "raw_speed": 582.05,
+    "overall_score": 75.0,
     "speed_score": 100.0
   },
   {
@@ -454,27 +230,27 @@
     "size": "32B",
     "size_category": "medium",
     "context": "32k",
-    "timestamp": "2026-03-20T13:48:48.900589",
+    "timestamp": "2026-03-21T04:29:14.049887",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 403.53,
+        "avg_tokens_per_sec": 360.73,
         "details": [
           {
             "test": "simple",
-            "time": 0.888,
-            "tokens_per_sec": 355.86,
+            "time": 0.904,
+            "tokens_per_sec": 349.52,
             "tokens": 316
           },
           {
             "test": "medium",
-            "time": 0.689,
-            "tokens_per_sec": 466.05,
+            "time": 0.885,
+            "tokens_per_sec": 362.57,
             "tokens": 321
           },
           {
             "test": "long",
-            "time": 0.831,
-            "tokens_per_sec": 388.68,
+            "time": 0.873,
+            "tokens_per_sec": 370.09,
             "tokens": 323
           }
         ]
@@ -561,25 +337,25 @@
               {
                 "input": "'racecar'",
                 "expected": "True",
-                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "got": "File \"<string>\", line 12\n    So first, I'll process the string by replacing all spaces. Wait, but wh",
                 "passed": false
               },
               {
                 "input": "'hello'",
                 "expected": "False",
-                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "got": "File \"<string>\", line 12\n    So first, I'll process the string by replacing all spaces. Wait, but wh",
                 "passed": false
               },
               {
                 "input": "'A man a plan a canal Panama'",
                 "expected": "True",
-                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "got": "File \"<string>\", line 12\n    So first, I'll process the string by replacing all spaces. Wait, but wh",
                 "passed": false
               },
               {
                 "input": "'world'",
                 "expected": "False",
-                "got": "File \"<string>\", line 22\n    Take the input string s, process it by replacing spaces and lowercasing",
+                "got": "File \"<string>\", line 12\n    So first, I'll process the string by replacing all spaces. Wait, but wh",
                 "passed": false
               }
             ]
@@ -613,7 +389,7 @@
             "test": "coin_flip",
             "correct": false,
             "score": 0,
-            "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the fo"
+            "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the 4t"
           },
           {
             "test": "counting",
@@ -629,7 +405,7 @@
           {
             "test": "json",
             "score": 100,
-            "reason": "all keys present"
+            "reason": "ok"
           },
           {
             "test": "list",
@@ -640,7 +416,7 @@
           {
             "test": "word_count",
             "score": 0,
-            "found": 19,
+            "found": 22,
             "expected": 3
           }
         ]
@@ -651,12 +427,12 @@
           {
             "test": "en_ru",
             "score": 0,
-            "cyrillic_ratio": 0.13
+            "cyrillic_ratio": 0.15
           },
           {
             "test": "ru_en",
             "score": 100,
-            "latin_ratio": 0.66
+            "latin_ratio": 0.68
           },
           {
             "test": "en_es",
@@ -667,7 +443,7 @@
       }
     },
     "quality_score": 21.7,
-    "raw_speed": 403.53,
+    "raw_speed": 360.73,
     "overall_score": 21.7,
     "speed_score": 100.0
   },
@@ -678,27 +454,27 @@
     "size": "70B",
     "size_category": "large",
     "context": "128k",
-    "timestamp": "2026-03-20T13:47:29.129598",
+    "timestamp": "2026-03-21T04:28:34.435838",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 329.15,
+        "avg_tokens_per_sec": 350.65,
         "details": [
           {
             "test": "simple",
-            "time": 0.269,
-            "tokens_per_sec": 226.58,
+            "time": 0.289,
+            "tokens_per_sec": 211.0,
             "tokens": 61
           },
           {
             "test": "medium",
-            "time": 0.816,
-            "tokens_per_sec": 332.25,
-            "tokens": 271
+            "time": 0.68,
+            "tokens_per_sec": 403.23,
+            "tokens": 274
           },
           {
             "test": "long",
-            "time": 0.812,
-            "tokens_per_sec": 428.61,
+            "time": 0.795,
+            "tokens_per_sec": 437.72,
             "tokens": 348
           }
         ]
@@ -825,7 +601,7 @@
             "test": "speed_math",
             "correct": false,
             "score": 0,
-            "answer_given": "To determine which train is faster, we need to calculate their speeds. \n\nThe spe"
+            "answer_given": "To determine which train is faster, we need to calculate the speed of each train"
           },
           {
             "test": "river_crossing",
@@ -837,7 +613,7 @@
             "test": "coin_flip",
             "correct": false,
             "score": 0,
-            "answer_given": "Since the coin is fair, the probability of getting heads on any given flip is 1/"
+            "answer_given": "Since the coin is fair, the outcome of each flip is independent of the previous "
           },
           {
             "test": "counting",
@@ -853,7 +629,7 @@
           {
             "test": "json",
             "score": 100,
-            "reason": "all keys present"
+            "reason": "ok"
           },
           {
             "test": "list",
@@ -891,1172 +667,8 @@
       }
     },
     "quality_score": 70.0,
-    "raw_speed": 329.15,
+    "raw_speed": 350.65,
     "overall_score": 70.0,
     "speed_score": 100.0
-  },
-  {
-    "model_id": "llama-4-scout",
-    "model_name": "Llama 4 Scout 17B",
-    "provider": "Groq",
-    "size": "17Bx16E",
-    "size_category": "medium",
-    "context": "131k",
-    "timestamp": "2026-03-20T13:48:08.194931",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 316.34,
-        "details": [
-          {
-            "test": "simple",
-            "time": 0.111,
-            "tokens_per_sec": 298.33,
-            "tokens": 33
-          },
-          {
-            "test": "medium",
-            "time": 1.155,
-            "tokens_per_sec": 277.09,
-            "tokens": 320
-          },
-          {
-            "test": "long",
-            "time": 0.865,
-            "tokens_per_sec": 373.61,
-            "tokens": 323
-          }
-        ]
-      },
-      "code": {
-        "avg_score": 100.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 1.0,
-            "passed": 5,
-            "total": 5,
-            "details": [
-              {
-                "input": "2",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "3",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "4",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              },
-              {
-                "input": "17",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "100",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              }
-            ]
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 1.0,
-            "passed": 4,
-            "total": 4,
-            "details": [
-              {
-                "input": "0",
-                "expected": "0",
-                "got": "0",
-                "passed": true
-              },
-              {
-                "input": "1",
-                "expected": "1",
-                "got": "1",
-                "passed": true
-              },
-              {
-                "input": "7",
-                "expected": "13",
-                "got": "13",
-                "passed": true
-              },
-              {
-                "input": "10",
-                "expected": "55",
-                "got": "55",
-                "passed": true
-              }
-            ]
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 1.0,
-            "passed": 4,
-            "total": 4,
-            "details": [
-              {
-                "input": "'racecar'",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "'hello'",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              },
-              {
-                "input": "'A man a plan a canal Panama'",
-                "expected": "True",
-                "got": "True",
-                "passed": true
-              },
-              {
-                "input": "'world'",
-                "expected": "False",
-                "got": "False",
-                "passed": true
-              }
-            ]
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 40.0,
-        "correct": 2,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": true,
-            "score": 100,
-            "answer_given": "Yes."
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0,
-            "answer_given": "## Step 1: Calculate the speed of the first train\nTo determine which train is fa"
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0,
-            "answer_given": "## Step 1: Understand the constraints of the problem\nThe farmer has a fox, a chi"
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0,
-            "answer_given": "## Step 1: Understanding the Problem\nThe problem involves flipping a fair coin 3"
-          },
-          {
-            "test": "counting",
-            "correct": true,
-            "score": 100,
-            "answer_given": "11"
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 100.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 100,
-            "reason": "all keys present"
-          },
-          {
-            "test": "list",
-            "score": 100,
-            "found": 5,
-            "expected": 5
-          },
-          {
-            "test": "word_count",
-            "score": 100,
-            "found": 3,
-            "expected": 3
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 100.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 100,
-            "cyrillic_ratio": 0.89
-          },
-          {
-            "test": "ru_en",
-            "score": 100,
-            "latin_ratio": 0.87
-          },
-          {
-            "test": "en_es",
-            "score": 100,
-            "keywords_found": 12
-          }
-        ]
-      }
-    },
-    "quality_score": 65.0,
-    "raw_speed": 316.34,
-    "overall_score": 65.0,
-    "speed_score": 100.0
-  },
-  {
-    "model_id": "step-3.5-flash",
-    "model_name": "Step 3.5 Flash",
-    "provider": "OpenRouter",
-    "size": "196B",
-    "size_category": "large",
-    "context": "256k",
-    "timestamp": "2026-03-20T13:50:15.513480",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 54.07,
-        "details": [
-          {
-            "test": "simple",
-            "time": 6.12,
-            "tokens_per_sec": 52.29,
-            "tokens": 320
-          },
-          {
-            "test": "medium",
-            "time": 5.224,
-            "tokens_per_sec": 61.64,
-            "tokens": 322
-          },
-          {
-            "test": "long",
-            "time": 6.751,
-            "tokens_per_sec": 48.29,
-            "tokens": 326
-          }
-        ]
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "empty response"
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "empty response"
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "empty response"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 100.0,
-        "correct": 5,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": true,
-            "score": 100,
-            "answer_given": "Yes"
-          },
-          {
-            "test": "speed_math",
-            "correct": true,
-            "score": 100,
-            "answer_given": "Same"
-          },
-          {
-            "test": "river_crossing",
-            "correct": true,
-            "score": 100,
-            "answer_given": "Chicken"
-          },
-          {
-            "test": "coin_flip",
-            "correct": true,
-            "score": 100,
-            "answer_given": "1/2"
-          },
-          {
-            "test": "counting",
-            "correct": true,
-            "score": 100,
-            "answer_given": "11"
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 33.3,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "reason": "empty response"
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "reason": "empty response"
-          },
-          {
-            "test": "word_count",
-            "score": 100,
-            "found": 3,
-            "expected": 3
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 100.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 100,
-            "cyrillic_ratio": 0.89
-          },
-          {
-            "test": "ru_en",
-            "score": 100,
-            "latin_ratio": 0.86
-          },
-          {
-            "test": "en_es",
-            "score": 100,
-            "keywords_found": 10
-          }
-        ]
-      }
-    },
-    "quality_score": 40.0,
-    "raw_speed": 54.07,
-    "overall_score": 40.0,
-    "speed_score": 100.0
-  },
-  {
-    "model_id": "nemotron-super-120b",
-    "model_name": "Nemotron 3 Super 120B",
-    "provider": "OpenRouter",
-    "size": "120B",
-    "size_category": "large",
-    "context": "262k",
-    "timestamp": "2026-03-20T13:52:13.365965",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 0.0,
-        "correct": 0,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0
-          },
-          {
-            "test": "ru_en",
-            "score": 0
-          },
-          {
-            "test": "en_es",
-            "score": 0
-          }
-        ]
-      }
-    },
-    "quality_score": 0.0,
-    "raw_speed": 0,
-    "overall_score": 0.0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "gpt-oss-120b-or",
-    "model_name": "GPT-OSS 120B",
-    "provider": "OpenRouter",
-    "size": "120B",
-    "size_category": "large",
-    "context": "131k",
-    "timestamp": "2026-03-20T13:52:49.188412",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 0.0,
-        "correct": 0,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0
-          },
-          {
-            "test": "ru_en",
-            "score": 0
-          },
-          {
-            "test": "en_es",
-            "score": 0
-          }
-        ]
-      }
-    },
-    "quality_score": 0.0,
-    "raw_speed": 0,
-    "overall_score": 0.0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "gpt-oss-20b",
-    "model_name": "GPT-OSS 20B",
-    "provider": "OpenRouter",
-    "size": "20B",
-    "size_category": "medium",
-    "context": "131k",
-    "timestamp": "2026-03-20T13:53:28.388158",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 0.0,
-        "correct": 0,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-min. "
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0
-          },
-          {
-            "test": "ru_en",
-            "score": 0
-          },
-          {
-            "test": "en_es",
-            "score": 0
-          }
-        ]
-      }
-    },
-    "quality_score": 0.0,
-    "raw_speed": 0,
-    "overall_score": 0.0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "mistral-small-3.1",
-    "model_name": "Mistral Small 3.1 24B",
-    "provider": "OpenRouter",
-    "size": "24B",
-    "size_category": "medium",
-    "context": "128k",
-    "timestamp": "2026-03-20T13:54:07.656581",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "Status 429 - Provider returned error"
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Provider returned error"
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Provider returned error"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 0.0,
-        "correct": 0,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/mistralai/mistral-small-3.1-24b-instruct-2503/ecbdc9f1-ecca-4f91-83cf-b3495a60e874. High "
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/mistralai/mistral-small-3.1-24b-instruct-2503/ecbdc9f1-ecca-4f91-83cf-b3495a60e874. High "
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/mistralai/mistral-small-3.1-24b-instruct-2503/ecbdc9f1-ecca-4f91-83cf-b3495a60e874. High "
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0
-          },
-          {
-            "test": "ru_en",
-            "score": 0
-          },
-          {
-            "test": "en_es",
-            "score": 0
-          }
-        ]
-      }
-    },
-    "quality_score": 0.0,
-    "raw_speed": 0,
-    "overall_score": 0.0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "minimax-m2.5",
-    "model_name": "MiniMax M2.5",
-    "provider": "OpenRouter",
-    "size": "N/A",
-    "size_category": "unknown",
-    "context": "197k",
-    "timestamp": "2026-03-20T13:54:44.150276",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 0.0,
-        "correct": 0,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: free-models-per-day. Add 10 credits to unlock 1000 free model requests per day"
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0
-          },
-          {
-            "test": "ru_en",
-            "score": 0
-          },
-          {
-            "test": "en_es",
-            "score": 0
-          }
-        ]
-      }
-    },
-    "quality_score": 0.0,
-    "raw_speed": 0,
-    "overall_score": 0.0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "llama-3.3-70b-or",
-    "model_name": "Llama 3.3 70B",
-    "provider": "OpenRouter",
-    "size": "70B",
-    "size_category": "large",
-    "context": "66k",
-    "timestamp": "2026-03-20T13:55:22.638557",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "Status 429 - Provider returned error"
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Provider returned error"
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Provider returned error"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 0.0,
-        "correct": 0,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/meta-llama/llama-3.3-70b-instruct/839b2e30-a1b4-4974-b980-3e534b5873b1. High demand for m"
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/meta-llama/llama-3.3-70b-instruct/839b2e30-a1b4-4974-b980-3e534b5873b1. High demand for m"
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/meta-llama/llama-3.3-70b-instruct/839b2e30-a1b4-4974-b980-3e534b5873b1. High demand for m"
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0
-          },
-          {
-            "test": "ru_en",
-            "score": 0
-          },
-          {
-            "test": "en_es",
-            "score": 0
-          }
-        ]
-      }
-    },
-    "quality_score": 0.0,
-    "raw_speed": 0,
-    "overall_score": 0.0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "qwen3-4b",
-    "model_name": "Qwen 3 4B",
-    "provider": "OpenRouter",
-    "size": "4B",
-    "size_category": "small",
-    "context": "41k",
-    "timestamp": "2026-03-20T13:55:59.019371",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      },
-      "code": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "prime",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 5,
-            "error": "Status 429 - Provider returned error"
-          },
-          {
-            "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Provider returned error"
-          },
-          {
-            "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
-            "total": 4,
-            "error": "Status 429 - Provider returned error"
-          }
-        ]
-      },
-      "reasoning": {
-        "score": 0.0,
-        "correct": 0,
-        "total": 5,
-        "details": [
-          {
-            "test": "syllogism",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "speed_math",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "river_crossing",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "coin_flip",
-            "correct": false,
-            "score": 0
-          },
-          {
-            "test": "counting",
-            "correct": false,
-            "score": 0
-          }
-        ]
-      },
-      "instruction": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "json",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/qwen/qwen3-4b-04-28/2e98edb5-b21b-455b-afb4-d5c01aad515d. High demand for qwen/qwen3-4b:f"
-          },
-          {
-            "test": "list",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/qwen/qwen3-4b-04-28/2e98edb5-b21b-455b-afb4-d5c01aad515d. High demand for qwen/qwen3-4b:f"
-          },
-          {
-            "test": "word_count",
-            "score": 0,
-            "error": "Status 429 - Rate limit exceeded: limit_rpm/qwen/qwen3-4b-04-28/2e98edb5-b21b-455b-afb4-d5c01aad515d. High demand for qwen/qwen3-4b:f"
-          }
-        ]
-      },
-      "translation": {
-        "avg_score": 0.0,
-        "details": [
-          {
-            "test": "en_ru",
-            "score": 0
-          },
-          {
-            "test": "ru_en",
-            "score": 0
-          },
-          {
-            "test": "en_es",
-            "score": 0
-          }
-        ]
-      }
-    },
-    "quality_score": 0.0,
-    "raw_speed": 0,
-    "overall_score": 0.0,
-    "speed_score": 0.0
   }
 ]
