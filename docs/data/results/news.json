@@ -1,11 +1,11 @@
 {
-  "updated": "2026-03-20T19:18:50.269885+00:00",
+  "updated": "2026-03-21T04:30:18.637895+00:00",
   "count": 30,
   "items": [
     {
-      "title": "Nemotron 3 Content Safety 4B: Multimodal, Multilingual Content Moderation",
-      "link": "https://huggingface.co/blog/nvidia/nemotron-3-content-safety",
-      "date": "2026-03-20T17:00:44+00:00",
+      "title": "Build a Domain-Specific Embedding Model in Under a Day",
+      "link": "https://huggingface.co/blog/nvidia/domain-specific-embedding-finetune",
+      "date": "2026-03-20T19:38:16+00:00",
       "source": "Hugging Face",
       "summary": ""
     },
