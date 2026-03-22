@@ -12,92 +12,196 @@ jobs:
   benchmark:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - run: pip install requests feedparser
 
-      - name: Groq llama-3.1-8b
+      # GROQ - 8 models
+      - name: 🤖 Groq | Llama 3.1 8B
         continue-on-error: true
+        timeout-minutes: 10
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models llama-3.1-8b
 
-      - name: Groq llama-3.3-70b
+      - name: 🤖 Groq | Llama 3.2 1B
         continue-on-error: true
+        timeout-minutes: 10
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: cd src && python benchmark.py --providers groq --models llama-3.2-1b --merge
+
+      - name: 🤖 Groq | Llama 3.2 3B
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: cd src && python benchmark.py --providers groq --models llama-3.2-3b --merge
+
+      - name: 🤖 Groq | Llama 3.3 70B
+        continue-on-error: true
+        timeout-minutes: 10
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models llama-3.3-70b --merge
 
-      - name: Groq mixtral
+      - name: 🤖 Groq | Llama 3.3 70B SpecDec
         continue-on-error: true
+        timeout-minutes: 10
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: cd src && python benchmark.py --providers groq --models llama-3.3-70b-specdec --merge
+
+      - name: 🤖 Groq | Gemma 2 9B
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: cd src && python benchmark.py --providers groq --models gemma2-9b --merge
+
+      - name: 🤖 Groq | Gemma 7B
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: cd src && python benchmark.py --providers groq --models gemma-7b --merge
+
+      - name: 🤖 Groq | Mixtral 8x7B
+        continue-on-error: true
+        timeout-minutes: 10
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models mixtral-8x7b --merge
 
-      - name: OR llama-3.2-1b
+      # OPENROUTER - 14 models
+      - name: 🤖 OR | Llama 3.2 1B
         continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: cd src && python benchmark.py --providers openrouter --models llama-3.2-1b
+        run: cd src && python benchmark.py --providers openrouter --models llama-3.2-1b --merge
 
-      - name: OR llama-3.2-3b
+      - name: 🤖 OR | Llama 3.2 3B
         continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: cd src && python benchmark.py --providers openrouter --models llama-3.2-3b --merge
 
-      - name: OR llama-3.1-8b
+      - name: 🤖 OR | Llama 3.1 8B
         continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: cd src && python benchmark.py --providers openrouter --models llama-3.1-8b --merge
 
-      - name: OR qwen-2.5-7b
+      - name: 🤖 OR | Llama 3.1 70B
         continue-on-error: true
+        timeout-minutes: 15
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: cd src && python benchmark.py --providers openrouter --models llama-3.1-70b --merge
+
+      - name: 🤖 OR | Llama 3.1 405B
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: cd src && python benchmark.py --providers openrouter --models llama-3.1-405b --merge
+
+      - name: 🤖 OR | Qwen 2.5 7B
+        continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: cd src && python benchmark.py --providers openrouter --models qwen-2.5-7b --merge
 
-      - name: OR qwen coder
+      - name: 🤖 OR | Qwen 2.5 72B
         continue-on-error: true
+        timeout-minutes: 20
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: cd src && python benchmark.py --providers openrouter --models qwen-2.5-coder-7b --merge
+        run: cd src && python benchmark.py --providers openrouter --models qwen-2.5-72b --merge
 
-      - name: OR mistral nemo
+      - name: 🤖 OR | Mistral 7B
         continue-on-error: true
+        timeout-minutes: 15
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: cd src && python benchmark.py --providers openrouter --models mistral-7b --merge
+
+      - name: 🤖 OR | Mistral Nemo 12B
+        continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: cd src && python benchmark.py --providers openrouter --models mistral-nemo --merge
 
-      - name: OR phi-3-mini
+      - name: 🤖 OR | Gemma 2 9B
         continue-on-error: true
+        timeout-minutes: 15
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: cd src && python benchmark.py --providers openrouter --models gemma-2-9b --merge
+
+      - name: 🤖 OR | Phi-3 Medium 14B
+        continue-on-error: true
+        timeout-minutes: 15
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: cd src && python benchmark.py --providers openrouter --models phi-3-medium --merge
+
+      - name: 🤖 OR | Phi-3 Mini 3.8B
+        continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: cd src && python benchmark.py --providers openrouter --models phi-3-mini --merge
 
-      - name: OR deepseek chat
+      - name: 🤖 OR | MythoMax 13B
         continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: cd src && python benchmark.py --providers openrouter --models deepseek-chat --merge
+        run: cd src && python benchmark.py --providers openrouter --models mythomax-13b --merge
 
-      - name: OR deepseek coder
+      - name: 🤖 OR | Toppy M 7B
         continue-on-error: true
+        timeout-minutes: 15
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: cd src && python benchmark.py --providers openrouter --models deepseek-coder --merge
+        run: cd src && python benchmark.py --providers openrouter --models toppy-m-7b --merge
 
-      - name: Commit
+      # NEWS
+      - name: 📰 Fetch AI news
+        continue-on-error: true
+        run: cd src && python news_parser.py
+
+      # COMMIT
+      - name: 💾 Commit results
         run: |
-          git config user.name "bot"
-          git config user.email "bot@ai"
+          git config user.name "Benchmark Bot"
+          git config user.email "bot@benchmark.ai"
+          git add docs/data/results/ || true
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "📊 Benchmark — $(date +'%Y-%m-%d')"
+            git push
+            echo "Pushed"
+          fi
           git add .
           git commit -m "update" || echo "no changes"
           git push
