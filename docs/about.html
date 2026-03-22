@@ -1,568 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    (function(){
-      var t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', t);
-    })();
-  </script>
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — AI Model Benchmarker</title>
-  <meta name="description" content="How ModelLens works — daily automated benchmarks of free AI models.">
+  <title>About — ModelLens</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="How ModelLens works — daily automated benchmarks of free AI models. Real code execution, verified answers, no human grading.">
   <link rel="stylesheet" href="style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
-
-    /* ── Hero ── */
-    .about-hero {
-      position: relative;
-      overflow: hidden;
-      padding: 80px 0 64px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-    .about-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--hero-gradient);
-      z-index: 0;
-    }
-    /* animated grid lines */
-    .about-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 48px 48px;
-      opacity: 0.35;
-      z-index: 0;
-      animation: gridpan 20s linear infinite;
-    }
-    @keyframes gridpan {
-      from { background-position: 0 0; }
-      to   { background-position: 48px 48px; }
-    }
-    .about-hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
-    }
-    .about-badge {
-      display: inline-block;
-      padding: 4px 14px;
-      border: 1px solid var(--primary);
-      border-radius: var(--radius-full);
-      color: var(--primary);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: var(--space-lg);
-    }
-    .about-title {
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: var(--space-lg);
-      background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    [data-theme="light"] .about-title {
-      background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-    .about-lead {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* ── Pipeline diagram ── */
-    .pipeline {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      flex-wrap: wrap;
-      margin: var(--space-2xl) 0;
-    }
-    .pipe-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      padding: 20px 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      min-width: 130px;
-      text-align: center;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .pipe-step:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(96,165,250,0.1);
-    }
-    .pipe-icon { font-size: 1.75rem; }
-    .pipe-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-    .pipe-sub {
-      font-size: 0.65rem;
-      color: var(--text-tertiary);
-    }
-    .pipe-arrow {
-      color: var(--text-tertiary);
-      font-size: 1.25rem;
-      padding: 0 4px;
-      flex-shrink: 0;
-    }
-
-    /* ── Section layout ── */
-    .about-section {
-      max-width: 800px;
-      margin: 0 auto var(--space-2xl);
-    }
-    .about-section h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: var(--space-lg);
-      letter-spacing: -0.02em;
-    }
-
-    /* ── Scoring cards ── */
-    .score-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: var(--space-md);
-      margin-bottom: var(--space-xl);
-    }
-    .score-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-lg);
-      transition: all 0.2s;
-    }
-    .score-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-    .score-card-icon { font-size: 1.75rem; margin-bottom: 10px; }
-    .score-card-name {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-    .score-card-weight {
-      font-size: 0.7rem;
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .score-card-desc {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    /* ── Philosophy callout ── */
-    .callout {
-      border-left: 3px solid var(--primary);
-      padding: var(--space-lg) var(--space-xl);
-      background: var(--surface);
-      border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
-      margin: var(--space-xl) 0;
-    }
-    .callout p {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin: 0;
-    }
-    .callout strong { color: var(--text-primary); }
-
-    /* ── Provider table ── */
-    .provider-grid {
-      display: grid;
-      gap: var(--space-md);
-      margin-bottom: var(--space-xl);
-    }
-    .provider-row {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-lg);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-lg);
-      transition: border-color 0.2s;
-    }
-    .provider-row:hover { border-color: var(--border-hover); }
-    .provider-name {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      min-width: 80px;
-    }
-    .provider-badge {
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: var(--radius-full);
-      background: var(--chip-green-bg);
-      color: var(--chip-green-text);
-      white-space: nowrap;
-    }
-    .provider-models {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    /* ── Code block ── */
-    .code-block {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-lg);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      overflow-x: auto;
-      line-height: 1.7;
-      margin: var(--space-lg) 0;
-    }
-    .code-block .kw  { color: var(--primary-light); }
-    .code-block .cm  { color: var(--text-tertiary); }
-    .code-block .str { color: var(--success); }
-    .code-block .num { color: var(--warning); }
-
-    /* ── Setup steps ── */
-    .setup-steps {
-      counter-reset: step;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-    .setup-step {
-      display: flex;
-      gap: var(--space-lg);
-      align-items: flex-start;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: var(--space-lg);
-    }
-    .step-num {
-      counter-increment: step;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(96,165,250,0.12);
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.875rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .step-num::after { content: counter(step); }
-    .step-body { flex: 1; }
-    .step-title {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-    .step-desc {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    .step-desc code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      background: var(--surface-2);
-      padding: 1px 6px;
-      border-radius: 4px;
-      color: var(--primary-light);
-    }
-
-    @media (max-width: 600px) {
-      .about-title { font-size: 2rem; }
-      .pipeline { gap: 8px; }
-      .pipe-arrow { display: none; }
-    }
+    .method-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:var(--space-xl);margin-bottom:var(--space-lg)}
+    .method-header{display:flex;align-items:center;gap:12px;margin-bottom:var(--space-md)}
+    .method-icon{font-size:1.75rem}
+    .method-title{font-size:1.125rem;font-weight:600}
+    .method-weight{background:var(--chip-blue-bg);color:var(--chip-blue-text);padding:3px 10px;border-radius:var(--radius-full);font-size:.75rem;font-weight:600;margin-left:auto}
+    .test-example{background:var(--surface-2);border-radius:var(--radius-md);padding:var(--space-md);margin-top:var(--space-md);font-size:.825rem}
+    .test-example code{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--primary)}
+    table{width:100%;border-collapse:collapse;font-size:.875rem;margin-top:var(--space-md)}
+    th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text-tertiary);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+    td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text-secondary)}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:var(--surface-2)}
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="header-content">
-      <a href="index.html" class="logo">
-        <span class="logo-icon">⚡</span>
-        <span>AI Benchmarker</span>
-      </a>
-      <nav class="nav">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="search.html" class="nav-link">Search</a>
-        <a href="news.html" class="nav-link">News</a>
-        <a href="trends.html" class="nav-link">Trends</a>
-        <a href="about.html" class="nav-link active">About</a>
-      </nav>
-      <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
-      </button>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <div class="about-hero">
-    <div class="about-hero-inner">
-      <div class="about-badge">Open Source · Free to Use</div>
-      <h1 class="about-title">How ModelLens Works</h1>
-      <p class="about-lead">
-        A GitHub Actions workflow runs every morning, fires 180 prompts across 15 free AI models,
-        and publishes the results here. No paid APIs. No manual work.
-      </p>
+<header class="header" id="app-bar">
+  <div class="header-content">
+    <a href="index.html" class="logo"><span class="logo-icon">🔍</span>ModelLens</a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Rankings</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="search.html" class="nav-link">Search</a>
+      <a href="trends.html" class="nav-link">Trends</a>
+      <a href="news.html" class="nav-link">News</a>
+    </nav>
+    <div class="theme-switch-wrap">
+      <span class="theme-switch-label" id="theme-label">Dark</span>
+      <label class="theme-switch" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-toggle">
+        <span class="theme-switch-track"></span>
+        <span class="theme-switch-thumb" id="thumb-icon">🌙</span>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main class="container" style="padding-top:var(--space-2xl);">
+  <h1>About ModelLens</h1>
+  <p style="color:var(--text-secondary);margin-bottom:var(--space-2xl);font-size:1.05rem;max-width:680px;">
+    Free AI model rankings updated daily. No sponsorships, no bias — just automated benchmarks running via GitHub Actions at 03:00 UTC.
+  </p>
+
+  <!-- What we test -->
+  <div class="method-card">
+    <h2 style="margin-bottom:var(--space-lg);">What We Test</h2>
+    <p style="color:var(--text-secondary);margin-bottom:var(--space-lg);font-size:.875rem;">
+      Every model is tested across <strong>5 categories</strong>. Speed is tracked separately from quality — a slow model that writes perfect code still scores 100/100 on quality.
+    </p>
+    <table>
+      <thead><tr><th>Category</th><th>Weight</th><th>What it measures</th></tr></thead>
+      <tbody>
+        <tr><td>Code</td><td>30%</td><td>Functions that actually run and produce correct output</td></tr>
+        <tr><td>Reasoning</td><td>25%</td><td>Logic, math, and puzzle problems with verified answers</td></tr>
+        <tr><td>Instructions</td><td>25%</td><td>Following exact formatting requirements (JSON, lists, word counts)</td></tr>
+        <tr><td>Translation</td><td>20%</td><td>Correct target language script and vocabulary</td></tr>
+        <tr><td>Speed</td><td>separate</td><td>Tokens per second — own leaderboard, not mixed into quality</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Code tests -->
+  <div class="method-card">
+    <div class="method-header">
+      <span class="method-icon">💻</span>
+      <span class="method-title">Code Tests — Real Execution</span>
+      <span class="method-weight">30% of quality</span>
+    </div>
+    <p style="color:var(--text-secondary);font-size:.875rem;line-height:1.6;">
+      The model writes Python functions. We <strong>actually run them</strong> with test inputs and verify outputs match expected values. Syntax errors, wrong logic, or empty responses score 0. No partial credit.
+    </p>
+    <div class="test-example">
+      <strong>Example — is_prime test:</strong><br><br>
+      Prompt: <em>"Write a Python function called is_prime(n) that returns True if n is prime..."</em><br><br>
+      We run: <code>is_prime(2) → True ✅  |  is_prime(4) → False ✅  |  is_prime(17) → True ✅</code><br><br>
+      Score = (passed / total) × 100
+    </div>
+    <div class="test-example" style="margin-top:var(--space-sm)">
+      <strong>3 problems tested:</strong> Prime checker · Fibonacci sequence · Palindrome detection
     </div>
   </div>
 
-  <main class="container" style="max-width: 900px;">
-
-    <!-- Pipeline -->
-    <div class="about-section">
-      <h2>🔄 The Pipeline</h2>
-      <div class="pipeline">
-        <div class="pipe-step">
-          <div class="pipe-icon">⏰</div>
-          <div class="pipe-label">Cron</div>
-          <div class="pipe-sub">03:00 UTC daily</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="pipe-icon">🐍</div>
-          <div class="pipe-label">benchmark.py</div>
-          <div class="pipe-sub">180 prompts</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="pipe-icon">📊</div>
-          <div class="pipe-label">JSON results</div>
-          <div class="pipe-sub">scored + ranked</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="pipe-icon">💾</div>
-          <div class="pipe-label">Git commit</div>
-          <div class="pipe-sub">docs/data/</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="pipe-icon">🌐</div>
-          <div class="pipe-label">GitHub Pages</div>
-          <div class="pipe-sub">this site</div>
-        </div>
-      </div>
-
-      <div class="callout">
-        <p>
-          <strong>Why automate this?</strong> Model quality changes constantly — providers
-          deprecate models, release updates, and tweak inference settings without notice.
-          A daily benchmark catches regressions and improvements as they happen,
-          building a historical record that one-off evaluations can't provide.
-        </p>
-      </div>
+  <!-- Reasoning tests -->
+  <div class="method-card">
+    <div class="method-header">
+      <span class="method-icon">🧠</span>
+      <span class="method-title">Reasoning Tests</span>
+      <span class="method-weight">25% of quality</span>
     </div>
-
-    <!-- Scoring philosophy -->
-    <div class="about-section">
-      <h2>🎯 Scoring Philosophy</h2>
-
-      <p style="color: var(--text-secondary); margin-bottom: var(--space-xl); line-height: 1.7;">
-        Most benchmarks collapse everything into one score — which means a tiny 8B model
-        that runs at 600 tok/s will always lose to a 70B that generates 40 tok/s but writes
-        better code. That's not a useful comparison. ModelLens keeps speed and quality
-        completely separate, and groups models by size tier.
-      </p>
-
-      <div class="score-cards">
-        <div class="score-card">
-          <div class="score-card-icon">💻</div>
-          <div class="score-card-name">Code</div>
-          <div class="score-card-weight">40% of Quality</div>
-          <div class="score-card-desc">Three Python tasks — prime check, binary search, LRU cache. Scored on function structure, logic, and documentation.</div>
-        </div>
-        <div class="score-card">
-          <div class="score-card-icon">🧠</div>
-          <div class="score-card-name">Reasoning</div>
-          <div class="score-card-weight">40% of Quality</div>
-          <div class="score-card-desc">Logic syllogism, speed math, 12-ball puzzle. Answers matched against known correct solutions.</div>
-        </div>
-        <div class="score-card">
-          <div class="score-card-icon">🌍</div>
-          <div class="score-card-name">Translation</div>
-          <div class="score-card-weight">20% of Quality</div>
-          <div class="score-card-desc">EN↔RU and EN→ES. Verified by script detection and target-language keyword matching.</div>
-        </div>
-        <div class="score-card">
-          <div class="score-card-icon">⚡</div>
-          <div class="score-card-name">Speed</div>
-          <div class="score-card-weight">Separate board</div>
-          <div class="score-card-desc">Tokens per second across three prompt lengths. Normalised to 100 within each run — never mixed with quality.</div>
-        </div>
-      </div>
-
-      <div class="callout">
-        <p>
-          <strong>Size categories</strong> — models are grouped as
-          <strong>small (≤10B)</strong>, <strong>medium (10–50B)</strong>, and <strong>large (50B+)</strong>.
-          Rankings within a tier are the most meaningful comparisons.
-          A small model that beats other smalls is genuinely impressive;
-          ranking it against a 671B MoE is not.
-        </p>
-      </div>
+    <p style="color:var(--text-secondary);font-size:.875rem;line-height:1.6;">
+      Logic puzzles, math problems, and reasoning challenges with known correct answers. We check if the model's answer contains the correct value.
+    </p>
+    <div class="test-example">
+      <strong>Example — Coin flip probability:</strong><br><br>
+      Prompt: <em>"I flip a fair coin 3 times and get heads each time. What is the probability of getting heads on the 4th flip?"</em><br><br>
+      Correct answer: <code>1/2</code> or <code>50%</code> or <code>0.5</code><br>
+      We check if model's response contains any of these ✅
     </div>
-
-    <!-- Providers -->
-    <div class="about-section">
-      <h2>🔑 Providers &amp; Models</h2>
-      <p style="color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.7;">
-        Every model tested here is available for free — no credit card, no trial period.
-      </p>
-      <div class="provider-grid">
-        <div class="provider-row">
-          <div>
-            <div class="provider-name">Groq</div>
-            <span class="provider-badge">Free tier</span>
-          </div>
-          <div class="provider-models">
-            Llama 3.1 8B Instant · Llama 3.3 70B Versatile · Llama 4 Scout 17B · Qwen 3 32B · GPT-OSS 120B
-            <br><span style="color:var(--text-tertiary); font-size:0.7rem;">30 req/min · no billing required</span>
-          </div>
-        </div>
-        <div class="provider-row">
-          <div>
-            <div class="provider-name">Google</div>
-            <span class="provider-badge">Free tier</span>
-          </div>
-          <div class="provider-models">
-            Gemini 2.0 Flash · Gemini 2.0 Flash Lite
-            <br><span style="color:var(--text-tertiary); font-size:0.7rem;">Key from aistudio.google.com · 1500 req/day</span>
-          </div>
-        </div>
-        <div class="provider-row">
-          <div>
-            <div class="provider-name">OpenRouter</div>
-            <span class="provider-badge">:free models</span>
-          </div>
-          <div class="provider-models">
-            Step 3.5 Flash · Nemotron 3 Super 120B · Llama 3.3 70B · GPT-OSS 120B/20B · Mistral Small 3.1 · MiniMax M2.5 · Qwen 3 4B
-            <br><span style="color:var(--text-tertiary); font-size:0.7rem;">$0/M tokens · only :free suffix models used</span>
-          </div>
-        </div>
-      </div>
+    <div class="test-example" style="margin-top:var(--space-sm)">
+      <strong>5 reasoning tests:</strong> Syllogisms · Speed math · River crossing puzzle · Probability · Letter counting
     </div>
+  </div>
 
-    <!-- Setup -->
-    <div class="about-section">
-      <h2>🚀 Run It Yourself</h2>
-      <div class="setup-steps">
-        <div class="setup-step">
-          <div class="step-num"></div>
-          <div class="step-body">
-            <div class="step-title">Fork the repository</div>
-            <div class="step-desc">Fork <code>ModelLens</code> on GitHub — the workflow and all code comes with it.</div>
-          </div>
-        </div>
-        <div class="setup-step">
-          <div class="step-num"></div>
-          <div class="step-body">
-            <div class="step-title">Enable GitHub Pages</div>
-            <div class="step-desc">Settings → Pages → Source: <code>main</code> branch → Folder: <code>/docs</code></div>
-          </div>
-        </div>
-        <div class="setup-step">
-          <div class="step-num"></div>
-          <div class="step-body">
-            <div class="step-title">Add API keys to Secrets</div>
-            <div class="step-desc">
-              Settings → Secrets → Actions. Add <code>GROQ_API_KEY</code> (required),
-              <code>GOOGLE_API_KEY</code> (optional), <code>OPENROUTER_API_KEY</code> (optional).
-              Google and OpenRouter keys are optional — Groq alone gives you 5 models.
-            </div>
-          </div>
-        </div>
-        <div class="setup-step">
-          <div class="step-num"></div>
-          <div class="step-body">
-            <div class="step-title">Trigger the first run</div>
-            <div class="step-desc">Actions → Daily AI Benchmark → Run workflow. Takes ~20 minutes. Results appear automatically.</div>
-          </div>
-        </div>
-      </div>
+  <!-- Instruction tests -->
+  <div class="method-card">
+    <div class="method-header">
+      <span class="method-icon">📋</span>
+      <span class="method-title">Instruction Following</span>
+      <span class="method-weight">25% of quality</span>
     </div>
-
-    <!-- Add models -->
-    <div class="about-section">
-      <h2>➕ Adding Models</h2>
-      <p style="color: var(--text-secondary); margin-bottom: var(--space-md); line-height: 1.7;">
-        Edit <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: var(--surface-2); padding: 2px 8px; border-radius: 4px; color: var(--primary-light);">src/config.py</code>
-        and add an entry to the appropriate provider section.
-        For OpenRouter, always use the <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: var(--surface-2); padding: 2px 8px; border-radius: 4px; color: var(--success);">:free</code> suffix — models without it require credits.
-      </p>
-      <div class="code-block"><span class="cm"># src/config.py → "openrouter" section</span>
-<span class="str">"my-model"</span>: {
-    <span class="str">"id"</span>:       <span class="str">"provider/model-name:free"</span>,
-    <span class="str">"name"</span>:     <span class="str">"Display Name"</span>,
-    <span class="str">"provider"</span>: <span class="str">"OpenRouter"</span>,
-    <span class="str">"size"</span>:     <span class="str">"7B"</span>,
-    <span class="str">"context"</span>:  <span class="str">"128k"</span>
-}</div>
+    <p style="color:var(--text-secondary);font-size:.875rem;line-height:1.6;">
+      Can the model follow exact formatting rules? We ask for JSON with specific keys, numbered lists with exact counts, and precise sentence counts.
+    </p>
+    <div class="test-example">
+      <strong>Example — JSON formatting:</strong><br><br>
+      Prompt: <em>'Return a JSON object with exactly these keys: "name", "age", "city". Return ONLY valid JSON.'</em><br><br>
+      We parse the JSON and check all 3 required keys are present ✅
     </div>
-
-  </main>
-
-  <footer class="footer">
-    <div class="footer-links">
-      <a href="https://github.com/SkillichSE/ModelLens" class="footer-link">GitHub</a>
-      <a href="index.html" class="footer-link">Leaderboard</a>
-      <a href="about.html" class="footer-link">About</a>
+    <div class="test-example" style="margin-top:var(--space-sm)">
+      <strong>3 instruction tests:</strong> JSON formatting · Numbered lists · Exact sentence counts
     </div>
-    <p>Open source · MIT License · Updated daily via GitHub Actions</p>
-  </footer>
+  </div>
 
-  <script src="app.js"></script>
-  <script>
-    (function() {
-      function applyTheme(t) {
-        document.documentElement.setAttribute('data-theme', t);
-        localStorage.setItem('theme', t);
-      }
-      var btn = document.getElementById('theme-toggle');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          var current = document.documentElement.getAttribute('data-theme') || 'dark';
-          applyTheme(current === 'dark' ? 'light' : 'dark');
-        });
-      }
-    })();
-  </script>
+  <!-- Translation tests -->
+  <div class="method-card">
+    <div class="method-header">
+      <span class="method-icon">🌍</span>
+      <span class="method-title">Translation Tests</span>
+      <span class="method-weight">20% of quality</span>
+    </div>
+    <p style="color:var(--text-secondary);font-size:.875rem;line-height:1.6;">
+      Translating between English, Russian, and Spanish. We check if the output uses the correct writing system (Cyrillic for Russian) and contains expected vocabulary.
+    </p>
+    <div class="test-example">
+      <strong>Example — English to Russian:</strong><br><br>
+      Prompt: <em>"Translate to Russian: 'Artificial intelligence is changing the world.'"</em><br><br>
+      We check: Uses Cyrillic characters ✅ + Contains Russian keywords ✅
+    </div>
+    <div class="test-example" style="margin-top:var(--space-sm)">
+      <strong>3 translation pairs:</strong> EN→RU · RU→EN · EN→ES
+    </div>
+  </div>
+
+  <!-- Speed tests -->
+  <div class="method-card">
+    <div class="method-header">
+      <span class="method-icon">⚡</span>
+      <span class="method-title">Speed Tests</span>
+      <span class="method-weight">Separate leaderboard</span>
+    </div>
+    <p style="color:var(--text-secondary);font-size:.875rem;line-height:1.6;">
+      We measure <strong>tokens per second</strong> across short, medium, and long generation tasks. Speed is tracked separately — it never affects quality scores.
+    </p>
+    <div class="test-example">
+      <strong>3 speed tests:</strong> Short prompt (haiku) · Medium (200 words) · Long (300 words)<br><br>
+      Final score = average tokens/second across all 3
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="method-card">
+    <h2 style="margin-bottom:var(--space-lg);">How It Works</h2>
+    <ol style="color:var(--text-secondary);font-size:.875rem;line-height:1.8;padding-left:20px;">
+      <li><strong>Daily at 03:00 UTC</strong> — GitHub Actions triggers the benchmark workflow</li>
+      <li><strong>Each model tested</strong> — Python script runs all tests via API calls to Groq, OpenRouter</li>
+      <li><strong>Results saved to JSON</strong> — Scores written to <code>docs/data/results/YYYY-MM-DD.json</code></li>
+      <li><strong>Git commit + push</strong> — GitHub Pages automatically rebuilds and deploys the updated site</li>
+      <li><strong>News aggregated</strong> — RSS feeds from HuggingFace, OpenAI, Anthropic, etc. parsed and displayed</li>
+    </ol>
+  </div>
+
+  <!-- Size categories -->
+  <div class="method-card">
+    <h2 style="margin-bottom:var(--space-lg);">Size Categories</h2>
+    <p style="color:var(--text-secondary);margin-bottom:var(--space-md);font-size:.875rem;">
+      Models are ranked <strong>within their size tier</strong> — not globally. A top-ranked 8B model isn't compared to a 405B model.
+    </p>
+    <table>
+      <thead><tr><th>Category</th><th>Parameter range</th><th>Typical models</th></tr></thead>
+      <tbody>
+        <tr><td>Small</td><td>≤10B parameters</td><td>Llama 3.2 1B/3B, Gemma 7B, Qwen 2.5 7B</td></tr>
+        <tr><td>Medium</td><td>10B–50B parameters</td><td>Mixtral 8x7B, Phi-3 Medium, MythoMax 13B</td></tr>
+        <tr><td>Large</td><td>50B+ parameters</td><td>Llama 3.3 70B, Qwen 2.5 72B, Llama 3.1 405B</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Open source -->
+  <div class="method-card">
+    <h2 style="margin-bottom:var(--space-lg);">Open Source</h2>
+    <p style="color:var(--text-secondary);font-size:.875rem;line-height:1.6;margin-bottom:var(--space-md);">
+      All code, data, and methodology is public on GitHub. No hidden algorithms, no sponsored rankings.
+    </p>
+    <a href="https://github.com/SkillichSE/ModelLens" target="_blank" rel="noopener" class="btn-filled" style="display:inline-block;padding:12px 24px;text-decoration:none;">
+      View on GitHub →
+    </a>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="https://github.com/SkillichSE/ModelLens" class="footer-link">GitHub</a>
+    <a href="about.html" class="footer-link">About</a>
+    <a href="news.html" class="footer-link">News</a>
+  </div>
+  <div class="footer-copy">Open source · Updated daily via GitHub Actions · All models are free to use</div>
+</footer>
+
+<script>
+const themeToggle = document.getElementById('theme-toggle');
+const themeLabel = document.getElementById('theme-label');
+const thumbIcon = document.getElementById('thumb-icon');
+
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+  const dark = t === 'dark';
+  themeToggle.checked = dark;
+  themeLabel.textContent = dark ? 'Dark' : 'Light';
+  thumbIcon.textContent = dark ? '🌙' : '☀️';
+}
+
+applyTheme(localStorage.getItem('theme') || 'dark');
+themeToggle.addEventListener('change', () => applyTheme(themeToggle.checked ? 'dark' : 'light'));
+
+window.addEventListener('scroll', () =>
+  document.getElementById('app-bar').classList.toggle('scrolled', window.scrollY > 0));
+</script>
+
 </body>
 </html>
