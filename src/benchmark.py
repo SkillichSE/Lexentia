@@ -24,6 +24,9 @@ REASONING_ANSWERS = {
 }
 
 _OR_ROTATE_STATUSES = {429, 402}
+# How long (seconds) a key stays "at limit" after a 429/402.
+# OR resets RPM every 60s, so 62s covers it.
+_OR_KEY_COOLDOWN = 62
 
 
 def size_category(size_str):
@@ -71,6 +74,8 @@ class ModelBenchmark:
         self.sambanova_key    = os.getenv("SAMBANOVA_API_KEY")
         self._openrouter_keys = _load_openrouter_keys()
         self._or_key_index    = 0
+        # Maps key index -> timestamp when it becomes available again
+        self._or_key_limited_until = {}
         self.active_providers = active_providers
         self.active_models    = active_models
         self.merge            = merge
@@ -82,17 +87,21 @@ class ModelBenchmark:
             return None
         return self._openrouter_keys[self._or_key_index]
 
-    def _rotate_openrouter_key(self):
-        if self._or_key_index + 1 < len(self._openrouter_keys):
-            self._or_key_index += 1
-            hint = self._openrouter_keys[self._or_key_index][:12] + "..."
-            print(f"\n    [openrouter] key #{self._or_key_index + 1}/{len(self._openrouter_keys)} ({hint})", end="", flush=True)
-            time.sleep(1)   # brief pause before trying next key
-            return True
-        return False
+    def _mark_or_key_limited(self, idx):
+        """Mark a key as rate-limited for _OR_KEY_COOLDOWN seconds."""
+        self._or_key_limited_until[idx] = time.time() + _OR_KEY_COOLDOWN
+
+    def _next_available_or_key(self):
+        """Return index of first non-limited key, or None if all are limited."""
+        now = time.time()
+        for i, key in enumerate(self._openrouter_keys):
+            until = self._or_key_limited_until.get(i, 0)
+            if now >= until:
+                return i
+        return None
 
     def _reset_openrouter_keys(self):
-        """All keys exhausted — reset index for next model (no waiting)."""
+        """Reset index for next model (no waiting)."""
         self._or_key_index = 0
 
     def _openai_post(self, url, headers, model_id, prompt, timeout=45):
@@ -164,25 +173,41 @@ class ModelBenchmark:
     def call_openrouter(self, model_id, prompt):
         if not self._openrouter_keys:
             return {"success": False, "error": "no OPENROUTER_API_KEY configured"}
+        # Find a non-limited key to start from
+        start_idx = self._next_available_or_key()
+        if start_idx is None:
+            return {"success": False, "error": "all keys at limit (skipped)"}
+        self._or_key_index = start_idx
+        tried = set()
         while True:
+            idx = self._or_key_index
+            if idx in tried:
+                # We have looped — all tried keys failed
+                print(f"\n    [openrouter] all {len(self._openrouter_keys)} keys at limit, skipping", flush=True)
+                return {"success": False, "error": "all keys at limit (skipped)"}
+            tried.add(idx)
+            hint = self._openrouter_keys[idx][:12] + "..."
+            if idx > 0:
+                print(f"\n    [openrouter] key #{idx+1}/{len(self._openrouter_keys)} ({hint})", end="", flush=True)
             result = self._openai_post(OPENROUTER_API, {
-                "Authorization": f"Bearer {self.openrouter_key}",
+                "Authorization": f"Bearer {self._openrouter_keys[idx]}",
                 "Content-Type": "application/json",
                 "HTTP-Referer": "https://modellens.ai",
                 "X-Title": "ModelLens",
             }, model_id, prompt, timeout=45)
             if result["success"]:
-                self._reset_openrouter_keys()  # reset index for next call
                 return result
             err = result.get("error", "")
             m = re.search(r"Status (\d+)", err)
             status = int(m.group(1)) if m else 0
             if status in _OR_ROTATE_STATUSES:
-                if self._rotate_openrouter_key():
+                self._mark_or_key_limited(idx)
+                next_idx = self._next_available_or_key()
+                if next_idx is not None and next_idx not in tried:
+                    self._or_key_index = next_idx
                     continue
-                # All keys exhausted — skip immediately, no waiting
+                # All available keys exhausted
                 print(f"\n    [openrouter] all {len(self._openrouter_keys)} keys at limit, skipping", flush=True)
-                self._reset_openrouter_keys()
                 return {"success": False, "error": "all keys at limit (skipped)"}
             return result
 
@@ -320,7 +345,7 @@ class ModelBenchmark:
         mid   = model_info["id"]
         self._current_model_info = model_info  # for fallback lookup
         if provider == "openrouter":
-            self._or_key_index = 0  # always start from key #1 for each new model
+            self._or_key_index = 0  # start from key #1 for each new model
         result = {
             "model_id":      model_info.get("key", mid),
             "model_name":    model_info["name"],
