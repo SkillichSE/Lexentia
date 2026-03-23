@@ -11,7 +11,7 @@ permissions:
 jobs:
   benchmark:
     runs-on: ubuntu-latest
-    timeout-minutes: 240
+    timeout-minutes: 90
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -30,56 +30,56 @@ jobs:
 
       - name: Llama 3.1 8B Instant (groq)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models llama-3.1-8b
 
       - name: Llama 3.3 70B (groq)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models llama-3.3-70b --merge
 
       - name: GPT-OSS 120B (groq)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models gpt-oss-120b --merge
 
       - name: GPT-OSS 20B (groq)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models gpt-oss-20b --merge
 
       - name: Llama 4 Scout 17B (groq)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models llama-4-scout --merge
 
       - name: Qwen 3 32B (groq)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models qwen3-32b --merge
 
       - name: Kimi K2 (groq)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models kimi-k2 --merge
 
       - name: Nemotron 3 Super 120B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -95,7 +95,7 @@ jobs:
 
       - name: Nemotron 3 Nano 30B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -111,7 +111,7 @@ jobs:
 
       - name: Nemotron Nano 12B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -127,7 +127,7 @@ jobs:
 
       - name: Nemotron Nano 9B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -143,7 +143,7 @@ jobs:
 
       - name: Trinity Large 400B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -159,7 +159,7 @@ jobs:
 
       - name: Trinity Mini 26B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -175,7 +175,7 @@ jobs:
 
       - name: Step 3.5 Flash 196B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -191,7 +191,7 @@ jobs:
 
       - name: Gemma 3 27B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -207,7 +207,7 @@ jobs:
 
       - name: Gemma 3 12B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -223,7 +223,7 @@ jobs:
 
       - name: Gemma 3 4B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -239,7 +239,7 @@ jobs:
 
       - name: Gemma 3n E4B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -255,7 +255,7 @@ jobs:
 
       - name: Gemma 3n E2B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -271,7 +271,7 @@ jobs:
 
       - name: LFM 2.5 1.2B Instruct (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -287,7 +287,7 @@ jobs:
 
       - name: LFM 2.5 1.2B Thinking (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -303,7 +303,7 @@ jobs:
 
       - name: Llama 3.3 70B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -319,7 +319,7 @@ jobs:
 
       - name: Llama 3.2 3B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -335,7 +335,7 @@ jobs:
 
       - name: Qwen3 Coder 480B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -351,7 +351,7 @@ jobs:
 
       - name: Qwen3 Next 80B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -367,7 +367,7 @@ jobs:
 
       - name: Qwen 3 4B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -383,7 +383,7 @@ jobs:
 
       - name: Mistral Small 3.1 24B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -399,7 +399,7 @@ jobs:
 
       - name: Hermes 3 405B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -415,7 +415,7 @@ jobs:
 
       - name: Dolphin Mistral 24B (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -431,7 +431,7 @@ jobs:
 
       - name: GLM 4.5 Air (openrouter)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 3
         env:
           OPENROUTER_API_KEY_1: ${{ secrets.OPENROUTER_API_KEY_1 }}
           OPENROUTER_API_KEY_2: ${{ secrets.OPENROUTER_API_KEY_2 }}
@@ -447,42 +447,42 @@ jobs:
 
       - name: Llama 3.1 8B (cerebras)
         continue-on-error: true
-        timeout-minutes: 8
+        timeout-minutes: 4
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
         run: cd src && python benchmark.py --providers cerebras --models llama-3.1-8b --merge
 
       - name: Llama 3.3 70B (cerebras)
         continue-on-error: true
-        timeout-minutes: 8
+        timeout-minutes: 4
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
         run: cd src && python benchmark.py --providers cerebras --models llama-3.3-70b --merge
 
       - name: Qwen 3 32B (cerebras)
         continue-on-error: true
-        timeout-minutes: 8
+        timeout-minutes: 4
         env:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
         run: cd src && python benchmark.py --providers cerebras --models qwen3-32b --merge
 
       - name: Llama 3.3 70B (together)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
         run: cd src && python benchmark.py --providers together --models llama-3.3-70b --merge
 
       - name: Llama 3.2 3B (together)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
         run: cd src && python benchmark.py --providers together --models llama-3.2-3b --merge
 
       - name: DeepSeek R1 (together)
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 5
         env:
           TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
         run: cd src && python benchmark.py --providers together --models deepseek-r1-free --merge
