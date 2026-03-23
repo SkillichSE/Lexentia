@@ -6,29 +6,29 @@
     "size": "120B",
     "size_category": "large",
     "context": "131k",
-    "timestamp": "2026-03-23T08:21:21.132064",
+    "timestamp": "2026-03-23T11:25:50.260381",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 521.87,
+        "avg_tokens_per_sec": 526.48,
         "details": [
           {
             "test": "simple",
-            "time": 0.783,
-            "tokens_per_sec": 484.28,
-            "tokens": 379
+            "time": 0.723,
+            "tokens_per_sec": 535.15,
+            "tokens": 387
           },
           {
             "test": "medium",
-            "time": 0.717,
-            "tokens_per_sec": 531.52,
-            "tokens": 381
+            "time": 1.142,
+            "tokens_per_sec": 519.36,
+            "tokens": 593
           },
           {
             "test": "long",
-            "time": 0.698,
-            "tokens_per_sec": 549.82,
-            "tokens": 384
+            "time": 1.135,
+            "tokens_per_sec": 524.94,
+            "tokens": 596
           }
         ]
       },
@@ -204,7 +204,7 @@
           {
             "test": "en_ru",
             "score": 100,
-            "cyrillic_ratio": 0.89
+            "cyrillic_ratio": 0.886
           },
           {
             "test": "ru_en",
@@ -214,14 +214,14 @@
           {
             "test": "en_es",
             "score": 100,
-            "keywords_found": 10
+            "keywords_found": 9
           }
         ]
       }
     },
-    "raw_speed": 521.87,
-    "quality_score": 80.0,
-    "overall_score": 80.0,
+    "raw_speed": 526.48,
+    "quality_score": 100.0,
+    "overall_score": 100.0,
     "speed_score": 100.0
   },
   {
@@ -231,29 +231,29 @@
     "size": "20B",
     "size_category": "medium",
     "context": "131k",
-    "timestamp": "2026-03-23T08:22:01.636492",
+    "timestamp": "2026-03-23T11:26:31.659410",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 399.11,
+        "avg_tokens_per_sec": 941.63,
         "details": [
           {
             "test": "simple",
-            "time": 0.773,
-            "tokens_per_sec": 490.49,
-            "tokens": 379
+            "time": 0.406,
+            "tokens_per_sec": 953.72,
+            "tokens": 387
           },
           {
             "test": "medium",
-            "time": 1.493,
-            "tokens_per_sec": 255.26,
-            "tokens": 381
+            "time": 0.635,
+            "tokens_per_sec": 934.34,
+            "tokens": 593
           },
           {
             "test": "long",
-            "time": 0.85,
-            "tokens_per_sec": 451.58,
-            "tokens": 384
+            "time": 0.636,
+            "tokens_per_sec": 936.82,
+            "tokens": 596
           }
         ]
       },
@@ -402,7 +402,7 @@
         ]
       },
       "instruction": {
-        "avg_score": 83.3,
+        "avg_score": 100.0,
         "details": [
           {
             "test": "json",
@@ -417,8 +417,8 @@
           },
           {
             "test": "word_count",
-            "score": 50,
-            "found": 2,
+            "score": 100,
+            "found": 3,
             "expected": 3
           }
         ]
@@ -429,7 +429,7 @@
           {
             "test": "en_ru",
             "score": 100,
-            "cyrillic_ratio": 0.89
+            "cyrillic_ratio": 0.886
           },
           {
             "test": "ru_en",
@@ -439,14 +439,14 @@
           {
             "test": "en_es",
             "score": 100,
-            "keywords_found": 10
+            "keywords_found": 9
           }
         ]
       }
     },
-    "raw_speed": 399.11,
-    "quality_score": 77.5,
-    "overall_score": 77.5,
+    "raw_speed": 941.63,
+    "quality_score": 100.0,
+    "overall_score": 100.0,
     "speed_score": 100.0
   },
   {
@@ -456,29 +456,29 @@
     "size": "17B",
     "size_category": "medium",
     "context": "131k",
-    "timestamp": "2026-03-23T08:22:50.797474",
+    "timestamp": "2026-03-23T11:27:11.169857",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 299.44,
+        "avg_tokens_per_sec": 302.7,
         "details": [
           {
             "test": "simple",
-            "time": 0.267,
-            "tokens_per_sec": 131.09,
+            "time": 0.544,
+            "tokens_per_sec": 64.33,
             "tokens": 35
           },
           {
             "test": "medium",
-            "time": 0.839,
-            "tokens_per_sec": 381.42,
-            "tokens": 320
+            "time": 0.652,
+            "tokens_per_sec": 428.16,
+            "tokens": 279
           },
           {
             "test": "long",
-            "time": 0.837,
-            "tokens_per_sec": 385.81,
-            "tokens": 323
+            "time": 1.16,
+            "tokens_per_sec": 415.61,
+            "tokens": 482
           }
         ]
       },
@@ -590,8 +590,8 @@
         ]
       },
       "reasoning": {
-        "score": 40.0,
-        "correct": 2,
+        "score": 80.0,
+        "correct": 4,
         "total": 5,
         "details": [
           {
@@ -602,21 +602,21 @@
           },
           {
             "test": "speed_math",
-            "correct": false,
-            "score": 0,
-            "answer_given": "## Step 1: Calculate the speed of the first train\nTo determine which train is fa"
+            "correct": true,
+            "score": 100,
+            "answer_given": "## Step 1: Calculate the speed of the first train\nTo determine which train is faster, we first need to calculate the spe"
           },
           {
             "test": "river_crossing",
-            "correct": false,
-            "score": 0,
-            "answer_given": "## Step 1: Understand the constraints of the problem\nThe farmer has a fox, a chi"
+            "correct": true,
+            "score": 100,
+            "answer_given": "## Step 1: Understand the constraints of the problem\nThe farmer has a fox, a chicken, and a bag of grain. He needs to cr"
           },
           {
             "test": "coin_flip",
             "correct": false,
             "score": 0,
-            "answer_given": "## Step 1: Understanding the Problem\nThe problem involves flipping a fair coin 3"
+            "answer_given": "## Step 1: Understanding the Problem\nThe problem involves flipping a fair coin 3 times and getting heads each time, and "
           },
           {
             "test": "counting",
@@ -654,7 +654,7 @@
           {
             "test": "en_ru",
             "score": 100,
-            "cyrillic_ratio": 0.89
+            "cyrillic_ratio": 0.886
           },
           {
             "test": "ru_en",
@@ -664,12 +664,237 @@
           {
             "test": "en_es",
             "score": 100,
-            "keywords_found": 12
+            "keywords_found": 10
           }
         ]
       }
     },
-    "raw_speed": 299.44,
+    "raw_speed": 302.7,
+    "quality_score": 94.0,
+    "overall_score": 94.0,
+    "speed_score": 100.0
+  },
+  {
+    "model_id": "qwen3-32b",
+    "model_name": "Qwen 3 32B",
+    "provider": "Groq",
+    "size": "32B",
+    "size_category": "medium",
+    "context": "32k",
+    "timestamp": "2026-03-23T11:27:52.586324",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 395.98,
+        "details": [
+          {
+            "test": "simple",
+            "time": 1.381,
+            "tokens_per_sec": 382.3,
+            "tokens": 528
+          },
+          {
+            "test": "medium",
+            "time": 1.228,
+            "tokens_per_sec": 434.16,
+            "tokens": 533
+          },
+          {
+            "test": "long",
+            "time": 1.44,
+            "tokens_per_sec": 371.48,
+            "tokens": 535
+          }
+        ]
+      },
+      "code": {
+        "avg_score": 0.0,
+        "details": [
+          {
+            "test": "prime",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 5,
+            "details": [
+              {
+                "input": "2",
+                "expected": "True",
+                "got": "File \"<string>\", line 6\n    if\n      ^\nSyntaxError: invalid syntax",
+                "passed": false
+              },
+              {
+                "input": "3",
+                "expected": "True",
+                "got": "File \"<string>\", line 6\n    if\n      ^\nSyntaxError: invalid syntax",
+                "passed": false
+              },
+              {
+                "input": "4",
+                "expected": "False",
+                "got": "File \"<string>\", line 6\n    if\n      ^\nSyntaxError: invalid syntax",
+                "passed": false
+              },
+              {
+                "input": "17",
+                "expected": "True",
+                "got": "File \"<string>\", line 6\n    if\n      ^\nSyntaxError: invalid syntax",
+                "passed": false
+              },
+              {
+                "input": "100",
+                "expected": "False",
+                "got": "File \"<string>\", line 6\n    if\n      ^\nSyntaxError: invalid syntax",
+                "passed": false
+              }
+            ]
+          },
+          {
+            "test": "fibonacci",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 4,
+            "details": [
+              {
+                "input": "0",
+                "expected": "0",
+                "got": "File \"<string>\", line 16\n    print(repr(fibonacci(0)))\nIndentationError: expected an indented block after 'for' statemen",
+                "passed": false
+              },
+              {
+                "input": "1",
+                "expected": "1",
+                "got": "File \"<string>\", line 16\n    print(repr(fibonacci(1)))\nIndentationError: expected an indented block after 'for' statemen",
+                "passed": false
+              },
+              {
+                "input": "7",
+                "expected": "13",
+                "got": "File \"<string>\", line 16\n    print(repr(fibonacci(7)))\nIndentationError: expected an indented block after 'for' statemen",
+                "passed": false
+              },
+              {
+                "input": "10",
+                "expected": "55",
+                "got": "File \"<string>\", line 16\n    print(repr(fibonacci(10)))\nIndentationError: expected an indented block after 'for' stateme",
+                "passed": false
+              }
+            ]
+          },
+          {
+            "test": "palindrome",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 4,
+            "details": [
+              {
+                "input": "'racecar'",
+                "expected": "True",
+                "got": "File \"<string>\", line 11\n    Test case 1: \"racecar\" \u2192 processed is \"racecar\", reversed is same. True.\n                  ",
+                "passed": false
+              },
+              {
+                "input": "'hello'",
+                "expected": "False",
+                "got": "File \"<string>\", line 11\n    Test case 1: \"racecar\" \u2192 processed is \"racecar\", reversed is same. True.\n                  ",
+                "passed": false
+              },
+              {
+                "input": "'A man a plan a canal Panama'",
+                "expected": "True",
+                "got": "File \"<string>\", line 11\n    Test case 1: \"racecar\" \u2192 processed is \"racecar\", reversed is same. True.\n                  ",
+                "passed": false
+              },
+              {
+                "input": "'world'",
+                "expected": "False",
+                "got": "File \"<string>\", line 11\n    Test case 1: \"racecar\" \u2192 processed is \"racecar\", reversed is same. True.\n                  ",
+                "passed": false
+              }
+            ]
+          }
+        ]
+      },
+      "reasoning": {
+        "score": 100.0,
+        "correct": 5,
+        "total": 5,
+        "details": [
+          {
+            "test": "syllogism",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Yes"
+          },
+          {
+            "test": "speed_math",
+            "correct": true,
+            "score": 100,
+            "answer_given": "To determine which train is faster, we calculate their speeds using the formula:\n\n$$\n\\text{Speed} = \\frac{\\text{Distance"
+          },
+          {
+            "test": "river_crossing",
+            "correct": true,
+            "score": 100,
+            "answer_given": "<think>\nOkay, let's see. The farmer has a fox, a chicken, and a bag of grain. He needs to get all of them across the riv"
+          },
+          {
+            "test": "coin_flip",
+            "correct": true,
+            "score": 100,
+            "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the 4th flip of a fair coin, given that the fi"
+          },
+          {
+            "test": "counting",
+            "correct": true,
+            "score": 100,
+            "answer_given": "<think>\nOkay, let's see. The question is asking how many letters are in the word \"MISSISSIPPI\". Hmm, I need to count eac"
+          }
+        ]
+      },
+      "instruction": {
+        "avg_score": 100.0,
+        "details": [
+          {
+            "test": "json",
+            "score": 100,
+            "reason": "ok"
+          },
+          {
+            "test": "list",
+            "score": 100,
+            "found": 5,
+            "expected": 5
+          },
+          {
+            "test": "word_count",
+            "score": 100,
+            "found": 3,
+            "expected": 3
+          }
+        ]
+      },
+      "translation": {
+        "avg_score": 100.0,
+        "details": [
+          {
+            "test": "en_ru",
+            "score": 100,
+            "cyrillic_ratio": 0.886
+          },
+          {
+            "test": "ru_en",
+            "score": 100,
+            "latin_ratio": 0.87
+          },
+          {
+            "test": "en_es",
+            "score": 100,
+            "keywords_found": 9
+          }
+        ]
+      }
+    },
+    "raw_speed": 395.98,
     "quality_score": 65.0,
     "overall_score": 65.0,
     "speed_score": 100.0
@@ -681,29 +906,29 @@
     "size": "N/A",
     "size_category": "unknown",
     "context": "131k",
-    "timestamp": "2026-03-23T08:24:18.972321",
+    "timestamp": "2026-03-23T11:28:44.898510",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 260.74,
+        "avg_tokens_per_sec": 239.25,
         "details": [
           {
             "test": "simple",
-            "time": 0.254,
-            "tokens_per_sec": 209.07,
-            "tokens": 53
+            "time": 0.258,
+            "tokens_per_sec": 217.12,
+            "tokens": 56
           },
           {
             "test": "medium",
-            "time": 1.03,
-            "tokens_per_sec": 239.84,
-            "tokens": 247
+            "time": 1.17,
+            "tokens_per_sec": 225.6,
+            "tokens": 264
           },
           {
             "test": "long",
-            "time": 1.017,
-            "tokens_per_sec": 333.32,
-            "tokens": 339
+            "time": 1.593,
+            "tokens_per_sec": 275.02,
+            "tokens": 438
           }
         ]
       },
@@ -815,8 +1040,8 @@
         ]
       },
       "reasoning": {
-        "score": 80.0,
-        "correct": 4,
+        "score": 100.0,
+        "correct": 5,
         "total": 5,
         "details": [
           {
@@ -827,9 +1052,9 @@
           },
           {
             "test": "speed_math",
-            "correct": false,
-            "score": 0,
-            "answer_given": "First"
+            "correct": true,
+            "score": 100,
+            "answer_given": "Same"
           },
           {
             "test": "river_crossing",
@@ -879,7 +1104,7 @@
           {
             "test": "en_ru",
             "score": 100,
-            "cyrillic_ratio": 0.89
+            "cyrillic_ratio": 0.886
           },
           {
             "test": "ru_en",
@@ -889,14 +1114,14 @@
           {
             "test": "en_es",
             "score": 100,
-            "keywords_found": 10
+            "keywords_found": 9
           }
         ]
       }
     },
-    "raw_speed": 260.74,
-    "quality_score": 75.0,
-    "overall_score": 75.0,
+    "raw_speed": 239.25,
+    "quality_score": 100.0,
+    "overall_score": 100.0,
     "speed_score": 100.0
   },
   {
@@ -906,237 +1131,142 @@
     "size": "120B",
     "size_category": "large",
     "context": "262k",
-    "timestamp": "2026-03-23T08:24:58.741629",
+    "timestamp": "2026-03-23T11:29:25.063083",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "nemotron-nano-30b",
-    "model_name": "Nemotron 3 Nano 30B",
-    "provider": "OpenRouter",
-    "size": "30B",
-    "size_category": "medium",
-    "context": "256k",
-    "timestamp": "2026-03-23T08:25:19.381273",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "nemotron-nano-12b",
-    "model_name": "Nemotron Nano 12B",
-    "provider": "OpenRouter",
-    "size": "12B",
-    "size_category": "medium",
-    "context": "128k",
-    "timestamp": "2026-03-23T08:25:39.734286",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "nemotron-nano-9b",
-    "model_name": "Nemotron Nano 9B",
-    "provider": "OpenRouter",
-    "size": "9B",
-    "size_category": "small",
-    "context": "128k",
-    "timestamp": "2026-03-23T08:25:59.886758",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "trinity-large",
-    "model_name": "Trinity Large 400B",
-    "provider": "OpenRouter",
-    "size": "400B",
-    "size_category": "large",
-    "context": "131k",
-    "timestamp": "2026-03-23T08:26:20.216689",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "trinity-mini",
-    "model_name": "Trinity Mini 26B",
-    "provider": "OpenRouter",
-    "size": "26B",
-    "size_category": "medium",
-    "context": "131k",
-    "timestamp": "2026-03-23T08:26:41.070599",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "step-3.5-flash",
-    "model_name": "Step 3.5 Flash 196B",
-    "provider": "OpenRouter",
-    "size": "196B",
-    "size_category": "large",
-    "context": "256k",
-    "timestamp": "2026-03-23T08:27:01.579698",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 52.55,
+        "avg_tokens_per_sec": 34.57,
         "details": [
           {
             "test": "simple",
-            "time": 4.722,
-            "tokens_per_sec": 58.46,
-            "tokens": 276
+            "time": 14.674,
+            "tokens_per_sec": 36.53,
+            "tokens": 536
           },
           {
             "test": "medium",
-            "time": 5.456,
-            "tokens_per_sec": 59.01,
-            "tokens": 322
+            "time": 28.383,
+            "tokens_per_sec": 19.06,
+            "tokens": 541
           },
           {
             "test": "long",
-            "time": 8.112,
-            "tokens_per_sec": 40.19,
-            "tokens": 326
+            "time": 11.306,
+            "tokens_per_sec": 48.12,
+            "tokens": 544
           }
         ]
       },
       "code": {
-        "avg_score": 33.3,
+        "avg_score": 66.7,
         "details": [
           {
             "test": "prime",
-            "pass_rate": 1.0,
-            "passed": 5,
+            "pass_rate": 0.0,
+            "passed": 0,
             "total": 5,
             "details": [
               {
                 "input": "2",
                 "expected": "True",
-                "got": "True",
-                "passed": true
+                "got": "File \"<string>\", line 12\n    i += 6    return True\n              ^^^^^^\nSyntaxError: invalid syntax",
+                "passed": false
               },
               {
                 "input": "3",
                 "expected": "True",
-                "got": "True",
-                "passed": true
+                "got": "File \"<string>\", line 12\n    i += 6    return True\n              ^^^^^^\nSyntaxError: invalid syntax",
+                "passed": false
               },
               {
                 "input": "4",
                 "expected": "False",
-                "got": "False",
-                "passed": true
+                "got": "File \"<string>\", line 12\n    i += 6    return True\n              ^^^^^^\nSyntaxError: invalid syntax",
+                "passed": false
               },
               {
                 "input": "17",
                 "expected": "True",
-                "got": "True",
-                "passed": true
+                "got": "File \"<string>\", line 12\n    i += 6    return True\n              ^^^^^^\nSyntaxError: invalid syntax",
+                "passed": false
               },
               {
                 "input": "100",
                 "expected": "False",
-                "got": "False",
-                "passed": true
+                "got": "File \"<string>\", line 12\n    i += 6    return True\n              ^^^^^^\nSyntaxError: invalid syntax",
+                "passed": false
               }
             ]
           },
           {
             "test": "fibonacci",
-            "pass_rate": 0.0,
-            "passed": 0,
+            "pass_rate": 1.0,
+            "passed": 4,
             "total": 4,
             "details": [
               {
                 "input": "0",
                 "expected": "0",
-                "got": "File \"<string>\", line 4\n    print(repr(fibonacci(0)))\nIndentationError: expected an indented block a",
-                "passed": false
+                "got": "0",
+                "passed": true
               },
               {
                 "input": "1",
                 "expected": "1",
-                "got": "File \"<string>\", line 4\n    print(repr(fibonacci(1)))\nIndentationError: expected an indented block a",
-                "passed": false
+                "got": "1",
+                "passed": true
               },
               {
                 "input": "7",
                 "expected": "13",
-                "got": "File \"<string>\", line 4\n    print(repr(fibonacci(7)))\nIndentationError: expected an indented block a",
-                "passed": false
+                "got": "13",
+                "passed": true
               },
               {
                 "input": "10",
                 "expected": "55",
-                "got": "File \"<string>\", line 4\n    print(repr(fibonacci(10)))\nIndentationError: expected an indented block ",
-                "passed": false
+                "got": "55",
+                "passed": true
               }
             ]
           },
           {
             "test": "palindrome",
-            "pass_rate": 0.0,
-            "passed": 0,
+            "pass_rate": 1.0,
+            "passed": 4,
             "total": 4,
-            "error": "empty response"
+            "details": [
+              {
+                "input": "'racecar'",
+                "expected": "True",
+                "got": "True",
+                "passed": true
+              },
+              {
+                "input": "'hello'",
+                "expected": "False",
+                "got": "False",
+                "passed": true
+              },
+              {
+                "input": "'A man a plan a canal Panama'",
+                "expected": "True",
+                "got": "True",
+                "passed": true
+              },
+              {
+                "input": "'world'",
+                "expected": "False",
+                "got": "False",
+                "passed": true
+              }
+            ]
           }
         ]
       },
       "reasoning": {
-        "score": 80.0,
-        "correct": 4,
+        "score": 100.0,
+        "correct": 5,
         "total": 5,
         "details": [
           {
@@ -1153,8 +1283,9 @@
           },
           {
             "test": "river_crossing",
-            "correct": false,
-            "score": 0
+            "correct": true,
+            "score": 100,
+            "answer_given": "Chicken"
           },
           {
             "test": "coin_flip",
@@ -1171,7 +1302,7 @@
         ]
       },
       "instruction": {
-        "avg_score": 100.0,
+        "avg_score": 91.7,
         "details": [
           {
             "test": "json",
@@ -1180,8 +1311,8 @@
           },
           {
             "test": "list",
-            "score": 100,
-            "found": 5,
+            "score": 75,
+            "found": 4,
             "expected": 5
           },
           {
@@ -1198,341 +1329,61 @@
           {
             "test": "en_ru",
             "score": 100,
-            "cyrillic_ratio": 0.89
+            "cyrillic_ratio": 0.886
           },
           {
             "test": "ru_en",
             "score": 100,
-            "latin_ratio": 0.86
+            "latin_ratio": 0.889
           },
           {
             "test": "en_es",
             "score": 100,
-            "keywords_found": 10
+            "keywords_found": 7
           }
         ]
       }
     },
-    "raw_speed": 52.55,
-    "quality_score": 55.0,
-    "overall_score": 55.0,
+    "raw_speed": 34.57,
+    "quality_score": 86.7,
+    "overall_score": 86.7,
     "speed_score": 100.0
   },
   {
-    "model_id": "gemma-3-27b",
-    "model_name": "Gemma 3 27B",
+    "model_id": "nemotron-nano-30b",
+    "model_name": "Nemotron 3 Nano 30B",
     "provider": "OpenRouter",
-    "size": "27B",
+    "size": "30B",
     "size_category": "medium",
-    "context": "131k",
-    "timestamp": "2026-03-23T08:30:40.124651",
+    "context": "256k",
+    "timestamp": "2026-03-23T11:33:00.052322",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "gemma-3-12b",
-    "model_name": "Gemma 3 12B",
-    "provider": "OpenRouter",
-    "size": "12B",
-    "size_category": "medium",
-    "context": "32k",
-    "timestamp": "2026-03-23T08:31:00.374933",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "gemma-3-4b",
-    "model_name": "Gemma 3 4B",
-    "provider": "OpenRouter",
-    "size": "4B",
-    "size_category": "small",
-    "context": "32k",
-    "timestamp": "2026-03-23T08:31:20.569676",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "gemma-3n-e4b",
-    "model_name": "Gemma 3n E4B",
-    "provider": "OpenRouter",
-    "size": "4B",
-    "size_category": "small",
-    "context": "8k",
-    "timestamp": "2026-03-23T08:31:40.883453",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "gemma-3n-e2b",
-    "model_name": "Gemma 3n E2B",
-    "provider": "OpenRouter",
-    "size": "2B",
-    "size_category": "small",
-    "context": "8k",
-    "timestamp": "2026-03-23T08:32:01.062494",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "lfm-2.5-instruct",
-    "model_name": "LFM 2.5 1.2B Instruct",
-    "provider": "OpenRouter",
-    "size": "1.2B",
-    "size_category": "small",
-    "context": "32k",
-    "timestamp": "2026-03-23T08:32:21.628069",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "lfm-2.5-thinking",
-    "model_name": "LFM 2.5 1.2B Thinking",
-    "provider": "OpenRouter",
-    "size": "1.2B",
-    "size_category": "small",
-    "context": "32k",
-    "timestamp": "2026-03-23T08:32:41.965711",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "qwen3-coder",
-    "model_name": "Qwen3 Coder 480B",
-    "provider": "OpenRouter",
-    "size": "480B",
-    "size_category": "large",
-    "context": "262k",
-    "timestamp": "2026-03-23T08:33:46.506270",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "qwen3-next-80b",
-    "model_name": "Qwen3 Next 80B",
-    "provider": "OpenRouter",
-    "size": "80B",
-    "size_category": "large",
-    "context": "262k",
-    "timestamp": "2026-03-23T08:34:07.408493",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "qwen3-4b",
-    "model_name": "Qwen 3 4B",
-    "provider": "OpenRouter",
-    "size": "4B",
-    "size_category": "small",
-    "context": "41k",
-    "timestamp": "2026-03-23T08:34:28.084279",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "mistral-small-3.1",
-    "model_name": "Mistral Small 3.1 24B",
-    "provider": "OpenRouter",
-    "size": "24B",
-    "size_category": "medium",
-    "context": "128k",
-    "timestamp": "2026-03-23T08:34:48.816997",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "hermes-405b",
-    "model_name": "Hermes 3 405B",
-    "provider": "OpenRouter",
-    "size": "405B",
-    "size_category": "large",
-    "context": "131k",
-    "timestamp": "2026-03-23T08:35:13.546812",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "dolphin-mistral-24b",
-    "model_name": "Dolphin Mistral 24B",
-    "provider": "OpenRouter",
-    "size": "24B",
-    "size_category": "medium",
-    "context": "32k",
-    "timestamp": "2026-03-23T08:35:33.864025",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "glm-4.5-air",
-    "model_name": "GLM 4.5 Air",
-    "provider": "OpenRouter",
-    "size": "N/A",
-    "size_category": "unknown",
-    "context": "131k",
-    "timestamp": "2026-03-23T08:35:54.644299",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 0,
-        "details": []
-      }
-    },
-    "raw_speed": 0,
-    "quality_score": 0,
-    "overall_score": 0,
-    "speed_score": 0.0
-  },
-  {
-    "model_id": "llama-3.1-8b",
-    "model_name": "Llama 3.1 8B",
-    "provider": "Cerebras",
-    "size": "8B",
-    "size_category": "small",
-    "context": "131k",
-    "timestamp": "2026-03-23T08:36:14.815515",
-    "benchmark_mode": "full",
-    "tests": {
-      "speed": {
-        "avg_tokens_per_sec": 688.78,
+        "avg_tokens_per_sec": 144.83,
         "details": [
           {
             "test": "simple",
-            "time": 0.232,
-            "tokens_per_sec": 250.11,
-            "tokens": 58
+            "time": 2.5,
+            "tokens_per_sec": 134.78,
+            "tokens": 337
           },
           {
             "test": "medium",
-            "time": 0.355,
-            "tokens_per_sec": 856.38,
-            "tokens": 304
+            "time": 3.803,
+            "tokens_per_sec": 142.24,
+            "tokens": 541
           },
           {
             "test": "long",
-            "time": 0.363,
-            "tokens_per_sec": 959.85,
-            "tokens": 348
+            "time": 3.454,
+            "tokens_per_sec": 157.48,
+            "tokens": 544
           }
         ]
       },
       "code": {
-        "avg_score": 100.0,
+        "avg_score": 66.7,
         "details": [
           {
             "test": "prime",
@@ -1603,6 +1454,175 @@
                 "passed": true
               }
             ]
+          },
+          {
+            "test": "palindrome",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 4,
+            "details": [
+              {
+                "input": "'racecar'",
+                "expected": "True",
+                "got": "File \"<string>\", line 1\n    ```pythondef is_palindrome(s):\n    ^\nSyntaxError: invalid syntax",
+                "passed": false
+              },
+              {
+                "input": "'hello'",
+                "expected": "False",
+                "got": "File \"<string>\", line 1\n    ```pythondef is_palindrome(s):\n    ^\nSyntaxError: invalid syntax",
+                "passed": false
+              },
+              {
+                "input": "'A man a plan a canal Panama'",
+                "expected": "True",
+                "got": "File \"<string>\", line 1\n    ```pythondef is_palindrome(s):\n    ^\nSyntaxError: invalid syntax",
+                "passed": false
+              },
+              {
+                "input": "'world'",
+                "expected": "False",
+                "got": "File \"<string>\", line 1\n    ```pythondef is_palindrome(s):\n    ^\nSyntaxError: invalid syntax",
+                "passed": false
+              }
+            ]
+          }
+        ]
+      },
+      "reasoning": {
+        "score": 80.0,
+        "correct": 4,
+        "total": 5,
+        "details": [
+          {
+            "test": "syllogism",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Yes"
+          },
+          {
+            "test": "speed_math",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Same"
+          },
+          {
+            "test": "river_crossing",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Chicken"
+          },
+          {
+            "test": "coin_flip",
+            "correct": false,
+            "score": 0,
+            "answer_given": "The probability of getting heads on the 4th flip is  \n\n\\[\n\\frac{1}{2}\n\\]"
+          },
+          {
+            "test": "counting",
+            "correct": true,
+            "score": 100,
+            "answer_given": "11"
+          }
+        ]
+      },
+      "instruction": {
+        "avg_score": 91.7,
+        "details": [
+          {
+            "test": "json",
+            "score": 100,
+            "reason": "ok"
+          },
+          {
+            "test": "list",
+            "score": 75,
+            "found": 4,
+            "expected": 5
+          },
+          {
+            "test": "word_count",
+            "score": 100,
+            "found": 3,
+            "expected": 3
+          }
+        ]
+      },
+      "translation": {
+        "avg_score": 66.7,
+        "details": [
+          {
+            "test": "en_ru",
+            "score": 100,
+            "cyrillic_ratio": 0.912
+          },
+          {
+            "test": "ru_en",
+            "score": 100,
+            "latin_ratio": 0.87
+          },
+          {
+            "test": "en_es",
+            "score": 0,
+            "reason": "empty response"
+          }
+        ]
+      }
+    },
+    "raw_speed": 144.83,
+    "quality_score": 75.7,
+    "overall_score": 75.7,
+    "speed_score": 100.0
+  },
+  {
+    "model_id": "nemotron-nano-12b",
+    "model_name": "Nemotron Nano 12B",
+    "provider": "OpenRouter",
+    "size": "12B",
+    "size_category": "medium",
+    "context": "128k",
+    "timestamp": "2026-03-23T11:34:34.559588",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 32.46,
+        "details": [
+          {
+            "test": "simple",
+            "time": 15.836,
+            "tokens_per_sec": 29.81,
+            "tokens": 472
+          },
+          {
+            "test": "medium",
+            "time": 14.789,
+            "tokens_per_sec": 36.31,
+            "tokens": 537
+          },
+          {
+            "test": "long",
+            "time": 17.276,
+            "tokens_per_sec": 31.26,
+            "tokens": 540
+          }
+        ]
+      },
+      "code": {
+        "avg_score": 33.3,
+        "details": [
+          {
+            "test": "prime",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 5,
+            "error": "empty response"
+          },
+          {
+            "test": "fibonacci",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 4,
+            "error": "empty response"
           },
           {
             "test": "palindrome",
@@ -1647,25 +1667,252 @@
             "test": "syllogism",
             "correct": true,
             "score": 100,
-            "answer_given": "Yes."
+            "answer_given": "Yes"
           },
           {
             "test": "speed_math",
-            "correct": false,
-            "score": 0,
-            "answer_given": "To determine which train is faster, we need to calculate their speeds. \n\nSpeed o"
+            "correct": true,
+            "score": 100,
+            "answer_given": "First, calculate the speed of each train by dividing distance by time. \n\n- First train: 120 km \u00f7 2 hours = 60 km/h  \n- S"
           },
           {
             "test": "river_crossing",
             "correct": false,
             "score": 0,
-            "answer_given": "Grain."
+            "answer_given": ""
+          },
+          {
+            "test": "coin_flip",
+            "correct": false,
+            "score": 0,
+            "answer_given": ""
+          },
+          {
+            "test": "counting",
+            "correct": true,
+            "score": 100,
+            "answer_given": "11"
+          }
+        ]
+      },
+      "instruction": {
+        "avg_score": 33.3,
+        "details": [
+          {
+            "test": "json",
+            "score": 100,
+            "reason": "ok"
+          },
+          {
+            "test": "list",
+            "score": 0,
+            "reason": "empty response"
+          },
+          {
+            "test": "word_count",
+            "score": 0,
+            "reason": "empty response"
+          }
+        ]
+      },
+      "translation": {
+        "avg_score": 0.0,
+        "details": [
+          {
+            "test": "en_ru",
+            "score": 0,
+            "reason": "empty response"
+          },
+          {
+            "test": "ru_en",
+            "score": 0,
+            "reason": "empty response"
+          },
+          {
+            "test": "en_es",
+            "score": 0,
+            "reason": "empty response"
+          }
+        ]
+      }
+    },
+    "raw_speed": 32.46,
+    "quality_score": 36.3,
+    "overall_score": 36.3,
+    "speed_score": 100.0
+  },
+  {
+    "model_id": "nemotron-nano-9b",
+    "model_name": "Nemotron Nano 9B",
+    "provider": "OpenRouter",
+    "size": "9B",
+    "size_category": "small",
+    "context": "128k",
+    "timestamp": "2026-03-23T11:38:46.251631",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "trinity-large",
+    "model_name": "Trinity Large 400B",
+    "provider": "OpenRouter",
+    "size": "400B",
+    "size_category": "large",
+    "context": "131k",
+    "timestamp": "2026-03-23T11:39:11.335359",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "trinity-mini",
+    "model_name": "Trinity Mini 26B",
+    "provider": "OpenRouter",
+    "size": "26B",
+    "size_category": "medium",
+    "context": "131k",
+    "timestamp": "2026-03-23T11:39:34.485755",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "step-3.5-flash",
+    "model_name": "Step 3.5 Flash 196B",
+    "provider": "OpenRouter",
+    "size": "196B",
+    "size_category": "large",
+    "context": "256k",
+    "timestamp": "2026-03-23T11:39:57.356480",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 58.81,
+        "details": [
+          {
+            "test": "simple",
+            "time": 7.446,
+            "tokens_per_sec": 68.22,
+            "tokens": 508
+          },
+          {
+            "test": "medium",
+            "time": 11.995,
+            "tokens_per_sec": 39.18,
+            "tokens": 470
+          },
+          {
+            "test": "long",
+            "time": 7.793,
+            "tokens_per_sec": 69.04,
+            "tokens": 538
+          }
+        ]
+      },
+      "code": {
+        "avg_score": 33.3,
+        "details": [
+          {
+            "test": "prime",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 5,
+            "error": "empty response"
+          },
+          {
+            "test": "fibonacci",
+            "pass_rate": 1.0,
+            "passed": 4,
+            "total": 4,
+            "details": [
+              {
+                "input": "0",
+                "expected": "0",
+                "got": "0",
+                "passed": true
+              },
+              {
+                "input": "1",
+                "expected": "1",
+                "got": "1",
+                "passed": true
+              },
+              {
+                "input": "7",
+                "expected": "13",
+                "got": "13",
+                "passed": true
+              },
+              {
+                "input": "10",
+                "expected": "55",
+                "got": "55",
+                "passed": true
+              }
+            ]
+          },
+          {
+            "test": "palindrome",
+            "pass_rate": 0.0,
+            "passed": 0,
+            "total": 4,
+            "error": "empty response"
+          }
+        ]
+      },
+      "reasoning": {
+        "score": 100.0,
+        "correct": 5,
+        "total": 5,
+        "details": [
+          {
+            "test": "syllogism",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Yes"
+          },
+          {
+            "test": "speed_math",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Same"
+          },
+          {
+            "test": "river_crossing",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Chicken"
           },
           {
             "test": "coin_flip",
             "correct": true,
             "score": 100,
-            "answer_given": "The probability of getting heads on the 4th flip is 1/2. \n\nThe previous flips do"
+            "answer_given": "1/2"
           },
           {
             "test": "counting",
@@ -1703,34 +1950,154 @@
           {
             "test": "en_ru",
             "score": 100,
-            "cyrillic_ratio": 0.89
+            "cyrillic_ratio": 0.886
           },
           {
             "test": "ru_en",
             "score": 100,
-            "latin_ratio": 0.83
+            "latin_ratio": 0.87
           },
           {
             "test": "en_es",
             "score": 100,
-            "keywords_found": 12
+            "keywords_found": 9
           }
         ]
       }
     },
-    "raw_speed": 688.78,
-    "quality_score": 70.0,
-    "overall_score": 70.0,
+    "raw_speed": 58.81,
+    "quality_score": 76.7,
+    "overall_score": 76.7,
     "speed_score": 100.0
   },
   {
-    "model_id": "qwen3-32b",
-    "model_name": "Qwen 3 32B",
-    "provider": "Cerebras",
-    "size": "32B",
+    "model_id": "gemma-3-27b",
+    "model_name": "Gemma 3 27B",
+    "provider": "OpenRouter",
+    "size": "27B",
     "size_category": "medium",
     "context": "131k",
-    "timestamp": "2026-03-23T08:36:42.553674",
+    "timestamp": "2026-03-23T11:42:59.187855",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "gemma-3-12b",
+    "model_name": "Gemma 3 12B",
+    "provider": "OpenRouter",
+    "size": "12B",
+    "size_category": "medium",
+    "context": "32k",
+    "timestamp": "2026-03-23T11:43:22.114615",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "gemma-3-4b",
+    "model_name": "Gemma 3 4B",
+    "provider": "OpenRouter",
+    "size": "4B",
+    "size_category": "small",
+    "context": "32k",
+    "timestamp": "2026-03-23T11:43:44.926051",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "gemma-3n-e4b",
+    "model_name": "Gemma 3n E4B",
+    "provider": "OpenRouter",
+    "size": "4B",
+    "size_category": "small",
+    "context": "8k",
+    "timestamp": "2026-03-23T11:44:07.736953",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "gemma-3n-e2b",
+    "model_name": "Gemma 3n E2B",
+    "provider": "OpenRouter",
+    "size": "2B",
+    "size_category": "small",
+    "context": "8k",
+    "timestamp": "2026-03-23T11:44:31.171439",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "lfm-2.5-instruct",
+    "model_name": "LFM 2.5 1.2B Instruct",
+    "provider": "OpenRouter",
+    "size": "1.2B",
+    "size_category": "small",
+    "context": "32k",
+    "timestamp": "2026-03-23T11:44:54.004833",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "lfm-2.5-thinking",
+    "model_name": "LFM 2.5 1.2B Thinking",
+    "provider": "OpenRouter",
+    "size": "1.2B",
+    "size_category": "small",
+    "context": "32k",
+    "timestamp": "2026-03-23T11:45:16.964368",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
@@ -1746,11 +2113,11 @@
   {
     "model_id": "llama-3.3-70b",
     "model_name": "Llama 3.3 70B",
-    "provider": "Together",
+    "provider": "OpenRouter",
     "size": "70B",
     "size_category": "large",
-    "context": "131k",
-    "timestamp": "2026-03-23T08:36:46.093233",
+    "context": "66k",
+    "timestamp": "2026-03-23T11:45:39.728798",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
@@ -1766,11 +2133,11 @@
   {
     "model_id": "llama-3.2-3b",
     "model_name": "Llama 3.2 3B",
-    "provider": "Together",
+    "provider": "OpenRouter",
     "size": "3B",
     "size_category": "small",
     "context": "131k",
-    "timestamp": "2026-03-23T08:36:53.339496",
+    "timestamp": "2026-03-23T11:46:02.984402",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
@@ -1784,13 +2151,13 @@
     "speed_score": 0.0
   },
   {
-    "model_id": "deepseek-r1-free",
-    "model_name": "DeepSeek R1",
-    "provider": "Together",
-    "size": "671B",
+    "model_id": "qwen3-coder",
+    "model_name": "Qwen3 Coder 480B",
+    "provider": "OpenRouter",
+    "size": "480B",
     "size_category": "large",
-    "context": "32k",
-    "timestamp": "2026-03-23T08:37:02.408003",
+    "context": "262k",
+    "timestamp": "2026-03-23T11:46:26.190946",
     "benchmark_mode": "full",
     "tests": {
       "speed": {
@@ -1802,5 +2169,350 @@
     "quality_score": 0,
     "overall_score": 0,
     "speed_score": 0.0
+  },
+  {
+    "model_id": "qwen3-next-80b",
+    "model_name": "Qwen3 Next 80B",
+    "provider": "OpenRouter",
+    "size": "80B",
+    "size_category": "large",
+    "context": "262k",
+    "timestamp": "2026-03-23T11:46:49.509003",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "qwen3-4b",
+    "model_name": "Qwen 3 4B",
+    "provider": "OpenRouter",
+    "size": "4B",
+    "size_category": "small",
+    "context": "41k",
+    "timestamp": "2026-03-23T11:47:12.763195",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "mistral-small-3.1",
+    "model_name": "Mistral Small 3.1 24B",
+    "provider": "OpenRouter",
+    "size": "24B",
+    "size_category": "medium",
+    "context": "128k",
+    "timestamp": "2026-03-23T11:47:36.397680",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "hermes-405b",
+    "model_name": "Hermes 3 405B",
+    "provider": "OpenRouter",
+    "size": "405B",
+    "size_category": "large",
+    "context": "131k",
+    "timestamp": "2026-03-23T11:48:00.896759",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "dolphin-mistral-24b",
+    "model_name": "Dolphin Mistral 24B",
+    "provider": "OpenRouter",
+    "size": "24B",
+    "size_category": "medium",
+    "context": "32k",
+    "timestamp": "2026-03-23T11:48:24.063811",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "glm-4.5-air",
+    "model_name": "GLM 4.5 Air",
+    "provider": "OpenRouter",
+    "size": "N/A",
+    "size_category": "unknown",
+    "context": "131k",
+    "timestamp": "2026-03-23T11:48:47.619518",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 0,
+        "details": []
+      }
+    },
+    "raw_speed": 0,
+    "quality_score": 0,
+    "overall_score": 0,
+    "speed_score": 0.0
+  },
+  {
+    "model_id": "llama-3.1-8b",
+    "model_name": "Llama 3.1 8B",
+    "provider": "Cerebras",
+    "size": "8B",
+    "size_category": "small",
+    "context": "131k",
+    "timestamp": "2026-03-23T11:49:10.476707",
+    "benchmark_mode": "full",
+    "tests": {
+      "speed": {
+        "avg_tokens_per_sec": 722.85,
+        "details": [
+          {
+            "test": "simple",
+            "time": 0.533,
+            "tokens_per_sec": 108.89,
+            "tokens": 58
+          },
+          {
+            "test": "medium",
+            "time": 0.3,
+            "tokens_per_sec": 938.57,
+            "tokens": 282
+          },
+          {
+            "test": "long",
+            "time": 0.5,
+            "tokens_per_sec": 1121.08,
+            "tokens": 560
+          }
+        ]
+      },
+      "code": {
+        "avg_score": 100.0,
+        "details": [
+          {
+            "test": "prime",
+            "pass_rate": 1.0,
+            "passed": 5,
+            "total": 5,
+            "details": [
+              {
+                "input": "2",
+                "expected": "True",
+                "got": "True",
+                "passed": true
+              },
+              {
+                "input": "3",
+                "expected": "True",
+                "got": "True",
+                "passed": true
+              },
+              {
+                "input": "4",
+                "expected": "False",
+                "got": "False",
+                "passed": true
+              },
+              {
+                "input": "17",
+                "expected": "True",
+                "got": "True",
+                "passed": true
+              },
+              {
+                "input": "100",
+                "expected": "False",
+                "got": "False",
+                "passed": true
+              }
+            ]
+          },
+          {
+            "test": "fibonacci",
+            "pass_rate": 1.0,
+            "passed": 4,
+            "total": 4,
+            "details": [
+              {
+                "input": "0",
+                "expected": "0",
+                "got": "0",
+                "passed": true
+              },
+              {
+                "input": "1",
+                "expected": "1",
+                "got": "1",
+                "passed": true
+              },
+              {
+                "input": "7",
+                "expected": "13",
+                "got": "13",
+                "passed": true
+              },
+              {
+                "input": "10",
+                "expected": "55",
+                "got": "55",
+                "passed": true
+              }
+            ]
+          },
+          {
+            "test": "palindrome",
+            "pass_rate": 1.0,
+            "passed": 4,
+            "total": 4,
+            "details": [
+              {
+                "input": "'racecar'",
+                "expected": "True",
+                "got": "True",
+                "passed": true
+              },
+              {
+                "input": "'hello'",
+                "expected": "False",
+                "got": "False",
+                "passed": true
+              },
+              {
+                "input": "'A man a plan a canal Panama'",
+                "expected": "True",
+                "got": "True",
+                "passed": true
+              },
+              {
+                "input": "'world'",
+                "expected": "False",
+                "got": "False",
+                "passed": true
+              }
+            ]
+          }
+        ]
+      },
+      "reasoning": {
+        "score": 80.0,
+        "correct": 4,
+        "total": 5,
+        "details": [
+          {
+            "test": "syllogism",
+            "correct": true,
+            "score": 100,
+            "answer_given": "Yes."
+          },
+          {
+            "test": "speed_math",
+            "correct": true,
+            "score": 100,
+            "answer_given": "To determine which train is faster, we need to calculate their speeds. \n\nSpeed of the first train = Distance / Time = 12"
+          },
+          {
+            "test": "river_crossing",
+            "correct": false,
+            "score": 0,
+            "answer_given": "Grain."
+          },
+          {
+            "test": "coin_flip",
+            "correct": true,
+            "score": 100,
+            "answer_given": "The probability of getting heads on the 4th flip is 1/2. \n\nThe previous flips do not affect the probability of the next "
+          },
+          {
+            "test": "counting",
+            "correct": true,
+            "score": 100,
+            "answer_given": "11"
+          }
+        ]
+      },
+      "instruction": {
+        "avg_score": 100.0,
+        "details": [
+          {
+            "test": "json",
+            "score": 100,
+            "reason": "ok"
+          },
+          {
+            "test": "list",
+            "score": 100,
+            "found": 5,
+            "expected": 5
+          },
+          {
+            "test": "word_count",
+            "score": 100,
+            "found": 3,
+            "expected": 3
+          }
+        ]
+      },
+      "translation": {
+        "avg_score": 100.0,
+        "details": [
+          {
+            "test": "en_ru",
+            "score": 100,
+            "cyrillic_ratio": 0.886
+          },
+          {
+            "test": "ru_en",
+            "score": 100,
+            "latin_ratio": 0.833
+          },
+          {
+            "test": "en_es",
+            "score": 100,
+            "keywords_found": 10
+          }
+        ]
+      }
+    },
+    "raw_speed": 722.85,
+    "quality_score": 94.0,
+    "overall_score": 94.0,
+    "speed_score": 100.0
   }
 ]
