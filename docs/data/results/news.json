@@ -1,7 +1,14 @@
 {
-  "updated": "2026-03-22T17:35:56.035870+00:00",
+  "updated": "2026-03-23T08:37:28.182647+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "Deploying Disaggregated LLM Inference Workloads on Kubernetes",
+      "link": "https://developer.nvidia.com/blog/deploying-disaggregated-llm-inference-workloads-on-kubernetes/",
+      "date": "2026-03-23T07:01:00Z",
+      "source": "NVIDIA Developer",
+      "summary": "As large language model (LLM) inference workloads grow in complexity, a single monolithic serving process starts to hit its limits. Prefill and decode stages..."
+    },
     {
       "title": "Build a Domain-Specific Embedding Model in Under a Day",
       "link": "https://huggingface.co/blog/nvidia/domain-specific-embedding-finetune",
@@ -204,13 +211,6 @@
       "date": "2026-03-16T16:00:50Z",
       "source": "NVIDIA Developer",
       "summary": "Physics forms the foundation of robotic simulation, enabling realistic modeling of motion and interaction. For tasks like locomotion and manipulation,..."
-    },
-    {
-      "title": "How Workhuman built multi-tenant self-service reporting using Amazon Quick Sight embedded dashboards",
-      "link": "https://aws.amazon.com/blogs/machine-learning/how-workhuman-built-multi-tenant-self-service-reporting-using-amazon-quick-sight-embedded-dashboards/",
-      "date": "2026-03-16T14:48:16+00:00",
-      "source": "AWS ML Blog",
-      "summary": "This post explores how Workhuman transformed their analytics delivery model and the key lessons learned from their implementation. We go through their architecture approach, implementation strategy, and the business outcomes they achieved\u2014providing you with a practical blueprint "
     }
   ]
 }
