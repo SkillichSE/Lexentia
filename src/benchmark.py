@@ -104,6 +104,47 @@ class ModelBenchmark:
         """Reset index for next model (no waiting)."""
         self._or_key_index = 0
 
+    def _ping_openrouter_keys_parallel(self, model_id):
+        """Check all OR keys in parallel with a tiny prompt. Returns True if at least one works."""
+        import concurrent.futures
+        now = time.time()
+        # Skip keys already known to be limited
+        candidates = [i for i, k in enumerate(self._openrouter_keys)
+                      if now >= self._or_key_limited_until.get(i, 0)]
+        if not candidates:
+            return False
+
+        mini_prompt = "Hi"
+
+        def try_key(idx):
+            key = self._openrouter_keys[idx]
+            try:
+                r = requests.post(OPENROUTER_API, headers={
+                    "Authorization": f"Bearer {key}",
+                    "Content-Type": "application/json",
+                    "HTTP-Referer": "https://modellens.ai",
+                    "X-Title": "ModelLens",
+                }, json={
+                    "model": model_id,
+                    "messages": [{"role": "user", "content": mini_prompt}],
+                    "max_tokens": 1,
+                }, timeout=10)
+                return idx, r.status_code
+            except Exception:
+                return idx, 0
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(candidates)) as ex:
+            futures = {ex.submit(try_key, i): i for i in candidates}
+            any_ok = False
+            for f in concurrent.futures.as_completed(futures):
+                idx, status = f.result()
+                if status in _OR_ROTATE_STATUSES:
+                    self._mark_or_key_limited(idx)
+                elif status == 200:
+                    any_ok = True
+                # other errors (timeout, 5xx) — leave key available, will retry properly
+        return any_ok
+
     def _openai_post(self, url, headers, model_id, prompt, timeout=45):
         data = {
             "model": model_id,
@@ -346,6 +387,15 @@ class ModelBenchmark:
         self._current_model_info = model_info  # for fallback lookup
         if provider == "openrouter":
             self._or_key_index = 0  # start from key #1 for each new model
+            # Quick parallel check: if ALL keys are at limit, skip this model entirely
+            if self._next_available_or_key() is None:
+                print("  [openrouter] all keys at limit — skipping model")
+                return None
+            # If we have keys to try but first one might be limited, do a fast parallel ping
+            has_live = self._ping_openrouter_keys_parallel(mid)
+            if not has_live:
+                print("  [openrouter] all keys at limit — skipping model")
+                return None
         result = {
             "model_id":      model_info.get("key", mid),
             "model_name":    model_info["name"],
