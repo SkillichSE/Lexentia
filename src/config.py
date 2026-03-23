@@ -10,11 +10,35 @@ MODELS = {
             "provider": "Groq", "size": "8B",
             "size_category": "small", "context": "131k"
         },
+        "llama-3.2-1b": {
+            "id": "llama-3.2-1b-preview",
+            "name": "Llama 3.2 1B",
+            "provider": "Groq", "size": "1B",
+            "size_category": "small", "context": "131k"
+        },
+        "llama-3.2-3b": {
+            "id": "llama-3.2-3b-preview",
+            "name": "Llama 3.2 3B",
+            "provider": "Groq", "size": "3B",
+            "size_category": "small", "context": "131k"
+        },
         "llama-3.3-70b": {
             "id": "llama-3.3-70b-versatile",
             "name": "Llama 3.3 70B",
             "provider": "Groq", "size": "70B",
             "size_category": "large", "context": "131k"
+        },
+        "llama-3.3-70b-specdec": {
+            "id": "llama-3.3-70b-specdec",
+            "name": "Llama 3.3 70B SpecDec",
+            "provider": "Groq", "size": "70B",
+            "size_category": "large", "context": "8k"
+        },
+        "gemma2-9b": {
+            "id": "gemma2-9b-it",
+            "name": "Gemma 2 9B",
+            "provider": "Groq", "size": "9B",
+            "size_category": "small", "context": "8k"
         },
         "gpt-oss-120b": {
             "id": "openai/gpt-oss-120b",
@@ -201,6 +225,84 @@ MODELS = {
             "name": "GLM 4.5 Air",
             "provider": "OpenRouter", "size": "N/A",
             "size_category": "medium", "context": "131k"
+        },
+        "llama-3.2-1b": {
+            "id": "meta-llama/llama-3.2-1b-instruct:free",
+            "name": "Llama 3.2 1B",
+            "provider": "OpenRouter", "size": "1B",
+            "size_category": "small", "context": "131k"
+        },
+        "llama-3.1-8b": {
+            "id": "meta-llama/llama-3.1-8b-instruct:free",
+            "name": "Llama 3.1 8B",
+            "provider": "OpenRouter", "size": "8B",
+            "size_category": "small", "context": "131k"
+        },
+        "llama-3.1-70b": {
+            "id": "meta-llama/llama-3.1-70b-instruct:free",
+            "name": "Llama 3.1 70B",
+            "provider": "OpenRouter", "size": "70B",
+            "size_category": "large", "context": "131k"
+        },
+        "llama-3.1-405b": {
+            "id": "meta-llama/llama-3.1-405b-instruct:free",
+            "name": "Llama 3.1 405B",
+            "provider": "OpenRouter", "size": "405B",
+            "size_category": "large", "context": "131k"
+        },
+        "qwen-2.5-7b": {
+            "id": "qwen/qwen-2.5-7b-instruct:free",
+            "name": "Qwen 2.5 7B",
+            "provider": "OpenRouter", "size": "7B",
+            "size_category": "small", "context": "128k"
+        },
+        "qwen-2.5-72b": {
+            "id": "qwen/qwen-2.5-72b-instruct:free",
+            "name": "Qwen 2.5 72B",
+            "provider": "OpenRouter", "size": "72B",
+            "size_category": "large", "context": "131k"
+        },
+        "mistral-7b": {
+            "id": "mistralai/mistral-7b-instruct:free",
+            "name": "Mistral 7B",
+            "provider": "OpenRouter", "size": "7B",
+            "size_category": "small", "context": "32k"
+        },
+        "mistral-nemo": {
+            "id": "mistralai/mistral-nemo:free",
+            "name": "Mistral Nemo 12B",
+            "provider": "OpenRouter", "size": "12B",
+            "size_category": "medium", "context": "128k"
+        },
+        "gemma-2-9b": {
+            "id": "google/gemma-2-9b-it:free",
+            "name": "Gemma 2 9B",
+            "provider": "OpenRouter", "size": "9B",
+            "size_category": "small", "context": "8k"
+        },
+        "phi-3-medium": {
+            "id": "microsoft/phi-3-medium-128k-instruct:free",
+            "name": "Phi-3 Medium 14B",
+            "provider": "OpenRouter", "size": "14B",
+            "size_category": "medium", "context": "128k"
+        },
+        "phi-3-mini": {
+            "id": "microsoft/phi-3-mini-128k-instruct:free",
+            "name": "Phi-3 Mini 3.8B",
+            "provider": "OpenRouter", "size": "3.8B",
+            "size_category": "small", "context": "128k"
+        },
+        "mythomax-13b": {
+            "id": "gryphe/mythomax-l2-13b:free",
+            "name": "MythoMax 13B",
+            "provider": "OpenRouter", "size": "13B",
+            "size_category": "medium", "context": "8k"
+        },
+        "toppy-m-7b": {
+            "id": "undi95/toppy-m-7b:free",
+            "name": "Toppy M 7B",
+            "provider": "OpenRouter", "size": "7B",
+            "size_category": "small", "context": "4k"
         },
     },
 

@@ -385,6 +385,7 @@ class ModelBenchmark:
         delay = REQUEST_DELAY.get(provider, 2)
         mid   = model_info["id"]
         self._current_model_info = model_info  # for fallback lookup
+        success_calls = 0
         if provider == "openrouter":
             self._or_key_index = 0  # start from key #1 for each new model
             # Quick parallel check: if ALL keys are at limit, skip this model entirely
@@ -412,6 +413,7 @@ class ModelBenchmark:
         for name, prompt in TESTS["speed"].items():
             r = self._call(provider, mid, prompt)
             if r["success"]:
+                success_calls += 1
                 speed_raw.append({"test": name, "time": r["total_time"],
                                   "tokens_per_sec": r["tokens_per_sec"], "tokens": r["tokens"]})
             else:
@@ -426,6 +428,7 @@ class ModelBenchmark:
         for name in TESTS["code"]:
             r = self._call(provider, mid, TESTS["code"][name]["prompt"])
             if r["success"]:
+                success_calls += 1
                 code_raw.append({"test": name, **self.eval_code(name, r["content"])})
             else:
                 print(f"\n    [{name}] {r['error']}", end="")
@@ -441,6 +444,7 @@ class ModelBenchmark:
         for name, cfg in TESTS["reasoning"].items():
             r = self._call(provider, mid, cfg["prompt"])
             if r["success"]:
+                success_calls += 1
                 reasoning_raw.append({"test": name, **self.eval_reasoning(name, r["content"])})
             else:
                 print(f"\n    [{name}] {r['error']}", end="")
@@ -457,6 +461,7 @@ class ModelBenchmark:
         for name, cfg in TESTS["instruction"].items():
             r = self._call(provider, mid, cfg["prompt"])
             if r["success"]:
+                success_calls += 1
                 instr_raw.append({"test": name, **self.eval_instruction(name, r["content"])})
             else:
                 print(f"\n    [{name}] {r['error']}", end="")
@@ -471,6 +476,7 @@ class ModelBenchmark:
         for name, cfg in TESTS["translation"].items():
             r = self._call(provider, mid, cfg["prompt"])
             if r["success"]:
+                success_calls += 1
                 trans_raw.append({"test": name, **self.eval_translation(name, r["content"])})
             else:
                 print(f"\n    [{name}] {r['error']}", end="")
@@ -484,6 +490,12 @@ class ModelBenchmark:
         result["quality_score"] = quality
         result["raw_speed"]     = avg_tps
         result["overall_score"] = quality
+        if success_calls == 0:
+            print("  [skip] no successful API responses")
+            return None
+        if quality == 0 and avg_tps == 0:
+            print("  [skip] model returned only zero metrics")
+            return None
         return result
 
     def run_benchmark(self):
