@@ -1,7 +1,42 @@
 {
-  "updated": "2026-03-22T17:35:56.035870+00:00",
+  "updated": "2026-03-23T17:34:25.543053+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "How Reco transforms security alerts using Amazon Bedrock",
+      "link": "https://aws.amazon.com/blogs/machine-learning/how-reco-transforms-security-alerts-using-amazon-bedrock/",
+      "date": "2026-03-23T16:46:54+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this blog post, we show you how Reco implemented Amazon Bedrock to help transform security alerts and achieve significant improvements in incident response times."
+    },
+    {
+      "title": "Integrating Amazon Bedrock AgentCore with Slack",
+      "link": "https://aws.amazon.com/blogs/machine-learning/integrating-amazon-bedrock-agentcore-with-slack/",
+      "date": "2026-03-23T16:38:56+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we demonstrate how to build a Slack integration using AWS Cloud Development Kit (AWS CDK). You will learn how to deploy the infrastructure with three specialized AWS Lambda functions, configure event subscriptions properly to handle Slack's security requirements, an"
+    },
+    {
+      "title": "Overcoming LLM hallucinations in regulated industries: Artificial Genius\u2019s deterministic models on Amazon Nova",
+      "link": "https://aws.amazon.com/blogs/machine-learning/overcoming-llm-hallucinations-in-regulated-industries-artificial-geniuss-deterministic-models-on-amazon-nova/",
+      "date": "2026-03-23T16:34:37+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we\u2019re excited to showcase how AWS ISV Partner Artificial Genius is using Amazon SageMaker AI and Amazon Nova to deliver a solution that is probabilistic on input but deterministic on output, helping to enable safe, enterprise-grade adoption."
+    },
+    {
+      "title": "Deploying Disaggregated LLM Inference Workloads on Kubernetes",
+      "link": "https://developer.nvidia.com/blog/deploying-disaggregated-llm-inference-workloads-on-kubernetes/",
+      "date": "2026-03-23T07:01:00Z",
+      "source": "NVIDIA Developer",
+      "summary": "As large language model (LLM) inference workloads grow in complexity, a single monolithic serving process starts to hit its limits. Prefill and decode stages..."
+    },
+    {
+      "title": "Creating with Sora Safely",
+      "link": "https://openai.com/index/creating-with-sora-safely",
+      "date": "2026-03-23T00:00:00+00:00",
+      "source": "OpenAI",
+      "summary": "To address the novel safety challenges posed by a state-of-the-art video model as well as a new social creation platform, we\u2019ve built Sora 2 and the Sora app with safety at the foundation. Our approach is anchored in concrete protections."
+    },
     {
       "title": "Build a Domain-Specific Embedding Model in Under a Day",
       "link": "https://huggingface.co/blog/nvidia/domain-specific-embedding-finetune",
@@ -176,41 +211,6 @@
       "date": "2026-03-16T20:01:33Z",
       "source": "NVIDIA Developer",
       "summary": "Building AI factories is complex and requires efficient integration across compute, networking, security, and storage systems. To achieve rapid Time to AI and..."
-    },
-    {
-      "title": "NVIDIA Vera CPU Delivers High Performance, Bandwidth, and Efficiency for AI Factories",
-      "link": "https://developer.nvidia.com/blog/nvidia-vera-cpu-delivers-high-performance-bandwidth-and-efficiency-for-ai-factories/",
-      "date": "2026-03-16T19:30:33Z",
-      "source": "NVIDIA Developer",
-      "summary": "AI is evolving, and reasoning models are increasing token demand, placing new requirements on every layer of AI infrastructure. More than ever, compute must..."
-    },
-    {
-      "title": "Introducing Disaggregated Inference on AWS\u00a0powered by llm-d",
-      "link": "https://aws.amazon.com/blogs/machine-learning/introducing-disaggregated-inference-on-aws-powered-by-llm-d/",
-      "date": "2026-03-16T16:55:53+00:00",
-      "source": "AWS ML Blog",
-      "summary": "In this blog post, we introduce the concepts behind next-generation inference capabilities, including disaggregated serving, intelligent request scheduling, and expert parallelism. We discuss their benefits and walk through how you can implement them on Amazon SageMaker HyperPod "
-    },
-    {
-      "title": "Inside NVIDIA Groq 3 LPX: The Low-Latency Inference Accelerator for the NVIDIA Vera Rubin Platform",
-      "link": "https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/",
-      "date": "2026-03-16T16:09:00Z",
-      "source": "NVIDIA Developer",
-      "summary": "NVIDIA Groq 3 LPX is a new rack-scale inference accelerator for the NVIDIA Vera Rubin platform, designed for the low-latency and large-context demands of..."
-    },
-    {
-      "title": "Newton Adds Contact-Rich Manipulation and Locomotion Capabilities for Industrial Robotics",
-      "link": "https://developer.nvidia.com/blog/newton-adds-contact-rich-manipulation-and-locomotion-capabilities-for-industrial-robotics/",
-      "date": "2026-03-16T16:00:50Z",
-      "source": "NVIDIA Developer",
-      "summary": "Physics forms the foundation of robotic simulation, enabling realistic modeling of motion and interaction. For tasks like locomotion and manipulation,..."
-    },
-    {
-      "title": "How Workhuman built multi-tenant self-service reporting using Amazon Quick Sight embedded dashboards",
-      "link": "https://aws.amazon.com/blogs/machine-learning/how-workhuman-built-multi-tenant-self-service-reporting-using-amazon-quick-sight-embedded-dashboards/",
-      "date": "2026-03-16T14:48:16+00:00",
-      "source": "AWS ML Blog",
-      "summary": "This post explores how Workhuman transformed their analytics delivery model and the key lessons learned from their implementation. We go through their architecture approach, implementation strategy, and the business outcomes they achieved\u2014providing you with a practical blueprint "
     }
   ]
 }
