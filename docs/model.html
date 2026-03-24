@@ -678,8 +678,8 @@ function renderPage(model) {
       '<div class="hero-scores">' +
         '<div class="hero-score-chip chip-quality"><span>Quality</span><span class="chip-val">' + Math.round(model.quality_score) + '</span><span style="font-size:12px;color:var(--text-tertiary)">/100</span></div>' +
         '<div class="hero-score-chip chip-speed"><span>⚡ Speed</span><span class="chip-val">' + Math.round(model.raw_speed) + '</span><span style="font-size:12px;color:var(--text-tertiary)">tok/s</span></div>' +
-        '<div class="hero-score-chip"><span>💻 Code</span><span class="chip-val" style="color:var(--color-on-surface)">' + Math.round(t.code.avg_score) + '</span><span style="font-size:12px;color:var(--text-tertiary)">/100</span></div>' +
-        '<div class="hero-score-chip"><span>🧠 Reasoning</span><span class="chip-val" style="color:var(--color-on-surface)">' + Math.round(t.reasoning.score) + '</span><span style="font-size:12px;color:var(--text-tertiary)">/100</span></div>' +
+        '<div class="hero-score-chip"><span>💻 Code</span><span class="chip-val" style="color:var(--color-on-surface)">' + Math.round((t.code && t.code.avg_score) || 0) + '</span><span style="font-size:12px;color:var(--text-tertiary)">/100</span></div>' +
+        '<div class="hero-score-chip"><span>🧠 Reasoning</span><span class="chip-val" style="color:var(--color-on-surface)">' + Math.round((t.reasoning && t.reasoning.score) || 0) + '</span><span style="font-size:12px;color:var(--text-tertiary)">/100</span></div>' +
       '</div>' +
     '</div>' +
   '</div>';
