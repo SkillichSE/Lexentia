@@ -42,7 +42,40 @@
     </div>
   </div>
 </header>
+<div class="beta-ribbon-wrapper">
+  <div class="beta-ribbon">BETA</div>
+</div>
 
+<style>
+  .beta-ribbon-wrapper {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+  }
+
+  .beta-ribbon {
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    letter-spacing: 1px;
+    color: #fff;
+    
+    background: #ff4757; /* Цвет фона */
+    
+    width: 200px;
+    position: absolute;
+    top: 30px;
+    right: -50px;
+    transform: rotate(45deg);
+    
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+</style>
 <div class="hero">
   <div class="hero-inner">
     <h1 class="hero-headline" id="hero-headline">ModelLens</h1>
