@@ -1,7 +1,63 @@
 {
-  "updated": "2026-03-25T05:58:33.515659+00:00",
+  "updated": "2026-03-26T05:54:15.444685+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "Unlocking video insights at scale with Amazon Bedrock multimodal models",
+      "link": "https://aws.amazon.com/blogs/machine-learning/unlocking-video-insights-at-scale-with-amazon-bedrock-multimodal-models/",
+      "date": "2026-03-25T18:57:15+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we explore how the multimodal foundation models (FMs) of Amazon Bedrock enable scalable video understanding through three distinct architectural approaches. Each approach is designed for different use cases and cost-performance trade-offs."
+    },
+    {
+      "title": "Deploy voice agents with Pipecat and Amazon Bedrock AgentCore Runtime \u2013 Part 1",
+      "link": "https://aws.amazon.com/blogs/machine-learning/deploy-voice-agents-with-pipecat-and-amazon-bedrock-agentcore-runtime-part-1/",
+      "date": "2026-03-25T18:52:59+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this series of posts, you will learn how streaming architectures help address these challenges using Pipecat voice agents on Amazon Bedrock AgentCore Runtime. In Part 1, you will learn how to deploy Pipecat voice agents on AgentCore Runtime using different network transport ap"
+    },
+    {
+      "title": "Reinforcement fine-tuning on Amazon Bedrock with OpenAI-Compatible APIs: a technical walkthrough",
+      "link": "https://aws.amazon.com/blogs/machine-learning/reinforcement-fine-tuning-on-amazon-bedrock-with-openai-compatible-apis-a-technical-walkthrough/",
+      "date": "2026-03-25T17:30:56+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we walk through the end-to-end workflow of using RFT on Amazon Bedrock with OpenAI-compatible APIs: from setting up authentication, to deploying a Lambda-based reward function, to kicking off a training job and running on-demand inference on your fine-tuned model."
+    },
+    {
+      "title": "Maximize AI Infrastructure Throughput by Consolidating Underutilized GPU Workloads",
+      "link": "https://developer.nvidia.com/blog/maximize-ai-infrastructure-throughput-by-consolidating-underutilized-gpu-workloads/",
+      "date": "2026-03-25T16:35:43Z",
+      "source": "NVIDIA Developer",
+      "summary": "In production Kubernetes environments, the difference between model requirements and GPU size creates inefficiencies. Lightweight automatic speech recognition..."
+    },
+    {
+      "title": "Build with Lyria 3, our newest music generation model",
+      "link": "https://blog.google/innovation-and-ai/technology/developers-tools/lyria-3-developers/",
+      "date": "2026-03-25T16:00:00+00:00",
+      "source": "Google AI Blog",
+      "summary": "Google Lyria teaser"
+    },
+    {
+      "title": "Designing Protein Binders Using the Generative Model Proteina-Complexa",
+      "link": "https://developer.nvidia.com/blog/designing-protein-binders-using-the-generative-model-proteina-complexa/",
+      "date": "2026-03-25T13:00:00Z",
+      "source": "NVIDIA Developer",
+      "summary": "Developing new protein-based therapies and catalysts involves the challenging task of designing protein binders, or proteins that bind to a target protein or..."
+    },
+    {
+      "title": "Inside our approach to the Model Spec",
+      "link": "https://openai.com/index/our-approach-to-the-model-spec",
+      "date": "2026-03-25T10:00:00+00:00",
+      "source": "OpenAI",
+      "summary": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance."
+    },
+    {
+      "title": "Introducing the OpenAI Safety Bug Bounty program",
+      "link": "https://openai.com/index/safety-bug-bounty",
+      "date": "2026-03-25T00:00:00+00:00",
+      "source": "OpenAI",
+      "summary": "OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration."
+    },
     {
       "title": "Deploy SageMaker AI inference endpoints with set GPU capacity using training plans",
       "link": "https://aws.amazon.com/blogs/machine-learning/deploy-sagemaker-ai-inference-endpoints-with-set-gpu-capacity-using-training-plans/",
@@ -155,62 +211,6 @@
       "date": "2026-03-18T16:16:24+00:00",
       "source": "AWS ML Blog",
       "summary": "In this post, we walk you through the process of using the Nova Forge SDK to train an Amazon Nova model using Amazon SageMaker AI Training Jobs."
-    },
-    {
-      "title": "Introducing Nova Forge SDK, a seamless way to customize Nova models for enterprise AI",
-      "link": "https://aws.amazon.com/blogs/machine-learning/introducing-nova-forge-sdk-a-seamless-way-to-customize-nova-models-for-enterprise-ai/",
-      "date": "2026-03-18T16:06:21+00:00",
-      "source": "AWS ML Blog",
-      "summary": "Today, we are launching Nova Forge SDK that makes LLM customization accessible, empowering teams to harness the full potential of language models without the challenges of dependency management, image selection, and recipe configuration and eventually lowering the barrier of entr"
-    },
-    {
-      "title": "Build an AI-Powered A/B testing engine using Amazon Bedrock",
-      "link": "https://aws.amazon.com/blogs/machine-learning/build-an-ai-powered-a-b-testing-engine-using-amazon-bedrock/",
-      "date": "2026-03-18T15:31:40+00:00",
-      "source": "AWS ML Blog",
-      "summary": "This post shows you how to build an AI-powered A/B testing engine using&nbsp;Amazon Bedrock,&nbsp;Amazon Elastic Container Service,&nbsp;Amazon DynamoDB, and the Model Context Protocol (MCP). The system improves traditional A/B testing by analyzing user context&nbsp; to make smar"
-    },
-    {
-      "title": "Migrate from Amazon Nova 1 to Amazon Nova 2 on Amazon Bedrock",
-      "link": "https://aws.amazon.com/blogs/machine-learning/migrate-from-amazon-nova-1-to-amazon-nova-2-on-amazon-bedrock/",
-      "date": "2026-03-18T15:13:27+00:00",
-      "source": "AWS ML Blog",
-      "summary": "In this post, you will learn how to migrate from Nova 1 to Nova 2 on Amazon Bedrock. We cover model mapping, API changes, code examples using the Converse API, guidance on configuring new capabilities, and a summary of use cases. We conclude with a migration checklist to help you"
-    },
-    {
-      "title": "Together AI expands fine-tuning service with tool calling, reasoning, and vision support",
-      "link": "https://www.together.ai/blog/fine-tuning-update",
-      "date": "2026-03-18T00:00:00+00:00",
-      "source": "Together AI",
-      "summary": "Together AI expands fine-tuning with native support for tool call, reasoning, and vision-language models, plus 100B+ model training, up to 6\u00d7 higher throughput, and job cost and ETA estimates."
-    },
-    {
-      "title": "State of Open Source on Hugging Face: Spring 2026",
-      "link": "https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026",
-      "date": "2026-03-17T16:37:55+00:00",
-      "source": "Hugging Face",
-      "summary": ""
-    },
-    {
-      "title": "Bringing the power of Personal Intelligence to more people",
-      "link": "https://blog.google/products-and-platforms/products/search/personal-intelligence-expansion/",
-      "date": "2026-03-17T16:00:00+00:00",
-      "source": "Google AI Blog",
-      "summary": "Bubble that says \"Personal Intelligence\" with Google G, Google Photos logo, and Gmail logo around it"
-    },
-    {
-      "title": "Our latest investment in open source security for the AI era",
-      "link": "https://blog.google/innovation-and-ai/technology/safety-security/ai-powered-open-source-security/",
-      "date": "2026-03-17T16:00:00+00:00",
-      "source": "Google AI Blog",
-      "summary": "A collage including security icons and photos of hands clasped, a man looking at a computer, and two people pointing at something off camera"
-    },
-    {
-      "title": "AWS AI League: Atos fine-tunes approach to AI education",
-      "link": "https://aws.amazon.com/blogs/machine-learning/aws-ai-league-atos-fine-tunes-approach-to-ai-education/",
-      "date": "2026-03-17T15:51:08+00:00",
-      "source": "AWS ML Blog",
-      "summary": "In this post, we\u2019ll explore how Atos used the AWS AI League to help accelerate AI education across 400+ participants, highlight the tangible benefits of gamified, experiential learning, and share actionable insights you can apply to your own AI enablement programs."
     }
   ]
 }
