@@ -1,0 +1,248 @@
+/* ============================================================
+   LEXENTIA — VS CODE LAYOUT SYSTEM
+   Exact VS Code Flexbox layout replication
+   ============================================================ */
+
+.monaco-workbench {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  line-height: var(--vscode-line-height);
+  overflow: hidden;
+}
+
+/* === Activity Bar === */
+.part.activitybar {
+  width: var(--vscode-activity-bar-width);
+  height: 100%;
+  background: var(--vscode-activityBar-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  border-right: 1px solid var(--vscode-border);
+  flex-shrink: 0;
+}
+
+.activitybar-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vscode-activityBar-inactiveForeground);
+  cursor: pointer;
+  border-radius: var(--vscode-border-radius);
+  margin-bottom: 4px;
+  transition: all 0.15s ease;
+}
+
+.activitybar-item:hover,
+.activitybar-item.active {
+  background: var(--vscode-activityBar-background);
+  color: var(--vscode-activityBar-foreground);
+}
+
+.activitybar-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: var(--vscode-focusBorder);
+  border-radius: 0 2px 2px 0;
+}
+
+/* === Side Bar === */
+.part.sidebar {
+  width: var(--vscode-side-bar-width);
+  height: 100%;
+  background: var(--vscode-sideBar-background);
+  color: var(--vscode-sideBar-foreground);
+  border-right: 1px solid var(--vscode-border);
+  flex-shrink: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Editor Area === */
+.part.editor {
+  flex: 1;
+  height: 100%;
+  background: var(--vscode-editor-background);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === Panel Area === */
+.part.panel {
+  height: 100%;
+  background: var(--vscode-sideBar-background);
+  color: var(--vscode-sideBar-foreground);
+  border-left: 1px solid var(--vscode-border);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* === Status Bar === */
+.part.statusbar {
+  height: 22px;
+  background: var(--vscode-statusBar-background);
+  color: var(--vscode-statusBar-foreground);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 12px;
+  border-top: 1px solid var(--vscode-border);
+  flex-shrink: 0;
+}
+
+.statusbar-left,
+.statusbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusbar-item {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.statusbar-item:hover {
+  opacity: 1;
+}
+
+/* === Codicons === */
+.codicon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* VS Code Codicon sprites */
+.codicon-files {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 1.75a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V1a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v.75zM1.5 3.5a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V4a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v.5zM7.5 8.5a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V9a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v-.5z"/></svg>');
+}
+
+.codicon-search {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M11 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0 1 1 0 0 0-1 1 4.5 4.5 0 0 0 1-1 0 6.5 6.5 0 0 0-1-1-1zm-1.5 8.5a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V9a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v.5zM7.5 8.5a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V9a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v-.5z"/></svg>');
+}
+
+.codicon-source-control {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M7.5 5.5L2 11l5.5 5.5L13 11l-5.5-5.5z"/></svg>');
+}
+
+.codicon-debug-alt {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2a1 1 0 0 0-1 1v3H6a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H8V3zm0 6a1 1 0 0 0-1 1v3H6a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H8V9z"/></svg>');
+}
+
+.codicon-extensions {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1.75a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V1a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v.75zM1.5 3.5a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V4a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v.5zM7.5 8.5a.5.5 0 0 1 1 1h5a.5.5 0 0 1 1-1V9a.5.5 0 0 0-1-1h-5a.5.5 0 0 0-1 1v-.5z"/></svg>');
+}
+
+/* === Scrollbars === */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vscode-scrollbar-shadow);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vscode-scrollbarSlider-background);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vscode-scrollbarSlider-hoverBackground);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--vscode-scrollbarSlider-activeBackground);
+}
+
+/* === Focus Styles === */
+.monaco-workbench *:focus {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: -1px;
+}
+
+/* === Selection === */
+::selection {
+  background: var(--vscode-selection-background);
+  color: var(--vscode-selection-foreground);
+}
+
+/* === VS Code Typography === */
+.monaco-workbench {
+  --font-family: 'Segoe UI', 'Ubuntu', 'Cantarell', 'Fira Code', 'monospace';
+  --font-weight: normal;
+  --font-size: 14px;
+  --line-height: 1.4;
+}
+
+/* === VS Code Animations === */
+.activitybar-item,
+.statusbar-item {
+  transition: all 0.15s ease;
+}
+
+/* === VS Code Shadows === */
+.part.editor {
+  box-shadow: inset 0 0 0 1px var(--vscode-border);
+}
+
+/* === VS Code Borders === */
+.part.sidebar,
+.part.panel {
+  border-color: var(--vscode-border);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .part.sidebar {
+    width: 240px;
+  }
+  
+  .part.panel {
+    width: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .part.sidebar,
+  .part.panel {
+    display: none;
+  }
+  
+  .part.editor {
+    margin-left: var(--vscode-activity-bar-width);
+  }
+}
