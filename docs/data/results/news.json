@@ -1,7 +1,14 @@
 {
-  "updated": "2026-03-27T06:04:43.775915+00:00",
+  "updated": "2026-03-28T06:02:55.421972+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "STADLER reshapes knowledge work at a 230-year-old company",
+      "link": "https://openai.com/index/stadler",
+      "date": "2026-03-27T22:00:00+00:00",
+      "source": "OpenAI",
+      "summary": "Learn how STADLER uses ChatGPT to transform knowledge work, saving time and accelerating productivity across 650 employees."
+    },
     {
       "title": "Run Generative AI inference with Amazon Bedrock in Asia Pacific (New Zealand)",
       "link": "https://aws.amazon.com/blogs/machine-learning/run-generative-ai-inference-with-amazon-bedrock-in-asia-pacific-new-zealand/",
@@ -136,18 +143,18 @@
       "summary": "OpenAI releases prompt-based teen safety policies for developers using gpt-oss-safeguard, helping moderate age-specific risks in AI systems."
     },
     {
-      "title": "Update on the OpenAI Foundation",
-      "link": "https://openai.com/index/update-on-the-openai-foundation",
-      "date": "2026-03-24T09:00:00+00:00",
-      "source": "OpenAI",
-      "summary": "The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs."
-    },
-    {
       "title": "Powering product discovery in ChatGPT",
       "link": "https://openai.com/index/powering-product-discovery-in-chatgpt",
       "date": "2026-03-24T09:00:00+00:00",
       "source": "OpenAI",
       "summary": "ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration."
+    },
+    {
+      "title": "Update on the OpenAI Foundation",
+      "link": "https://openai.com/index/update-on-the-openai-foundation",
+      "date": "2026-03-24T09:00:00+00:00",
+      "source": "OpenAI",
+      "summary": "The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs."
     },
     {
       "title": "A New Framework for Evaluating Voice Agents (EVA)",
@@ -202,13 +209,6 @@
       "title": "Build a Domain-Specific Embedding Model in Under a Day",
       "link": "https://huggingface.co/blog/nvidia/domain-specific-embedding-finetune",
       "date": "2026-03-20T19:38:16+00:00",
-      "source": "Hugging Face",
-      "summary": ""
-    },
-    {
-      "title": "What's New in Mellea 0.4.0 + Granite Libraries Release",
-      "link": "https://huggingface.co/blog/ibm-granite/granite-libraries",
-      "date": "2026-03-20T14:14:46+00:00",
       "source": "Hugging Face",
       "summary": ""
     }
