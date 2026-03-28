@@ -1,0 +1,50 @@
+{
+  "name": "lexentia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"vite --port 5173\" \"npm run electron:dev\"",
+    "electron:dev": "npm run build:electron && electron dist-electron\\\\main.js",
+    "build": "npm run build:renderer && npm run build:electron",
+    "start": "electron dist-electron\\\\main.js",
+    "build:renderer": "vite build",
+    "build:electron": "node -e \"require('fs').rmSync('dist-electron',{recursive:true,force:true})\" && esbuild main.ts --bundle --platform=node --target=node18 --format=cjs --external:electron --outfile=dist-electron/main.js && esbuild preload.ts --bundle --platform=node --target=node18 --format=cjs --external:electron --outfile=dist-electron/preload.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/electron-vite/electron-vite-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/electron-vite/electron-vite-react/issues"
+  },
+  "homepage": "https://github.com/electron-vite/electron-vite-react#readme",
+  "devDependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.4.27",
+    "concurrently": "^9.2.1",
+    "electron": "^41.0.4",
+    "electron-builder": "^26.8.1",
+    "esbuild": "^0.27.4",
+    "monaco-editor": "^0.55.1",
+    "node-pty": "^1.1.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.2"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}

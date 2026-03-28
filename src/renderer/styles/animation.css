@@ -1,0 +1,258 @@
+/* Living Codebase Animation Styles */
+
+.lex-animationPanel {
+  background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+  border: 1px solid #3a3a5c;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.lex-animationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #3a3a5c;
+}
+
+.lex-animationTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lex-animationStats {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.lex-stat {
+  color: #b0b0b0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lex-stat.positive {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.lex-stat.negative {
+  color: #f87171;
+  font-weight: 500;
+}
+
+.lex-animationFiles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lex-animationFile {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #3a3a5c;
+  border-radius: 6px;
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+.lex-animationFile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #4a4a6c;
+}
+
+.lex-fileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.lex-fileInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lex-fileStatus {
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.lex-fileName {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.lex-fileProgress {
+  color: #b0b0b0;
+  font-size: 11px;
+}
+
+.lex-fileMetrics {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lex-lineCount {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lex-lineCount.positive {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.lex-lineCount.negative {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.2);
+}
+
+.lex-timeEstimate {
+  color: #fbbf24;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.lex-progressBar {
+  position: relative;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.lex-progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.lex-progressText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}
+
+.lex-fileCompleted {
+  color: #4ade80;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  padding: 4px;
+  background: rgba(74, 222, 128, 0.1);
+  border-radius: 4px;
+}
+
+.lex-fileError {
+  color: #f87171;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  padding: 4px;
+  background: rgba(248, 113, 113, 0.1);
+  border-radius: 4px;
+}
+
+.lex-animationSummary {
+  margin-top: 12px;
+  padding: 12px;
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.lex-summaryTitle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.lex-summaryStats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.lex-summaryStats .positive {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.lex-summaryStats .negative {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.lex-animationFile.writing {
+  animation: pulse 2s infinite;
+}
+
+/* Progress bar animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.lex-progressFill {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .lex-animationHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .lex-animationStats {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .lex-fileHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .lex-summaryStats {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
