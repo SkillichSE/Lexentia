@@ -1,7 +1,14 @@
 {
-  "updated": "2026-03-29T06:07:31.005644+00:00",
+  "updated": "2026-03-30T06:43:34.033441+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "Helping disaster response teams turn AI into action across Asia",
+      "link": "https://openai.com/index/helping-disaster-response-teams-asia",
+      "date": "2026-03-29T22:15:00+00:00",
+      "source": "OpenAI",
+      "summary": "AI for Disaster Response in Asia: OpenAI Workshop with Gates Foundation"
+    },
     {
       "title": "STADLER reshapes knowledge work at a 230-year-old company",
       "link": "https://openai.com/index/stadler",
@@ -204,13 +211,6 @@
       "date": "2026-03-23T07:01:00Z",
       "source": "NVIDIA Developer",
       "summary": "As large language model (LLM) inference workloads grow in complexity, a single monolithic serving process starts to hit its limits. Prefill and decode stages..."
-    },
-    {
-      "title": "Creating with Sora Safely",
-      "link": "https://openai.com/index/creating-with-sora-safely",
-      "date": "2026-03-23T00:00:00+00:00",
-      "source": "OpenAI",
-      "summary": "To address the novel safety challenges posed by a state-of-the-art video model as well as a new social creation platform, we\u2019ve built Sora 2 and the Sora app with safety at the foundation. Our approach is anchored in concrete protections."
     }
   ]
 }

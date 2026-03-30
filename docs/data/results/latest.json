@@ -1,6 +1,6 @@
 {
-  "date": "2026-03-29",
-  "timestamp": "2026-03-29T06:07:07.436853",
+  "date": "2026-03-30",
+  "timestamp": "2026-03-30T06:43:10.799186",
   "results": [
     {
       "model_id": "llama-3.3-70b",
@@ -10,27 +10,27 @@
       "size_category": "large",
       "tier": "large",
       "context": "131k",
-      "timestamp": "2026-03-29T05:13:41.360901",
+      "timestamp": "2026-03-30T05:28:04.065470",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 328.47,
+          "avg_tokens_per_sec": 325.03,
           "details": [
             {
               "test": "simple",
-              "time": 0.229,
-              "tokens_per_sec": 266.59,
+              "time": 0.31,
+              "tokens_per_sec": 196.73,
               "tokens": 61
             },
             {
               "test": "medium",
-              "time": 0.853,
-              "tokens_per_sec": 314.01,
-              "tokens": 268
+              "time": 0.772,
+              "tokens_per_sec": 336.75,
+              "tokens": 260
             },
             {
               "test": "long",
-              "time": 0.86,
-              "tokens_per_sec": 404.81,
+              "time": 0.788,
+              "tokens_per_sec": 441.61,
               "tokens": 348
             }
           ]
@@ -207,7 +207,7 @@
               "test": "coin_flip",
               "correct": true,
               "score": 100,
-              "answer_given": "The probability of getting heads on the 4th flip is 1/2. \n\nSince the coin is fair, the outcome of each flip is independent of the previous flips. The fact that you got heads on the first 3 flips does not affect the probability of getting heads on the 4th flip. The probability remains the same, which is 1/2."
+              "answer_given": "The probability of getting heads on the 4th flip is 1/2. \n\nSince the coin is fair, each flip is an independent event, and the outcome of the previous flips does not affect the outcome of the next flip. Therefore, the probability of getting heads on the 4th flip remains the same as it was for the first 3 flips, which is 1/2."
             },
             {
               "test": "counting",
@@ -272,7 +272,7 @@
         }
       },
       "quality_score": 75.8,
-      "raw_speed": 328.47,
+      "raw_speed": 325.03,
       "overall_score": 75.8,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -285,27 +285,27 @@
       "size_category": "large",
       "tier": "large",
       "context": "131k",
-      "timestamp": "2026-03-29T05:14:29.174297",
+      "timestamp": "2026-03-30T05:28:51.269757",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 532.69,
+          "avg_tokens_per_sec": 559.99,
           "details": [
             {
               "test": "simple",
-              "time": 0.641,
-              "tokens_per_sec": 528.5,
-              "tokens": 339
+              "time": 0.262,
+              "tokens_per_sec": 606.9,
+              "tokens": 159
             },
             {
               "test": "medium",
-              "time": 0.714,
-              "tokens_per_sec": 533.87,
+              "time": 0.72,
+              "tokens_per_sec": 528.92,
               "tokens": 381
             },
             {
               "test": "long",
-              "time": 0.717,
-              "tokens_per_sec": 535.69,
+              "time": 0.706,
+              "tokens_per_sec": 544.14,
               "tokens": 384
             }
           ]
@@ -547,7 +547,7 @@
         }
       },
       "quality_score": 80.0,
-      "raw_speed": 532.69,
+      "raw_speed": 559.99,
       "overall_score": 80.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -560,27 +560,27 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "131k",
-      "timestamp": "2026-03-29T05:15:17.256193",
+      "timestamp": "2026-03-30T05:29:38.884646",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 836.43,
+          "avg_tokens_per_sec": 667.87,
           "details": [
             {
               "test": "simple",
-              "time": 0.284,
-              "tokens_per_sec": 840.54,
-              "tokens": 239
+              "time": 0.513,
+              "tokens_per_sec": 694.15,
+              "tokens": 356
             },
             {
               "test": "medium",
-              "time": 0.45,
-              "tokens_per_sec": 846.11,
+              "time": 0.8,
+              "tokens_per_sec": 476.54,
               "tokens": 381
             },
             {
               "test": "long",
-              "time": 0.467,
-              "tokens_per_sec": 822.63,
+              "time": 0.461,
+              "tokens_per_sec": 832.91,
               "tokens": 384
             }
           ]
@@ -779,7 +779,7 @@
         }
       },
       "quality_score": 80.0,
-      "raw_speed": 836.43,
+      "raw_speed": 667.87,
       "overall_score": 80.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -792,27 +792,27 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "131k",
-      "timestamp": "2026-03-29T05:15:57.034827",
+      "timestamp": "2026-03-30T05:30:18.286356",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 306.57,
+          "avg_tokens_per_sec": 360.8,
           "details": [
             {
               "test": "simple",
-              "time": 0.22,
-              "tokens_per_sec": 159.28,
+              "time": 0.125,
+              "tokens_per_sec": 280.03,
               "tokens": 35
             },
             {
               "test": "medium",
-              "time": 0.713,
-              "tokens_per_sec": 371.6,
-              "tokens": 265
+              "time": 0.762,
+              "tokens_per_sec": 412.18,
+              "tokens": 314
             },
             {
               "test": "long",
-              "time": 0.831,
-              "tokens_per_sec": 388.82,
+              "time": 0.828,
+              "tokens_per_sec": 390.2,
               "tokens": 323
             }
           ]
@@ -957,7 +957,7 @@
               "test": "coin_flip",
               "correct": false,
               "score": 0,
-              "answer_given": "## Step 1: Understanding the Problem\nThe problem involves flipping a fair coin 3 times and getting heads each time, and then finding the probability of getting heads on the 4th flip.\n\n## 2: Identifying Key Concepts\nEach flip of a fair coin has two possible outcomes: heads (H) or tails (T), each with a probability of 1/2 since the coin is fair.\n\n## 3: Analyzing the Sequence of Flips\nThe sequence of flips so far is HHH (heads, heads, heads). The outcome of previous flips does not affect the outcome of future flips in an independent event like this.\n\n## 4: Applying the Concept of Independence\nIn coin flipping, each flip is an independent event. This means that the probability of getting heads on the 4th flip is not influenced by the results of the first 3 flips.\n\n## 5: Calculating the Probability\nSince the coin is fair and each flip is independent, the probability of getting heads on any given flip is 1/2.\n\n## 6: Conclusion\nTherefore, regardless of the previous flips, the probability of getting heads on the 4th flip is 1/2.\n\nThe final answer is: $\\boxed{\\frac{1}{2}}$"
+              "answer_given": "## Step 1: Understanding the Problem\nThe problem involves flipping a fair coin 3 times and getting heads each time. We are asked to find the probability of getting heads on the 4th flip.\n\n## 2: Identifying Key Concepts\nEach flip of a fair coin has 2 possible outcomes: heads (H) or tails (T). Since the coin is fair, the probability of getting heads on any given flip is 1/2, and similarly, the probability of getting tails is 1/2.\n\n## 3: Analyzing the Sequence of Flips\nThe sequence of flips so far is HHH (heads, heads, heads). The outcome of previous flips does not affect the outcome of future flips in an independent event like this.\n\n## 4: Applying Probability Concept\nIn probability theory, each coin flip is an independent event. This means that the result of one flip does not influence the result of another flip. Therefore, regardless of the previous 3 flips being heads, the probability of getting heads on the 4th flip remains the same as any single flip.\n\n## 5: Calculating the Probability\nGiven that the coin is fair and each flip is independent, the probability of getting heads on the 4th flip is 1/2.\n\nThe final answer is: $\\boxed{\\frac{1}{2}}$"
             },
             {
               "test": "counting",
@@ -1011,7 +1011,7 @@
         }
       },
       "quality_score": 65.0,
-      "raw_speed": 306.57,
+      "raw_speed": 360.8,
       "overall_score": 65.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -1024,27 +1024,27 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "32k",
-      "timestamp": "2026-03-29T05:16:38.775668",
+      "timestamp": "2026-03-30T05:30:58.492960",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 435.47,
+          "avg_tokens_per_sec": 405.03,
           "details": [
             {
               "test": "simple",
-              "time": 0.725,
-              "tokens_per_sec": 435.86,
+              "time": 0.808,
+              "tokens_per_sec": 390.86,
               "tokens": 316
             },
             {
               "test": "medium",
-              "time": 0.668,
-              "tokens_per_sec": 480.71,
+              "time": 0.774,
+              "tokens_per_sec": 414.8,
               "tokens": 321
             },
             {
               "test": "long",
-              "time": 0.829,
-              "tokens_per_sec": 389.83,
+              "time": 0.789,
+              "tokens_per_sec": 409.42,
               "tokens": 323
             }
           ]
@@ -1099,31 +1099,31 @@
                 {
                   "input": "0",
                   "expected": "0",
-                  "got": "File \"<string>\", line 4\n    n=0 \u2192 0\n        ^\nSyntaxError: invalid character '\u2192' (U+2192)",
+                  "got": "File \"<string>\", line 10\n    n=6: 8 (3+5). Yep, that's correct.\n                           ^\nSyntaxE",
                   "passed": false
                 },
                 {
                   "input": "1",
                   "expected": "1",
-                  "got": "File \"<string>\", line 4\n    n=0 \u2192 0\n        ^\nSyntaxError: invalid character '\u2192' (U+2192)",
+                  "got": "File \"<string>\", line 10\n    n=6: 8 (3+5). Yep, that's correct.\n                           ^\nSyntaxE",
                   "passed": false
                 },
                 {
                   "input": "2",
                   "expected": "1",
-                  "got": "File \"<string>\", line 4\n    n=0 \u2192 0\n        ^\nSyntaxError: invalid character '\u2192' (U+2192)",
+                  "got": "File \"<string>\", line 10\n    n=6: 8 (3+5). Yep, that's correct.\n                           ^\nSyntaxE",
                   "passed": false
                 },
                 {
                   "input": "6",
                   "expected": "8",
-                  "got": "File \"<string>\", line 4\n    n=0 \u2192 0\n        ^\nSyntaxError: invalid character '\u2192' (U+2192)",
+                  "got": "File \"<string>\", line 10\n    n=6: 8 (3+5). Yep, that's correct.\n                           ^\nSyntaxE",
                   "passed": false
                 },
                 {
                   "input": "9",
                   "expected": "34",
-                  "got": "File \"<string>\", line 4\n    n=0 \u2192 0\n        ^\nSyntaxError: invalid character '\u2192' (U+2192)",
+                  "got": "File \"<string>\", line 10\n    n=6: 8 (3+5). Yep, that's correct.\n                           ^\nSyntaxE",
                   "passed": false
                 }
               ]
@@ -1137,25 +1137,25 @@
                 {
                   "input": "'racecar'",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 10\n    For example, if the input is \"RaceCar\", after processing it becomes \"ra",
                   "passed": false
                 },
                 {
                   "input": "'hello'",
                   "expected": "False",
-                  "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 10\n    For example, if the input is \"RaceCar\", after processing it becomes \"ra",
                   "passed": false
                 },
                 {
                   "input": "'A man a plan a canal Panama'",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 10\n    For example, if the input is \"RaceCar\", after processing it becomes \"ra",
                   "passed": false
                 },
                 {
                   "input": "'world'",
                   "expected": "False",
-                  "got": "File \"<string>\", line 1\n    <think>\n    ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 10\n    For example, if the input is \"RaceCar\", after processing it becomes \"ra",
                   "passed": false
                 }
               ]
@@ -1171,31 +1171,31 @@
               "test": "syllogism",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, let's see. The question is about whether all bloops are definitely lazzies, given that all bloops are razzies and all razzies are lazzies. Hmm, this seems like a classic syllogism problem. Let me break it down step by step.\n\nFirst, the premises are: All bloops are razzies. All razzies are lazzies. The conclusion we need to evaluate is whether all bloops are lazzies. \n\nSo, if every bloop is a razzie, and every razzie is a lazzi, then logically, the bloops should also be lazzies. This is similar to the transitive property in mathematics. If A is a subset of B, and B is a subset of C, then A should be a subset of C. \n\nLet me visualize this with a Venn diagram. If I draw three circles: one for bloops, one for razzies, and one for lazzies. Since all bloops are razzies, the bloop circle is entirely inside the razzies circle. Then, all razzies are lazzies, so the razzies circle is entirely inside the lazzies circle. Therefore, the bloops circle is entirely within the lazzies circle. That would mean every bloop is a lazzi. \n\nWait, but are there any exceptions or special cases where this might not hold?"
+              "answer_given": "<think>\nOkay, let's see. The question is about whether all bloops are definitely lazzies given that all bloops are razzies and all razzies are lazzies. Hmm, this seems like a classic syllogism problem. Let me break it down step by step.\n\nFirst, the premises are: All bloops are razzies. And all razzies are lazzies. So, if I think in terms of sets, bloops are a subset of razzies, and razzies are a subset of lazzies. Then, logically, bloops should be a subset of lazzies as well. Because if every bloop is a razzie, and every razzie is a lazzi, then every bloop must also be a lazzi. That makes sense because subsets can be transitive. \n\nWait, let me make sure I'm not missing anything. Let's use some examples. Suppose a bloop is a type of razzie, like maybe a red razzie. And all razzies are lazzies, so lazzies could be any colored razzie. Then, a red razzie (bloop) is definitely a lazzi. So yes, in that case, all bloops would be lazzies. \n\nIs there a case where this wouldn't hold? Let me think. If the categories were different. For example, if \"razzie\""
             },
             {
               "test": "speed_math",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, let's see. I need to figure out which train is faster. The first train goes 120 km in 2 hours, and the second one goes 180 km in 3 hours. Hmm, right. To compare their speeds, I should calculate the speed of each train.\n\nSpeed is distance divided by time. So for the first train, that's 120 km divided by 2 hours. Let me do that calculation. 120 divided by 2 is 60. So the first train's speed is 60 km/h.\n\nNow the second train: 180 km in 3 hours. Dividing 180 by 3... that's 60 as well. Wait, 180 divided by 3 is 60? Let me check again. 3 times 60 is 180, yes. So the second train is also 60 km/h.\n\nOh, so both trains have the same speed. So the answer should be Same. But wait, did I do that right? Let me confirm. First train: 120/2=60. Second train: 180/3=60. Yep, both are 60 km/h. So they're the same speed. Therefore, the answer is Same.\n</think>\n\nSame. Both trains have a speed of 60 km/h (12"
+              "answer_given": "<think>\nOkay, let's see. I need to figure out which train is faster between the first one that travels 120 km in 2 hours and the second one that goes 180 km in 3 hours. Hmm, speed is distance divided by time, right? So for the first train, 120 km divided by 2 hours. Let me calculate that. 120 divided by 2 is 60. So the first train's speed is 60 km/h.\n\nNow the second train: 180 km in 3 hours. Dividing 180 by 3... that's 60 as well. Wait, both are 60 km/h? So they have the same speed? But let me double-check. Maybe I did the math wrong. 120 divided by 2 is definitely 60. And 180 divided by 3 is 60. Yeah, both are 60. So their speeds are the same. Therefore, the answer should be Same. But wait, maybe there's a trick here. Like, maybe the units? Both are in km and hours, so no conversion needed. Yeah, looks straightforward. Both trains have the same speed. So the answer is Same.\n</think>\n\nTo determine which train is faster, we calculate their speeds using the formula:\n\n$$\n\\text{Speed} = \\frac{\\text{Distance}}{\\"
             },
             {
               "test": "river_crossing",
               "correct": true,
               "score": 100,
-              "answer_given": "<think>\nOkay, let's see. The farmer has a fox, a chicken, and a bag of grain. He needs to get all of them across the river using a boat that can only carry him and one item at a time. The problem is that if he leaves the fox with the chicken, the fox will eat the chicken. Similarly, if he leaves the chicken with the grain, the chicken will eat the grain. So he can't leave those two pairs together unsupervised.\n\nFirst, I need to figure out the order in which he should take the items across. The key is to make sure that when he's on one side of the river, the remaining items on the other side aren't left in a dangerous combination.\n\nLet me start by considering the first move. If he takes the fox first, then he leaves the chicken and the grain on the original side. But the chicken and grain can't be left together because the chicken will eat the grain. So that's a problem. So taking the fox first might not be a good idea.\n\nIf he takes the chicken first, then he leaves the fox and the grain on the original side. The fox and grain are safe together because the fox doesn't eat the grain. So that's okay. Then he can take the chicken over, leave it there, and go back. Now he's back on the original side with the fox and grain. Next, he needs to take either the fox or the grain. Let's"
+              "answer_given": "<think>\nOkay, let's see. The farmer has a fox, a chicken, and a bag of grain. He needs to get all of them across the river using a boat that can only carry him and one item at a time. The problem is that if he leaves the fox with the chicken, the fox will eat the chicken. Similarly, if he leaves the chicken with the grain, the chicken will eat the grain. So he can't leave those two together without supervision.\n\nFirst, I need to figure out the order in which he should transport them to avoid any of them being eaten. Let me start by considering the constraints. The chicken is the common element here; both the fox and the grain are a problem when left with the chicken. So maybe the chicken needs to be transported first? Wait, but if he takes the chicken first, then he leaves the fox and grain on the original side. Are they safe? The fox and grain can be left together because the fox doesn't eat the grain. So that's okay. Then he brings the chicken over. Now he's on the other side with the chicken. He needs to go back for the next item. But what's left on the original side? The fox and grain. He can take either the fox or the grain next. Let's say he takes the fox. He brings the fox to the other side, but then he has to leave the fox with the chicken. Wait, the fox and chicken can't be"
             },
             {
               "test": "coin_flip",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the fourth flip of a fair coin, given that the first three flips were all heads. Hmm, let me think. \n\nFirst, I remember that a fair coin has two sides, heads and tails, each with an equal chance of landing face up. So, for any single flip, the probability of getting heads is 1/2, right? But wait, the question is about the fourth flip after getting three heads in a row. Does that affect the probability?\n\nHmm, maybe some people think that after getting several heads in a row, the probability of getting another head decreases because it's \"due\" for a tail. But is that actually true? I think that's called the gambler's fallacy. The idea that past events affect future outcomes in independent events. But if each coin flip is independent, then the previous outcomes shouldn't influence the next one. \n\nLet me verify. If the coin is fair and each flip is independent, then the result of the fourth flip doesn't depend on the first three. So even if I got three heads in a row, the probability of getting heads on the next flip is still 1/2. \n\nBut wait, let me think again. What if someone argues that the probability of getting four heads in a row is 1/16, since each flip is 1/2 and (1/2)^4 is 1/1"
+              "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the 4th flip of a fair coin, given that I've already flipped three heads in a row. Hmm, let me think. \n\nFirst, I remember that a fair coin has two sides, heads and tails, each with an equal chance of landing face up. So, for any single flip, the probability of getting heads is 1/2, right? But wait, the question is about the 4th flip after getting three heads already. Does that affect the probability?\n\nHmm, maybe some people think that after getting several heads in a row, the probability of getting another head decreases because it's \"due\" for a tail. But isn't that the gambler's fallacy? Like, thinking that past outcomes affect future ones in independent events? Each coin flip is independent, so the previous results shouldn't influence the next one. \n\nLet me verify. If the coin is fair, each flip is independent. So even if I got a hundred heads in a row, the next flip would still have a 1/2 chance of being heads. That seems right. The coin doesn't have a memory. So the fact that there were three heads before the 4th flip doesn't change the probability. \n\nBut wait, maybe there's something else here. What if the coin isn't fair? The problem says it's a fair coin, though. So we don't have to"
             },
             {
               "test": "counting",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, let's see. The question is asking how many letters are in the word \"MISSISSIPPI\". Hmm, I need to count each letter one by one. Let me start by writing out the word so I can visualize it better: M-I-S-S-I-S-S-I-P-P-I.\n\nWait, maybe I should break it down into individual letters. Let's list them out:\n\n1. M\n2. I\n3. S\n4. S\n5. I\n6. S\n7. S\n8. I\n9. P\n10. P\n11. I\n\nNow, let me count each position. Starting from 1 to 11. That seems like 11 letters. But wait, maybe I missed a letter? Let me check again. The word is MISSISSIPPI. Let's spell it out:\n\nM (1), I (2), S (3), S (4), I (5), S (6), S (7), I (8), P (9), P (10), I (11). Yeah, that's 11 letters. But wait, sometimes people might confuse the number of letters with the number of unique letters. The question is specifically asking for the total number of letters, not unique ones. So even though there are repeated letters like S, I, P, we still count each occurrence. So M is once, I appears four times,"
+              "answer_given": "<think>\nOkay, let's see. The question is asking how many letters are in the word \"MISSISSIPPI\". Hmm, I need to count each letter one by one. Let me start by writing out the word so I can visualize it better: M-I-S-S-I-S-S-I-P-P-I.\n\nWait, maybe I should break it down into individual letters. Let's list them out:\n\n1. M\n2. I\n3. S\n4. S\n5. I\n6. S\n7. S\n8. I\n9. P\n10. P\n11. I\n\nNow, let me count each position. Starting from 1 to 11. That's 11 letters. But wait, maybe I should check again to make sure I didn't skip any letters or count any extra. Let me go through the word again letter by letter.\n\nM (1), I (2), S (3), S (4), I (5), S (6), S (7), I (8), P (9), P (10), I (11). Yep, that's 11 letters. Let me confirm by counting the letters in the original word. The word is M-I-S-S-I-S-S-I-P-P-I. Let's count syllables maybe? But that might not be accurate. Alternatively, I can think about the letters and their frequencies. \n\nIn \"MISSISSIPPI"
             }
           ]
         },
@@ -1216,7 +1216,7 @@
             {
               "test": "word_count",
               "score": 0,
-              "found": 21,
+              "found": 19,
               "expected": 3
             }
           ]
@@ -1227,23 +1227,23 @@
             {
               "test": "en_ru",
               "score": 0,
-              "cyrillic_ratio": 0.1
+              "cyrillic_ratio": 0.15
             },
             {
               "test": "ru_en",
               "score": 100,
-              "latin_ratio": 0.66
+              "latin_ratio": 0.68
             },
             {
               "test": "en_es",
               "score": 100,
-              "keywords_found": 11
+              "keywords_found": 12
             }
           ]
         }
       },
       "quality_score": 21.7,
-      "raw_speed": 435.47,
+      "raw_speed": 405.03,
       "overall_score": 21.7,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -1256,27 +1256,27 @@
       "size_category": "unknown",
       "tier": "unknown",
       "context": "131k",
-      "timestamp": "2026-03-29T05:17:24.844327",
+      "timestamp": "2026-03-30T05:31:44.797182",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 289.87,
+          "avg_tokens_per_sec": 145.51,
           "details": [
             {
               "test": "simple",
-              "time": 0.196,
-              "tokens_per_sec": 269.8,
-              "tokens": 53
+              "time": 0.563,
+              "tokens_per_sec": 96.0,
+              "tokens": 54
             },
             {
               "test": "medium",
-              "time": 1.094,
-              "tokens_per_sec": 245.79,
-              "tokens": 269
+              "time": 1.466,
+              "tokens_per_sec": 199.12,
+              "tokens": 292
             },
             {
               "test": "long",
-              "time": 0.958,
-              "tokens_per_sec": 354.03,
+              "time": 2.397,
+              "tokens_per_sec": 141.4,
               "tokens": 339
             }
           ]
@@ -1395,8 +1395,8 @@
           ]
         },
         "reasoning": {
-          "score": 100.0,
-          "correct": 5,
+          "score": 60.0,
+          "correct": 3,
           "total": 5,
           "details": [
             {
@@ -1407,9 +1407,9 @@
             },
             {
               "test": "speed_math",
-              "correct": true,
-              "score": 100,
-              "answer_given": "Same"
+              "correct": false,
+              "score": 0,
+              "answer_given": "First"
             },
             {
               "test": "river_crossing",
@@ -1419,9 +1419,8 @@
             },
             {
               "test": "coin_flip",
-              "correct": true,
-              "score": 100,
-              "answer_given": "1/2"
+              "correct": false,
+              "score": 0
             },
             {
               "test": "counting",
@@ -1432,7 +1431,7 @@
           ]
         },
         "instruction": {
-          "avg_score": 100.0,
+          "avg_score": 66.7,
           "details": [
             {
               "test": "json",
@@ -1447,14 +1446,13 @@
             },
             {
               "test": "word_count",
-              "score": 100,
-              "found": 3,
-              "expected": 3
+              "score": 0,
+              "error": "Status 503 - moonshotai/kimi-k2-instruct-0905 is currently over capacity. Please try again and back off exponentially. Visit https://"
             }
           ]
         },
         "translation": {
-          "avg_score": 100.0,
+          "avg_score": 66.7,
           "details": [
             {
               "test": "en_ru",
@@ -1468,15 +1466,14 @@
             },
             {
               "test": "en_es",
-              "score": 100,
-              "keywords_found": 10
+              "score": 0
             }
           ]
         }
       },
-      "quality_score": 80.0,
-      "raw_speed": 289.87,
-      "overall_score": 80.0,
+      "quality_score": 61.7,
+      "raw_speed": 145.51,
+      "overall_score": 61.7,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -1488,33 +1485,33 @@
       "size_category": "large",
       "tier": "large",
       "context": "262k",
-      "timestamp": "2026-03-29T05:18:11.867733",
+      "timestamp": "2026-03-30T05:33:06.174299",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 54.51,
+          "avg_tokens_per_sec": 52.37,
           "details": [
             {
               "test": "simple",
-              "time": 12.657,
-              "tokens_per_sec": 25.6,
+              "time": 7.408,
+              "tokens_per_sec": 43.74,
               "tokens": 324
             },
             {
               "test": "medium",
-              "time": 5.842,
-              "tokens_per_sec": 56.32,
+              "time": 3.941,
+              "tokens_per_sec": 83.47,
               "tokens": 329
             },
             {
               "test": "long",
-              "time": 4.068,
-              "tokens_per_sec": 81.6,
+              "time": 11.101,
+              "tokens_per_sec": 29.91,
               "tokens": 332
             }
           ]
         },
         "code": {
-          "avg_score": 50.0,
+          "avg_score": 75.0,
           "details": [
             {
               "test": "prime",
@@ -1525,70 +1522,70 @@
                 {
                   "input": "2",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    defis_prime(n):\n                  ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 4\n    if n == 2:\n              ^\nIndentationError: unindent does not match any",
                   "passed": false
                 },
                 {
                   "input": "3",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    defis_prime(n):\n                  ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 4\n    if n == 2:\n              ^\nIndentationError: unindent does not match any",
                   "passed": false
                 },
                 {
                   "input": "4",
                   "expected": "False",
-                  "got": "File \"<string>\", line 1\n    defis_prime(n):\n                  ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 4\n    if n == 2:\n              ^\nIndentationError: unindent does not match any",
                   "passed": false
                 },
                 {
                   "input": "17",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    defis_prime(n):\n                  ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 4\n    if n == 2:\n              ^\nIndentationError: unindent does not match any",
                   "passed": false
                 },
                 {
                   "input": "100",
                   "expected": "False",
-                  "got": "File \"<string>\", line 1\n    defis_prime(n):\n                  ^\nSyntaxError: invalid syntax",
+                  "got": "File \"<string>\", line 4\n    if n == 2:\n              ^\nIndentationError: unindent does not match any",
                   "passed": false
                 }
               ]
             },
             {
               "test": "fibonacci",
-              "pass_rate": 0.0,
-              "passed": 0,
+              "pass_rate": 1.0,
+              "passed": 5,
               "total": 5,
               "details": [
                 {
                   "input": "0",
                   "expected": "0",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1\n               ^\nIndentationError: unindent does not match a",
-                  "passed": false
+                  "got": "0",
+                  "passed": true
                 },
                 {
                   "input": "1",
                   "expected": "1",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1\n               ^\nIndentationError: unindent does not match a",
-                  "passed": false
+                  "got": "1",
+                  "passed": true
                 },
                 {
                   "input": "2",
                   "expected": "1",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1\n               ^\nIndentationError: unindent does not match a",
-                  "passed": false
+                  "got": "1",
+                  "passed": true
                 },
                 {
                   "input": "6",
                   "expected": "8",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1\n               ^\nIndentationError: unindent does not match a",
-                  "passed": false
+                  "got": "8",
+                  "passed": true
                 },
                 {
                   "input": "9",
                   "expected": "34",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1\n               ^\nIndentationError: unindent does not match a",
-                  "passed": false
+                  "got": "34",
+                  "passed": true
                 }
               ]
             },
@@ -1711,7 +1708,7 @@
             {
               "test": "list",
               "score": 50,
-              "found": 4,
+              "found": 3,
               "expected": 5
             },
             {
@@ -1738,7 +1735,7 @@
             {
               "test": "ru_en",
               "score": 100,
-              "latin_ratio": 0.89
+              "latin_ratio": 0.87
             },
             {
               "test": "en_es",
@@ -1748,11 +1745,11 @@
           ]
         }
       },
-      "quality_score": 59.0,
-      "raw_speed": 54.51,
-      "overall_score": 59.0,
-      "speed_score": 94.8,
-      "tier_quality_score": 82.3
+      "quality_score": 66.5,
+      "raw_speed": 52.37,
+      "overall_score": 66.5,
+      "speed_score": 100.0,
+      "tier_quality_score": 100.0
     },
     {
       "model_id": "nemotron-nano-30b",
@@ -1762,21 +1759,27 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "256k",
-      "timestamp": "2026-03-29T05:21:26.632708",
+      "timestamp": "2026-03-30T05:37:44.084404",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 174.09,
+          "avg_tokens_per_sec": 197.53,
           "details": [
             {
+              "test": "simple",
+              "time": 1.526,
+              "tokens_per_sec": 201.14,
+              "tokens": 307
+            },
+            {
               "test": "medium",
-              "time": 2.346,
-              "tokens_per_sec": 140.27,
+              "time": 1.638,
+              "tokens_per_sec": 200.89,
               "tokens": 329
             },
             {
               "test": "long",
-              "time": 1.597,
-              "tokens_per_sec": 207.92,
+              "time": 1.742,
+              "tokens_per_sec": 190.56,
               "tokens": 332
             }
           ]
@@ -1786,77 +1789,77 @@
           "details": [
             {
               "test": "prime",
-              "pass_rate": 1.0,
-              "passed": 5,
-              "total": 5,
-              "details": [
-                {
-                  "input": "2",
-                  "expected": "True",
-                  "got": "True",
-                  "passed": true
-                },
-                {
-                  "input": "3",
-                  "expected": "True",
-                  "got": "True",
-                  "passed": true
-                },
-                {
-                  "input": "4",
-                  "expected": "False",
-                  "got": "False",
-                  "passed": true
-                },
-                {
-                  "input": "17",
-                  "expected": "True",
-                  "got": "True",
-                  "passed": true
-                },
-                {
-                  "input": "100",
-                  "expected": "False",
-                  "got": "False",
-                  "passed": true
-                }
-              ]
-            },
-            {
-              "test": "fibonacci",
               "pass_rate": 0.0,
               "passed": 0,
               "total": 5,
               "details": [
                 {
+                  "input": "2",
+                  "expected": "True",
+                  "got": "File \"<string>\", line 5\n    return True    if n % 2 == 0 or n % 3 == 0:\n                            ",
+                  "passed": false
+                },
+                {
+                  "input": "3",
+                  "expected": "True",
+                  "got": "File \"<string>\", line 5\n    return True    if n % 2 == 0 or n % 3 == 0:\n                            ",
+                  "passed": false
+                },
+                {
+                  "input": "4",
+                  "expected": "False",
+                  "got": "File \"<string>\", line 5\n    return True    if n % 2 == 0 or n % 3 == 0:\n                            ",
+                  "passed": false
+                },
+                {
+                  "input": "17",
+                  "expected": "True",
+                  "got": "File \"<string>\", line 5\n    return True    if n % 2 == 0 or n % 3 == 0:\n                            ",
+                  "passed": false
+                },
+                {
+                  "input": "100",
+                  "expected": "False",
+                  "got": "File \"<string>\", line 5\n    return True    if n % 2 == 0 or n % 3 == 0:\n                            ",
+                  "passed": false
+                }
+              ]
+            },
+            {
+              "test": "fibonacci",
+              "pass_rate": 1.0,
+              "passed": 5,
+              "total": 5,
+              "details": [
+                {
                   "input": "0",
                   "expected": "0",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1    for _ in range(2, n + 1):\n                   ^^^\nSyntaxEr",
-                  "passed": false
+                  "got": "0",
+                  "passed": true
                 },
                 {
                   "input": "1",
                   "expected": "1",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1    for _ in range(2, n + 1):\n                   ^^^\nSyntaxEr",
-                  "passed": false
+                  "got": "1",
+                  "passed": true
                 },
                 {
                   "input": "2",
                   "expected": "1",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1    for _ in range(2, n + 1):\n                   ^^^\nSyntaxEr",
-                  "passed": false
+                  "got": "1",
+                  "passed": true
                 },
                 {
                   "input": "6",
                   "expected": "8",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1    for _ in range(2, n + 1):\n                   ^^^\nSyntaxEr",
-                  "passed": false
+                  "got": "8",
+                  "passed": true
                 },
                 {
                   "input": "9",
                   "expected": "34",
-                  "got": "File \"<string>\", line 4\n    a, b = 0, 1    for _ in range(2, n + 1):\n                   ^^^\nSyntaxEr",
-                  "passed": false
+                  "got": "34",
+                  "passed": true
                 }
               ]
             },
@@ -1921,7 +1924,7 @@
               "test": "coin_flip",
               "correct": false,
               "score": 0,
-              "answer_given": "The outcome of eachflip of a fair coin is independent of previous flips.  \nTherefore, regardless of the first three results, the probability of getting heads on the fourth flip is  \n\n\\[\n\\boxed{\\tfrac{1}{2}}\n\\]"
+              "answer_given": "The probability of getting heads on the4th flip is still  \n\n\\[\n\\boxed{\\frac{1}{2}}\n\\] \n\nbecause each flip of a fair coin is independent of the previous ones."
             },
             {
               "test": "counting",
@@ -1932,7 +1935,7 @@
           ]
         },
         "instruction": {
-          "avg_score": 66.7,
+          "avg_score": 83.3,
           "details": [
             {
               "test": "json",
@@ -1941,14 +1944,15 @@
             },
             {
               "test": "list",
-              "score": 100,
-              "found": 5,
+              "score": 50,
+              "found": 4,
               "expected": 5
             },
             {
               "test": "word_count",
-              "score": 0,
-              "reason": "empty response"
+              "score": 100,
+              "found": 3,
+              "expected": 3
             }
           ]
         },
@@ -1972,9 +1976,9 @@
           ]
         }
       },
-      "quality_score": 56.7,
-      "raw_speed": 174.09,
-      "overall_score": 56.7,
+      "quality_score": 59.2,
+      "raw_speed": 197.53,
+      "overall_score": 59.2,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -1986,28 +1990,28 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "128k",
-      "timestamp": "2026-03-29T05:23:46.277305",
+      "timestamp": "2026-03-30T05:39:22.847021",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 59.54,
+          "avg_tokens_per_sec": 74.46,
           "details": [
             {
               "test": "simple",
-              "time": 4.693,
-              "tokens_per_sec": 68.19,
+              "time": 4.418,
+              "tokens_per_sec": 72.43,
               "tokens": 320
             },
             {
               "test": "medium",
-              "time": 4.208,
-              "tokens_per_sec": 77.24,
+              "time": 3.686,
+              "tokens_per_sec": 88.17,
               "tokens": 325
             },
             {
               "test": "long",
-              "time": 9.884,
-              "tokens_per_sec": 33.18,
-              "tokens": 328
+              "time": 5.543,
+              "tokens_per_sec": 62.78,
+              "tokens": 348
             }
           ]
         },
@@ -2019,7 +2023,7 @@
               "pass_rate": 0.0,
               "passed": 0,
               "total": 5,
-              "error": "empty response"
+              "error": "Status 502 - Provider returned error"
             },
             {
               "test": "fibonacci",
@@ -2033,7 +2037,7 @@
               "pass_rate": 0.0,
               "passed": 0,
               "total": 4,
-              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
+              "error": "empty response"
             }
           ]
         },
@@ -2070,12 +2074,12 @@
           ]
         },
         "instruction": {
-          "avg_score": 0.0,
+          "avg_score": 33.3,
           "details": [
             {
               "test": "json",
-              "score": 0,
-              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
+              "score": 100,
+              "reason": "ok"
             },
             {
               "test": "list",
@@ -2085,7 +2089,8 @@
             {
               "test": "word_count",
               "score": 0,
-              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
+              "found": 1,
+              "expected": 3
             }
           ]
         },
@@ -2108,11 +2113,11 @@
           ]
         }
       },
-      "quality_score": 3.3,
-      "raw_speed": 59.54,
-      "overall_score": 3.3,
-      "speed_score": 34.2,
-      "tier_quality_score": 5.8
+      "quality_score": 8.3,
+      "raw_speed": 74.46,
+      "overall_score": 8.3,
+      "speed_score": 37.7,
+      "tier_quality_score": 14.0
     },
     {
       "model_id": "nemotron-nano-9b",
@@ -2122,27 +2127,21 @@
       "size_category": "small",
       "tier": "small",
       "context": "128k",
-      "timestamp": "2026-03-29T05:29:26.065171",
+      "timestamp": "2026-03-30T05:45:25.491063",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 9.14,
+          "avg_tokens_per_sec": 8.89,
           "details": [
             {
-              "test": "simple",
-              "time": 26.969,
-              "tokens_per_sec": 11.87,
-              "tokens": 320
-            },
-            {
               "test": "medium",
-              "time": 63.144,
-              "tokens_per_sec": 5.15,
+              "time": 38.036,
+              "tokens_per_sec": 8.54,
               "tokens": 325
             },
             {
               "test": "long",
-              "time": 31.552,
-              "tokens_per_sec": 10.4,
+              "time": 35.464,
+              "tokens_per_sec": 9.25,
               "tokens": 328
             }
           ]
@@ -2155,7 +2154,7 @@
               "pass_rate": 0.0,
               "passed": 0,
               "total": 5,
-              "error": "empty response"
+              "error": "'choices'"
             },
             {
               "test": "palindrome",
@@ -2191,22 +2190,22 @@
           ]
         },
         "instruction": {
-          "avg_score": 50.0,
+          "avg_score": 0.0,
           "details": [
             {
               "test": "json",
-              "score": 100,
-              "reason": "ok"
+              "score": 0,
+              "error": "'choices'"
             },
             {
               "test": "list",
               "score": 0,
-              "reason": "empty response"
+              "error": "'choices'"
             }
           ]
         },
         "translation": {
-          "avg_score": 50.0,
+          "avg_score": 0.0,
           "details": [
             {
               "test": "en_ru",
@@ -2214,15 +2213,14 @@
             },
             {
               "test": "ru_en",
-              "score": 100,
-              "latin_ratio": 0.86
+              "score": 0
             }
           ]
         }
       },
-      "quality_score": 29.2,
-      "raw_speed": 9.14,
-      "overall_score": 29.2,
+      "quality_score": 16.7,
+      "raw_speed": 8.89,
+      "overall_score": 16.7,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -2234,33 +2232,33 @@
       "size_category": "large",
       "tier": "large",
       "context": "131k",
-      "timestamp": "2026-03-29T05:37:32.017921",
+      "timestamp": "2026-03-30T06:03:36.054008",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 57.5,
+          "avg_tokens_per_sec": 29.56,
           "details": [
             {
               "test": "simple",
-              "time": 0.734,
-              "tokens_per_sec": 43.63,
+              "time": 0.695,
+              "tokens_per_sec": 46.02,
               "tokens": 32
             },
             {
               "test": "medium",
-              "time": 12.077,
-              "tokens_per_sec": 19.87,
-              "tokens": 240
+              "time": 10.347,
+              "tokens_per_sec": 25.03,
+              "tokens": 259
             },
             {
               "test": "long",
-              "time": 2.954,
-              "tokens_per_sec": 108.99,
+              "time": 18.275,
+              "tokens_per_sec": 17.62,
               "tokens": 322
             }
           ]
         },
         "code": {
-          "avg_score": 100.0,
+          "avg_score": 75.0,
           "details": [
             {
               "test": "prime",
@@ -2340,35 +2338,10 @@
             },
             {
               "test": "palindrome",
-              "pass_rate": 1.0,
-              "passed": 4,
+              "pass_rate": 0.0,
+              "passed": 0,
               "total": 4,
-              "details": [
-                {
-                  "input": "'racecar'",
-                  "expected": "True",
-                  "got": "True",
-                  "passed": true
-                },
-                {
-                  "input": "'hello'",
-                  "expected": "False",
-                  "got": "False",
-                  "passed": true
-                },
-                {
-                  "input": "'A man a plan a canal Panama'",
-                  "expected": "True",
-                  "got": "True",
-                  "passed": true
-                },
-                {
-                  "input": "'world'",
-                  "expected": "False",
-                  "got": "False",
-                  "passed": true
-                }
-              ]
+              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
             },
             {
               "test": "binary_search",
@@ -2405,8 +2378,8 @@
           ]
         },
         "reasoning": {
-          "score": 66.7,
-          "correct": 4,
+          "score": 50.0,
+          "correct": 3,
           "total": 6,
           "details": [
             {
@@ -2419,19 +2392,19 @@
               "test": "speed_math",
               "correct": false,
               "score": 0,
-              "answer_given": "First, I'll find the speed of each train by dividing the distance by the time.\n\nFor the first train: 120 km \u00f7 2 hours = 60 km/h.\n\nFor the second train: 180 km \u00f7 3 hours = 60 km/h.\n\nBoth speeds are the same, so there's no difference in their rates of travel.\n\nSame"
+              "answer_given": "First, I'll find the speed of each train by dividing the distance by the time.\n\nFor the first train: 120 km \u00f7 2 hours = 60 km/h.\n\nFor the second train: 180 km \u00f7 3 hours = 60 km/h.\n\nBoth speeds are the same, so the answer is Same."
             },
             {
               "test": "river_crossing",
               "correct": true,
               "score": 100,
-              "answer_given": "Chicken"
+              "answer_given": "Chicken."
             },
             {
               "test": "coin_flip",
               "correct": false,
               "score": 0,
-              "answer_given": "Each coin flip is an independent event. The outcome of previous flips does not affect the probability of future flips. Since the coin is fair, the probability of heads on any single flip is 1/2.\n\nTherefore, the probability of getting heads on the 4th flip is **1/2**."
+              "answer_given": "Each coin flip is an independent event. The outcome of previous flips doesn't affect future ones. Since the coin is fair, the probability of heads on any single flip is always 1/2, regardless of what happened before.\n\nThe answer is 1/2."
             },
             {
               "test": "counting",
@@ -2441,9 +2414,9 @@
             },
             {
               "test": "knights_knaves",
-              "correct": true,
-              "score": 100,
-              "answer_given": "Let me work through this step by step.\n\nLet A be a knight (truth-teller) or a knave (liar), and same for B.\n\n**Case 1: Suppose A is a knight.**\n- Then A's statement \"B is a knave\" must be true.\n- So B is a knave.\n- But if B is a knave, then B's statement \"A and I are both knights\" must be false.\n- This is consistent: B (a knave) is falsely claiming both are knights.\n\n**Case 2: Suppose A is a knave.**\n- Then A's statement \"B is a knave\" must be false.\n- So B is a knight.\n- But if B is a knight, then B's statement \"A and I are both knights\" must be true.\n- This is a contradiction: A cannot be both a knave (by assumption) and a knight (as B claims).\n\nTherefore, only Case 1 is logically consistent.\n\nKnight"
+              "correct": false,
+              "score": 0,
+              "answer_given": "Let's break down the problem step by step. We have two people, A and B, on an island where knights always tell the truth and knaves always lie. A says, \"B is a knave,\" and B says, \"A and I are both knights.\" We need to figure out what A is.\n\nFirst, let's consider the possibilities for A and B:\n\n1. **A is a knight (truth-teller):**\n   - If A is a knight, then A's statement, \"B is a knave,\" must be true. So, B is a knave.\n   - If B is a knave, then B's statement, \"A and I are both knights,\" must be false. This is consistent because A is a knight and B is a knave, so they are not both knights.\n\n2. **A is a knave (liar):**\n   - If A is a knave, then A's statement, \"B is a knave,\" must be false. So, B is a knight.\n   - If B is a knight, then B's statement, \"A and I are both knights,\" must be true. But this is a contradiction because A is a knave, not a knight.\n\nTherefore, the only consistent scenario is that A is a knight and B is a knave.\n\n**Final Answer:**\nKnight"
             }
           ]
         },
@@ -2490,16 +2463,16 @@
             {
               "test": "en_es",
               "score": 100,
-              "keywords_found": 10
+              "keywords_found": 12
             }
           ]
         }
       },
-      "quality_score": 71.7,
-      "raw_speed": 57.5,
-      "overall_score": 71.7,
-      "speed_score": 100.0,
-      "tier_quality_score": 100.0
+      "quality_score": 60.0,
+      "raw_speed": 29.56,
+      "overall_score": 60.0,
+      "speed_score": 56.4,
+      "tier_quality_score": 90.2
     },
     {
       "model_id": "trinity-mini",
@@ -2509,27 +2482,21 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "131k",
-      "timestamp": "2026-03-29T05:40:08.948185",
+      "timestamp": "2026-03-30T06:06:52.450450",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 122.05,
+          "avg_tokens_per_sec": 141.67,
           "details": [
             {
               "test": "simple",
-              "time": 1.967,
-              "tokens_per_sec": 161.15,
+              "time": 2.45,
+              "tokens_per_sec": 129.4,
               "tokens": 317
             },
             {
-              "test": "medium",
-              "time": 3.169,
-              "tokens_per_sec": 100.98,
-              "tokens": 320
-            },
-            {
               "test": "long",
-              "time": 3.105,
-              "tokens_per_sec": 104.02,
+              "time": 2.098,
+              "tokens_per_sec": 153.93,
               "tokens": 323
             }
           ]
@@ -2549,14 +2516,14 @@
               "pass_rate": 0.0,
               "passed": 0,
               "total": 5,
-              "error": "empty response"
+              "error": "'choices'"
             },
             {
               "test": "palindrome",
               "pass_rate": 0.0,
               "passed": 0,
               "total": 4,
-              "error": "empty response"
+              "error": "'choices'"
             }
           ]
         },
@@ -2573,7 +2540,8 @@
             {
               "test": "speed_math",
               "correct": false,
-              "score": 0
+              "score": 0,
+              "answer_given": "To determine which train is faster, calculate the speed of each train using the formula: speed = distance / time.\n\n- For the first train:"
             },
             {
               "test": "river_crossing",
@@ -2593,53 +2561,51 @@
           ]
         },
         "instruction": {
-          "avg_score": 66.7,
+          "avg_score": 50.0,
           "details": [
             {
               "test": "json",
-              "score": 100,
-              "reason": "ok"
+              "score": 0,
+              "reason": "empty response"
             },
             {
               "test": "list",
               "score": 50,
-              "found": 4,
+              "found": 3,
               "expected": 5
             },
             {
               "test": "word_count",
-              "score": 50,
-              "found": 2,
+              "score": 100,
+              "found": 3,
               "expected": 3
             }
           ]
         },
         "translation": {
-          "avg_score": 100.0,
+          "avg_score": 33.3,
           "details": [
             {
               "test": "en_ru",
               "score": 100,
-              "cyrillic_ratio": 0.91
+              "cyrillic_ratio": 0.89
             },
             {
               "test": "ru_en",
-              "score": 100,
-              "latin_ratio": 0.88
+              "score": 0
             },
             {
               "test": "en_es",
-              "score": 100,
-              "keywords_found": 12
+              "score": 0
             }
           ]
         }
       },
-      "quality_score": 20.0,
-      "raw_speed": 122.05,
-      "overall_score": 20.0,
-      "speed_score": 70.1,
-      "tier_quality_score": 35.3
+      "quality_score": 10.8,
+      "raw_speed": 141.67,
+      "overall_score": 10.8,
+      "speed_score": 71.7,
+      "tier_quality_score": 18.2
     },
     {
       "model_id": "step-3.5-flash",
@@ -2649,22 +2615,22 @@
       "size_category": "large",
       "tier": "large",
       "context": "256k",
-      "timestamp": "2026-03-29T05:42:04.334782",
+      "timestamp": "2026-03-30T06:18:15.815653",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 66.74,
+          "avg_tokens_per_sec": 37.58,
           "details": [
             {
-              "test": "simple",
-              "time": 3.55,
-              "tokens_per_sec": 61.13,
-              "tokens": 217
+              "test": "medium",
+              "time": 7.882,
+              "tokens_per_sec": 40.85,
+              "tokens": 322
             },
             {
-              "test": "medium",
-              "time": 4.45,
-              "tokens_per_sec": 72.35,
-              "tokens": 322
+              "test": "long",
+              "time": 9.503,
+              "tokens_per_sec": 34.31,
+              "tokens": 326
             }
           ]
         },
@@ -2714,7 +2680,7 @@
               "pass_rate": 0.0,
               "passed": 0,
               "total": 5,
-              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
+              "error": "empty response"
             },
             {
               "test": "palindrome",
@@ -2758,8 +2724,8 @@
           ]
         },
         "reasoning": {
-          "score": 66.7,
-          "correct": 4,
+          "score": 50.0,
+          "correct": 3,
           "total": 6,
           "details": [
             {
@@ -2787,9 +2753,8 @@
             },
             {
               "test": "counting",
-              "correct": true,
-              "score": 100,
-              "answer_given": "11"
+              "correct": false,
+              "score": 0
             },
             {
               "test": "knights_knaves",
@@ -2846,9 +2811,9 @@
           ]
         }
       },
-      "quality_score": 49.2,
-      "raw_speed": 66.74,
-      "overall_score": 49.2,
+      "quality_score": 45.0,
+      "raw_speed": 37.58,
+      "overall_score": 45.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -2860,27 +2825,27 @@
       "size_category": "small",
       "tier": "small",
       "context": "32k",
-      "timestamp": "2026-03-29T05:46:50.180499",
+      "timestamp": "2026-03-30T06:23:20.592324",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 197.46,
+          "avg_tokens_per_sec": 184.0,
           "details": [
             {
               "test": "simple",
-              "time": 0.381,
-              "tokens_per_sec": 99.81,
+              "time": 0.531,
+              "tokens_per_sec": 71.57,
               "tokens": 38
             },
             {
               "test": "medium",
-              "time": 1.123,
-              "tokens_per_sec": 253.85,
-              "tokens": 285
+              "time": 1.335,
+              "tokens_per_sec": 195.46,
+              "tokens": 261
             },
             {
               "test": "long",
-              "time": 1.353,
-              "tokens_per_sec": 238.72,
+              "time": 1.133,
+              "tokens_per_sec": 284.98,
               "tokens": 323
             }
           ]
@@ -3018,9 +2983,9 @@
         }
       },
       "quality_score": 63.3,
-      "raw_speed": 197.46,
+      "raw_speed": 184.0,
       "overall_score": 63.3,
-      "speed_score": 81.4,
+      "speed_score": 71.8,
       "tier_quality_score": 100.0
     },
     {
@@ -3031,21 +2996,27 @@
       "size_category": "small",
       "tier": "small",
       "context": "32k",
-      "timestamp": "2026-03-29T05:47:45.476141",
+      "timestamp": "2026-03-30T06:24:25.613153",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 242.5,
+          "avg_tokens_per_sec": 256.21,
           "details": [
             {
               "test": "simple",
-              "time": 1.296,
-              "tokens_per_sec": 244.59,
+              "time": 1.37,
+              "tokens_per_sec": 231.44,
               "tokens": 317
             },
             {
+              "test": "medium",
+              "time": 1.271,
+              "tokens_per_sec": 251.77,
+              "tokens": 320
+            },
+            {
               "test": "long",
-              "time": 1.344,
-              "tokens_per_sec": 240.4,
+              "time": 1.132,
+              "tokens_per_sec": 285.42,
               "tokens": 323
             }
           ]
@@ -3058,7 +3029,7 @@
               "pass_rate": 0.0,
               "passed": 0,
               "total": 5,
-              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
+              "error": "empty response"
             },
             {
               "test": "palindrome",
@@ -3121,7 +3092,7 @@
         }
       },
       "quality_score": 0.0,
-      "raw_speed": 242.5,
+      "raw_speed": 256.21,
       "overall_score": 0.0,
       "speed_score": 100.0,
       "tier_quality_score": 0.0
@@ -3134,33 +3105,33 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "131k",
-      "timestamp": "2026-03-29T05:50:35.408533",
+      "timestamp": "2026-03-30T06:25:43.253866",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 73.16,
+          "avg_tokens_per_sec": 58.36,
           "details": [
             {
               "test": "simple",
-              "time": 5.27,
-              "tokens_per_sec": 71.54,
-              "tokens": 377
+              "time": 6.162,
+              "tokens_per_sec": 55.5,
+              "tokens": 342
             },
             {
               "test": "medium",
-              "time": 5.201,
-              "tokens_per_sec": 72.87,
+              "time": 6.139,
+              "tokens_per_sec": 61.74,
               "tokens": 379
             },
             {
               "test": "long",
-              "time": 5.089,
-              "tokens_per_sec": 75.07,
+              "time": 6.603,
+              "tokens_per_sec": 57.85,
               "tokens": 382
             }
           ]
         },
         "code": {
-          "avg_score": 33.3,
+          "avg_score": 66.7,
           "details": [
             {
               "test": "prime",
@@ -3209,41 +3180,66 @@
                 {
                   "input": "0",
                   "expected": "0",
-                  "got": "File \"<string>\", line 7\n    for _ in range(2, n + 1\n                  ^\nSyntaxError: '(' was never c",
+                  "got": "None",
                   "passed": false
                 },
                 {
                   "input": "1",
                   "expected": "1",
-                  "got": "File \"<string>\", line 7\n    for _ in range(2, n + 1\n                  ^\nSyntaxError: '(' was never c",
+                  "got": "None",
                   "passed": false
                 },
                 {
                   "input": "2",
                   "expected": "1",
-                  "got": "File \"<string>\", line 7\n    for _ in range(2, n + 1\n                  ^\nSyntaxError: '(' was never c",
+                  "got": "None",
                   "passed": false
                 },
                 {
                   "input": "6",
                   "expected": "8",
-                  "got": "File \"<string>\", line 7\n    for _ in range(2, n + 1\n                  ^\nSyntaxError: '(' was never c",
+                  "got": "None",
                   "passed": false
                 },
                 {
                   "input": "9",
                   "expected": "34",
-                  "got": "File \"<string>\", line 7\n    for _ in range(2, n + 1\n                  ^\nSyntaxError: '(' was never c",
+                  "got": "None",
                   "passed": false
                 }
               ]
             },
             {
               "test": "palindrome",
-              "pass_rate": 0.0,
-              "passed": 0,
+              "pass_rate": 1.0,
+              "passed": 4,
               "total": 4,
-              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
+              "details": [
+                {
+                  "input": "'racecar'",
+                  "expected": "True",
+                  "got": "True",
+                  "passed": true
+                },
+                {
+                  "input": "'hello'",
+                  "expected": "False",
+                  "got": "False",
+                  "passed": true
+                },
+                {
+                  "input": "'A man a plan a canal Panama'",
+                  "expected": "True",
+                  "got": "True",
+                  "passed": true
+                },
+                {
+                  "input": "'world'",
+                  "expected": "False",
+                  "got": "False",
+                  "passed": true
+                }
+              ]
             }
           ]
         },
@@ -3280,33 +3276,31 @@
           ]
         },
         "instruction": {
-          "avg_score": 33.3,
+          "avg_score": 0.0,
           "details": [
             {
               "test": "json",
               "score": 0,
-              "error": "HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=45)"
+              "error": "Status 404 - No endpoints available matching your guardrail restrictions and data policy. Configure: https://openrouter.ai/settings/p"
             },
             {
               "test": "list",
-              "score": 100,
-              "found": 5,
-              "expected": 5
+              "score": 0,
+              "error": "Status 404 - No endpoints available matching your guardrail restrictions and data policy. Configure: https://openrouter.ai/settings/p"
             },
             {
               "test": "word_count",
               "score": 0,
-              "reason": "empty response"
+              "error": "Status 404 - No endpoints available matching your guardrail restrictions and data policy. Configure: https://openrouter.ai/settings/p"
             }
           ]
         },
         "translation": {
-          "avg_score": 33.3,
+          "avg_score": 0.0,
           "details": [
             {
               "test": "en_ru",
-              "score": 100,
-              "cyrillic_ratio": 0.89
+              "score": 0
             },
             {
               "test": "ru_en",
@@ -3319,9 +3313,9 @@
           ]
         }
       },
-      "quality_score": 18.3,
-      "raw_speed": 73.16,
-      "overall_score": 18.3,
+      "quality_score": 20.0,
+      "raw_speed": 58.36,
+      "overall_score": 20.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -3333,27 +3327,27 @@
       "size_category": "large",
       "tier": "large",
       "context": "1048k",
-      "timestamp": "2026-03-29T05:54:06.858285",
+      "timestamp": "2026-03-30T06:30:10.355095",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 167.25,
+          "avg_tokens_per_sec": 153.53,
           "details": [
             {
               "test": "simple",
-              "time": 1.981,
-              "tokens_per_sec": 153.45,
+              "time": 2.27,
+              "tokens_per_sec": 133.93,
               "tokens": 304
             },
             {
               "test": "medium",
-              "time": 1.717,
-              "tokens_per_sec": 179.39,
+              "time": 1.812,
+              "tokens_per_sec": 170.0,
               "tokens": 308
             },
             {
               "test": "long",
-              "time": 1.841,
-              "tokens_per_sec": 168.92,
+              "time": 1.985,
+              "tokens_per_sec": 156.66,
               "tokens": 311
             }
           ]
@@ -3370,31 +3364,31 @@
                 {
                   "input": "2",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    def is_prime(n\n                ^\nSyntaxError: '(' was never closed",
+                  "got": "File \"<string>\", line 1\n    def is_\n           ^\nSyntaxError: expected '('",
                   "passed": false
                 },
                 {
                   "input": "3",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    def is_prime(n\n                ^\nSyntaxError: '(' was never closed",
+                  "got": "File \"<string>\", line 1\n    def is_\n           ^\nSyntaxError: expected '('",
                   "passed": false
                 },
                 {
                   "input": "4",
                   "expected": "False",
-                  "got": "File \"<string>\", line 1\n    def is_prime(n\n                ^\nSyntaxError: '(' was never closed",
+                  "got": "File \"<string>\", line 1\n    def is_\n           ^\nSyntaxError: expected '('",
                   "passed": false
                 },
                 {
                   "input": "17",
                   "expected": "True",
-                  "got": "File \"<string>\", line 1\n    def is_prime(n\n                ^\nSyntaxError: '(' was never closed",
+                  "got": "File \"<string>\", line 1\n    def is_\n           ^\nSyntaxError: expected '('",
                   "passed": false
                 },
                 {
                   "input": "100",
                   "expected": "False",
-                  "got": "File \"<string>\", line 1\n    def is_prime(n\n                ^\nSyntaxError: '(' was never closed",
+                  "got": "File \"<string>\", line 1\n    def is_\n           ^\nSyntaxError: expected '('",
                   "passed": false
                 }
               ]
@@ -3504,8 +3498,8 @@
           ]
         },
         "reasoning": {
-          "score": 66.7,
-          "correct": 4,
+          "score": 83.3,
+          "correct": 5,
           "total": 6,
           "details": [
             {
@@ -3528,9 +3522,9 @@
             },
             {
               "test": "coin_flip",
-              "correct": false,
-              "score": 0,
-              "answer_given": "The probability of getting heads on the 4th flip is **1/"
+              "correct": true,
+              "score": 100,
+              "answer_given": "The probability of getting heads on the 4th flip is **1/2**.\n\nEach coin flip is an independent event. The results of previous flips do not influence the outcome of future flips, especially with a fair coin."
             },
             {
               "test": "counting",
@@ -3547,12 +3541,12 @@
           ]
         },
         "instruction": {
-          "avg_score": 75.0,
+          "avg_score": 50.0,
           "details": [
             {
               "test": "json",
-              "score": 100,
-              "reason": "ok"
+              "score": 0,
+              "error": "Status 429 - You exceeded your current quota, please check your plan and billing details. For more information on this error, head to"
             },
             {
               "test": "list",
@@ -3589,14 +3583,14 @@
             {
               "test": "en_es",
               "score": 100,
-              "keywords_found": 12
+              "keywords_found": 10
             }
           ]
         }
       },
-      "quality_score": 37.9,
-      "raw_speed": 167.25,
-      "overall_score": 37.9,
+      "quality_score": 38.3,
+      "raw_speed": 153.53,
+      "overall_score": 38.3,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -3608,27 +3602,27 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "1048k",
-      "timestamp": "2026-03-29T05:56:50.684161",
+      "timestamp": "2026-03-30T06:32:54.932595",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 190.84,
+          "avg_tokens_per_sec": 169.76,
           "details": [
             {
               "test": "simple",
-              "time": 0.396,
-              "tokens_per_sec": 65.65,
+              "time": 0.382,
+              "tokens_per_sec": 68.11,
               "tokens": 26
             },
             {
               "test": "medium",
-              "time": 0.907,
-              "tokens_per_sec": 225.03,
-              "tokens": 204
+              "time": 1.085,
+              "tokens_per_sec": 177.95,
+              "tokens": 193
             },
             {
               "test": "long",
-              "time": 1.118,
-              "tokens_per_sec": 281.84,
+              "time": 1.197,
+              "tokens_per_sec": 263.21,
               "tokens": 315
             }
           ]
@@ -3747,8 +3741,8 @@
           ]
         },
         "reasoning": {
-          "score": 80.0,
-          "correct": 4,
+          "score": 60.0,
+          "correct": 3,
           "total": 5,
           "details": [
             {
@@ -3771,9 +3765,8 @@
             },
             {
               "test": "coin_flip",
-              "correct": true,
-              "score": 100,
-              "answer_given": "The probability of getting heads on the 4th flip is **1/2**.\n\nHere's why:\n\nEach coin flip is an independent event. This means that the outcome of previous flips has absolutely no influence on the outcome of the next flip. A fair coin has two equally likely outcomes: heads or tails.\n\nTherefore, regardless of what happened in the first three flips, the probability of getting heads on the 4th flip remains the same as it always is for a fair coin."
+              "correct": false,
+              "score": 0
             },
             {
               "test": "counting",
@@ -3826,9 +3819,9 @@
           ]
         }
       },
-      "quality_score": 75.0,
-      "raw_speed": 190.84,
-      "overall_score": 75.0,
+      "quality_score": 70.0,
+      "raw_speed": 169.76,
+      "overall_score": 70.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -3840,27 +3833,27 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "131k",
-      "timestamp": "2026-03-29T05:58:42.135375",
+      "timestamp": "2026-03-30T06:34:45.831534",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 3.84,
+          "avg_tokens_per_sec": 3.82,
           "details": [
             {
               "test": "simple",
-              "time": 1.249,
-              "tokens_per_sec": 6.41,
+              "time": 1.123,
+              "tokens_per_sec": 7.12,
               "tokens": 8
             },
             {
               "test": "medium",
-              "time": 4.536,
-              "tokens_per_sec": 2.65,
+              "time": 5.372,
+              "tokens_per_sec": 2.23,
               "tokens": 12
             },
             {
               "test": "long",
-              "time": 6.127,
-              "tokens_per_sec": 2.45,
+              "time": 7.06,
+              "tokens_per_sec": 2.12,
               "tokens": 15
             }
           ]
@@ -3993,7 +3986,7 @@
               "test": "speed_math",
               "correct": false,
               "score": 0,
-              "answer_given": "First.\n\n**Explanation:**\n\n* **Train 1:** Speed = Distance / Time = 120 km / 2 hours = 60 km/hour\n* **Train 2:** Speed = Distance / Time = 180 km / 3 hours = 60 km/hour\n\nSince both trains have the same speed, the answer is **Same**."
+              "answer_given": "First.\n\nHere's how to determine that:\n\n* **Train 1:** Speed = Distance / Time = 120 km / 2 hours = 60 km/hour\n* **Train 2:** Speed = Distance / Time = 180 km / 3 hours = 60 km/hour\n\nSince both trains travel at the same speed, the answer is **Same**."
             },
             {
               "test": "river_crossing",
@@ -4059,7 +4052,7 @@
         }
       },
       "quality_score": 75.0,
-      "raw_speed": 3.84,
+      "raw_speed": 3.82,
       "overall_score": 75.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -4072,27 +4065,27 @@
       "size_category": "large",
       "tier": "large",
       "context": "131k",
-      "timestamp": "2026-03-29T06:02:12.449352",
+      "timestamp": "2026-03-30T06:38:12.618969",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 258.17,
+          "avg_tokens_per_sec": 294.45,
           "details": [
             {
               "test": "simple",
-              "time": 0.246,
-              "tokens_per_sec": 243.79,
+              "time": 0.273,
+              "tokens_per_sec": 220.05,
               "tokens": 60
             },
             {
               "test": "medium",
-              "time": 0.958,
-              "tokens_per_sec": 287.1,
-              "tokens": 275
+              "time": 0.853,
+              "tokens_per_sec": 326.01,
+              "tokens": 278
             },
             {
               "test": "long",
-              "time": 1.428,
-              "tokens_per_sec": 243.63,
+              "time": 1.032,
+              "tokens_per_sec": 337.29,
               "tokens": 348
             }
           ]
@@ -4313,7 +4306,7 @@
           ]
         },
         "translation": {
-          "avg_score": 100.0,
+          "avg_score": 66.7,
           "details": [
             {
               "test": "en_ru",
@@ -4327,15 +4320,14 @@
             },
             {
               "test": "en_es",
-              "score": 100,
-              "keywords_found": 12
+              "score": 0
             }
           ]
         }
       },
-      "quality_score": 71.7,
-      "raw_speed": 258.17,
-      "overall_score": 71.7,
+      "quality_score": 68.3,
+      "raw_speed": 294.45,
+      "overall_score": 68.3,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
     },
@@ -4347,27 +4339,21 @@
       "size_category": "large",
       "tier": "large",
       "context": "32k",
-      "timestamp": "2026-03-29T06:03:50.605946",
+      "timestamp": "2026-03-30T06:39:50.161864",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 116.91,
+          "avg_tokens_per_sec": 113.17,
           "details": [
             {
-              "test": "simple",
-              "time": 2.396,
-              "tokens_per_sec": 129.78,
-              "tokens": 311
-            },
-            {
               "test": "medium",
-              "time": 4.584,
-              "tokens_per_sec": 68.28,
+              "time": 1.734,
+              "tokens_per_sec": 180.54,
               "tokens": 313
             },
             {
               "test": "long",
-              "time": 2.076,
-              "tokens_per_sec": 152.68,
+              "time": 6.92,
+              "tokens_per_sec": 45.81,
               "tokens": 317
             }
           ]
@@ -4526,37 +4512,37 @@
               "test": "syllogism",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nFirst, the statements are:\n\n1. All bloops are razzies.\n\n2. All razzies are lazzies.\n\nI need to determine if all bloops are definitely lazzies.\n\nThis is a classic syllogism. If A implies B, and B implies C, then A implies C.\n\nHere, bloops are A, razzies are B, and lazzies are C.\n\nSo, if all bloops are razzies, that means every bloop is a razzies.\n\nAnd if all razzies are lazzies, that means every razzies is a lazzies.\n\nTherefore, since every bloop is a razzies, and every razzies is a lazzies, it follows that every bloop must be a lazzies.\n\nThere's no exception mentioned or any condition that would break this chain. So, it should be definite.\n\nThe question says \"definitely,\" which means it must be true based on the given information.\n\nAlso, the answer should be just \"Yes\" or \"No,\" so I don't need to explain.\n\nBut let me make sure there's no trick. Is there any possibility that a bloop is not a lazzies? Only if there's a bloop that is not a razzies, but the first statement says all bloops are razzies, so that can't happen. Or if there's a razzies that is not a"
+              "answer_given": "<think>\nFirst, the statements are:\n\n1. All bloops are razzies.\n\n2. All razzies are lazzies.\n\nI need to determine if all bloops are definitely lazzies.\n\nThis is a classic syllogism. If A implies B, and B implies C, then A implies C.\n\nHere, bloops are A, razzies are B, and lazzies are C.\n\nSo, if all bloops are razzies, that means every bloop is a razzies.\n\nAnd if all razzies are lazzies, that means every razzies is a lazzies.\n\nTherefore, since every bloop is a razzies, and every razzies is a lazzies, it follows that every bloop must be a lazzies.\n\nThere's no exception mentioned or any condition that would break this chain. So, it seems definite.\n\nThe question says \"definitely,\" which might be emphasizing certainty. But based on the given information, it should be certain.\n\nI recall that in logic, this is transitive: if A \u2286 B and B \u2286 C, then A \u2286 C.\n\nSimilarly here: the set of bloops is a subset of razzies, and razzies is a subset of lazzies, so bloops must be a subset of lazzies.\n\nTherefore, all bloops are lazzies.\n\nThe answer should be yes.\n\nThe instruction is to answer with just \""
             },
             {
               "test": "speed_math",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nI have this problem: A train travels 120 km in 2 hours. Another train travels 180 km in 3 hours. I need to figure out which one is faster, and answer with \"First\", \"Second\", or \"Same\".\n\nFirst, I should find out the speed of each train. Speed is distance divided by time, right? So for the first train, it's 120 km divided by 2 hours.\n\nLet me calculate that: 120 / 2 = 60 km/h. So the first train is going 60 kilometers per hour.\n\nNow, for the second train: 180 km in 3 hours. So, 180 / 3 = 60 km/h. That's also 60 km/h.\n\nBoth are going the same speed? But let me double-check.\n\nFirst train: 120 km / 2 h = 60 km/h.\n\nSecond train: 180 km / 3 h = 60 km/h.\n\nYes, both are 60 km/h. So they should be the same speed.\n\nThe question is which is faster, and since both speeds are equal, it should be \"Same\".\n\nBut let me make sure there's no trick here. Is there any other way to look at it? Like, maybe average speed or something, but it seems straightforward.\n\nPerhaps I should consider the time per distance or something, but no, speed is distance over time, so km/h is standard.\n\nMaybe I can think"
+              "answer_given": "<think>\nI have this problem: A train travels 120 km in 2 hours. Another train travels 180 km in 3 hours. I need to figure out which one is faster, and answer with \"First\", \"Second\", or \"Same\".\n\nFirst, I should find out the speed of each train. Speed is distance divided by time, right? So for the first train, it goes 120 km in 2 hours. So speed is 120 divided by 2.\n\nLet me calculate that: 120 \u00f7 2 = 60 km/h. So the first train is going 60 kilometers per hour.\n\nNow, the second train: 180 km in 3 hours. Speed is 180 \u00f7 3. 180 divided by 3 is 60. So that's also 60 km/h.\n\nBoth are 60 km/h? So they're the same speed.\n\nI should double-check. Maybe I can think in terms of how far they go in one hour. First train: 120 km in 2 hours, so in one hour, it goes 60 km. Second train: 180 km in 3 hours, so in one hour, 180 \u00f7 3 = 60 km. Same thing.\n\nI could also find out how long it takes to go one kilometer. For first train: 2 hours for 120 km, so for one km, 2/120 hours. That's 2 \u00f7 120 = 1"
             },
             {
               "test": "river_crossing",
               "correct": true,
               "score": 100,
-              "answer_given": "<think>\nI have this puzzle: A farmer has a fox, a chicken, and a bag of grain. He needs to cross a river using a boat that can only carry him and one other item at a time. The problem is that if the fox and the chicken are left alone together, the fox will eat the chicken. Similarly, if the chicken and the grain are left alone, the chicken will eat the grain. I need to figure out what the farmer should take first across the river.\n\nThe goal is to get all three across without anything being eaten. Since the boat can only carry the farmer and one item, he has to make multiple trips, and he might need to come back alone sometimes to pick up another item.\n\nI should think step by step. Let's denote the starting side as Side A and the other side as Side B. Initially, everything is on Side A.\n\nThe farmer has to take one item first. The options are: take the fox first, take the chicken first, or take the grain first.\n\nI need to see which one works without causing a problem.\n\nLet me try taking the chicken first. So, farmer takes chicken to Side B. Now, on Side A, we have fox and grain. Since the fox doesn't eat grain, that's fine. On Side B, only chicken, which is alone, so no problem.\n\nNow, farmer goes back alone to Side A. So now, on Side A: fox and grain, farmer is there"
+              "answer_given": "<think>\nI have this puzzle: a farmer has a fox, a chicken, and a bag of grain. He needs to cross a river using a boat that can only carry him and one other item at a time. The problem is that if the fox and the chicken are left alone together, the fox eats the chicken. Similarly, if the chicken and the grain are left alone, the chicken eats the grain. I need to figure out what the farmer should take first across the river.\n\nThe goal is to get all three across without anything being eaten. Since the boat can only carry the farmer and one item, he has to make multiple trips. Also, when he leaves items on either side, he has to ensure that the fox and chicken aren't left alone, and the chicken and grain aren't left alone.\n\nLet me denote the sides: let's say side A is the starting side, and side B is the destination side. Initially, all are on side A.\n\nThe farmer must take one item with him to side B. He has three choices: take the fox first, take the chicken first, or take the grain first.\n\nI should consider each possibility.\n\nFirst, suppose he takes the fox first. He rows to side B with the fox, leaves the fox there, and comes back alone. Now, on side A, he has the chicken and the grain. But if he leaves them alone, the chicken will eat the grain. That's a problem. So, when he"
             },
             {
               "test": "coin_flip",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nI'm flipping a fair coin three times and getting heads each time. Now, I need to find the probability of getting heads on the fourth flip. The coin is fair, so it should be 50-50 for heads or tails on each flip, right? But the problem mentions that I've already gotten three heads in a row. Does that affect the fourth flip?\n\nI recall that for a fair coin, each flip is independent. That means the outcome of one flip doesn't affect the others. So, no matter what happened before, the probability of heads on the next flip should still be 1/2.\n\nThe problem says \"I flip a fair coin 3 times and get heads each time.\" So, that's given. And now I'm flipping it a fourth time. Since the coin is fair and flips are independent, it should still be 1/2.\n\nBut let me make sure. Is there any trick here? Sometimes people think that after a streak, the probability changes, like the gambler's fallacy. But that's not true for independent events. So, I think it's straightforward.\n\nThe answer should be 1/2. And it says to answer with a fraction, so \\boxed{\\dfrac{1}{2}}.\n\nThe problem says \"a fair coin,\" which means P(heads) = P(tails) = 1/2 for each flip, and flips are independent. So, yes.\n\nI could think"
+              "answer_given": "<think>\nI'm flipping a fair coin three times and getting heads each time. Now, I need to find the probability of getting heads on the fourth flip. The coin is fair, so it should be 50-50 for heads or tails on each flip, right? But the problem mentions that I've already gotten three heads in a row, so I wonder if that affects the fourth flip.\n\nI recall that for a fair coin, each flip is independent. That means the outcome of one flip doesn't affect the outcome of another. So, even though I've gotten three heads in a row, the probability of getting heads on the fourth flip should still be the same as always, which is 1/2.\n\nThe problem says \"a fair coin,\" so it should be unbiased. The fairness implies that the probability of heads is always 0.5, regardless of past outcomes. So, I think the answer is simply 1/2.\n\nBut let me double-check. Is there any trick here? The fact that I've gotten three heads might make someone think that tails is \"due,\" but that's the gambler's fallacy. In reality, for independent events, past outcomes don't influence future ones.\n\nSo, mathematically, P(H on 4th | H on 1st, H on 2nd, H on 3rd) should equal P(H on 4th) because of independence. And since it's a fair coin, P(H) ="
             },
             {
               "test": "counting",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nI need to find out how many letters are in the word \"MISSISSIPPI\". The answer should be just the number, so I don't need to write anything else.\n\nFirst, I should spell out the word: M-I-S-S-I-S-S-I-P-P-I.\n\nNow, I'll count each letter one by one.\n\nStarting with M: that's 1.\n\nThen I: that's 2.\n\nFirst S: that's 3.\n\nSecond S: that's 4.\n\nThen I: that's 5.\n\nThird S: that's 6.\n\nFourth S: that's 7? Let me check.\n\nAfter the first I, it's S-S, so positions: M (1), I (2), S (3), S (4), then I (5), S (6), S (7), then I (8), P (9), P (10), I (11).\n\nI think I missed one. Let me write it out.\n\nM-I-S-S-I-S-S-I-P-P-I\n\nSo:\n\n1. M\n\n2. I\n\n3. S\n\n4. S\n\n5. I\n\n6. S\n\n7. S\n\n8. I\n\n9. P\n\n10. P\n\n11. I\n\nThat's 11 letters.\n\nI know that \"MISSISSIPPI\" is often used in problems about permutations and combinations because it has repeated letters. But here, I just need the total"
+              "answer_given": "<think>\nI need to find out how many letters are in the word \"MISSISSIPPI\". The answer should be just the number, so I don't need to write anything else.\n\nFirst, I should spell out the word: M-I-S-S-I-S-S-I-P-P-I.\n\nNow, I'll count each letter one by one.\n\nStarting with M: that's 1.\n\nThen I: that's 2.\n\nFirst S: that's 3.\n\nSecond S: that's 4.\n\nI: that's 5.\n\nS: that's 6.\n\nAnother S: that's 7.\n\nI: that's 8.\n\nP: that's 9.\n\nAnother P: that's 10.\n\nAnd finally I: that's 11.\n\nSo, that's 11 letters.\n\nI know that \"MISSISSIPPI\" is often used as an example for permutations because it has repeated letters. Let me confirm the count.\n\nM: 1 time\n\nI: let's see, positions: after M, then after the first two S's, then after the next two S's, and at the end. So, I is at position 2, 5, 8, and 11. That's four I's.\n\nS: after the first I, then another S, then later another S, and another. So, positions 3,4,6,7. That's four S's? Position 3 and"
             },
             {
               "test": "knights_knaves",
               "correct": true,
               "score": 100,
-              "answer_given": "<think>\nI have this logic puzzle with knights and knaves. Knights always tell the truth, and knaves always lie. Person A says, \"B is a knave.\" Person B says, \"A and I are both knights.\" I need to figure out what A is, and answer with either \"Knight\" or \"Knave.\"\n\nFirst, I should consider the possibilities. A could be a knight or a knave, and the same for B. But their statements will help me figure it out.\n\nLet me denote: if A is a knight, then what A says is true. So if A is a knight, then B is indeed a knave.\n\nA says: \"B is a knave.\" So if A is a knight, then B is a knave.\n\nNow, if A is a knave, then A is lying, so B is not a knave, which means B is a knight.\n\nSo, from A's statement:\n\n- If A is knight, then B is knave.\n\n- If A is knave, then B is knight.\n\nNow, let's look at B's statement. B says: \"A and I are both knights.\"\n\nSo, if B is a knight, then what B says is true, so both A and B are knights.\n\nIf B is a knave, then what B says is false, so it is not true that both are knights. That means at least one of them is not a knight,"
+              "answer_given": "<think>\nI have this logic puzzle with knights and knaves. Knights always tell the truth, and knaves always lie. Person A says, \"B is a knave.\" Person B says, \"A and I are both knights.\" I need to figure out what A is, and answer with either \"Knight\" or \"Knave.\"\n\nFirst, I should consider the possibilities. A could be a knight or a knave, and the same for B. But their statements depend on each other, so I need to see which combination makes sense.\n\nLet me assume that A is a knight. If A is a knight, then A tells the truth. A says, \"B is a knave,\" so if A is truthful, then B must be a knave.\n\nNow, if B is a knave, then B lies. B says, \"A and I are both knights.\" But since B is a knave, this statement is false. If B says both are knights, but B is a knave, so it's false that both are knights. That means it cannot be that both are knights; at least one is not a knight. Since B is a knave, A could be a knight or a knave, but in this case, we have A as a knight and B as a knave.\n\nB says both are knights, which is false because B is a knave. So the statement \"both are knights\" is false, which is consistent"
             }
           ]
         },
@@ -4593,12 +4579,12 @@
             {
               "test": "en_ru",
               "score": 0,
-              "cyrillic_ratio": 0.07
+              "cyrillic_ratio": 0.1
             },
             {
               "test": "ru_en",
               "score": 100,
-              "latin_ratio": 0.71
+              "latin_ratio": 0.72
             },
             {
               "test": "en_es",
@@ -4609,7 +4595,7 @@
         }
       },
       "quality_score": 30.0,
-      "raw_speed": 116.91,
+      "raw_speed": 113.17,
       "overall_score": 30.0,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -4622,27 +4608,27 @@
       "size_category": "medium",
       "tier": "medium",
       "context": "131k",
-      "timestamp": "2026-03-29T06:05:09.184205",
+      "timestamp": "2026-03-30T06:41:14.215255",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 176.34,
+          "avg_tokens_per_sec": 200.21,
           "details": [
             {
               "test": "simple",
-              "time": 3.162,
-              "tokens_per_sec": 99.95,
+              "time": 1.733,
+              "tokens_per_sec": 182.31,
               "tokens": 316
             },
             {
               "test": "medium",
-              "time": 1.532,
-              "tokens_per_sec": 209.51,
+              "time": 1.468,
+              "tokens_per_sec": 218.6,
               "tokens": 321
             },
             {
               "test": "long",
-              "time": 1.471,
-              "tokens_per_sec": 219.56,
+              "time": 1.617,
+              "tokens_per_sec": 199.71,
               "tokens": 323
             }
           ]
@@ -4769,31 +4755,31 @@
               "test": "syllogism",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, let's see. The question is about whether all bloops are definitely lazzies, given that all bloops are razzies and all razzies are lazzies. Hmm, this seems like a classic syllogism problem. Let me break it down step by step.\n\nFirst, the premises: All bloops are razzies. So, if I take any bloop, it must be a razzie. Then, all razzies are lazzies. So, any razzie is also a lazzie. So, if every bloop is a razzie, and every razzie is a lazzie, then logically, every bloop should be a lazzie. That seems straightforward. \n\nWait, but maybe I should visualize it. Let's use sets. Let me imagine a Venn diagram. If bloops are a subset of razzies, and razzies are a subset of lazzies, then bloops must be entirely within lazzies. So, yes, all bloops would be lazzies. \n\nIs there any case where this might not hold? Like, if there's some overlap or something? No, because the premises are universal statements. \"All\" means every single member. So if every member of bloops is in razzies, and every member of razzies is in lazzies, then by transitivity, every member of blo"
+              "answer_given": "<think>\nOkay, let's see. The question is about whether all bloops are definitely lazzies given that all bloops are razzies and all razzies are lazzies. Hmm, this seems like a classic syllogism problem. Let me break it down step by step.\n\nFirst, the premises are: All bloops are razzies. All razzies are lazzies. The conclusion we need to evaluate is whether all bloops are lazzies. \n\nIn logic terms, if we have two statements: All A are B, and All B are C, then does it follow that All A are C? I think this is a standard syllogism where the conclusion logically follows. Let me recall the syllogism forms. The first premise is a universal affirmative (All A are B), the second is also a universal affirmative (All B are C). The conclusion would then be All A are C. \n\nThis is an example of the syllogism known as Barbara in the first figure. The structure is:\n\n1. All A are B.\n2. All B are C.\n3. Therefore, All A are C.\n\nYes, that's a valid form. So applying that here, since all bloops (A) are razzies (B), and all razzies (B) are lazzies (C), then it must be true that all bloops (A) are lazzies ("
             },
             {
               "test": "speed_math",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, let's see. I need to figure out which train is faster. The first train goes 120 km in 2 hours, and the second one goes 180 km in 3 hours. Hmm, speed is distance divided by time, right? So I should calculate the speed of each train and then compare them.\n\nFor the first train: 120 km divided by 2 hours. Let me do that math. 120 divided by 2 is 60. So that's 60 km/h. \n\nNow the second train: 180 km divided by 3 hours. 180 divided by 3... that's 60 as well. Wait, 3 times 60 is 180, so yeah, 60 km/h. \n\nSo both trains have the same speed? But wait, let me check again. Maybe I did the division wrong. First train: 120 divided by 2. 2 times 60 is 120, correct. Second train: 3 times 60 is 180, so 180 divided by 3 is 60. Yep, both are 60 km/h. So they're the same speed. \n\nBut wait, the problem says \"Which is faster?\" So if they're both the same, the answer should be Same. But maybe I made a"
+              "answer_given": "<think>\nOkay, let's see. I need to figure out which train is faster between the first one that travels 120 km in 2 hours and the second one that goes 180 km in 3 hours. Hmm, speed is distance divided by time, right? So I should calculate the speed of each train and then compare them.\n\nFor the first train: 120 km divided by 2 hours. Let me do that math. 120 divided by 2 is 60. So that's 60 km/h. Got that. Now the second train: 180 km divided by 3 hours. Let me check that. 180 divided by 3... that's 60 as well. Wait, so both are 60 km/h? So they have the same speed? But wait, let me make sure I didn't make a mistake in division. 2 times 60 is 120, correct. And 3 times 60 is 180, yes. So both trains are moving at 60 kilometers per hour. Therefore, their speeds are the same. So the answer should be Same. But wait, maybe I need to check if there's any trick here. The problem states the distances and times clearly. No mention of acceleration or anything else. Just average speed. So yeah, both have the same average speed. So the answer is Same"
             },
             {
               "test": "river_crossing",
               "correct": true,
               "score": 100,
-              "answer_given": "<think>\nOkay, let's see. The farmer has a fox, a chicken, and a bag of grain. He needs to get all of them across the river using a boat that can only carry him and one item at a time. The problem is that if he leaves the fox with the chicken, the fox will eat the chicken. Similarly, if he leaves the chicken with the grain, the chicken will eat the grain. So he has to figure out the order in which to transport them so that none of them are left alone together in a dangerous situation.\n\nFirst, I need to think about the constraints. The main issue is that the fox and chicken can't be left alone, and the chicken and grain can't be left alone. The farmer can't be on both sides of the river at the same time, so he has to make trips, leaving some items behind each time. The key is to make sure that whenever he leaves the boat, the remaining items on either side of the river are safe.\n\nLet me start by considering the first move. The farmer has to take one item with him. Which one should he take first? If he takes the fox first, then he leaves the chicken and grain on the original side. But the chicken and grain can't be left alone because the chicken will eat the grain. So that's a problem. So taking the fox first might not be a good idea.\n\nIf he takes the grain first, then he leaves the fox and chicken on"
+              "answer_given": "<think>\nOkay, let's see. The farmer has a fox, a chicken, and a bag of grain. He needs to get all of them across the river using a boat that can only carry him and one item at a time. The problem is that if he leaves the fox with the chicken, the fox will eat the chicken. Similarly, if he leaves the chicken with the grain, the chicken will eat the grain. So he has to figure out the order in which to transport them so that none of them are left alone together in a dangerous situation.\n\nFirst, I need to think about the constraints. The main issue is that the fox and chicken can't be left alone, and the chicken and grain can't be left alone. The farmer can't be on both sides of the river at the same time, so he has to make trips, taking one item each time and making sure that when he's not there, the remaining items are safe.\n\nLet me start by considering the first move. The farmer has to take one of the three items across. The question is, which one should he take first to avoid problems?\n\nIf he takes the fox first, then he leaves the chicken and grain on the original side. But the chicken and grain can't be left alone because the chicken will eat the grain. So that's a problem. So taking the fox first might not be a good idea.\n\nIf he takes the grain first, then he leaves the fox and chicken on the original"
             },
             {
               "test": "coin_flip",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the 4th flip of a fair coin, given that the first three flips were all heads. Hmm, let me think. \n\nFirst, I remember that a fair coin has two sides, heads and tails, each with an equal probability of 1/2. Each flip is supposed to be independent, right? So, does that mean that previous outcomes don't affect the next flip? But wait, the question is asking about the probability after getting three heads in a row. Maybe there's something about dependent events or conditional probability here?\n\nLet me recall what independent events mean. If two events are independent, the outcome of one doesn't affect the probability of the other. So, if each coin flip is independent, then even if I got three heads before, the fourth flip should still have a 1/2 chance of being heads. But why does the question mention the previous three heads then? Is it trying to trick me into thinking about something else?\n\nMaybe it's a common misconception that if you have a streak of heads, the next flip is more or less likely to be tails? Like the gambler's fallacy? But the gambler's fallacy is the belief that if something happens more frequently than normal during a period, it will happen less frequently in the future, or vice versa. But in reality, for independent events like coin flips, each flip is separate. So even after three"
+              "answer_given": "<think>\nOkay, so I need to figure out the probability of getting heads on the 4th flip of a fair coin, given that the first three flips were all heads. Hmm, let me think. \n\nFirst, I remember that a fair coin has two sides, heads and tails, each with an equal chance of landing face up. So normally, the probability of getting heads on any single flip is 1/2. But wait, the question is about the 4th flip after getting three heads in a row. Does that affect the probability?\n\nHmm, I think each coin flip is an independent event. That means the outcome of one flip doesn't influence the outcome of another. So even if I got three heads in a row, the next flip should still have a 50% chance of being heads or tails. But let me make sure I'm not missing something here.\n\nLet me try to recall some probability concepts. If events are independent, the probability of multiple independent events occurring in sequence is the product of their individual probabilities. For example, the probability of getting four heads in a row would be (1/2)^4, which is 1/16. But that's the probability for four heads in a row from the start. However, the question isn't asking for the probability of four heads in a row; it's asking for the probability of getting heads on the fourth flip given that the first three were heads. \n\nSo maybe this is a"
             },
             {
               "test": "counting",
               "correct": false,
               "score": 0,
-              "answer_given": "<think>\nOkay, let's see. The question is asking how many letters are in the word \"MISSISSIPPI\". Hmm, I need to count the letters. Let me start by writing out the word again to make sure I have it right: M-I-S-S-I-S-S-I-P-P-I. Wait, is that correct? Let me check each letter one by one.\n\nStarting with the first letter, M. Then I, then S, S, I, S, S, I, P, P, I. Let me count them step by step. \n\n1. M\n2. I\n3. S\n4. S\n5. I\n6. S\n7. S\n8. I\n9. P\n10. P\n11. I\n\nSo that's 11 letters in total. But wait, maybe I should double-check to make sure I didn't skip any letters or count any extra. Let me spell it out again: M-I-S-S-I-S-S-I-P-P-I. Breaking it down:\n\n- M (1)\n- I (2)\n- S (3)\n- S (4)\n- I (5)\n- S (6)\n- S (7)\n- I (8)\n- P (9)\n- P (10)\n- I (11)\n\nYes, that's 11 letters. I think that's right. Sometimes when there are repeated letters, it's easy"
+              "answer_given": "<think>\nOkay, let's see. The question is asking how many letters are in the word \"MISSISSIPPI\". Hmm, I need to count the letters. Let me start by writing out the word again to make sure I have it right: M-I-S-S-I-S-S-I-P-P-I. Wait, is that correct? Let me check each letter one by one.\n\nStarting with the first letter: M. Then I, then S, S, I, S, S, I, P, P, I. Let me count them step by step. \n\n1. M\n2. I\n3. S\n4. S\n5. I\n6. S\n7. S\n8. I\n9. P\n10. P\n11. I\n\nSo that's 11 letters in total. But wait, maybe I should double-check. Sometimes when words have repeating letters, it's easy to miscount. Let me try another approach. The word is MISSISSIPPI. Breaking it down:\n\n- M: 1\n- I: Let's see, there are four I's? Wait, in the word, after the M, there's an I, then later another I, then another I, and another I. Let me count again. The letters are M, I, S, S, I, S, S, I, P, P, I. So the I's are at positions 2"
             }
           ]
         },
@@ -4814,7 +4800,7 @@
             {
               "test": "word_count",
               "score": 0,
-              "found": 19,
+              "found": 21,
               "expected": 3
             }
           ]
@@ -4825,12 +4811,12 @@
             {
               "test": "en_ru",
               "score": 0,
-              "cyrillic_ratio": 0.11
+              "cyrillic_ratio": 0.15
             },
             {
               "test": "ru_en",
               "score": 100,
-              "latin_ratio": 0.7
+              "latin_ratio": 0.63
             },
             {
               "test": "en_es",
@@ -4841,7 +4827,7 @@
         }
       },
       "quality_score": 21.7,
-      "raw_speed": 176.34,
+      "raw_speed": 200.21,
       "overall_score": 21.7,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
@@ -4854,27 +4840,27 @@
       "size_category": "small",
       "tier": "small",
       "context": "131k",
-      "timestamp": "2026-03-29T06:06:10.864343",
+      "timestamp": "2026-03-30T06:42:13.686821",
       "tests": {
         "speed": {
-          "avg_tokens_per_sec": 798.48,
+          "avg_tokens_per_sec": 881.79,
           "details": [
             {
               "test": "simple",
-              "time": 0.146,
-              "tokens_per_sec": 397.14,
-              "tokens": 58
+              "time": 0.174,
+              "tokens_per_sec": 339.51,
+              "tokens": 59
             },
             {
               "test": "medium",
-              "time": 0.292,
-              "tokens_per_sec": 1136.12,
-              "tokens": 332
+              "time": 0.308,
+              "tokens_per_sec": 1122.23,
+              "tokens": 346
             },
             {
               "test": "long",
-              "time": 0.404,
-              "tokens_per_sec": 862.19,
+              "time": 0.294,
+              "tokens_per_sec": 1183.64,
               "tokens": 348
             }
           ]
@@ -4969,7 +4955,7 @@
               "test": "speed_math",
               "correct": false,
               "score": 0,
-              "answer_given": "To determine which train is faster, we need to calculate their speeds. \n\nSpeed of the first train = Distance / Time = 120 km / 2 hours = 60 km/h\nSpeed of the second train = Distance / Time = 180 km / 3 hours = 60 km/h\n\nSince both trains have the same speed, the answer is: Same."
+              "answer_given": "To determine which train is faster, we need to calculate their speeds.\n\nThe first train travels 120 km in 2 hours, so its speed is:\n120 km / 2 hours = 60 km/h\n\nThe second train travels 180 km in 3 hours, so its speed is:\n180 km / 3 hours = 60 km/h\n\nSince both trains have the same speed, the answer is:\nSame"
             },
             {
               "test": "counting",
@@ -5012,7 +4998,7 @@
         }
       },
       "quality_score": 71.7,
-      "raw_speed": 798.48,
+      "raw_speed": 881.79,
       "overall_score": 71.7,
       "speed_score": 100.0,
       "tier_quality_score": 100.0
