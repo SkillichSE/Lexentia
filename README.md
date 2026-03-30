@@ -1,6 +1,6 @@
 # Lexentia
 
-**AI-powered IDE that brings intelligence directly into your code editor.**
+**AI-powered IDE**
 
 Transform your development workflow with AI assistance that understands your codebase, explains complex logic, fixes bugs instantly, and helps you write better code faster.
 
