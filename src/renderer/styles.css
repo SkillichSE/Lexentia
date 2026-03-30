@@ -1,0 +1,2034 @@
+/* lexentia dark cosmic palette (original) */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --bg-void: #000000;
+  --bg-base: #0a0a0b;
+  --bg-surface: #111113;
+  --bg-elevated: #18181b;
+  --bg-raised: #1f1f23;
+  --bg-hover: #27272b;
+  --border-subtle: #1f1f23;
+  --border-dim: #2a2a2f;
+  --border-default: #38383f;
+  --border-strong: #4f4f5a;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --text-dim: #3f3f46;
+  --accent: #e4e4e7;
+  --accent-bright: #ffffff;
+  --accent-glow: rgba(228, 228, 231, 0.12);
+  --green: #4ade80;
+  --red: #f87171;
+  --blue: #60a5fa;
+  --amber: #fbbf24;
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+
+  /* map layout tokens to cosmic palette */
+  --lex-editor-bg: var(--bg-void);
+  --lex-sidebar-bg: var(--bg-base);
+  --lex-activity-bg: var(--bg-base);
+  --lex-status-bg: var(--bg-elevated);
+  --lex-input-bg: var(--bg-surface);
+  --lex-tab-active: var(--bg-void);
+  --lex-tab-inactive: var(--bg-raised);
+  --lex-selection: rgba(96, 165, 250, 0.25);
+  --lex-accent: var(--accent);
+  --lex-focus-ring: var(--blue);
+  --lex-text-dim: var(--text-secondary);
+  --lex-border: var(--border-dim);
+  --font-ui: var(--font-sans);
+  --font-code: var(--font-mono);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  background: var(--bg-void);
+  color: var(--text-primary);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 99px;
+}
+
+/* root shell */
+.lex-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-void);
+  position: relative;
+}
+
+.lex-root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(255, 255, 255, 0.012) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(255, 255, 255, 0.008) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lex-topbar {
+  height: 48px;
+  padding: 0 8px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--border-subtle);
+  -webkit-app-region: drag;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.lex-topbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: min(52vw, 720px);
+}
+
+.lex-topbarCenter {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.lex-topbarRight {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.lex-topbarTerminalBtn {
+  border: 1px solid var(--border-dim);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.lex-topbarTerminalBtn:hover {
+  border-color: var(--border-default);
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.lex-privacyTopBar {
+  position: relative;
+  max-width: 100%;
+}
+
+.lex-privacyTopBarBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: min(36vw, 320px);
+  border: 1px solid var(--border-dim);
+  background: var(--bg-surface);
+  border-radius: var(--radius-xs);
+  padding: 3px 8px;
+  cursor: default;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  -webkit-app-region: no-drag;
+}
+
+.lex-privacyTopBarDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+  flex-shrink: 0;
+}
+
+.lex-privacyTopBarLabel {
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.lex-privacyTopBarSummary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.lex-privacyTopPopover {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: min(420px, 92vw);
+  max-height: min(70vh, 420px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-dim);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 300;
+}
+
+.lex-privacyTopPopoverIntro {
+  font-size: 10px;
+  color: var(--text-secondary);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  line-height: 1.4;
+}
+
+.lex-privacyTopPopoverList {
+  list-style: none;
+  overflow-y: auto;
+  padding: 4px 0 8px;
+  margin: 0;
+}
+
+.lex-privacyTopPopoverItem {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lex-privacyTopPopoverItem--empty {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.lex-privacyTopPopoverKind {
+  font-size: 9px;
+  color: var(--blue);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.lex-privacyTopPopoverTime {
+  font-size: 9px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.lex-privacyTopPopoverTitle {
+  font-size: 11px;
+  color: var(--text-primary);
+}
+
+.lex-privacyTopPopoverDetail {
+  font-size: 9px;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.lex-toast-container {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.lex-toast {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-primary);
+  background: rgba(30, 30, 35, 0.95);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: auto;
+  max-width: min(92vw, 560px);
+  text-align: center;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.lex-toast-visible .lex-toast {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lex-toast--success {
+  background: rgba(34, 76, 40, 0.95);
+  border-color: #4ade80;
+}
+
+.lex-toast--error {
+  background: rgba(76, 28, 31, 0.95);
+  border-color: #f87171;
+}
+
+.lex-toast--info {
+  background: rgba(41, 51, 73, 0.95);
+  border-color: #60a5fa;
+}
+
+.lex-brand {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+  flex-shrink: 0;
+  -webkit-app-region: no-drag;
+}
+
+.lex-brand::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background: var(--text-primary);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.lex-windowControls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-left: auto;
+  -webkit-app-region: no-drag;
+}
+
+.lex-windowBtn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 13px;
+  -webkit-app-region: no-drag;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms, color 120ms;
+}
+.lex-windowBtn:hover {
+  background: var(--bg-raised);
+  color: var(--text-primary);
+}
+.lex-windowBtn--close:hover {
+  background: rgba(248, 113, 113, 0.12);
+  color: var(--red);
+}
+
+/* workbench: activity | sidebar | editor column | chat */
+.lex-workbench {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+}
+
+.lex-activityBar {
+  flex: 0 0 48px;
+  width: 48px;
+  background: var(--lex-activity-bg);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.lex-activityBarTop,
+.lex-activityBarBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.lex-activityBarSpacer {
+  flex: 1;
+  min-height: 8px;
+}
+
+.lex-activityBtn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.lex-activityBtn:hover {
+  color: var(--text-primary);
+}
+.lex-activityBtn--active {
+  color: var(--text-primary);
+  box-shadow: inset 2px 0 0 var(--blue);
+}
+
+.lex-sidebar {
+  flex: 0 1 300px;
+  min-width: 250px;
+  max-width: 350px;
+  resize: horizontal;
+  overflow: auto;
+  background: var(--lex-sidebar-bg);
+  border-right: 1px solid var(--border-subtle);
+  padding: 0 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lex-sidebarHeader {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 4px 4px 2px;
+  font-family: var(--font-mono);
+  margin-top: 1px;
+}
+
+.lex-sidebarHeader:first-of-type {
+  margin-top: 0;
+}
+
+.lex-mainColumn {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--lex-editor-bg);
+}
+
+.lex-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* right chat column */
+.lex-chatColumn {
+  flex: 0 0 320px;
+  min-width: 260px;
+  max-width: 480px;
+  resize: horizontal;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg-base);
+  border-left: 1px solid var(--border-subtle);
+  z-index: 1;
+}
+
+.lex-chatColumnHeader {
+  flex-shrink: 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 12px 6px;
+  font-family: var(--font-mono);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.lex-chatTabBar {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px 8px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.lex-chatTabRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  max-width: 100%;
+}
+
+.lex-chatTab {
+  border: 1px solid var(--border-dim);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  max-width: 160px;
+  text-align: left;
+}
+
+.lex-chatTab--active {
+  border-color: var(--border-default);
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.lex-chatTabLabel {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lex-chatTabClose {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 2px 4px;
+  margin-left: -2px;
+}
+
+.lex-chatTabClose:hover {
+  color: var(--text-primary);
+}
+
+.lex-chatTabAdd {
+  flex-shrink: 0;
+  align-self: center;
+  width: 26px;
+  height: 26px;
+  border: 1px dashed var(--border-dim);
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lex-chatTabAdd:hover {
+  border-color: var(--border-default);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+
+.lex-fileTabIcon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.lex-fileTabIconSvg {
+  display: block;
+}
+
+.lex-msgAttachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.lex-msgAttachChip {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-dim);
+  color: var(--text-secondary);
+}
+
+.lex-chatInputRow {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  width: 100%;
+}
+
+.lex-chatAttachBtn {
+  flex: 0 0 32px;
+  min-height: 36px;
+  border: 1px solid var(--border-dim);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 20px;
+  line-height: 1;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+
+.lex-chatAttachBtn:hover:not(:disabled) {
+  border-color: var(--border-default);
+  color: var(--text-primary);
+}
+
+.lex-chatAttachBtn:disabled {
+  opacity: 0.4;
+}
+
+.lex-chatFileInput {
+  display: none;
+}
+
+.lex-chatInput--withAttach {
+  flex: 1;
+  min-width: 0;
+}
+
+.lex-chatPendingFiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.lex-chatPendingChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-dim);
+  color: var(--text-secondary);
+}
+
+.lex-chatPendingRemove {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.lex-codeInline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.lex-editorLineHint {
+  position: absolute;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-dim);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-sm);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.lex-editorLineHintKey {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.lex-editorLineHintLabel {
+  color: var(--text-muted);
+}
+
+.lex-editorLineHintSep {
+  color: var(--text-dim);
+  margin: 0 2px;
+}
+
+.lex-privacyStrip {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.lex-privacyStripToggle {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font-ui);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lex-privacyStripToggle:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+.lex-privacyStripLabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-family: var(--font-mono);
+}
+
+.lex-privacyStripSummary {
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.lex-privacyStripList {
+  list-style: none;
+  max-height: 140px;
+  overflow-y: auto;
+  padding: 0 10px 8px;
+  margin: 0;
+}
+
+.lex-privacyStripItem {
+  font-size: 10px;
+  color: var(--text-secondary);
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lex-privacyStripTime {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.lex-privacyStripTitle {
+  color: var(--text-primary);
+}
+
+.lex-privacyStripDetail {
+  font-size: 9px;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.lex-chatColumn .lex-chatPanel {
+  flex: 1;
+  min-height: 0;
+  padding: 6px 8px 10px;
+}
+
+.lex-msg--system .lex-msgRole {
+  color: var(--green);
+}
+
+.lex-msg--system .lex-msgContent {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  color: var(--text-secondary);
+  font-size: 11px;
+  max-width: 100%;
+}
+
+.lex-chatPresets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.lex-presetBtn {
+  border: 1px solid var(--border-dim);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+
+.lex-presetBtn:hover:not(:disabled) {
+  border-color: var(--border-default);
+  color: var(--text-primary);
+}
+
+.lex-presetBtn:disabled {
+  opacity: 0.4;
+}
+
+.lex-mentionMenu {
+  border: 1px solid var(--border-dim);
+  background: var(--bg-elevated);
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 4px;
+}
+
+.lex-mentionItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.lex-mentionItem:hover {
+  background: var(--bg-hover);
+}
+
+.lex-mentionEmpty {
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: 8px;
+}
+
+.lex-inlineAiBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.lex-inlineAiPopover {
+  position: fixed;
+  z-index: 50;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  width: min(420px, 92vw);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow-md);
+}
+
+.lex-inlineAiTitle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.lex-inlineAiInput {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-family: var(--font-ui);
+  padding: 8px;
+}
+
+.lex-inlineAiActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* editor chrome */
+.lex-editorHost {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  background: var(--lex-editor-bg);
+}
+
+.lex-editorTabsRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  min-height: 35px;
+  background: var(--lex-tab-inactive);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.lex-tabEmpty {
+  font-size: 11px;
+  color: var(--lex-text-dim);
+  padding: 8px 12px;
+  line-height: 35px;
+}
+
+.lex-editorTab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 35px;
+  padding: 0 10px;
+  background: var(--lex-tab-inactive);
+  border: none;
+  border-top: 1px solid transparent;
+  border-right: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  border-radius: 0;
+}
+.lex-editorTab--active {
+  background: var(--lex-tab-active);
+  color: var(--text-primary);
+  border-top: 1px solid var(--blue);
+}
+
+.lex-tabGlyph {
+  font-family: var(--font-code);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.lex-tabGlyph--json {
+  color: var(--amber);
+}
+.lex-tabGlyph--file {
+  width: 12px;
+  height: 14px;
+  border: 1px solid var(--text-muted);
+  display: inline-block;
+}
+
+.lex-editorTabLabel {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lex-tabClose {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 2px;
+  border-radius: 0;
+}
+.lex-editorTab--active .lex-tabClose:hover,
+.lex-tabClose:hover {
+  color: var(--text-primary);
+}
+
+.lex-editorTabsActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 6px;
+  padding-bottom: 2px;
+}
+.lex-editorTabsActions .lex-btn {
+  height: 26px;
+  min-height: 26px;
+  padding: 0 10px;
+  font-size: 10px;
+}
+
+.lex-breadcrumbs {
+  height: 22px;
+  line-height: 22px;
+  padding: 0 12px;
+  font-size: 11px;
+  font-family: var(--font-ui);
+  color: var(--text-secondary);
+  background: var(--lex-editor-bg);
+  border-bottom: 1px solid var(--border-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lex-editorGroup {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+}
+.lex-editorGroup--split .lex-editorPane {
+  flex: 1 1 50%;
+  min-width: 0;
+  border-right: 1px solid var(--border-dim);
+}
+.lex-editorGroup--split .lex-editorPane:last-child {
+  border-right: none;
+}
+
+.lex-editorPane {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lex-editorPaneEmpty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--lex-text-dim);
+  background: var(--lex-editor-bg);
+}
+
+.lex-editorPanel {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lex-editorMonaco {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 0;
+}
+
+.lex-editorEmpty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-base);
+  border: none;
+  padding: 24px;
+}
+
+.lex-editorEmptyContent {
+  text-align: center;
+  max-width: 360px;
+}
+
+.lex-editorEmptyTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.lex-editorEmptyHint {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.lex-editorEmptyHint p {
+  margin-bottom: 12px;
+}
+
+.lex-editorEmptyShortcuts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.lex-editorEmptyShortcuts div {
+  background: var(--bg-surface);
+  padding: 8px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.lex-editorEmptyShortcuts kbd {
+  background: var(--bg-elevated);
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  border: 1px solid var(--border-dim);
+}
+
+/* bottom panel */
+.lex-bottomPanel {
+  flex: 0 0 220px;
+  min-height: 120px;
+  max-height: 50vh;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-base);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lex-bottomPanel--hidden {
+  display: none;
+}
+
+.lex-bottomHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.lex-bottomBody {
+  min-height: 0;
+  flex: 1;
+}
+
+/* status bar */
+.lex-statusBar {
+  flex: 0 0 22px;
+  height: 22px;
+  background: var(--lex-status-bg);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  position: relative;
+  z-index: 20;
+}
+
+.lex-statusBarLeft,
+.lex-statusBarRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.lex-statusItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.lex-statusItem--muted {
+  opacity: 0.85;
+  max-width: 40vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lex-statusIcon {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.lex-statusBtn {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 0;
+}
+.lex-statusBtn:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.lex-commandPalette {
+  position: absolute;
+  bottom: 100%;
+  right: 8px;
+  min-width: 200px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  color: var(--text-primary);
+  font-size: 11px;
+  z-index: 30;
+  box-shadow: var(--shadow-md);
+}
+.lex-commandPaletteTitle {
+  padding: 6px 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-dim);
+}
+.lex-commandPaletteItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 8px 10px;
+  cursor: pointer;
+  font: inherit;
+  border-radius: 0;
+}
+.lex-commandPaletteItem:hover {
+  background: var(--bg-hover);
+}
+
+/* sections */
+.lex-sideSection,
+.lex-settingsView {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lex-sectionTitle {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 4px 5px;
+  margin: 0;
+  font-family: var(--font-mono);
+}
+.lex-sectionTitle--small {
+  padding-top: 4px;
+}
+
+.lex-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.lex-field--row {
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lex-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 2px;
+  font-family: var(--font-mono);
+}
+
+.lex-input,
+select.lex-input,
+textarea {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-ui);
+  outline: none;
+  transition: border-color 120ms, background 120ms;
+}
+.lex-input:hover {
+  border-color: var(--border-default);
+}
+.lex-input:focus {
+  border-color: var(--border-strong);
+  background: var(--bg-elevated);
+}
+
+select.lex-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%2352525b' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 24px;
+  cursor: pointer;
+}
+
+input[type='number'].lex-input {
+  -moz-appearance: textfield;
+}
+input[type='number'].lex-input::-webkit-outer-spin-button,
+input[type='number'].lex-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.lex-btn {
+  border: 1px solid var(--border-default);
+  background: transparent;
+  color: var(--text-primary);
+  padding: 0 14px;
+  height: 32px;
+  min-height: 32px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-family: var(--font-ui);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: background 120ms, border-color 120ms, opacity 120ms;
+}
+.lex-btn:hover:not(:disabled) {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+}
+.lex-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.lex-btn--primary {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg-void);
+}
+.lex-btn--primary:hover:not(:disabled) {
+  background: var(--accent-bright);
+  border-color: var(--accent-bright);
+}
+
+.lex-btn--small {
+  min-height: 22px;
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+.lex-btn--icon {
+  width: 26px;
+  min-height: 26px;
+  padding: 0;
+}
+
+.lex-btn--full {
+  width: 100%;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.lex-btn,
+.lex-input,
+button,
+input,
+select,
+textarea {
+  -webkit-app-region: no-drag;
+}
+
+.lex-subtle {
+  font-size: 11px;
+  color: var(--lex-text-dim);
+  line-height: 1.5;
+}
+
+.lex-empty {
+  font-size: 11px;
+  color: #858585;
+  padding: 8px 4px;
+}
+
+/* mode switch */
+.lex-modeSwitch {
+  display: grid;
+  height: 32px;
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+.lex-modeSwitch--two {
+  grid-template-columns: 1fr 1fr;
+  width: 200px;
+}
+
+.lex-modeBtn {
+  border: none;
+  border-right: 1px solid var(--border-dim);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 120ms, color 120ms;
+}
+.lex-modeBtn:last-child {
+  border-right: none;
+}
+.lex-modeBtn--active {
+  background: var(--bg-raised);
+  color: var(--text-primary);
+}
+
+/* menubar */
+.lex-menubar {
+  display: flex;
+  gap: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  min-width: 0;
+  -webkit-app-region: no-drag;
+}
+
+.lex-menuSlot {
+  position: relative;
+  flex-shrink: 0;
+}
+.lex-menubtn {
+  border: none;
+  background: transparent;
+  color: #969696;
+  padding: 4px 8px;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  -webkit-app-region: no-drag;
+}
+.lex-menubtn:hover,
+.lex-menubtn--active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.lex-menu {
+  position: fixed;
+  left: 0;
+  width: 220px;
+  border: 1px solid #3c3c3c;
+  background: var(--lex-sidebar-bg);
+  padding: 2px 0;
+  z-index: 300;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+.lex-menu--wide {
+  width: min(360px, 70vw);
+}
+.lex-menuItem {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lex-menuHint {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-left: 8px;
+}
+
+.lex-menuDesc {
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: 8px 10px;
+  line-height: 1.35;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.lex-menuItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: #cccccc;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  border-radius: 0;
+}
+.lex-menuItem:hover {
+  background: #094771;
+}
+.lex-menuHint {
+  color: #858585;
+  font-size: 10px;
+}
+
+/* advanced details */
+.lex-advancedDetails {
+  border: 1px solid #3c3c3c;
+  background: var(--lex-editor-bg);
+  overflow: hidden;
+}
+.lex-advancedSummary {
+  list-style: none;
+  cursor: pointer;
+  padding: 8px 10px;
+  color: #969696;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.lex-advancedSummary::-webkit-details-marker {
+  display: none;
+}
+.lex-advancedDetailsBody {
+  padding: 8px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lex-advancedDetails[open] .lex-advancedSummary {
+  background: #2d2d2d;
+  color: #ffffff;
+}
+
+/* chat */
+.lex-chatPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  min-height: 0;
+  padding: 8px;
+}
+.lex-chatList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  min-height: 120px;
+}
+.lex-msg {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.lex-msg--user {
+  align-items: flex-end;
+}
+.lex-msg--assistant {
+  align-items: flex-start;
+}
+.lex-msgRole {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #858585;
+  margin-bottom: 4px;
+  padding: 0 8px;
+}
+.lex-msgContent {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  white-space: pre-wrap;
+  line-height: 1.65;
+  font-size: 13px;
+  max-width: 85%;
+}
+.lex-msg--user .lex-msgContent {
+  background: var(--bg-raised);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dim);
+  border-bottom-right-radius: var(--radius-xs);
+}
+.lex-msg--assistant .lex-msgContent {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  border-bottom-left-radius: var(--radius-xs);
+}
+.lex-chatComposer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lex-chatInput {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: var(--font-ui);
+  outline: none;
+  line-height: 1.6;
+  transition: border-color 120ms, background 120ms;
+}
+.lex-chatInput:focus {
+  border-color: var(--border-strong);
+  background: var(--bg-elevated);
+}
+.lex-chatActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.lex-hint {
+  font-size: 10px;
+  color: #858585;
+}
+
+/* clarify */
+.lex-clarifyMenu {
+  background: var(--lex-sidebar-bg);
+  border: 1px solid #3c3c3c;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lex-clarifyQuestion {
+  font-size: 12px;
+  color: #ffffff;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+.lex-clarifyOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lex-btn--clarify {
+  text-align: left;
+  justify-content: flex-start;
+  height: auto;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+/* plan mode */
+.lex-planCard {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+}
+.lex-planCard--executing {
+  border-color: var(--blue);
+}
+.lex-planCard--rejected {
+  opacity: 0.75;
+}
+.lex-planCardTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.lex-planCardIntro {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+.lex-planSteps {
+  margin: 0 0 10px 1.1em;
+  padding: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+.lex-planStep {
+  margin-bottom: 4px;
+}
+.lex-planStep--done .lex-planStepText {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+.lex-planActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lex-planRejected {
+  font-size: 11px;
+  color: var(--amber);
+  margin-top: 6px;
+}
+.lex-planExecuting {
+  font-size: 10px;
+  color: var(--blue);
+  font-family: var(--font-mono);
+  margin-top: 6px;
+}
+
+/* files / explorer */
+.lex-modelPanel,
+.lex-filesPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lex-filesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.lex-fileBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  min-height: 28px;
+  border: 1px dashed #6e6e6e;
+  background: transparent;
+  color: #cccccc;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font-ui);
+  border-radius: 0;
+}
+.lex-fileBtn:hover {
+  border-style: solid;
+  background: rgba(255, 255, 255, 0.05);
+}
+.lex-fileInput {
+  display: none;
+}
+.lex-filesList {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lex-fileRow {
+  padding: 6px 8px;
+  background: var(--lex-editor-bg);
+  border: 1px solid #3c3c3c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lex-fileName {
+  font-size: 12px;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lex-fileMeta {
+  font-size: 10px;
+  color: #858585;
+}
+
+.lex-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.lex-sideSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lex-explorerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lex-tree {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+}
+.lex-treeRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #2d2d2d;
+  cursor: pointer;
+  user-select: none;
+  min-height: 28px;
+}
+.lex-treeRow:last-child {
+  border-bottom: none;
+}
+.lex-treeRow:hover {
+  background: #2a2d2e;
+}
+.lex-treeRow--selected {
+  background: #37373d;
+}
+.lex-treeIcon {
+  width: 18px;
+  flex-shrink: 0;
+  color: #9d9d9d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lex-treeFileIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #9d9d9d;
+}
+
+.lex-treeName {
+  font-size: 12px;
+  color: #cccccc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  font-family: var(--font-code);
+}
+.lex-treeMeta {
+  margin-left: auto;
+  font-size: 11px;
+  color: #858585;
+}
+
+/* terminal */
+.lex-terminalWrap {
+  border: 1px solid #3c3c3c;
+  background: var(--lex-editor-bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+}
+.lex-terminalHeader {
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid #3c3c3c;
+  background: var(--lex-sidebar-bg);
+}
+.lex-terminal {
+  flex: 1;
+  min-height: 0;
+  padding: 6px 8px;
+  font-family: var(--font-code);
+  font-size: 12px;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+/* logs */
+.lex-logsPanelWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+}
+.lex-logsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.lex-logsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-code);
+  overflow: auto;
+  flex: 1;
+}
+.lex-logLine {
+  font-size: 11px;
+  color: #858585;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  padding: 1px 2px;
+}
+.lex-logLine:hover {
+  color: #cccccc;
+  background: #2d2d2d;
+}
+
+/* onboarding */
+.lex-onboardingOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.lex-onboardingCard {
+  width: min(520px, 92vw);
+  border: 1px solid #3c3c3c;
+  background: var(--lex-sidebar-bg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lex-onboardingSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lex-onboardingStep {
+  border: 1px solid #3c3c3c;
+  background: var(--lex-editor-bg);
+  color: #cccccc;
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  border-radius: 0;
+}
+.lex-onboardingStepNum {
+  font-weight: 700;
+  min-width: 1.5em;
+}
+
+.lex-editorPanel,
+.lex-chatPanel,
+.lex-logsPanel {
+  min-height: 0;
+}
+
+/* legacy tab strip (if any) */
+.lex-tabs {
+  display: flex;
+  gap: 0;
+}
+.lex-tab {
+  border: none;
+  background: transparent;
+  color: #858585;
+  padding: 0 12px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font-ui);
+  border-radius: 0;
+}
+.lex-tab--active {
+  color: #ffffff;
+  background: var(--lex-tab-active);
+}
+
+.lex-editorText {
+  flex: 1;
+  min-height: 0;
+  resize: none;
+  width: 100%;
+  background: var(--lex-input-bg);
+  border: 1px solid #3c3c3c;
+  padding: 10px;
+  color: #ffffff;
+  outline: none;
+  line-height: 1.6;
+  font-family: var(--font-code);
+  font-size: 14px;
+}
