@@ -1,7 +1,28 @@
 {
-  "updated": "2026-03-30T06:43:34.033441+00:00",
+  "updated": "2026-03-31T06:16:51.635837+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "How Ring scales global customer support with Amazon Bedrock Knowledge Bases",
+      "link": "https://aws.amazon.com/blogs/machine-learning/how-ring-scales-global-customer-support-with-amazon-bedrock-knowledge-bases/",
+      "date": "2026-03-30T15:29:02+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, you'll learn how Ring implemented metadata-driven filtering for Region-specific content, separated content management into ingestion, evaluation and promotion workflows, and achieved cost savings while scaling up."
+    },
+    {
+      "title": "Build a solar flare detection system on SageMaker AI LSTM networks and ESA STIX data",
+      "link": "https://aws.amazon.com/blogs/machine-learning/build-a-solar-flare-detection-system-on-sagemaker-ai-lstm-networks-and-esa-stix-data/",
+      "date": "2026-03-30T15:20:24+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we show you how to use Amazon SageMaker AI to build and deploy a deep learning model for detecting solar flares using data from the European Space Agency's STIX instrument."
+    },
+    {
+      "title": "Deliver hyper-personalized viewer experiences with an agentic AI movie assistant using Amazon Bedrock AgentCore and Amazon Nova Sonic 2.0",
+      "link": "https://aws.amazon.com/blogs/machine-learning/deliver-hyper-personalized-viewer-experiences-with-an-agentic-ai-movie-assistant-using-amazon-bedrock-agentcore-and-amazon-nova-sonic-2-0/",
+      "date": "2026-03-30T15:17:26+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we walk through two use cases that help enhance the user viewing experience using agentic AI tools and frameworks including Strands Agents SDK, Amazon Bedrock AgentCore, and Amazon Nova Sonic 2.0. This agentic AI system uses a Model Context Protocol (MCP) to deliver"
+    },
     {
       "title": "Helping disaster response teams turn AI into action across Asia",
       "link": "https://openai.com/index/helping-disaster-response-teams-asia",
@@ -157,18 +178,18 @@
       "summary": "OpenAI releases prompt-based teen safety policies for developers using gpt-oss-safeguard, helping moderate age-specific risks in AI systems."
     },
     {
-      "title": "Powering product discovery in ChatGPT",
-      "link": "https://openai.com/index/powering-product-discovery-in-chatgpt",
-      "date": "2026-03-24T09:00:00+00:00",
-      "source": "OpenAI",
-      "summary": "ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration."
-    },
-    {
       "title": "Update on the OpenAI Foundation",
       "link": "https://openai.com/index/update-on-the-openai-foundation",
       "date": "2026-03-24T09:00:00+00:00",
       "source": "OpenAI",
       "summary": "The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs."
+    },
+    {
+      "title": "Powering product discovery in ChatGPT",
+      "link": "https://openai.com/index/powering-product-discovery-in-chatgpt",
+      "date": "2026-03-24T09:00:00+00:00",
+      "source": "OpenAI",
+      "summary": "ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration."
     },
     {
       "title": "A New Framework for Evaluating Voice Agents (EVA)",
@@ -190,27 +211,6 @@
       "date": "2026-03-23T16:46:54+00:00",
       "source": "AWS ML Blog",
       "summary": "In this blog post, we show you how Reco implemented Amazon Bedrock to help transform security alerts and achieve significant improvements in incident response times."
-    },
-    {
-      "title": "Integrating Amazon Bedrock AgentCore with Slack",
-      "link": "https://aws.amazon.com/blogs/machine-learning/integrating-amazon-bedrock-agentcore-with-slack/",
-      "date": "2026-03-23T16:38:56+00:00",
-      "source": "AWS ML Blog",
-      "summary": "In this post, we demonstrate how to build a Slack integration using AWS Cloud Development Kit (AWS CDK). You will learn how to deploy the infrastructure with three specialized AWS Lambda functions, configure event subscriptions properly to handle Slack's security requirements, an"
-    },
-    {
-      "title": "Overcoming LLM hallucinations in regulated industries: Artificial Genius\u2019s deterministic models on Amazon Nova",
-      "link": "https://aws.amazon.com/blogs/machine-learning/overcoming-llm-hallucinations-in-regulated-industries-artificial-geniuss-deterministic-models-on-amazon-nova/",
-      "date": "2026-03-23T16:34:37+00:00",
-      "source": "AWS ML Blog",
-      "summary": "In this post, we\u2019re excited to showcase how AWS ISV Partner Artificial Genius is using Amazon SageMaker AI and Amazon Nova to deliver a solution that is probabilistic on input but deterministic on output, helping to enable safe, enterprise-grade adoption."
-    },
-    {
-      "title": "Deploying Disaggregated LLM Inference Workloads on Kubernetes",
-      "link": "https://developer.nvidia.com/blog/deploying-disaggregated-llm-inference-workloads-on-kubernetes/",
-      "date": "2026-03-23T07:01:00Z",
-      "source": "NVIDIA Developer",
-      "summary": "As large language model (LLM) inference workloads grow in complexity, a single monolithic serving process starts to hit its limits. Prefill and decode stages..."
     }
   ]
 }
