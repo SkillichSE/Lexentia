@@ -1,0 +1,187 @@
+
+1. Tool System
+
+File Operations:
+- File reading (txt, md, ts, js, json, images, PDFs)
+- File writing (create/overwrite)
+- File editing (partial modification, string replacement)
+- File existence checking
+
+Search Tools:
+- Content search within files (grep/ripgrep)
+- File pattern matching (glob)
+- Filename search
+
+Shell Tool:
+- Shell command execution (bash/PowerShell)
+- Command output capture
+- Working directory management
+
+Web Tools:
+- Web search
+- URL content fetching
+
+Agent Tools:
+- Sub-agent spawning
+- Inter-agent messaging
+- Team creation/deletion
+
+Task Tools:
+- Task creation
+- Task status updates
+- Task listing
+- Task stopping
+
+Planning Tools:
+- Enter plan mode
+- Exit plan mode
+
+Git Workflow Tools:
+- Worktree operations
+- Change isolation
+
+Notebook Tool:
+- Jupyter notebook editing (.ipynb)
+
+2. MCP (Model Context Protocol)
+- MCP server connections
+- MCP tool invocation
+- MCP resource reading
+- MCP command management
+- MCP authentication
+
+3. LSP Integration
+- Language Server Protocol connection
+- Diagnostic retrieval (errors, warnings)
+- Go to definition
+- Find references
+- Code completion
+- Hover information
+
+4. Repository Context
+
+Git Context:
+- Current branch
+- Change status (modified, staged, untracked)
+- Recent commits
+- Git user name
+- Main branch for PRs
+
+Project Structure:
+- File listing
+- Directory tree
+- Ignored files (.gitignore)
+
+5. Persistent Memory
+- Session-to-session memory persistence
+- Relevant memory retrieval
+- Automatic memory extraction from conversations
+- Cross-device memory sync
+
+6. Slash Commands
+- /commit - create git commit
+- /review - code review
+- /compact - context compression
+- /mcp - MCP server management
+- /config - settings
+- /doctor - environment diagnostics
+- /memory - memory management
+- /tasks - task management
+- /cost - usage cost check
+- /theme - theme change
+- /context - context visualization
+- /diff - view changes
+- /resume - restore session
+
+7. Permission System
+- Pre-execution permission checks
+- Permission modes (auto/ask/always allow)
+- Granular rules (by directory, by tool)
+- Bypass permissions mode
+- Auto mode with classifier
+
+8. Bridge/Remote Control
+- IDE bridge connection
+- Remote session management
+- JWT authentication
+- API session management
+- Session teleport between devices
+
+9. Analytics & Telemetry
+- Feature flags (GrowthBook)
+- A/B testing
+- Token usage tracking
+- Request cost calculation
+- Analytics opt-out
+- Diagnostic logging
+
+10. Context Compression
+- Automatic compression when limit exceeded
+- Smart old message removal
+- History compaction (snip)
+- Tool-use summarization
+- Reactive compaction
+
+11. Error Handling & Retry
+- Retryable API error categorization
+- Exponential backoff
+- Model fallback on errors
+- Rate limit handling
+- Circuit breaker pattern
+
+12. RAG & Code Search
+- Codebase indexing
+- Vector search
+- Semantic search
+- Real-time indexing
+- Relevant file prioritization (beyond keyword-based)
+
+13. Streaming
+- Full streaming with chunks
+- Tool execution progress display
+- Tool result streaming
+- Execution cancellation (abort controller)
+
+14. State Management
+- Centralized app state (AppState)
+- Persisted store
+- Session history
+- Crash recovery
+
+15. Skills System
+- Skill file loading
+- Skill workflow execution
+- Built-in skills
+- Custom skills
+
+16. Plugins
+- Plugin system
+- Third-party plugin loading
+- Plugin marketplace
+- Versioned plugins
+
+17. Automation & Triggers
+- Cron jobs
+- Remote triggers
+- File monitoring
+- Proactive mode (autonomous operation)
+
+18. Security
+- Command execution sandbox
+- Path traversal checks
+- Directory restrictions
+- Audit logging
+
+19. UX Improvements
+- Change preview before applying
+- Diff viewer
+- Undo/Redo for changes
+- Command suggestions
+- Autocompletion
+
+20. Integrations
+- GitHub integration (PR comments, webhooks)
+- OAuth flow
+- Claude AI integration
+- AWS Bedrock / GCP Vertex (enterprise)
+- Browser automation

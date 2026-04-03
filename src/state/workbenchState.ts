@@ -59,7 +59,8 @@ export function loadWorkbenchState(): WorkbenchState {
   if (!raw) return DEFAULTS
   try {
     const parsed = JSON.parse(raw) as Partial<WorkbenchState> & { version?: number }
-    if (parsed.version !== 1 && parsed.version !== 2) return DEFAULTS
+    const version = Number(parsed.version ?? 0)
+    if (version < 1 || version > 2) return DEFAULTS
     return {
       version: 2,
       activityView: normalizeActivityView(parsed.activityView),

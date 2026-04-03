@@ -100,6 +100,11 @@ export function MenuBar({
         e.preventDefault()
         onAction('file.reload')
       }
+      const isTerminal = (e.ctrlKey || e.metaKey) && e.key === '`'
+      if (isTerminal) {
+        e.preventDefault()
+        onAction('terminal.new')
+      }
       if (e.key === 'Escape') setOpen(null)
     }
     window.addEventListener('keydown', onDown)
@@ -151,6 +156,15 @@ export function MenuBar({
           desc: 'Run and debug — configurations coming later.',
           items: [{ label: 'Start debugging', disabled: true }],
         },
+        terminal: {
+          title: 'Terminal',
+          desc: 'Manage terminal sessions, execute commands.',
+          items: [
+            { label: 'New Terminal', hint: 'Ctrl+`', action: 'terminal.new' as const },
+            { label: 'Kill Terminal', disabled: true },
+            { label: 'Clear Terminal', disabled: true },
+          ],
+        },
         help: {
           title: 'Help',
           desc: 'Updates, documentation, community.',
@@ -165,7 +179,9 @@ export function MenuBar({
       {(Object.keys(menus) as (keyof typeof menus)[]).map((id) => (
         <div key={id} className="lex-menuSlot">
           <button
-            ref={(el) => (buttonRefs.current[id] = el)}
+            ref={(el) => {
+              buttonRefs.current[id] = el
+            }}
             type="button"
             className={open === id ? 'lex-menubtn lex-menubtn--active' : 'lex-menubtn'}
             onClick={() => toggleMenu(id)}

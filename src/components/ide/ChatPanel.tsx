@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useMemo, useRef, useState, type ForwardedRef } f
 import { ClarificationMenu } from '../ClarificationMenu'
 import { PlanCard } from './PlanCard'
 import type { ChatPlanBlock } from './chatPlanTypes'
+import { InlineDiffPanel, type InlineDiffChange } from './InlineDiffPanel'
 
 export type { ChatPlanBlock } from './chatPlanTypes'
 
@@ -22,6 +23,7 @@ export type ChatMessage = {
   createdAt: number
   attachments?: ChatAttachment[]
   plan?: ChatPlanBlock
+  changes?: InlineDiffChange[]
 }
 
 export type ChatPanelRef = {
@@ -34,6 +36,31 @@ function id() {
 
 const MAX_ATTACH_BYTES = 800_000
 
+type MessageSegment =
+  | { kind: 'text'; text: string }
+  | { kind: 'code'; language: string; code: string }
+
+function parseMessageSegments(content: string): MessageSegment[] {
+  const parts: MessageSegment[] = []
+  const re = /```([\w-]+)?\n?([\s\S]*?)```/g
+  let last = 0
+  let m: RegExpExecArray | null
+  while ((m = re.exec(content)) !== null) {
+    if (m.index > last) {
+      parts.push({ kind: 'text', text: content.slice(last, m.index) })
+    }
+    parts.push({
+      kind: 'code',
+      language: (m[1] ?? '').trim(),
+      code: (m[2] ?? '').replace(/\n$/, ''),
+    })
+    last = re.lastIndex
+  }
+  if (last < content.length) parts.push({ kind: 'text', text: content.slice(last) })
+  if (parts.length === 0) parts.push({ kind: 'text', text: content })
+  return parts
+}
+
 function ChatPanelImpl(
   {
     messages,
@@ -44,6 +71,8 @@ function ChatPanelImpl(
     mentionCandidates,
     onPlanAllow,
     onPlanReject,
+    onDiffApply,
+    onDiffCancel,
   }: {
     messages: ChatMessage[]
     onSend: (text: string, options?: { attachments?: ChatAttachment[] }) => void
@@ -53,6 +82,8 @@ function ChatPanelImpl(
     mentionCandidates?: string[]
     onPlanAllow?: (messageId: string) => void
     onPlanReject?: (messageId: string) => void
+    onDiffApply?: (messageId: string, changeId: string) => void
+    onDiffCancel?: (messageId: string, changeId: string) => void
   },
   ref: ForwardedRef<ChatPanelRef>,
 ) {
@@ -211,13 +242,28 @@ function ChatPanelImpl(
               </div>
             ) : null}
             <div className="lex-msgContent">
-              {m.content.split('\n').map((line, i, arr) => (
-                <span key={i}>
-                  {line}
-                  {i < arr.length - 1 && <br />}
-                </span>
-              ))}
+              {parseMessageSegments(m.content).map((seg, i) =>
+                seg.kind === 'text' ? (
+                  <div key={`${m.id}-text-${i}`} className="lex-msgText">
+                    {seg.text}
+                  </div>
+                ) : (
+                  <div key={`${m.id}-code-${i}`} className="lex-msgCodeBlock">
+                    {seg.language ? <div className="lex-msgCodeLang">{seg.language}</div> : null}
+                    <pre className="lex-msgCodePre">
+                      <code>{seg.code}</code>
+                    </pre>
+                  </div>
+                ),
+              )}
             </div>
+            {m.role === 'assistant' && m.changes?.length ? (
+              <InlineDiffPanel
+                changes={m.changes}
+                onApply={(changeId) => onDiffApply?.(m.id, changeId)}
+                onCancel={(changeId) => onDiffCancel?.(m.id, changeId)}
+              />
+            ) : null}
             {m.role === 'assistant' && m.plan ? (
               <PlanCard
                 plan={m.plan}

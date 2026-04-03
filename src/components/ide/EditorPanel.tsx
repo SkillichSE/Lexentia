@@ -268,13 +268,15 @@ export function EditorPanel({
               if (p && pathRef.current && lineHasMarker(editor, monaco, p.lineNumber)) fixRef.current?.(p.lineNumber)
             })
             editor.onKeyDown((e) => {
-              const isSave = (e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')
+              // cast to any to access browser key property
+              const evt = e as any
+              const isSave = (evt.ctrlKey || evt.metaKey) && (evt.key === 's' || evt.key === 'S')
               if (isSave) {
                 e.preventDefault()
                 onSave?.()
                 return
               }
-              const isInline = (e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')
+              const isInline = (evt.ctrlKey || evt.metaKey) && (evt.key === 'k' || evt.key === 'K')
               if (isInline && onInlineAi) {
                 e.preventDefault()
                 e.stopPropagation()

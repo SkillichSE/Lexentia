@@ -1,0 +1,384 @@
+/* Diff Viewer Styles - VS Code Theme */
+
+.diff-viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--vscode-editor-background);
+  border: 1px solid var(--vscode-border);
+  border-radius: 0;
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--vscode-foreground);
+}
+
+/* Header */
+.diff-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--vscode-editor-background);
+  border-bottom: 1px solid var(--vscode-border);
+  min-height: 35px;
+}
+
+.diff-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diff-title h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vscode-foreground);
+}
+
+.diff-count {
+  font-size: 11px;
+  color: var(--vscode-descriptionForeground);
+  background: var(--vscode-button-secondaryBackground);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.diff-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.diff-btn {
+  background: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  border: none;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-family: var(--vscode-font-family);
+  border-radius: 0;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.1s;
+}
+
+.diff-btn:hover:not(:disabled) {
+  background: var(--vscode-button-hoverBackground);
+}
+
+.diff-btn:disabled {
+  background: var(--vscode-button-secondaryBackground);
+  color: var(--vscode-button-secondaryForeground);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.diff-btn-accept {
+  background: var(--vscode-testing-iconPassed);
+}
+
+.diff-btn-accept:hover:not(:disabled) {
+  background: #3da06e;
+}
+
+.diff-btn-reject {
+  background: var(--vscode-errorForeground);
+}
+
+.diff-btn-reject:hover:not(:disabled) {
+  background: #f14c4c;
+}
+
+.diff-btn-small {
+  background: transparent;
+  color: var(--vscode-foreground);
+  border: 1px solid var(--vscode-border);
+  padding: 2px 8px;
+  font-size: 10px;
+  min-width: 60px;
+}
+
+.diff-btn-small:hover:not(:disabled) {
+  background: var(--vscode-button-secondaryBackground);
+}
+
+.diff-btn-accepted {
+  background: var(--vscode-testing-iconPassed);
+  color: white;
+  border-color: var(--vscode-testing-iconPassed);
+}
+
+.diff-btn-rejected {
+  background: var(--vscode-errorForeground);
+  color: white;
+  border-color: var(--vscode-errorForeground);
+}
+
+/* Sections */
+.diff-sections {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.diff-section {
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.diff-section:last-child {
+  border-bottom: none;
+}
+
+.diff-section-accepted {
+  background: rgba(40, 167, 69, 0.05);
+}
+
+.diff-section-rejected {
+  background: rgba(220, 53, 69, 0.05);
+}
+
+.diff-section-pending {
+  background: rgba(255, 193, 7, 0.05);
+}
+
+.diff-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.1s;
+  min-height: 32px;
+}
+
+.diff-section-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.diff-section-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.diff-section-status {
+  font-size: 14px;
+  font-weight: bold;
+  width: 16px;
+  text-align: center;
+}
+
+.diff-section-file {
+  font-family: var(--vscode-font-family);
+  font-size: 12px;
+  color: var(--vscode-foreground);
+  font-weight: 500;
+}
+
+.diff-section-type {
+  font-size: 10px;
+  color: var(--vscode-descriptionForeground);
+  background: var(--vscode-badge-background);
+  padding: 1px 4px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.diff-section-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.diff-expand-icon {
+  font-size: 10px;
+  color: var(--vscode-foreground);
+  margin-left: 4px;
+  width: 12px;
+  text-align: center;
+}
+
+/* Content */
+.diff-content {
+  border-top: 1px solid var(--vscode-border);
+  background: var(--vscode-editor-background);
+}
+
+.diff-file-header {
+  background: var(--vscode-editor-lineHighlightBackground);
+  padding: 4px 16px;
+  font-size: 11px;
+  color: var(--vscode-foreground);
+  font-family: var(--vscode-font-family);
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.diff-code {
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  background: var(--vscode-editor-background);
+}
+
+.diff-code code {
+  font-family: var(--vscode-code-font-family);
+  font-size: var(--vscode-code-font-size);
+  line-height: 1.4;
+  white-space: pre;
+  color: var(--vscode-foreground);
+}
+
+.diff-create {
+  border-left: 3px solid var(--vscode-testing-iconPassed);
+}
+
+.diff-delete {
+  border-left: 3px solid var(--vscode-errorForeground);
+}
+
+/* React Diff View overrides */
+.diff-viewer .diff {
+  background: var(--vscode-editor-background);
+  font-family: var(--vscode-code-font-family);
+  font-size: var(--vscode-code-font-size);
+}
+
+.diff-viewer .diff-split {
+  display: flex;
+}
+
+.diff-viewer .diff-column {
+  flex: 1;
+  overflow: hidden;
+}
+
+.diff-viewer .diff-gutter {
+  background: var(--vscode-editorGutter-background);
+  color: var(--vscode-editorLineNumber-foreground);
+  border-right: 1px solid var(--vscode-border);
+  padding: 0 8px;
+  text-align: right;
+  user-select: none;
+  font-size: var(--vscode-code-font-size);
+  line-height: 1.4;
+}
+
+.diff-viewer .diff-code {
+  padding: 0 12px;
+  white-space: pre;
+  font-family: var(--vscode-code-font-family);
+  font-size: var(--vscode-code-font-size);
+  line-height: 1.4;
+}
+
+.diff-viewer .diff-hunk {
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.diff-viewer .diff-hunk:last-child {
+  border-bottom: none;
+}
+
+.diff-viewer .diff-line {
+  display: flex;
+}
+
+.diff-viewer .diff-line-insert {
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.diff-viewer .diff-line-delete {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.diff-viewer .diff-line-selected {
+  background: var(--vscode-editor-selectionBackground);
+}
+
+/* Footer */
+.diff-footer {
+  padding: 8px 16px;
+  background: var(--vscode-editor-background);
+  border-top: 1px solid var(--vscode-border);
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.diff-summary {
+  display: flex;
+  gap: 16px;
+}
+
+.diff-summary-item {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.diff-summary-item.accepted {
+  color: var(--vscode-testing-iconPassed);
+}
+
+.diff-summary-item.rejected {
+  color: var(--vscode-errorForeground);
+}
+
+.diff-summary-item.pending {
+  color: var(--vscode-warningForeground);
+}
+
+/* Scrollbar */
+.diff-viewer::-webkit-scrollbar {
+  width: 10px;
+}
+
+.diff-viewer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.diff-viewer::-webkit-scrollbar-thumb {
+  background: var(--vscode-scrollbarSlider-background);
+  border-radius: 0;
+}
+
+.diff-viewer::-webkit-scrollbar-thumb:hover {
+  background: var(--vscode-scrollbarSlider-hoverBackground);
+}
+
+.diff-viewer::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .diff-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .diff-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .diff-section-actions {
+    align-self: flex-end;
+  }
+  
+  .diff-viewer .diff-split {
+    flex-direction: column;
+  }
+  
+  .diff-viewer .diff-column {
+    border-bottom: 1px solid var(--vscode-border);
+  }
+  
+  .diff-viewer .diff-column:last-child {
+    border-bottom: none;
+  }
+}

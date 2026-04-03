@@ -17,6 +17,9 @@ declare global {
         }>
         readFile: (relPath: string) => Promise<{ ok: boolean; content?: string; error?: string }>
         writeFile: (relPath: string, content: string) => Promise<{ ok: boolean; error?: string }>
+        watchDir: (relPath: string) => Promise<{ ok: boolean; error?: string }>
+        unwatchDir: (relPath: string) => Promise<{ ok: boolean; error?: string }>
+        onDirChanged: (cb: (payload: { relPath: string }) => void) => () => void
       }
       terminal: {
         create: (opts?: { cwd?: string | null }) => Promise<{ ok: boolean; id?: string }>

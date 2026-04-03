@@ -141,9 +141,25 @@ When analyzing a line of code:
 
 ## FORMAT OF ANSWERS
 - Be direct and concrete. No filler phrases.
-- For code: include it inline in the "answer" field, formatted as plain text with newlines.
+- For code: include it in "answer". Fenced code blocks are allowed and preferred:
+  \`\`\`ts
+  // code
+  \`\`\`
 - For terminal commands: prefix them clearly, e.g. "Run in Terminal:" or "Execute in Terminal:".
 - Keep answers focused. Do not repeat the user's question back.
+
+## WHEN USER ASKS TO CHANGE FILES
+Prefer one of these two output styles inside "answer":
+1) Unified diff:
+--- a/path/to/file
++++ b/path/to/file
+@@ ...
+2) File marker + fenced block:
+file: path/to/file
+\`\`\`language
+...full replacement content...
+\`\`\`
+Do not invent paths. Use only workspace-relative paths.
 `
 
 /** Shorter system prompt for small local models (7B–8B) to save context window. */
@@ -165,6 +181,10 @@ KEY RULES:
 - Code analysis: Explain the line, or (if error) explain the issue and propose fix.
 - Terminal commands: Give exact command, prefix "Run in Terminal:".
 - Never invent non-existent UI buttons or actions.
+- If returning code/file changes, prefer:
+  - file: path/to/file + fenced block, or
+  - unified diff (--- a/..., +++ b/...).
+- Fenced code blocks are allowed in "answer".
 
 REAL UI: Settings, Explorer, Chat, Editor, Terminal, Logs only.
 Be concise. Code goes plain-text in "answer" field.
@@ -182,6 +202,12 @@ OUTPUT — JSON ONLY:
 For code analysis: explain briefly or propose a fix.
 For commands: write exact command.
 Never ask for clarification on code—give best answer.
+If changing files, prefer:
+file: path/to/file
+\`\`\`
+code
+\`\`\`
+or unified diff format.
 `.trim()
 
 function safeJsonParse(input: string): any | null {

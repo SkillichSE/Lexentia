@@ -1,4 +1,4 @@
-export type PersistedChatRole = 'user' | 'assistant'
+export type PersistedChatRole = 'user' | 'assistant' | 'system'
 
 export type PersistedMessage = {
   id: string

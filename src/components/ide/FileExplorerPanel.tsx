@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { TreeFileIcon } from './TreeFileIcon'
 
 type DirEntry = { name: string; isDir: boolean; size: number; mtimeMs: number }
@@ -77,6 +77,13 @@ export function FileExplorerPanel({
   const [root, setRoot] = useState<TreeNode | null>(null)
   const [selectedRelPath, setSelectedRelPath] = useState<string | null>(null)
   const [newFolderPrompt, setNewFolderPrompt] = useState(false)
+  const [watchedDirs, setWatchedDirs] = useState<Set<string>>(new Set())
+  const watchedDirsRef = useRef<Set<string>>(new Set())
+
+  const replaceWatchedDirs = (next: Set<string>) => {
+    watchedDirsRef.current = next
+    setWatchedDirs(next)
+  }
 
   useEffect(() => {
     if (activeRelPath) setSelectedRelPath(activeRelPath)
@@ -146,6 +153,25 @@ export function FileExplorerPanel({
           : prev,
       )
     })
+    for (const rel of watchedDirsRef.current) {
+      void window.lexentia.fs.unwatchDir(rel)
+    }
+    void window.lexentia.fs.watchDir('.')
+    replaceWatchedDirs(new Set(['.']))
+  }
+
+  const refreshDirNode = async (relPath: string) => {
+    const { entries, error } = await loadDir(relPath)
+    setRoot((prev) =>
+      prev
+        ? patchNode(prev, relPath, (n) => ({
+            ...n,
+            loading: false,
+            error,
+            children: sortEntries(entries).map((e) => toNode(e, relPath)),
+          }))
+        : prev,
+    )
   }
 
   const openFolder = async () => {
@@ -168,6 +194,26 @@ export function FileExplorerPanel({
       )
     })
   }
+
+  useEffect(() => {
+    const off = window.lexentia.fs.onDirChanged(({ relPath }) => {
+      if (!root) return
+      if (relPath === '.') {
+        void refreshDirNode('.')
+        return
+      }
+      void refreshDirNode(relPath)
+    })
+    return () => off()
+  }, [root])
+
+  useEffect(() => {
+    return () => {
+      for (const rel of watchedDirsRef.current) {
+        void window.lexentia.fs.unwatchDir(rel)
+      }
+    }
+  }, [])
 
   const collapseAll = () => {
     const patch = (n: TreeNode): TreeNode => ({
@@ -213,6 +259,15 @@ export function FileExplorerPanel({
 
     if (!willExpand) {
       setRoot((prev) => (prev ? patchNode(prev, node.relPath, (n) => ({ ...n, expanded: false })) : prev))
+      if (watchedDirs.has(node.relPath)) {
+        void window.lexentia.fs.unwatchDir(node.relPath)
+        setWatchedDirs((prev) => {
+          const next = new Set(prev)
+          next.delete(node.relPath)
+          watchedDirsRef.current = next
+          return next
+        })
+      }
       return
     }
 
@@ -226,20 +281,16 @@ export function FileExplorerPanel({
         : prev,
     )
 
-    // Lazy load children only if not already loaded
-    if (node.children) return
+    if (!watchedDirs.has(node.relPath)) {
+      void window.lexentia.fs.watchDir(node.relPath)
+      setWatchedDirs((prev) => {
+        const next = new Set([...prev, node.relPath])
+        watchedDirsRef.current = next
+        return next
+      })
+    }
 
-    const { entries, error } = await loadDir(node.relPath)
-    setRoot((prev) =>
-      prev
-        ? patchNode(prev, node.relPath, (n) => ({
-            ...n,
-            loading: false,
-            error,
-            children: sortEntries(entries).map((e) => toNode(e, node.relPath)),
-          }))
-        : prev,
-    )
+    await refreshDirNode(node.relPath)
   }
 
   return (

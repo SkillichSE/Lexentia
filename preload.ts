@@ -9,6 +9,13 @@ contextBridge.exposeInMainWorld('lexentia', {
     listDir: (relPath: string) => ipcRenderer.invoke('fs:listDir', relPath),
     readFile: (relPath: string) => ipcRenderer.invoke('fs:readFile', relPath),
     writeFile: (relPath: string, content: string) => ipcRenderer.invoke('fs:writeFile', relPath, content),
+    watchDir: (relPath: string) => ipcRenderer.invoke('fs:watchDir', relPath),
+    unwatchDir: (relPath: string) => ipcRenderer.invoke('fs:unwatchDir', relPath),
+    onDirChanged: (cb: (payload: { relPath: string }) => void) => {
+      const listener = (_evt: any, payload: { relPath: string }) => cb(payload)
+      ipcRenderer.on('fs:dirChanged', listener)
+      return () => ipcRenderer.removeListener('fs:dirChanged', listener)
+    },
   },
   terminal: {
     create: (opts?: { cwd?: string | null }) => ipcRenderer.invoke('term:create', opts),

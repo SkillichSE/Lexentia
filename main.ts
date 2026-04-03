@@ -12,6 +12,8 @@ type TerminalEntry =
   | { kind: 'pty'; ptyProcess: pty.IPty; cwd: string | null }
   | { kind: 'proc'; process: ChildProcessWithoutNullStreams; cwd: string | null }
 const terminals = new Map<string, TerminalEntry>()
+const dirWatchers = new Map<string, fs.FSWatcher>()
+const dirWatchDebounce = new Map<string, NodeJS.Timeout>()
 
 type InstalledExtensionInfo = {
   namespace: string
@@ -166,6 +168,22 @@ function resolveInWorkspace(relPath: string) {
   return abs
 }
 
+function broadcastDirChanged(relPath: string) {
+  for (const win of BrowserWindow.getAllWindows()) {
+    win.webContents.send('fs:dirChanged', { relPath })
+  }
+}
+
+function scheduleDirChanged(relPath: string) {
+  const existing = dirWatchDebounce.get(relPath)
+  if (existing) clearTimeout(existing)
+  const t = setTimeout(() => {
+    dirWatchDebounce.delete(relPath)
+    broadcastDirChanged(relPath)
+  }, 120)
+  dirWatchDebounce.set(relPath, t)
+}
+
 function runGit(args: string[]): Promise<{ ok: boolean; output: string; error?: string }> {
   return new Promise((resolve) => {
     if (!workspaceRoot) {
@@ -276,6 +294,41 @@ async function registerIpcHandlers() {
     const abs = resolveInWorkspace(relPath)
     await fsp.mkdir(path.dirname(abs), { recursive: true })
     await fsp.writeFile(abs, content ?? '', 'utf-8')
+    return { ok: true }
+  })
+
+  ipcMain.handle('fs:watchDir', async (_evt, relPath: string) => {
+    const key = relPath || '.'
+    if (dirWatchers.has(key)) return { ok: true }
+    try {
+      const abs = resolveInWorkspace(key)
+      const watcher = fs.watch(abs, { persistent: false }, () => {
+        scheduleDirChanged(key)
+      })
+      watcher.on('error', () => {
+        try {
+          watcher.close()
+        } catch {}
+        dirWatchers.delete(key)
+      })
+      dirWatchers.set(key, watcher)
+      return { ok: true }
+    } catch (e: any) {
+      return { ok: false, error: e?.message ?? String(e) }
+    }
+  })
+
+  ipcMain.handle('fs:unwatchDir', async (_evt, relPath: string) => {
+    const key = relPath || '.'
+    const watcher = dirWatchers.get(key)
+    if (!watcher) return { ok: true }
+    try {
+      watcher.close()
+    } catch {}
+    dirWatchers.delete(key)
+    const debounce = dirWatchDebounce.get(key)
+    if (debounce) clearTimeout(debounce)
+    dirWatchDebounce.delete(key)
     return { ok: true }
   })
 

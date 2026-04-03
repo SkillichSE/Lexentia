@@ -1,0 +1,259 @@
+/* Token Monitor Styles - VS Code Theme */
+
+.token-monitor {
+  display: flex;
+  flex-direction: column;
+  background: var(--vscode-editor-background);
+  border: 1px solid var(--vscode-border);
+  border-radius: 0;
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--vscode-foreground);
+  padding: 12px;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+/* Header */
+.token-monitor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--vscode-border);
+}
+
+.token-monitor-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vscode-foreground);
+}
+
+.token-monitor-status {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+.token-monitor-status.active {
+  background: rgba(40, 167, 69, 0.2);
+  color: var(--vscode-testing-iconPassed);
+}
+
+.token-monitor-status.idle {
+  background: var(--vscode-button-secondaryBackground);
+  color: var(--vscode-descriptionForeground);
+}
+
+/* Metrics Grid */
+.token-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.metric-card {
+  background: var(--vscode-editor-background);
+  border: 1px solid var(--vscode-border);
+  border-radius: 0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-card:hover {
+  background: var(--vscode-list-hoverBackground);
+}
+
+.metric-label {
+  font-size: 10px;
+  color: var(--vscode-descriptionForeground);
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vscode-foreground);
+  font-family: var(--vscode-code-font-family);
+}
+
+.metric-subtitle {
+  font-size: 9px;
+  color: var(--vscode-descriptionForeground);
+  opacity: 0.8;
+}
+
+/* Progress Bars */
+.metric-bar {
+  width: 100%;
+  height: 3px;
+  background: var(--vscode-progressBar-background);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.metric-bar-fill {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  border-radius: 1px;
+}
+
+/* Performance Indicators */
+.performance-indicators {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--vscode-border);
+}
+
+.indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.indicator-label {
+  font-size: 9px;
+  color: var(--vscode-descriptionForeground);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.indicator-value {
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Compact Mode */
+.token-monitor.compact {
+  padding: 8px;
+  min-width: 200px;
+}
+
+.token-monitor.compact .token-metrics-grid {
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.token-monitor.compact .metric-card {
+  padding: 6px;
+}
+
+.token-monitor.compact .metric-value {
+  font-size: 12px;
+}
+
+.token-monitor.compact .performance-indicators {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.token-monitor.compact .indicator {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Status Colors */
+.token-monitor .metric-value.fast {
+  color: var(--vscode-testing-iconPassed);
+}
+
+.token-monitor .metric-value.medium {
+  color: var(--vscode-warningForeground);
+}
+
+.token-monitor .metric-value.slow {
+  color: var(--vscode-errorForeground);
+}
+
+.token-monitor .metric-value.good {
+  color: var(--vscode-testing-iconPassed);
+}
+
+.token-monitor .metric-value.warning {
+  color: var(--vscode-warningForeground);
+}
+
+.token-monitor .metric-value.critical {
+  color: var(--vscode-errorForeground);
+}
+
+.token-monitor .metric-value.normal {
+  color: var(--vscode-foreground);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.token-monitor.status.active .metric-value {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .token-monitor {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .token-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .performance-indicators {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .indicator {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .metric-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .metric-bar {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .metric-card {
+    border-width: 2px;
+  }
+  
+  .metric-bar {
+    border: 1px solid var(--vscode-foreground);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .metric-bar-fill {
+    transition: none;
+  }
+  
+  .token-monitor.status.active .metric-value {
+    animation: none;
+  }
+}

@@ -504,6 +504,11 @@ body {
   font-family: var(--font-mono);
   border-bottom: 1px solid var(--border-subtle);
 }
+.lex-chatUndoBar {
+  display: flex;
+  gap: 6px;
+  padding: 0 8px 6px;
+}
 
 .lex-chatTabBar {
   flex-shrink: 0;
@@ -1615,10 +1620,40 @@ textarea {
 .lex-msgContent {
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  white-space: pre-wrap;
   line-height: 1.65;
   font-size: 13px;
   max-width: 85%;
+}
+.lex-msgText {
+  white-space: pre-wrap;
+}
+.lex-msgCodeBlock {
+  margin-top: 8px;
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  background: var(--bg-void);
+}
+.lex-msgCodeLang {
+  font-family: var(--font-code);
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  text-transform: lowercase;
+}
+.lex-msgCodePre {
+  margin: 0;
+  padding: 8px 10px;
+  overflow-x: auto;
+}
+.lex-msgCodePre code {
+  font-family: var(--font-code);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  white-space: pre;
 }
 .lex-msg--user .lex-msgContent {
   background: var(--bg-raised);

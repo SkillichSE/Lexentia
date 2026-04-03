@@ -10,7 +10,14 @@ import_electron.contextBridge.exposeInMainWorld("lexentia", {
   fs: {
     listDir: (relPath) => import_electron.ipcRenderer.invoke("fs:listDir", relPath),
     readFile: (relPath) => import_electron.ipcRenderer.invoke("fs:readFile", relPath),
-    writeFile: (relPath, content) => import_electron.ipcRenderer.invoke("fs:writeFile", relPath, content)
+    writeFile: (relPath, content) => import_electron.ipcRenderer.invoke("fs:writeFile", relPath, content),
+    watchDir: (relPath) => import_electron.ipcRenderer.invoke("fs:watchDir", relPath),
+    unwatchDir: (relPath) => import_electron.ipcRenderer.invoke("fs:unwatchDir", relPath),
+    onDirChanged: (cb) => {
+      const listener = (_evt, payload) => cb(payload);
+      import_electron.ipcRenderer.on("fs:dirChanged", listener);
+      return () => import_electron.ipcRenderer.removeListener("fs:dirChanged", listener);
+    }
   },
   terminal: {
     create: (opts) => import_electron.ipcRenderer.invoke("term:create", opts),

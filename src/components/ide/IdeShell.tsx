@@ -27,6 +27,8 @@ import { scanWorkspace } from '../../services/workspaceIndex'
 import { autoEditorContext, expandMentions } from '../../services/chatContext'
 import { clipPromptBody, resolvePromptBudget, truncateWithNote, type PromptBudget } from '../../services/promptBudget'
 import { streamCode } from '../../services/streamingOutput'
+import { cleanOutput, parseDiff } from '../../services/postProcessor'
+import { fileOperationManager, globalUndoHistory, useUndoHistory } from '../../services/undoHistory'
 
 type ChatTab = { id: string; title: string; messages: ChatMessage[] }
 
@@ -118,6 +120,27 @@ export function IdeShell() {
   const patchTabMessages = (tabId: string, fn: (msgs: ChatMessage[]) => ChatMessage[]) => {
     setChatTabs((prev) => prev.map((t) => (t.id === tabId ? { ...t, messages: fn(t.messages) } : t)))
   }
+  const attachDiffChanges = (tabId: string, assistantId: string, rawContent: string) => {
+    const normalized = cleanOutput(rawContent)
+    const parsed = parseDiff(normalized)
+    if (!parsed.length) return
+    patchTabMessages(tabId, (msgs) =>
+      msgs.map((m) =>
+        m.id === assistantId
+          ? {
+              ...m,
+              changes: parsed.map((c, idx) => ({
+                id: `${assistantId}-chg-${idx}`,
+                filePath: c.path,
+                oldContent: c.original,
+                newContent: c.modified,
+                type: c.type,
+              })),
+            }
+          : m,
+      ),
+    )
+  }
 
   const [logs, setLogs] = useState<string[]>(['Lexentia: workbench started'])
   const [workspaceRoot, setWorkspaceRoot] = useState<string | null>(null)
@@ -150,6 +173,7 @@ export function IdeShell() {
   const [paletteKind, setPaletteKind] = useState<StatusPaletteKind>(null)
   const [encoding, setEncoding] = useState('UTF-8')
   const [languageOverride, setLanguageOverride] = useState<string | null>(null)
+  const undo = useUndoHistory(globalUndoHistory)
   const privacyLogRef = useRef(createPrivacyLog())
   const [privacyEntries, setPrivacyEntries] = useState<PrivacyEntry[]>([])
   const [indexState, setIndexState] = useState<IndexState>({
@@ -470,7 +494,7 @@ export function IdeShell() {
               plan: {
                 title: result.title,
                 introduction: result.introduction,
-                steps: result.steps.map((text, i) => ({ id: `s-${assistantId}-${i}`, text, done: false })),
+                steps: result.steps.map((text, i) => ({ id: `s-${assistantId}-${i}`, text, status: 'pending' as const })),
                 approval: 'pending',
               },
             }
@@ -590,7 +614,8 @@ export function IdeShell() {
   const handlePlanAllow = (messageId: string) => {
     const tabId = activeChatId
     const tab = chatTabs.find((t) => t.id === tabId)
-    const planMsg = tab?.messages.find((m) => m.id === messageId)
+    if (!tab) return
+    const planMsg = tab.messages.find((m) => m.id === messageId)
     if (!planMsg?.plan || planMsg.plan.approval !== 'pending') return
     const snapshot = tab.messages
     patchTabMessages(tabId, (prev) =>
@@ -631,6 +656,7 @@ export function IdeShell() {
           streamedContent = currentText
           patchTabMessages(tabId, (msgs) => msgs.map((m) => (m.id === assistantId ? { ...m, content: streamedContent } : m)))
         })
+        attachDiffChanges(tabId, assistantId, result.content)
         historyService.addMessage(session.id, { id: assistantId, role: 'assistant', content: result.content, createdAt: now + 1 }, activeProfile.model)
       } catch (e: any) {
         const msg = e?.message ? String(e.message) : 'Unknown error'
@@ -804,6 +830,7 @@ export function IdeShell() {
             streamedContent = currentText
             patchTabMessages(tabId, (prev) => prev.map((m) => (m.id === assistantId ? { ...m, content: streamedContent } : m)))
           })
+          attachDiffChanges(tabId, assistantId, result.content)
           historyService.addMessage(session.id, { id: assistantId, role: 'assistant', content: result.content, createdAt: now + 1 }, activeProfile.model)
           return
         }
@@ -838,6 +865,7 @@ export function IdeShell() {
           streamedContent = currentText
           patchTabMessages(tabId, (prev) => prev.map((m) => (m.id === assistantId ? { ...m, content: streamedContent } : m)))
         })
+        attachDiffChanges(tabId, assistantId, result.content)
         historyService.addMessage(session.id, { id: assistantId, role: 'assistant', content: result.content, createdAt: now + 1 }, activeProfile.model)
       } catch (e: any) {
         const msg = e?.message ? String(e.message) : 'Unknown error'
@@ -949,6 +977,7 @@ export function IdeShell() {
           streamedContent = currentText
           patchTabMessages(tabId, (prev) => prev.map((m) => (m.id === assistantId ? { ...m, content: streamedContent } : m)))
         })
+        attachDiffChanges(tabId, assistantId, result.content)
         historyService.addMessage(session.id, { id: assistantId, role: 'assistant', content: result.content, createdAt: now + 1 }, activeProfile.model)
       } catch (e: any) {
         const msg = e?.message ? String(e.message) : 'Unknown error'
@@ -1007,6 +1036,64 @@ export function IdeShell() {
         .trim()
     } catch {
       return null
+    }
+  }
+
+  const handleDiffApply = async (messageId: string, changeId: string) => {
+    const msg = activeMessages.find((m) => m.id === messageId)
+    const change = msg?.changes?.find((c) => c.id === changeId)
+    if (!change) return
+    try {
+      await fileOperationManager.applyChanges(
+        [
+          {
+            filePath: change.filePath,
+            oldContent: change.oldContent,
+            newContent: change.newContent,
+            type: change.type,
+          },
+        ],
+        { sessionId: session.id, model: activeProfile.model },
+      )
+      patchTabMessages(activeChatId, (prev) =>
+        prev.map((m) =>
+          m.id === messageId ? { ...m, changes: (m.changes ?? []).filter((c) => c.id !== changeId) } : m,
+        ),
+      )
+      addLog(`Applied change: ${change.filePath}`)
+    } catch (e) {
+      addLog(`Apply failed: ${e instanceof Error ? e.message : String(e)}`)
+    }
+  }
+
+  const handleDiffCancel = (messageId: string, changeId: string) => {
+    patchTabMessages(activeChatId, (prev) =>
+      prev.map((m) =>
+        m.id === messageId ? { ...m, changes: (m.changes ?? []).filter((c) => c.id !== changeId) } : m,
+      ),
+    )
+  }
+
+  const handleUndo = async () => {
+    const current = globalUndoHistory.getCurrentRecord()
+    if (!current) return
+    try {
+      await fileOperationManager.revertChanges(current)
+      undo.undo()
+      addLog('Undo applied.')
+    } catch (e) {
+      addLog(`Undo failed: ${e instanceof Error ? e.message : String(e)}`)
+    }
+  }
+
+  const handleRedo = async () => {
+    const rec = undo.redo()
+    if (!rec) return
+    try {
+      await fileOperationManager.revertChanges(rec)
+      addLog('Redo applied.')
+    } catch (e) {
+      addLog(`Redo failed: ${e instanceof Error ? e.message : String(e)}`)
     }
   }
 
@@ -1283,6 +1370,14 @@ export function IdeShell() {
 
         <aside className="lex-chatColumn" aria-label="Assistant chat">
           <div className="lex-chatColumnHeader">Chat</div>
+          <div className="lex-chatUndoBar">
+            <button type="button" className="lex-btn lex-btn--small" onClick={() => void handleUndo()} disabled={!undo.state.canUndo}>
+              Undo
+            </button>
+            <button type="button" className="lex-btn lex-btn--small" onClick={() => void handleRedo()} disabled={!undo.state.canRedo}>
+              Redo
+            </button>
+          </div>
           <div className="lex-chatTabBar" role="tablist">
             {chatTabs.map((t) => (
               <div key={t.id} className="lex-chatTabRow">
@@ -1316,6 +1411,8 @@ export function IdeShell() {
             mentionCandidates={mentionCandidates}
             onPlanAllow={handlePlanAllow}
             onPlanReject={handlePlanReject}
+            onDiffApply={handleDiffApply}
+            onDiffCancel={handleDiffCancel}
           />
         </aside>
       </div>

@@ -1338,6 +1338,8 @@ var pty = __toESM(require_lib());
 var toolRunnerProc = null;
 var workspaceRoot = null;
 var terminals = /* @__PURE__ */ new Map();
+var dirWatchers = /* @__PURE__ */ new Map();
+var dirWatchDebounce = /* @__PURE__ */ new Map();
 async function isToolRunnerUp(baseUrl) {
   try {
     const res = await fetch(`${baseUrl}/health`);
@@ -1410,6 +1412,20 @@ function resolveInWorkspace(relPath) {
     throw new Error("Path is outside workspace");
   }
   return abs;
+}
+function broadcastDirChanged(relPath) {
+  for (const win of import_electron.BrowserWindow.getAllWindows()) {
+    win.webContents.send("fs:dirChanged", { relPath });
+  }
+}
+function scheduleDirChanged(relPath) {
+  const existing = dirWatchDebounce.get(relPath);
+  if (existing) clearTimeout(existing);
+  const t = setTimeout(() => {
+    dirWatchDebounce.delete(relPath);
+    broadcastDirChanged(relPath);
+  }, 120);
+  dirWatchDebounce.set(relPath, t);
 }
 function runGit(args) {
   return new Promise((resolve) => {
@@ -1507,6 +1523,41 @@ async function registerIpcHandlers() {
     const abs = resolveInWorkspace(relPath);
     await import_promises.default.mkdir(import_node_path.default.dirname(abs), { recursive: true });
     await import_promises.default.writeFile(abs, content ?? "", "utf-8");
+    return { ok: true };
+  });
+  import_electron.ipcMain.handle("fs:watchDir", async (_evt, relPath) => {
+    const key = relPath || ".";
+    if (dirWatchers.has(key)) return { ok: true };
+    try {
+      const abs = resolveInWorkspace(key);
+      const watcher = import_node_fs.default.watch(abs, { persistent: false }, () => {
+        scheduleDirChanged(key);
+      });
+      watcher.on("error", () => {
+        try {
+          watcher.close();
+        } catch {
+        }
+        dirWatchers.delete(key);
+      });
+      dirWatchers.set(key, watcher);
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, error: e?.message ?? String(e) };
+    }
+  });
+  import_electron.ipcMain.handle("fs:unwatchDir", async (_evt, relPath) => {
+    const key = relPath || ".";
+    const watcher = dirWatchers.get(key);
+    if (!watcher) return { ok: true };
+    try {
+      watcher.close();
+    } catch {
+    }
+    dirWatchers.delete(key);
+    const debounce = dirWatchDebounce.get(key);
+    if (debounce) clearTimeout(debounce);
+    dirWatchDebounce.delete(key);
     return { ok: true };
   });
   import_electron.ipcMain.handle("git:run", async (_evt, command, args) => {
