@@ -144,7 +144,7 @@ class ModelBenchmark:
                     "Authorization": f"Bearer {key}",
                     "Content-Type": "application/json",
                     "HTTP-Referer": "https://modellens.ai",
-                    "X-Title": "ModelLens",
+                    "X-Title": "Lexentia Proof",
                 }, json={
                     "model": model_id,
                     "messages": [{"role": "user", "content": mini_prompt}],
@@ -256,7 +256,7 @@ class ModelBenchmark:
                 "Authorization": f"Bearer {self._openrouter_keys[idx]}",
                 "Content-Type": "application/json",
                 "HTTP-Referer": "https://modellens.ai",
-                "X-Title": "ModelLens",
+                "X-Title": "Lexentia Proof",
             }, model_id, prompt, timeout=45)
             if result["success"]:
                 return result
@@ -560,7 +560,7 @@ class ModelBenchmark:
         return result
 
     def run_benchmark(self):
-        print("ModelLens Benchmark")
+        print("Lexentia Proof Benchmark")
         print(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
         key_map = {"groq": self.groq_key, "google": self.google_key,
@@ -600,19 +600,27 @@ class ModelBenchmark:
 
     def save_results(self):
         date_str = datetime.now().strftime("%Y-%m-%d")
-        Path("../docs/data/results").mkdir(parents=True, exist_ok=True)
+        now_iso = datetime.now().isoformat()
 
+        # resolve output dirs relative to this script, not the cwd
+        base = Path(__file__).resolve().parent.parent / "docs" / "data"
+        results_dir  = base / "results"
+        models_dir   = base / "models"
+        proofs_dir   = base / "proofs"
+        for d in (results_dir, models_dir, proofs_dir):
+            d.mkdir(parents=True, exist_ok=True)
+
+        # --- normalize speed score within each size tier ---
         for cat in ["small", "medium", "large", "unknown"]:
-            cat_speeds = [r["raw_speed"] for r in self.results if r.get("size_category") == cat and r["raw_speed"] > 0]
+            cat_speeds = [r["raw_speed"] for r in self.results
+                          if r.get("size_category") == cat and r["raw_speed"] > 0]
             max_speed = max(cat_speeds, default=1)
             for r in self.results:
                 if r.get("size_category") == cat:
                     r["speed_score"] = round(r["raw_speed"] / max_speed * 100, 1)
 
-        # Normalize quality_score within each tier so that models are compared
-        # against peers of the same size — a 8B scoring 70/100 on its easier
-        # tests is not directly comparable to a 405B scoring 70/100 on harder
-        # tests.  tier_quality_score gives a fair within-tier rank (0–100).
+        # normalize quality_score within each tier so small/large models are
+        # ranked fairly against peers of the same size category
         for cat in ["small", "medium", "large", "unknown"]:
             cat_qualities = [r["quality_score"] for r in self.results
                              if r.get("size_category") == cat and r["quality_score"] > 0]
@@ -621,7 +629,8 @@ class ModelBenchmark:
                 if r.get("size_category") == cat:
                     r["tier_quality_score"] = round(r["quality_score"] / max_quality * 100, 1)
 
-        daily_path = Path(f"../docs/data/results/{date_str}.json")
+        # --- legacy daily snapshot (kept for backward compat) ---
+        daily_path = results_dir / f"{date_str}.json"
         if self.merge and daily_path.exists():
             try:
                 existing = json.loads(daily_path.read_text())
@@ -634,11 +643,15 @@ class ModelBenchmark:
 
         with open(daily_path, "w") as f:
             json.dump(self.results, f, indent=2)
-        with open("../docs/data/results/latest.json", "w") as f:
-            json.dump({"date": date_str, "timestamp": datetime.now().isoformat(),
+        with open(results_dir / "latest.json", "w") as f:
+            json.dump({"date": date_str, "timestamp": now_iso,
                        "results": self.results}, f, indent=2)
 
-        def best_per_model(results, sort_key):
+        # ------------------------------------------------------------------ #
+        # 1. leaderboard.json — flat array, fully overwritten each run
+        #    only the fields the ui needs; kept as small as possible
+        # ------------------------------------------------------------------ #
+        def _best_per_model(results, sort_key):
             seen = {}
             for r in sorted(results, key=lambda x: x.get(sort_key, 0), reverse=True):
                 if r.get("quality_score", 0) == 0 and r.get("raw_speed", 0) == 0:
@@ -647,15 +660,150 @@ class ModelBenchmark:
                     seen[r["model_name"]] = r
             return list(seen.values())
 
-        q_board = sorted(best_per_model(self.results, "quality_score"), key=lambda x: x["quality_score"], reverse=True)
-        with open("../docs/data/results/leaderboard.json", "w") as f:
-            json.dump(q_board, f, indent=2)
+        leaderboard_rows = []
+        for rank, r in enumerate(
+            sorted(_best_per_model(self.results, "quality_score"),
+                   key=lambda x: x["quality_score"], reverse=True), start=1
+        ):
+            leaderboard_rows.append({
+                "id":          r["model_id"],
+                "rank":        rank,
+                "name":        r["model_name"],
+                "provider":    r["provider"],
+                "size":        r.get("size", "N/A"),
+                "tier":        r.get("size_category", "unknown"),
+                "score":       r["quality_score"],
+                "speed":       r["raw_speed"],
+                "speed_score": r.get("speed_score", 0),
+                "tier_score":  r.get("tier_quality_score", 0),
+                "context":     r.get("context", "N/A"),
+                "is_os":       r.get("is_open_source", False),
+                "status":      "online",
+                "updated":     r.get("timestamp", now_iso),
+            })
 
-        s_board = sorted(best_per_model(self.results, "raw_speed"), key=lambda x: x["raw_speed"], reverse=True)
-        with open("../docs/data/results/leaderboard_speed.json", "w") as f:
+        with open(results_dir / "leaderboard.json", "w") as f:
+            json.dump(leaderboard_rows, f, indent=2)
+
+        # legacy speed leaderboard (some frontend code may still read it)
+        s_board = sorted(_best_per_model(self.results, "raw_speed"),
+                         key=lambda x: x["raw_speed"], reverse=True)
+        with open(results_dir / "leaderboard_speed.json", "w") as f:
             json.dump(s_board, f, indent=2)
 
-        print(f"\nSaved {date_str}.json ({len(self.results)} models)")
+        # ------------------------------------------------------------------ #
+        # 2. /models/{model_id}.json — tech passport + history (appended)
+        #    history array grows over time; existing file is read and updated
+        # ------------------------------------------------------------------ #
+        for r in self.results:
+            mid = r["model_id"]
+            model_path = models_dir / f"{mid}.json"
+
+            # build the history point for this run
+            history_point = {
+                "date":  r.get("timestamp", now_iso),
+                "score": r["quality_score"],
+                "tps":   r["raw_speed"],
+            }
+
+            if model_path.exists():
+                try:
+                    existing_model = json.loads(model_path.read_text())
+                except Exception:
+                    existing_model = {}
+            else:
+                existing_model = {}
+
+            # derive strengths from which test categories scored highest
+            strengths = []
+            tests = r.get("tests", {})
+            if tests.get("code", {}).get("avg_score", 0) >= 70:
+                strengths.append("code")
+            if tests.get("reasoning", {}).get("score", 0) >= 70:
+                strengths.append("reasoning")
+            if tests.get("instruction", {}).get("avg_score", 0) >= 70:
+                strengths.append("instruction-following")
+            if tests.get("translation", {}).get("avg_score", 0) >= 70:
+                strengths.append("translation")
+
+            model_doc = {
+                "meta": {
+                    "id":       mid,
+                    "name":     r["model_name"],
+                    "provider": r["provider"],
+                    "size":     r.get("size", "N/A"),
+                    "tier":     r.get("size_category", "unknown"),
+                    "context":  r.get("context", "N/A"),
+                    "is_os":    r.get("is_open_source", False),
+                },
+                # append new point; keep existing history if file already existed
+                "history": existing_model.get("history", []) + [history_point],
+                "strengths": strengths,
+                "last_updated": now_iso,
+            }
+
+            with open(model_path, "w") as f:
+                json.dump(model_doc, f, indent=2)
+
+        # ------------------------------------------------------------------ #
+        # 3. /proofs/{date}_test_{session}.json — raw evidence, one file
+        #    per benchmark session; never overwritten, always a new file
+        # ------------------------------------------------------------------ #
+        # find next available session index for today to avoid collisions
+        existing_proofs = list(proofs_dir.glob(f"{date_str}_test_*.json"))
+        session_idx = len(existing_proofs) + 1
+        proof_filename = f"{date_str}_test_{session_idx:02d}.json"
+
+        # collect every per-test raw output across all models
+        proof_results = {}
+        for r in self.results:
+            mid = r["model_id"]
+            tests = r.get("tests", {})
+
+            # flatten all test categories into one dict keyed by test name
+            raw_by_test = {}
+            for category, cat_data in tests.items():
+                details = cat_data.get("details", [])
+                for item in details:
+                    test_name = item.get("test", category)
+                    raw_by_test[test_name] = {
+                        "category":   category,
+                        "verdict":    "passed" if item.get("pass_rate", item.get("score", item.get("correct", 0))) else "failed",
+                        "raw_output": item.get("answer_given", item.get("got", "")),
+                        "token_count": 0,  # token granularity not stored per-test, only per-call
+                    }
+                    # attach execution details where available (code tests)
+                    if "details" in item:
+                        raw_by_test[test_name]["execution_log"] = "; ".join(
+                            f"{d['input']} -> {d['got']} (expected {d['expected']})"
+                            for d in item["details"]
+                        )
+
+            proof_results[mid] = {
+                "model_name":     r["model_name"],
+                "provider":       r["provider"],
+                "quality_score":  r["quality_score"],
+                "speed_tps":      r["raw_speed"],
+                "tests":          raw_by_test,
+            }
+
+        proof_doc = {
+            "session_info": {
+                "id":        proof_filename.replace(".json", ""),
+                "date":      date_str,
+                "timestamp": now_iso,
+                "model_count": len(self.results),
+            },
+            "results": proof_results,
+        }
+
+        with open(proofs_dir / proof_filename, "w") as f:
+            json.dump(proof_doc, f, indent=2)
+
+        print(f"\nsaved {date_str}.json        ({len(self.results)} models)")
+        print(f"saved leaderboard.json       ({len(leaderboard_rows)} entries)")
+        print(f"saved models/*.json          ({len(self.results)} model passports)")
+        print(f"saved proofs/{proof_filename}")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
-# ModelLens
+# Lexentia Proof
 
-**[skillichse.github.io/ModelLens](https://skillichse.github.io/ModelLens)**
+**[skillichse.github.io/Lexentia Proof](https://skillichse.github.io/Lexentia Proof)**
 
 Free AI models, ranked every day. 
 

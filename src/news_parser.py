@@ -1,5 +1,5 @@
 """
-News Parser for ModelLens
+News Parser for Lexentia Proof
 Fetches AI news from reliable RSS feeds.
 """
 
