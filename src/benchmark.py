@@ -454,16 +454,24 @@ class ModelBenchmark:
         cat = size_category(model_info["size"], model_info.get("size_category"))
         tier_tests = TESTS_BY_TIER[cat]  # picks the right difficulty tier
 
+        # display_provider is the human-readable label from config (e.g. "Groq",
+        # "OpenRouter"). if it's missing for any reason fall back to the routing
+        # key capitalized. api_provider is always the lowercase routing key used
+        # internally (groq / openrouter / cerebras / together / google / sambanova).
+        display_provider = model_info.get("provider") or provider.capitalize()
+
         result = {
-            "model_id": model_info.get("key", mid),
-            "model_name": model_info["name"],
-            "provider": model_info["provider"],
-            "size": model_info["size"],
-            "size_category": cat,
-            "tier": cat,
-            "context": model_info.get("context", "N/A"),
-            "timestamp": datetime.now().isoformat(),
-            "tests": {},
+            "model_id":       model_info.get("key", mid),
+            "model_name":     model_info["name"],
+            "provider":       display_provider,
+            "api_provider":   provider,
+            "is_open_source": model_info.get("is_open_source", False),
+            "size":           model_info["size"],
+            "size_category":  cat,
+            "tier":           cat,
+            "context":        model_info.get("context", "N/A"),
+            "timestamp":      datetime.now().isoformat(),
+            "tests":          {},
         }
 
         print("  speed...", end=" ", flush=True)
@@ -600,42 +608,46 @@ class ModelBenchmark:
 
     def save_results(self):
         date_str = datetime.now().strftime("%Y-%m-%d")
-        now_iso = datetime.now().isoformat()
+        now_iso  = datetime.now().isoformat()
 
-        # resolve output dirs relative to this script, not the cwd
-        base = Path(__file__).resolve().parent.parent / "docs" / "data"
-        results_dir  = base / "results"
-        models_dir   = base / "models"
-        proofs_dir   = base / "proofs"
+        # max history points kept per model (~3 months of daily runs)
+        MAX_HISTORY = 90
+        # max proof files kept total; oldest are deleted when exceeded
+        MAX_PROOFS  = 30
+
+        # output dirs resolved relative to this file, not the caller's cwd
+        base        = Path(__file__).resolve().parent.parent / "docs" / "data"
+        results_dir = base / "results"
+        models_dir  = base / "models"
+        proofs_dir  = base / "proofs"
         for d in (results_dir, models_dir, proofs_dir):
             d.mkdir(parents=True, exist_ok=True)
 
-        # --- normalize speed score within each size tier ---
+        # ------------------------------------------------------------------ #
+        # normalize speed and quality scores within each size tier so that
+        # models compete only against peers of the same size category
+        # ------------------------------------------------------------------ #
         for cat in ["small", "medium", "large", "unknown"]:
-            cat_speeds = [r["raw_speed"] for r in self.results
-                          if r.get("size_category") == cat and r["raw_speed"] > 0]
-            max_speed = max(cat_speeds, default=1)
+            speeds = [r["raw_speed"] for r in self.results
+                      if r.get("size_category") == cat and r["raw_speed"] > 0]
+            max_spd = max(speeds, default=1)
+            quals   = [r["quality_score"] for r in self.results
+                       if r.get("size_category") == cat and r["quality_score"] > 0]
+            max_q   = max(quals, default=1)
             for r in self.results:
                 if r.get("size_category") == cat:
-                    r["speed_score"] = round(r["raw_speed"] / max_speed * 100, 1)
+                    r["speed_score"]       = round(r["raw_speed"]     / max_spd * 100, 1)
+                    r["tier_quality_score"] = round(r["quality_score"] / max_q   * 100, 1)
 
-        # normalize quality_score within each tier so small/large models are
-        # ranked fairly against peers of the same size category
-        for cat in ["small", "medium", "large", "unknown"]:
-            cat_qualities = [r["quality_score"] for r in self.results
-                             if r.get("size_category") == cat and r["quality_score"] > 0]
-            max_quality = max(cat_qualities, default=1)
-            for r in self.results:
-                if r.get("size_category") == cat:
-                    r["tier_quality_score"] = round(r["quality_score"] / max_quality * 100, 1)
-
-        # --- legacy daily snapshot (kept for backward compat) ---
+        # ------------------------------------------------------------------ #
+        # legacy daily snapshot — kept so existing frontend code keeps working
+        # ------------------------------------------------------------------ #
         daily_path = results_dir / f"{date_str}.json"
         if self.merge and daily_path.exists():
             try:
-                existing = json.loads(daily_path.read_text())
+                existing   = json.loads(daily_path.read_text())
                 tested_ids = {r["model_id"] for r in self.results}
-                kept = [r for r in existing if r["model_id"] not in tested_ids]
+                kept       = [r for r in existing if r["model_id"] not in tested_ids]
                 self.results = kept + self.results
                 print(f"  merged with {len(kept)} existing results")
             except Exception as e:
@@ -648,8 +660,7 @@ class ModelBenchmark:
                        "results": self.results}, f, indent=2)
 
         # ------------------------------------------------------------------ #
-        # 1. leaderboard.json — flat array, fully overwritten each run
-        #    only the fields the ui needs; kept as small as possible
+        # helper: pick the best result per unique model name
         # ------------------------------------------------------------------ #
         def _best_per_model(results, sort_key):
             seen = {}
@@ -660,85 +671,100 @@ class ModelBenchmark:
                     seen[r["model_name"]] = r
             return list(seen.values())
 
+        # ------------------------------------------------------------------ #
+        # 1. leaderboard.json — flat minimal array, fully overwritten each run
+        #    contains only what the ui list view needs; no raw test data
+        # ------------------------------------------------------------------ #
         leaderboard_rows = []
         for rank, r in enumerate(
             sorted(_best_per_model(self.results, "quality_score"),
                    key=lambda x: x["quality_score"], reverse=True), start=1
         ):
+            # api_provider is the routing key (groq/openrouter/…); provider is
+            # the display label (Groq / OpenRouter / Google …). if provider is
+            # missing for any reason, fall back to api_provider capitalized.
+            display_provider = r.get("provider") or r.get("api_provider", "unknown").capitalize()
+
             leaderboard_rows.append({
-                "id":          r["model_id"],
-                "rank":        rank,
-                "name":        r["model_name"],
-                "provider":    r["provider"],
-                "size":        r.get("size", "N/A"),
-                "tier":        r.get("size_category", "unknown"),
-                "score":       r["quality_score"],
-                "speed":       r["raw_speed"],
-                "speed_score": r.get("speed_score", 0),
-                "tier_score":  r.get("tier_quality_score", 0),
-                "context":     r.get("context", "N/A"),
-                "is_os":       r.get("is_open_source", False),
-                "status":      "online",
-                "updated":     r.get("timestamp", now_iso),
+                "id":           r["model_id"],
+                "rank":         rank,
+                "name":         r["model_name"],
+                "provider":     display_provider,
+                "api_provider": r.get("api_provider", ""),
+                "size":         r.get("size", "N/A"),
+                "tier":         r.get("size_category", "unknown"),
+                "score":        r["quality_score"],
+                "speed":        r["raw_speed"],
+                "speed_score":  r.get("speed_score", 0),
+                "tier_score":   r.get("tier_quality_score", 0),
+                "context":      r.get("context", "N/A"),
+                "is_os":        r.get("is_open_source", False),
+                "status":       "online",
+                "updated":      r.get("timestamp", now_iso),
             })
 
         with open(results_dir / "leaderboard.json", "w") as f:
             json.dump(leaderboard_rows, f, indent=2)
 
-        # legacy speed leaderboard (some frontend code may still read it)
+        # legacy speed leaderboard kept for any frontend code still reading it
         s_board = sorted(_best_per_model(self.results, "raw_speed"),
                          key=lambda x: x["raw_speed"], reverse=True)
         with open(results_dir / "leaderboard_speed.json", "w") as f:
             json.dump(s_board, f, indent=2)
 
         # ------------------------------------------------------------------ #
-        # 2. /models/{model_id}.json — tech passport + history (appended)
-        #    history array grows over time; existing file is read and updated
+        # 2. /models/{model_id}.json — tech passport + rolling history
+        #    history is appended on each run then trimmed to MAX_HISTORY points
+        #    so the file never grows unbounded
         # ------------------------------------------------------------------ #
         for r in self.results:
-            mid = r["model_id"]
+            mid        = r["model_id"]
             model_path = models_dir / f"{mid}.json"
 
-            # build the history point for this run
             history_point = {
                 "date":  r.get("timestamp", now_iso),
                 "score": r["quality_score"],
                 "tps":   r["raw_speed"],
             }
 
+            existing_model = {}
             if model_path.exists():
                 try:
                     existing_model = json.loads(model_path.read_text())
                 except Exception:
-                    existing_model = {}
-            else:
-                existing_model = {}
+                    pass  # corrupted file — start fresh
 
-            # derive strengths from which test categories scored highest
+            # rolling window: append new point, then keep only the last N
+            history = existing_model.get("history", []) + [history_point]
+            history = history[-MAX_HISTORY:]
+
+            # derive strengths from category scores above the threshold
+            tests     = r.get("tests", {})
             strengths = []
-            tests = r.get("tests", {})
-            if tests.get("code", {}).get("avg_score", 0) >= 70:
+            if tests.get("code",        {}).get("avg_score", 0) >= 70:
                 strengths.append("code")
-            if tests.get("reasoning", {}).get("score", 0) >= 70:
+            if tests.get("reasoning",   {}).get("score",     0) >= 70:
                 strengths.append("reasoning")
             if tests.get("instruction", {}).get("avg_score", 0) >= 70:
                 strengths.append("instruction-following")
             if tests.get("translation", {}).get("avg_score", 0) >= 70:
                 strengths.append("translation")
 
+            display_provider = r.get("provider") or r.get("api_provider", "unknown").capitalize()
+
             model_doc = {
                 "meta": {
-                    "id":       mid,
-                    "name":     r["model_name"],
-                    "provider": r["provider"],
-                    "size":     r.get("size", "N/A"),
-                    "tier":     r.get("size_category", "unknown"),
-                    "context":  r.get("context", "N/A"),
-                    "is_os":    r.get("is_open_source", False),
+                    "id":           mid,
+                    "name":         r["model_name"],
+                    "provider":     display_provider,
+                    "api_provider": r.get("api_provider", ""),
+                    "size":         r.get("size", "N/A"),
+                    "tier":         r.get("size_category", "unknown"),
+                    "context":      r.get("context", "N/A"),
+                    "is_os":        r.get("is_open_source", False),
                 },
-                # append new point; keep existing history if file already existed
-                "history": existing_model.get("history", []) + [history_point],
-                "strengths": strengths,
+                "history":      history,
+                "strengths":    strengths,
                 "last_updated": now_iso,
             }
 
@@ -746,52 +772,56 @@ class ModelBenchmark:
                 json.dump(model_doc, f, indent=2)
 
         # ------------------------------------------------------------------ #
-        # 3. /proofs/{date}_test_{session}.json — raw evidence, one file
-        #    per benchmark session; never overwritten, always a new file
+        # 3. /proofs/{date}_test_{n}.json — raw evidence per session
+        #    one new file per run; oldest files are deleted once MAX_PROOFS
+        #    is exceeded so the folder never accumulates indefinitely
         # ------------------------------------------------------------------ #
-        # find next available session index for today to avoid collisions
-        existing_proofs = list(proofs_dir.glob(f"{date_str}_test_*.json"))
-        session_idx = len(existing_proofs) + 1
-        proof_filename = f"{date_str}_test_{session_idx:02d}.json"
+        existing_proofs = sorted(proofs_dir.glob("*_test_*.json"))
+        session_idx     = len(existing_proofs) + 1
+        proof_filename  = f"{date_str}_test_{session_idx:02d}.json"
 
-        # collect every per-test raw output across all models
         proof_results = {}
         for r in self.results:
-            mid = r["model_id"]
-            tests = r.get("tests", {})
-
-            # flatten all test categories into one dict keyed by test name
+            mid        = r["model_id"]
+            tests      = r.get("tests", {})
             raw_by_test = {}
+
             for category, cat_data in tests.items():
-                details = cat_data.get("details", [])
-                for item in details:
+                for item in cat_data.get("details", []):
                     test_name = item.get("test", category)
-                    raw_by_test[test_name] = {
-                        "category":   category,
-                        "verdict":    "passed" if item.get("pass_rate", item.get("score", item.get("correct", 0))) else "failed",
-                        "raw_output": item.get("answer_given", item.get("got", "")),
-                        "token_count": 0,  # token granularity not stored per-test, only per-call
+                    verdict   = "passed" if item.get(
+                        "pass_rate", item.get("score", item.get("correct", 0))
+                    ) else "failed"
+                    entry = {
+                        "category":    category,
+                        "verdict":     verdict,
+                        "raw_output":  item.get("answer_given", item.get("got", "")),
+                        "token_count": item.get("tokens", 0),
                     }
-                    # attach execution details where available (code tests)
+                    # code tests carry per-case execution detail
                     if "details" in item:
-                        raw_by_test[test_name]["execution_log"] = "; ".join(
+                        entry["execution_log"] = "; ".join(
                             f"{d['input']} -> {d['got']} (expected {d['expected']})"
                             for d in item["details"]
                         )
+                    raw_by_test[test_name] = entry
+
+            display_provider = r.get("provider") or r.get("api_provider", "unknown").capitalize()
 
             proof_results[mid] = {
-                "model_name":     r["model_name"],
-                "provider":       r["provider"],
-                "quality_score":  r["quality_score"],
-                "speed_tps":      r["raw_speed"],
-                "tests":          raw_by_test,
+                "model_name":    r["model_name"],
+                "provider":      display_provider,
+                "api_provider":  r.get("api_provider", ""),
+                "quality_score": r["quality_score"],
+                "speed_tps":     r["raw_speed"],
+                "tests":         raw_by_test,
             }
 
         proof_doc = {
             "session_info": {
-                "id":        proof_filename.replace(".json", ""),
-                "date":      date_str,
-                "timestamp": now_iso,
+                "id":          proof_filename.replace(".json", ""),
+                "date":        date_str,
+                "timestamp":   now_iso,
                 "model_count": len(self.results),
             },
             "results": proof_results,
@@ -800,10 +830,18 @@ class ModelBenchmark:
         with open(proofs_dir / proof_filename, "w") as f:
             json.dump(proof_doc, f, indent=2)
 
+        # rotate out oldest proof files if the cap is exceeded
+        all_proofs = sorted(proofs_dir.glob("*_test_*.json"))
+        for old in all_proofs[:-MAX_PROOFS]:
+            try:
+                old.unlink()
+            except Exception:
+                pass
+
         print(f"\nsaved {date_str}.json        ({len(self.results)} models)")
         print(f"saved leaderboard.json       ({len(leaderboard_rows)} entries)")
-        print(f"saved models/*.json          ({len(self.results)} model passports)")
-        print(f"saved proofs/{proof_filename}")
+        print(f"saved models/*.json          ({len(self.results)} passports, max {MAX_HISTORY} history pts)")
+        print(f"saved proofs/{proof_filename} ({len(all_proofs)} total, cap {MAX_PROOFS})")
 
 
 if __name__ == "__main__":

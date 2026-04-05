@@ -1,1 +1,7 @@
-
+/* spacious density mode */
+.model-card    { padding: 28px; }
+.card-header   { margin-bottom: 20px; }
+.score-block   { gap: 10px; margin-bottom: 18px; }
+.score-bar-wrap { height: 3px; }
+.stat-card     { padding: 28px; }
+.stat-value    { font-size: 32px; }

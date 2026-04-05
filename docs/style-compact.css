@@ -1,78 +1,12 @@
-.why-section {
-  display: none !important;
-}
-
-.hero-subtitle {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.stats-grid {
-  margin-bottom: 48px !important;
-}
-
-.legend {
-  font-size: 0.75rem !important;
-}
-
-.category-label {
-  font-size: 0.65rem !important;
-  font-weight: 600 !important;
-}
-
-.model-card {
-  position: relative;
-}
-
-p.text-tertiary,
-.hero-meta small {
-  display: none;
-}
-
-.hero-meta {
-  font-size: 0.85rem !important;
-}
-
-.footer {
-  padding: 40px 0 !important;
-}
-
-.footer p {
-  font-size: 0.8rem !important;
-}
-
-.feature-text {
-  font-size: 0.875rem !important;
-  line-height: 1.5 !important;
-}
-
-section > p:first-of-type {
-  margin-bottom: 24px !important;
-}
-
-.news-summary {
-  max-height: 3em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.search-input::placeholder {
-  font-size: 0.9rem;
-}
-
-.metric-label,
-.score-line-label {
-  font-size: 0.65rem !important;
-}
-
-ul {
-  line-height: 1.6 !important;
-}
-
-.help-text,
-.hint-text {
-  display: none !important;
-}
+/* compact density mode */
+.model-card    { padding: 14px; }
+.card-header   { margin-bottom: 10px; }
+.score-block   { gap: 5px; margin-bottom: 10px; }
+.score-bar-wrap { height: 1px; }
+.card-score-footer { padding-top: 8px; }
+.score-footer-val  { font-size: 18px; }
+.stat-card     { padding: 14px; }
+.stat-value    { font-size: 22px; }
+.grid-cards    { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.stats-grid    { margin-bottom: 24px; }
+.category-section { margin-bottom: 28px; }

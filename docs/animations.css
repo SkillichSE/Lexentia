@@ -1,285 +1,43 @@
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+/* lexentia proof — animations
+   intentionally minimal: no glows, no color flashes
+   only structural motion (reveal, slide) */
+
+/* page load reveal — staggered fade-in from slight y offset */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+.stat-card   { animation: reveal 0.3s ease both; }
+.model-card  { animation: reveal 0.3s ease both; }
+.news-item   { animation: reveal 0.3s ease both; }
+.feature-card{ animation: reveal 0.3s ease both; }
 
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.93); }
-  to   { opacity: 1; transform: scale(1); }
-}
+.stat-card:nth-child(1)  { animation-delay: 0.04s; }
+.stat-card:nth-child(2)  { animation-delay: 0.08s; }
+.stat-card:nth-child(3)  { animation-delay: 0.12s; }
+.stat-card:nth-child(4)  { animation-delay: 0.16s; }
 
-@keyframes slideRight {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
+/* score bar fill animation is handled via CSS transition in style.css */
 
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* card hover lift — subtle, no shadow */
+.model-card  { transition: background 0.15s; }
 
-@keyframes ripple {
-  from { transform: scale(0); opacity: .4; }
-  to   { transform: scale(2.5); opacity: 0; }
-}
+/* nav underline slide */
+.nav-link::after { transition: transform 0.2s cubic-bezier(0.4,0,0.2,1); }
 
-@keyframes shimmerSlide {
-  0%   { background-position: -600px 0; }
-  100% { background-position:  600px 0; }
+/* dialog open */
+@keyframes dialog-in {
+  from { opacity: 0; transform: scale(0.97) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
+.dialog-scrim.open .dialog { animation: dialog-in 0.2s ease both; }
 
-@keyframes heroGlow {
-  0%, 100% { opacity: .06; }
-  50%       { opacity: .12; }
+/* compare bar slide up */
+@keyframes bar-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
+.compare-bar.visible { animation: bar-in 0.2s ease both; }
 
-@keyframes barFill {
-  from { width: 0 !important; }
-}
-
-@keyframes rankPop {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.25); }
-  70%  { transform: scale(0.92); }
-  100% { transform: scale(1); }
-}
-
-@keyframes chipBounce {
-  0%, 100% { transform: translateY(0); }
-  40%      { transform: translateY(-4px); }
-  70%      { transform: translateY(1px); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .55s cubic-bezier(.4,0,.2,1),
-              transform .55s cubic-bezier(.4,0,.2,1);
-  will-change: opacity, transform;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-d1  { transition-delay: .05s; }
-.reveal-d2  { transition-delay: .10s; }
-.reveal-d3  { transition-delay: .15s; }
-.reveal-d4  { transition-delay: .20s; }
-.reveal-d5  { transition-delay: .25s; }
-.reveal-d6  { transition-delay: .30s; }
-
-.hero { animation: fadeIn .5s ease both; }
-
-.hero-headline {
-  animation: fadeUp .55s cubic-bezier(.4,0,.2,1) .05s both;
-}
-
-.hero-sub {
-  animation: fadeUp .55s cubic-bezier(.4,0,.2,1) .15s both;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 70% 50%,
-    var(--color-primary) 0%, transparent 70%);
-  opacity: .07;
-  pointer-events: none;
-  animation: heroGlow 6s ease-in-out infinite;
-}
-.hero { position: relative; overflow: hidden; }
-
-.stat-card {
-  animation: scaleIn .45s cubic-bezier(.4,0,.2,1) both;
-}
-.stats-grid .stat-card:nth-child(1) { animation-delay: .08s; }
-.stats-grid .stat-card:nth-child(2) { animation-delay: .14s; }
-.stats-grid .stat-card:nth-child(3) { animation-delay: .20s; }
-.stats-grid .stat-card:nth-child(4) { animation-delay: .26s; }
-
-.stat-value.counting {
-  animation: countUp .35s cubic-bezier(.4,0,.2,1) both;
-}
-
-.model-card {
-  animation: fadeUp .4s cubic-bezier(.4,0,.2,1) both;
-  transition: box-shadow .25s cubic-bezier(.4,0,.2,1),
-              transform   .25s cubic-bezier(.4,0,.2,1);
-}
-
-.model-card:hover {
-  transform: translateY(-3px);
-}
-
-.model-card { overflow: hidden; }
-.model-card .ripple-circle {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--color-primary);
-  opacity: 0;
-  pointer-events: none;
-  animation: ripple .5s ease-out forwards;
-  width: 80px;
-  height: 80px;
-  margin-left: -40px;
-  margin-top: -40px;
-}
-
-.grid-cards .model-card:nth-child(1)  { animation-delay: .05s; }
-.grid-cards .model-card:nth-child(2)  { animation-delay: .10s; }
-.grid-cards .model-card:nth-child(3)  { animation-delay: .15s; }
-.grid-cards .model-card:nth-child(4)  { animation-delay: .20s; }
-.grid-cards .model-card:nth-child(5)  { animation-delay: .25s; }
-.grid-cards .model-card:nth-child(6)  { animation-delay: .30s; }
-.grid-cards .model-card:nth-child(7)  { animation-delay: .33s; }
-.grid-cards .model-card:nth-child(8)  { animation-delay: .36s; }
-.grid-cards .model-card:nth-child(n+9){ animation-delay: .38s; }
-
-.rank-num.gold   { animation: rankPop .55s cubic-bezier(.4,0,.2,1) .35s both; }
-.rank-num.silver { animation: rankPop .55s cubic-bezier(.4,0,.2,1) .40s both; }
-.rank-num.bronze { animation: rankPop .55s cubic-bezier(.4,0,.2,1) .45s both; }
-
-.score-bar-fill {
-  animation: barFill .7s cubic-bezier(.4,0,.2,1) both;
-  transform-origin: left;
-}
-
-.grid-cards .model-card:nth-child(1) .score-bar-fill { animation-delay: .18s; }
-.grid-cards .model-card:nth-child(2) .score-bar-fill { animation-delay: .23s; }
-.grid-cards .model-card:nth-child(3) .score-bar-fill { animation-delay: .28s; }
-.grid-cards .model-card:nth-child(4) .score-bar-fill { animation-delay: .33s; }
-.grid-cards .model-card:nth-child(5) .score-bar-fill { animation-delay: .38s; }
-.grid-cards .model-card:nth-child(6) .score-bar-fill { animation-delay: .42s; }
-.grid-cards .model-card:nth-child(n+7) .score-bar-fill { animation-delay: .45s; }
-
-.feature-card {
-  animation: fadeUp .45s cubic-bezier(.4,0,.2,1) both;
-}
-.feature-grid .feature-card:nth-child(1) { animation-delay: .10s; }
-.feature-grid .feature-card:nth-child(2) { animation-delay: .17s; }
-.feature-grid .feature-card:nth-child(3) { animation-delay: .24s; }
-.feature-grid .feature-card:nth-child(4) { animation-delay: .31s; }
-.feature-grid .feature-card:nth-child(5) { animation-delay: .38s; }
-.feature-grid .feature-card:nth-child(6) { animation-delay: .44s; }
-
-.feature-card:hover .feature-icon {
-  animation: chipBounce .4s cubic-bezier(.4,0,.2,1);
-}
-
-.news-item {
-  animation: fadeUp .4s cubic-bezier(.4,0,.2,1) both;
-  transition: transform .2s, box-shadow .2s;
-}
-.news-item:nth-child(1) { animation-delay: .05s; }
-.news-item:nth-child(2) { animation-delay: .12s; }
-.news-item:nth-child(3) { animation-delay: .18s; }
-.news-item:nth-child(n+4){ animation-delay: .22s; }
-
-.news-item:hover { transform: translateX(4px); }
-
-.filter-btn, .size-chip, .sort-chip {
-  position: relative;
-  overflow: hidden;
-}
-
-.filter-btn.active,
-.size-chip.active {
-  transition: background .2s, border-color .2s, color .2s,
-              transform .15s cubic-bezier(.4,0,.2,1) !important;
-}
-.filter-btn:active, .size-chip:active, .sort-chip:active {
-  transform: scale(0.94);
-}
-
-.nav-link::after {
-  transition: transform .25s cubic-bezier(.4,0,.2,1) !important;
-}
-
-.header {
-  animation: fadeIn .3s ease both;
-}
-
-.section-title {
-  position: relative;
-}
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 32px;
-  height: 2px;
-  border-radius: 1px;
-  background: var(--color-primary);
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform .4s cubic-bezier(.4,0,.2,1);
-}
-.section-title.visible::after,
-.reveal.visible .section-title::after {
-  transform: scaleX(1);
-}
-
-.compare-bar {
-  transition: transform .3s cubic-bezier(.4,0,.2,1),
-              opacity   .3s cubic-bezier(.4,0,.2,1) !important;
-  transform: translateY(100%);
-  opacity: 0;
-}
-.compare-bar.visible {
-  transform: translateY(0) !important;
-  opacity: 1 !important;
-}
-
-.dialog {
-  animation: scaleIn .25s cubic-bezier(.4,0,.2,1) both;
-  transform-origin: center;
-}
-
-.theme-switch-track,
-.theme-switch-thumb {
-  transition: all .3s cubic-bezier(.4,0,.2,1) !important;
-}
-
-.live-dot {
-  animation: pulse 2s ease-in-out infinite !important;
-  box-shadow: 0 0 0 0 var(--metric-code);
-}
-@keyframes pulse {
-  0%   { opacity: 1; box-shadow: 0 0 0 0 rgba(30,142,62,.5); }
-  50%  { opacity: .4; box-shadow: 0 0 0 5px rgba(30,142,62,0); }
-  100% { opacity: 1; box-shadow: 0 0 0 0 rgba(30,142,62,0); }
-}
-
-.seg-btn {
-  transition: background .2s cubic-bezier(.4,0,.2,1),
-              color       .2s cubic-bezier(.4,0,.2,1) !important;
-}
-
-.leaderboard-panel {
-  animation: none;
-}
-.leaderboard-panel.active {
-  animation: fadeIn .25s ease both;
-}
-
-.score-tooltip {
-  transition: opacity .15s, transform .15s !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
-  .reveal { opacity: 1; transform: none; }
-}
+/* skeleton pulse already defined in style.css */
