@@ -1,7 +1,28 @@
 {
-  "updated": "2026-04-07T05:55:48.238229+00:00",
+  "updated": "2026-04-08T05:58:19.204786+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "Manage AI costs with Amazon Bedrock Projects",
+      "link": "https://aws.amazon.com/blogs/machine-learning/manage-ai-costs-with-amazon-bedrock-projects/",
+      "date": "2026-04-07T23:32:00+00:00",
+      "source": "AWS ML Blog",
+      "summary": "With Amazon Bedrock Projects, you can attribute inference costs to specific workloads and analyze them in AWS Cost Explorer and AWS Data Exports. In this post, you will learn how to set up Projects end-to-end, from designing a tagging strategy to analyzing costs."
+    },
+    {
+      "title": "Text-to-SQL solution powered by Amazon Bedrock",
+      "link": "https://aws.amazon.com/blogs/machine-learning/text-to-sql-solution-powered-by-amazon-bedrock/",
+      "date": "2026-04-07T16:28:20+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we show you how to build a natural text-to-SQL solution using Amazon Bedrock that transforms business questions into database queries&nbsp;and returns actionable answers."
+    },
+    {
+      "title": "What is an AI Native Cloud?",
+      "link": "https://www.together.ai/blog/what-is-an-ai-native-cloud",
+      "date": "2026-04-07T00:00:00+00:00",
+      "source": "Together AI",
+      "summary": ""
+    },
     {
       "title": "Accelerate agentic tool calling with serverless model customization in Amazon SageMaker AI",
       "link": "https://aws.amazon.com/blogs/machine-learning/accelerate-agentic-tool-calling-with-serverless-model-customization-in-amazon-sagemaker-ai/",
@@ -190,27 +211,6 @@
       "date": "2026-03-31T18:14:50Z",
       "source": "NVIDIA Developer",
       "summary": "Spatial computing is moving from visualization to active collaboration, adding increasingly more GPU demands on XR hardware to render photorealistic,..."
-    },
-    {
-      "title": "Build a FinOps agent using Amazon Bedrock AgentCore",
-      "link": "https://aws.amazon.com/blogs/machine-learning/build-a-finops-agent-using-amazon-bedrock-agentcore/",
-      "date": "2026-03-31T17:57:16+00:00",
-      "source": "AWS ML Blog",
-      "summary": "In this post, you learn how to build a FinOps agent using&nbsp;Amazon Bedrock AgentCore that helps your finance team manage AWS costs across multiple accounts. This conversational agent consolidates data from&nbsp;AWS Cost Explorer,&nbsp;AWS Budgets, and&nbsp;AWS Compute Optimize"
-    },
-    {
-      "title": "Build with Veo 3.1 Lite, our most cost-effective video generation model",
-      "link": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-lite/",
-      "date": "2026-03-31T16:00:00+00:00",
-      "source": "Google AI Blog",
-      "summary": "Build with Veo 3.1 Lite"
-    },
-    {
-      "title": "Granite 4.0 3B Vision: Compact Multimodal Intelligence for Enterprise Documents",
-      "link": "https://huggingface.co/blog/ibm-granite/granite-4-vision",
-      "date": "2026-03-31T15:10:41+00:00",
-      "source": "Hugging Face",
-      "summary": ""
     }
   ]
 }
