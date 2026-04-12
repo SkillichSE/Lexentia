@@ -360,11 +360,109 @@
     }
     .instr-item:last-child { border-bottom: none; }
 
+    /* ── Model Passport ─────────────────────────────────────────── */
+    .passport-block {
+      background: var(--color-surf-cont-low);
+      border: 1px solid var(--color-outline-var);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    .passport-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--color-outline-var);
+      background: var(--color-surf-cont);
+    }
+    .passport-header-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--color-on-surface);
+      letter-spacing: -0.01em;
+    }
+    .passport-header-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 1px;
+    }
+    .passport-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0;
+    }
+    .passport-group {
+      padding: 18px 22px;
+      border-right: 1px solid var(--color-outline-var);
+      border-bottom: 1px solid var(--color-outline-var);
+    }
+    .passport-group:last-child { border-right: none; }
+    .passport-group-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+    .passport-rows { display: flex; flex-direction: column; gap: 7px; }
+    .passport-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-size: 13px;
+    }
+    .passport-key {
+      color: var(--text-secondary);
+      white-space: nowrap;
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+    .passport-val {
+      color: var(--color-on-surface);
+      font-weight: 500;
+      word-break: break-word;
+    }
+    .passport-val a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    .passport-val a:hover { text-decoration: underline; }
+    .passport-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-weight: 600;
+      margin-left: 2px;
+    }
+    .tag-open   { background: rgba(16,185,129,0.15); color: #059669; }
+    .tag-prop   { background: rgba(99,102,241,0.15);  color: #6366f1; }
+    .passport-bench-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+    }
+    .bench-item { }
+    .bench-name { font-size: 11px; color: var(--text-secondary); margin-bottom: 2px; }
+    .bench-val  { font-size: 15px; font-weight: 700; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+    .bench-val.na { font-size: 13px; color: var(--text-tertiary); font-weight: 400; }
+    .passport-note {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      padding: 10px 22px 14px;
+      border-top: 1px solid var(--color-outline-var);
+      font-style: italic;
+    }
+
     @media (max-width: 600px) {
       .model-hero-name { font-size: 24px; }
       .hero-scores { gap: 8px; }
       .cat-bar-wrap { display: none; }
       .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .passport-groups { grid-template-columns: 1fr; }
+      .passport-group { border-right: none; }
     }
   </style>
   <script src="app.js"></script>
@@ -682,6 +780,458 @@ function toggleCat(header) {
   card.classList.toggle('open');
 }
 
+// ── Model Passport Data ───────────────────────────────────────────────────────
+var MODEL_PASSPORTS = {
+  // ── Groq ──────────────────────────────────────────────────────────────────
+  'llama-3.1-8b': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '8B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '73.0', humaneval: '72.6', gsm8k: '84.4', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct',
+    quant: 'GGUF, EXL2, AWQ', pricing: '$0.05 / $0.08'
+  },
+  'llama-3.3-70b': {
+    developer: 'Meta', released: 'Dec 2024', license: 'Llama 3.3 Community',
+    params: '70B', arch: 'Dense Transformer (GQA)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '86.0', humaneval: '88.4', gsm8k: '95.1', gpqa: '50.5', elo: '1255',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct',
+    quant: 'GGUF, EXL2, AWQ', pricing: '$0.59 / $0.79'
+  },
+  'gpt-oss-120b': {
+    developer: 'OpenAI', released: 'Jul 2025', license: 'Apache 2.0',
+    params: '120B (MoE, 5.1B active)', arch: 'MoE Transformer (MXFP4)', cutoff: 'Apr 2024', context: '128k',
+    mmlu: '87.7', humaneval: '89.4', gsm8k: '96.6', gpqa: '62.3', elo: '1285',
+    hf: 'https://huggingface.co/openai/gpt-oss-120b',
+    quant: 'MXFP4 (native)', pricing: '$0.35 / $0.75'
+  },
+  'gpt-oss-20b': {
+    developer: 'OpenAI', released: 'Jul 2025', license: 'Apache 2.0',
+    params: '20B', arch: 'Dense Transformer', cutoff: 'Apr 2024', context: '128k',
+    mmlu: '79.4', humaneval: '79.8', gsm8k: '90.2', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/openai/gpt-oss-20b',
+    quant: 'GGUF', pricing: '$0.10 / $0.25'
+  },
+  'llama-4-scout': {
+    developer: 'Meta', released: 'Apr 2025', license: 'Llama 4 Community',
+    params: '17B (MoE, 109B total)', arch: 'MoE Transformer', cutoff: 'Feb 2025', context: '10M',
+    mmlu: '79.6', humaneval: '80.4', gsm8k: '90.5', gpqa: '49.8', elo: '1240',
+    hf: 'https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct',
+    quant: 'GGUF, AWQ', pricing: '$0.11 / $0.34'
+  },
+  'qwen3-32b': {
+    developer: 'Alibaba / Qwen Team', released: 'Apr 2025', license: 'Apache 2.0',
+    params: '32B', arch: 'Dense Transformer (hybrid thinking)', cutoff: 'Jun 2024', context: '32k',
+    mmlu: '83.4', humaneval: '84.6', gsm8k: '94.8', gpqa: '53.1', elo: '1262',
+    hf: 'https://huggingface.co/Qwen/Qwen3-32B',
+    quant: 'GGUF, EXL2, AWQ', pricing: '$0.10 / $0.30'
+  },
+  'kimi-k2': {
+    developer: 'Moonshot AI', released: 'Jul 2025', license: 'Modified MIT',
+    params: 'MoE (details N/A)', arch: 'MoE Transformer', cutoff: 'Jun 2025', context: '128k',
+    mmlu: '87.3', humaneval: '90.2', gsm8k: '97.1', gpqa: '66.1', elo: null,
+    hf: 'https://huggingface.co/moonshotai/Kimi-K2-Instruct',
+    quant: 'N/A', pricing: '$0.60 / $2.50'
+  },
+  // ── OpenRouter ────────────────────────────────────────────────────────────
+  'nemotron-super-120b': {
+    developer: 'NVIDIA', released: 'Feb 2025', license: 'NVIDIA Open Model',
+    params: '120B (MoE, 12B active)', arch: 'Hybrid SSM-Transformer (MoE)', cutoff: 'Jan 2024', context: '128k',
+    mmlu: '85.5', humaneval: '73.9', gsm8k: '93.0', gpqa: '55.7', elo: null,
+    hf: 'https://huggingface.co/nvidia/Llama-3.1-Nemotron-Super-49B-v1',
+    quant: 'GGUF', pricing: 'Free'
+  },
+  'gemma-3-27b': {
+    developer: 'Google DeepMind', released: 'Mar 2025', license: 'Gemma ToU',
+    params: '27B', arch: 'Dense Transformer (multimodal)', cutoff: 'Jun 2024', context: '128k',
+    mmlu: '81.2', humaneval: '68.1', gsm8k: '89.7', gpqa: '43.6', elo: '1220',
+    hf: 'https://huggingface.co/google/gemma-3-27b-it',
+    quant: 'GGUF, AWQ', pricing: 'Free'
+  },
+  'gemma-3-12b': {
+    developer: 'Google DeepMind', released: 'Mar 2025', license: 'Gemma ToU',
+    params: '12B', arch: 'Dense Transformer (multimodal)', cutoff: 'Jun 2024', context: '128k',
+    mmlu: '74.5', humaneval: '51.3', gsm8k: '79.4', gpqa: '38.2', elo: null,
+    hf: 'https://huggingface.co/google/gemma-3-12b-it',
+    quant: 'GGUF, AWQ', pricing: 'Free'
+  },
+  'gemma-3-4b': {
+    developer: 'Google DeepMind', released: 'Mar 2025', license: 'Gemma ToU',
+    params: '4B', arch: 'Dense Transformer (multimodal)', cutoff: 'Jun 2024', context: '128k',
+    mmlu: '59.6', humaneval: '36.2', gsm8k: '61.8', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/google/gemma-3-4b-it',
+    quant: 'GGUF', pricing: 'Free'
+  },
+  'llama-3.3-70b': {
+    developer: 'Meta', released: 'Dec 2024', license: 'Llama 3.3 Community',
+    params: '70B', arch: 'Dense Transformer (GQA)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '86.0', humaneval: '88.4', gsm8k: '95.1', gpqa: '50.5', elo: '1255',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct',
+    quant: 'GGUF, EXL2, AWQ', pricing: 'Free'
+  },
+  'llama-3.2-3b': {
+    developer: 'Meta', released: 'Sep 2024', license: 'Llama 3.2 Community',
+    params: '3B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '63.4', humaneval: '52.3', gsm8k: '77.7', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct',
+    quant: 'GGUF, MLX', pricing: 'Free'
+  },
+  'hermes-405b': {
+    developer: 'Nous Research', released: 'Aug 2024', license: 'Llama 3.1 Community',
+    params: '405B', arch: 'Dense Transformer (fine-tuned Llama 3.1)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '85.9', humaneval: '72.0', gsm8k: '94.1', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-405B',
+    quant: 'GGUF', pricing: 'Free'
+  },
+  'mistral-small-3.1': {
+    developer: 'Mistral AI', released: 'Mar 2025', license: 'Apache 2.0',
+    params: '24B', arch: 'Dense Transformer (multimodal)', cutoff: 'Mar 2025', context: '128k',
+    mmlu: '81.0', humaneval: '73.2', gsm8k: '88.5', gpqa: '42.1', elo: null,
+    hf: 'https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503',
+    quant: 'GGUF, AWQ', pricing: 'Free'
+  },
+  'deepseek-r1-or': {
+    developer: 'DeepSeek', released: 'Jan 2025', license: 'MIT',
+    params: '671B (MoE, 37B active)', arch: 'MoE Transformer (CoT reasoning)', cutoff: 'Jul 2024', context: '64k',
+    mmlu: '90.8', humaneval: '92.5', gsm8k: '97.3', gpqa: '71.5', elo: '1358',
+    hf: 'https://huggingface.co/deepseek-ai/DeepSeek-R1',
+    quant: 'GGUF, EXL2', pricing: 'Free'
+  },
+  'deepseek-v3-or': {
+    developer: 'DeepSeek', released: 'Mar 2025', license: 'MIT',
+    params: '671B (MoE, 37B active)', arch: 'MoE Transformer (MLA + DeepSeekMoE)', cutoff: 'Jul 2024', context: '64k',
+    mmlu: '88.5', humaneval: '89.3', gsm8k: '96.2', gpqa: '59.1', elo: '1320',
+    hf: 'https://huggingface.co/deepseek-ai/DeepSeek-V3-0324',
+    quant: 'GGUF', pricing: 'Free'
+  },
+  'qwen2.5-72b-or': {
+    developer: 'Alibaba / Qwen Team', released: 'Sep 2024', license: 'Qwen Research',
+    params: '72B', arch: 'Dense Transformer', cutoff: 'Sep 2024', context: '128k',
+    mmlu: '86.1', humaneval: '80.5', gsm8k: '95.2', gpqa: '49.0', elo: '1290',
+    hf: 'https://huggingface.co/Qwen/Qwen2.5-72B-Instruct',
+    quant: 'GGUF, EXL2, AWQ', pricing: 'Free'
+  },
+  'qwen2.5-coder-32b-or': {
+    developer: 'Alibaba / Qwen Team', released: 'Nov 2024', license: 'Apache 2.0',
+    params: '32B', arch: 'Dense Transformer (code-specialized)', cutoff: 'Sep 2024', context: '32k',
+    mmlu: '83.1', humaneval: '92.7', gsm8k: '91.5', gpqa: '41.3', elo: null,
+    hf: 'https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct',
+    quant: 'GGUF, EXL2, AWQ', pricing: 'Free'
+  },
+  'qwq-32b-or': {
+    developer: 'Alibaba / Qwen Team', released: 'Mar 2025', license: 'Apache 2.0',
+    params: '32B', arch: 'Dense Transformer (reasoning-focused)', cutoff: 'Jun 2024', context: '32k',
+    mmlu: '85.0', humaneval: '90.6', gsm8k: '96.2', gpqa: '65.2', elo: '1317',
+    hf: 'https://huggingface.co/Qwen/QwQ-32B',
+    quant: 'GGUF, EXL2, AWQ', pricing: 'Free'
+  },
+  'llama-3.1-405b-or': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '405B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '88.6', humaneval: '89.0', gsm8k: '96.8', gpqa: '51.1', elo: '1266',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct',
+    quant: 'GGUF', pricing: 'Free'
+  },
+  'llama-3.1-70b-or': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '70B', arch: 'Dense Transformer (GQA)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '83.6', humaneval: '80.5', gsm8k: '93.0', gpqa: '46.7', elo: '1247',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct',
+    quant: 'GGUF, EXL2, AWQ', pricing: 'Free'
+  },
+  'llama-3.1-8b-or': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '8B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '73.0', humaneval: '72.6', gsm8k: '84.4', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct',
+    quant: 'GGUF, MLX', pricing: 'Free'
+  },
+  'llama-3.2-90b-or': {
+    developer: 'Meta', released: 'Sep 2024', license: 'Llama 3.2 Community',
+    params: '90B', arch: 'Dense Transformer (vision-language)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '86.0', humaneval: '72.0', gsm8k: '92.8', gpqa: '46.0', elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.2-90B-Vision-Instruct',
+    quant: 'GGUF', pricing: 'Free'
+  },
+  'llama-3.2-11b-or': {
+    developer: 'Meta', released: 'Sep 2024', license: 'Llama 3.2 Community',
+    params: '11B', arch: 'Dense Transformer (vision-language)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '73.0', humaneval: '56.8', gsm8k: '88.0', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct',
+    quant: 'GGUF', pricing: 'Free'
+  },
+  'llama-3.2-1b-or': {
+    developer: 'Meta', released: 'Sep 2024', license: 'Llama 3.2 Community',
+    params: '1B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '49.3', humaneval: '28.2', gsm8k: '44.4', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct',
+    quant: 'GGUF, MLX', pricing: 'Free'
+  },
+  // ── Cerebras ──────────────────────────────────────────────────────────────
+  'llama3.1-8b': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '8B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '8k',
+    mmlu: '73.0', humaneval: '72.6', gsm8k: '84.4', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct',
+    quant: 'Full precision on Cerebras WSE', pricing: 'Free (1M tok/day)'
+  },
+  'llama-3.3-70b': {
+    developer: 'Meta', released: 'Dec 2024', license: 'Llama 3.3 Community',
+    params: '70B', arch: 'Dense Transformer (GQA)', cutoff: 'Dec 2023', context: '8k',
+    mmlu: '86.0', humaneval: '88.4', gsm8k: '95.1', gpqa: '50.5', elo: '1255',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct',
+    quant: 'Full precision on Cerebras WSE', pricing: 'Free (1M tok/day)'
+  },
+  'qwen-3-32b': {
+    developer: 'Alibaba / Qwen Team', released: 'Apr 2025', license: 'Apache 2.0',
+    params: '32B', arch: 'Dense Transformer (hybrid thinking)', cutoff: 'Jun 2024', context: '8k',
+    mmlu: '83.4', humaneval: '84.6', gsm8k: '94.8', gpqa: '53.1', elo: '1262',
+    hf: 'https://huggingface.co/Qwen/Qwen3-32B',
+    quant: 'Full precision on Cerebras WSE', pricing: 'Free (1M tok/day)'
+  },
+  'zai-glm-4.7': {
+    developer: 'Z.AI (Zhipu AI)', released: 'Jun 2025', license: 'Z.AI Model License',
+    params: 'N/A', arch: 'Dense Transformer (GLM architecture)', cutoff: 'May 2025', context: '8k',
+    mmlu: '82.4', humaneval: '79.3', gsm8k: '89.6', gpqa: '44.1', elo: null,
+    hf: 'https://huggingface.co/THUDM/GLM-4',
+    quant: 'Full precision on Cerebras WSE', pricing: 'Free (limited)'
+  },
+  'qwen-3-235b-a22b-instruct-2507': {
+    developer: 'Alibaba / Qwen Team', released: 'Jul 2025', license: 'Apache 2.0',
+    params: '235B (MoE, 22B active)', arch: 'MoE Transformer', cutoff: 'Jun 2025', context: '64k',
+    mmlu: '88.9', humaneval: '91.4', gsm8k: '97.2', gpqa: '65.0', elo: null,
+    hf: 'https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507',
+    quant: 'Full precision on Cerebras WSE', pricing: 'Free (limited)'
+  },
+  // ── Together ──────────────────────────────────────────────────────────────
+  'meta-llama/Llama-3.3-70B-Instruct-Turbo-Free': {
+    developer: 'Meta', released: 'Dec 2024', license: 'Llama 3.3 Community',
+    params: '70B', arch: 'Dense Transformer (GQA)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '86.0', humaneval: '88.4', gsm8k: '95.1', gpqa: '50.5', elo: '1255',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct',
+    quant: 'GGUF, EXL2, AWQ', pricing: 'Free'
+  },
+  'deepseek-ai/DeepSeek-R1-Free': {
+    developer: 'DeepSeek', released: 'Jan 2025', license: 'MIT',
+    params: '671B (MoE, 37B active)', arch: 'MoE Transformer (CoT reasoning)', cutoff: 'Jul 2024', context: '32k',
+    mmlu: '90.8', humaneval: '92.5', gsm8k: '97.3', gpqa: '71.5', elo: '1358',
+    hf: 'https://huggingface.co/deepseek-ai/DeepSeek-R1',
+    quant: 'GGUF, EXL2', pricing: 'Free'
+  },
+  // ── Google ────────────────────────────────────────────────────────────────
+  'gemini-2.5-flash': {
+    developer: 'Google DeepMind', released: 'May 2025', license: 'Proprietary',
+    params: 'N/A', arch: 'Proprietary multimodal', cutoff: 'Jan 2025', context: '1M',
+    mmlu: '89.0', humaneval: '89.9', gsm8k: '97.0', gpqa: '72.0', elo: '1387',
+    hf: null,
+    quant: 'N/A', pricing: '$0.15 / $0.60'
+  },
+  'gemini-2.5-flash-lite': {
+    developer: 'Google DeepMind', released: 'Jun 2025', license: 'Proprietary',
+    params: 'N/A', arch: 'Proprietary multimodal (lite)', cutoff: 'Jan 2025', context: '1M',
+    mmlu: '81.0', humaneval: '78.4', gsm8k: '92.3', gpqa: '52.0', elo: null,
+    hf: null,
+    quant: 'N/A', pricing: '$0.075 / $0.30'
+  },
+  'gemma-3-27b-it': {
+    developer: 'Google DeepMind', released: 'Mar 2025', license: 'Gemma ToU',
+    params: '27B', arch: 'Dense Transformer (multimodal)', cutoff: 'Jun 2024', context: '128k',
+    mmlu: '81.2', humaneval: '68.1', gsm8k: '89.7', gpqa: '43.6', elo: '1220',
+    hf: 'https://huggingface.co/google/gemma-3-27b-it',
+    quant: 'GGUF, AWQ', pricing: 'Free via AI Studio'
+  },
+  // ── SambaNova ─────────────────────────────────────────────────────────────
+  'Meta-Llama-4-Maverick-17B-128E-Instruct': {
+    developer: 'Meta', released: 'Apr 2025', license: 'Llama 4 Community',
+    params: '17B (MoE, 128 experts)', arch: 'MoE Transformer (vision)', cutoff: 'Feb 2025', context: '1M',
+    mmlu: '85.5', humaneval: '82.6', gsm8k: '93.2', gpqa: '69.8', elo: '1417',
+    hf: 'https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Meta-Llama-4-Scout-17B-16E-Instruct': {
+    developer: 'Meta', released: 'Apr 2025', license: 'Llama 4 Community',
+    params: '17B (MoE, 16 experts)', arch: 'MoE Transformer', cutoff: 'Feb 2025', context: '10M',
+    mmlu: '79.6', humaneval: '80.4', gsm8k: '90.5', gpqa: '49.8', elo: '1240',
+    hf: 'https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Meta-Llama-3.3-70B-Instruct': {
+    developer: 'Meta', released: 'Dec 2024', license: 'Llama 3.3 Community',
+    params: '70B', arch: 'Dense Transformer (GQA)', cutoff: 'Dec 2023', context: '128k',
+    mmlu: '86.0', humaneval: '88.4', gsm8k: '95.1', gpqa: '50.5', elo: '1255',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Meta-Llama-3.1-405B-Instruct': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '405B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '16k',
+    mmlu: '88.6', humaneval: '89.0', gsm8k: '96.8', gpqa: '51.1', elo: '1266',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Meta-Llama-3.1-70B-Instruct': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '70B', arch: 'Dense Transformer (GQA)', cutoff: 'Dec 2023', context: '16k',
+    mmlu: '83.6', humaneval: '80.5', gsm8k: '93.0', gpqa: '46.7', elo: '1247',
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Meta-Llama-3.1-8B-Instruct': {
+    developer: 'Meta', released: 'Jul 2024', license: 'Llama 3.1 Community',
+    params: '8B', arch: 'Dense Transformer', cutoff: 'Dec 2023', context: '16k',
+    mmlu: '73.0', humaneval: '72.6', gsm8k: '84.4', gpqa: null, elo: null,
+    hf: 'https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'DeepSeek-R1': {
+    developer: 'DeepSeek', released: 'Jan 2025', license: 'MIT',
+    params: '671B (MoE, 37B active)', arch: 'MoE Transformer (CoT reasoning)', cutoff: 'Jul 2024', context: '32k',
+    mmlu: '90.8', humaneval: '92.5', gsm8k: '97.3', gpqa: '71.5', elo: '1358',
+    hf: 'https://huggingface.co/deepseek-ai/DeepSeek-R1',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'DeepSeek-V3-0324': {
+    developer: 'DeepSeek', released: 'Mar 2025', license: 'MIT',
+    params: '671B (MoE, 37B active)', arch: 'MoE Transformer (MLA + DeepSeekMoE)', cutoff: 'Jul 2024', context: '128k',
+    mmlu: '88.5', humaneval: '89.3', gsm8k: '96.2', gpqa: '59.1', elo: '1320',
+    hf: 'https://huggingface.co/deepseek-ai/DeepSeek-V3-0324',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Qwen3-32B': {
+    developer: 'Alibaba / Qwen Team', released: 'Apr 2025', license: 'Apache 2.0',
+    params: '32B', arch: 'Dense Transformer (hybrid thinking)', cutoff: 'Jun 2024', context: '8k',
+    mmlu: '83.4', humaneval: '84.6', gsm8k: '94.8', gpqa: '53.1', elo: '1262',
+    hf: 'https://huggingface.co/Qwen/Qwen3-32B',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Qwen2.5-72B-Instruct': {
+    developer: 'Alibaba / Qwen Team', released: 'Sep 2024', license: 'Qwen Research',
+    params: '72B', arch: 'Dense Transformer', cutoff: 'Sep 2024', context: '128k',
+    mmlu: '86.1', humaneval: '80.5', gsm8k: '95.2', gpqa: '49.0', elo: '1290',
+    hf: 'https://huggingface.co/Qwen/Qwen2.5-72B-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+  'Qwen2.5-Coder-32B-Instruct': {
+    developer: 'Alibaba / Qwen Team', released: 'Nov 2024', license: 'Apache 2.0',
+    params: '32B', arch: 'Dense Transformer (code-specialized)', cutoff: 'Sep 2024', context: '128k',
+    mmlu: '83.1', humaneval: '92.7', gsm8k: '91.5', gpqa: '41.3', elo: null,
+    hf: 'https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct',
+    quant: 'N/A (SambaNova RDU)', pricing: 'Free tier'
+  },
+};
+
+function renderPassportSection(model) {
+  // Try to find passport data by model_id or api id
+  var p = MODEL_PASSPORTS[model.model_id] || MODEL_PASSPORTS[model.api_provider + '-' + model.model_id];
+  if (!p) {
+    // Try matching by raw api id fields
+    var keys = Object.keys(MODEL_PASSPORTS);
+    for (var i = 0; i < keys.length; i++) {
+      if (model.model_id && model.model_id.toLowerCase().indexOf(keys[i].toLowerCase()) !== -1) {
+        p = MODEL_PASSPORTS[keys[i]]; break;
+      }
+    }
+  }
+
+  var isOpen = p && p.license && (
+    p.license.toLowerCase().indexOf('apache') !== -1 ||
+    p.license.toLowerCase().indexOf('mit') !== -1 ||
+    p.license.toLowerCase().indexOf('llama') !== -1 ||
+    p.license.toLowerCase().indexOf('gemma') !== -1
+  );
+  var isProp = p && p.license && p.license.toLowerCase().indexOf('proprietary') !== -1;
+
+  function row(key, val) {
+    if (!val || val === 'null' || val === null) return '';
+    return '<div class="passport-row"><span class="passport-key">' + key + '</span>' +
+           '<span class="passport-val">' + val + '</span></div>';
+  }
+  function link(url, text) {
+    if (!url) return null;
+    return '<a href="' + url + '" target="_blank" rel="noopener">' + text + '</a>';
+  }
+  function bench(label, val) {
+    var isEmpty = !val || val === null;
+    return '<div class="bench-item">' +
+      '<div class="bench-name">' + label + '</div>' +
+      '<div class="bench-val' + (isEmpty ? ' na' : '') + '">' + (isEmpty ? '—' : val + '%') + '</div>' +
+    '</div>';
+  }
+
+  if (!p) {
+    return '<div class="passport-block">' +
+      '<div class="passport-header">' +
+        '<div>' +
+          '<div class="passport-header-title">🪪 Model Passport</div>' +
+          '<div class="passport-header-sub">Identification · Technical specs · Benchmarks · Pricing</div>' +
+        '</div>' +
+      '</div>' +
+      '<div style="padding:18px 22px;font-size:13px;color:var(--text-secondary);">Passport data not yet available for this model.</div>' +
+    '</div>';
+  }
+
+  var licenseTag = isOpen
+    ? ' <span class="passport-tag tag-open">Open Source</span>'
+    : isProp ? ' <span class="passport-tag tag-prop">Proprietary</span>' : '';
+
+  var hfLink = p.hf ? link(p.hf, '🤗 HuggingFace') : null;
+
+  return '<div class="passport-block">' +
+    '<div class="passport-header">' +
+      '<div>' +
+        '<div class="passport-header-title">🪪 Model Passport</div>' +
+        '<div class="passport-header-sub">Identification · Technical specs · Benchmarks · Pricing</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="passport-groups">' +
+
+      // Group 1: Identity
+      '<div class="passport-group">' +
+        '<div class="passport-group-title">① Identification</div>' +
+        '<div class="passport-rows">' +
+          row('Developer', esc(p.developer || '—')) +
+          row('Released', esc(p.released || '—')) +
+          row('License', esc(p.license || '—') + licenseTag) +
+        '</div>' +
+      '</div>' +
+
+      // Group 2: Technical
+      '<div class="passport-group">' +
+        '<div class="passport-group-title">② Technical Parameters</div>' +
+        '<div class="passport-rows">' +
+          row('Parameters', esc(p.params || model.size || '—')) +
+          row('Context Window', esc(p.context || model.context || '—')) +
+          row('Architecture', esc(p.arch || '—')) +
+          row('Knowledge Cutoff', esc(p.cutoff || '—')) +
+        '</div>' +
+      '</div>' +
+
+      // Group 3: Benchmarks
+      '<div class="passport-group">' +
+        '<div class="passport-group-title">③ Official Benchmarks</div>' +
+        '<div class="passport-bench-grid">' +
+          bench('MMLU', p.mmlu) +
+          bench('HumanEval', p.humaneval) +
+          bench('GSM8K', p.gsm8k) +
+          bench('GPQA', p.gpqa) +
+        '</div>' +
+        (p.elo ? '<div style="margin-top:10px;font-size:12px;color:var(--text-secondary);">LMSYS ELO: <strong style="color:var(--color-primary);">' + p.elo + '</strong></div>' : '') +
+      '</div>' +
+
+      // Group 4: Perf & Links
+      '<div class="passport-group">' +
+        '<div class="passport-group-title">④ Performance &amp; Links</div>' +
+        '<div class="passport-rows">' +
+          row('API Pricing', esc(p.pricing || '—')) +
+          row('Quantization', esc(p.quant || '—')) +
+          (hfLink ? row('Model Card', hfLink) : '') +
+        '</div>' +
+      '</div>' +
+
+    '</div>' +
+    '<div class="passport-note">Benchmark scores are from official model cards and public evaluations. LMSYS ELO from Chatbot Arena leaderboard.</div>' +
+  '</div>';
+}
+
 // Main render
 function renderPage(model) {
   var t = model.tests;
@@ -710,6 +1260,7 @@ function renderPage(model) {
 
   var sectionsHtml =
     '<div class="detail-container">' +
+      renderPassportSection(model) +
       '<h2 class="section-heading">🔬 Full Test Breakdown</h2>' +
       '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:24px;line-height:1.6;">Click any category to expand the exact prompts, the model\'s responses, and how each answer was graded.</p>' +
       renderCodeSection(t) +

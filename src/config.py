@@ -203,6 +203,72 @@ MODELS = {
             "provider": "OpenRouter", "size": "N/A",
             "size_category": "medium", "context": "128k"
         },
+        "llama-3.1-405b-or": {
+            "id": "meta-llama/llama-3.1-405b-instruct:free",
+            "name": "Llama 3.1 405B",
+            "provider": "OpenRouter", "size": "405B",
+            "size_category": "large", "context": "131k"
+        },
+        "llama-3.1-70b-or": {
+            "id": "meta-llama/llama-3.1-70b-instruct:free",
+            "name": "Llama 3.1 70B",
+            "provider": "OpenRouter", "size": "70B",
+            "size_category": "large", "context": "131k"
+        },
+        "llama-3.1-8b-or": {
+            "id": "meta-llama/llama-3.1-8b-instruct:free",
+            "name": "Llama 3.1 8B",
+            "provider": "OpenRouter", "size": "8B",
+            "size_category": "small", "context": "131k"
+        },
+        "llama-3.2-90b-or": {
+            "id": "meta-llama/llama-3.2-90b-vision-instruct:free",
+            "name": "Llama 3.2 90B Vision",
+            "provider": "OpenRouter", "size": "90B",
+            "size_category": "large", "context": "131k"
+        },
+        "llama-3.2-11b-or": {
+            "id": "meta-llama/llama-3.2-11b-vision-instruct:free",
+            "name": "Llama 3.2 11B Vision",
+            "provider": "OpenRouter", "size": "11B",
+            "size_category": "medium", "context": "131k"
+        },
+        "llama-3.2-1b-or": {
+            "id": "meta-llama/llama-3.2-1b-instruct:free",
+            "name": "Llama 3.2 1B",
+            "provider": "OpenRouter", "size": "1B",
+            "size_category": "small", "context": "131k"
+        },
+        "deepseek-r1-or": {
+            "id": "deepseek/deepseek-r1:free",
+            "name": "DeepSeek R1",
+            "provider": "OpenRouter", "size": "671B",
+            "size_category": "large", "context": "65k"
+        },
+        "deepseek-v3-or": {
+            "id": "deepseek/deepseek-chat-v3-0324:free",
+            "name": "DeepSeek V3",
+            "provider": "OpenRouter", "size": "671B",
+            "size_category": "large", "context": "65k"
+        },
+        "qwen2.5-72b-or": {
+            "id": "qwen/qwen-2.5-72b-instruct:free",
+            "name": "Qwen 2.5 72B",
+            "provider": "OpenRouter", "size": "72B",
+            "size_category": "large", "context": "131k"
+        },
+        "qwen2.5-coder-32b-or": {
+            "id": "qwen/qwen-2.5-coder-32b-instruct:free",
+            "name": "Qwen 2.5 Coder 32B",
+            "provider": "OpenRouter", "size": "32B",
+            "size_category": "medium", "context": "33k"
+        },
+        "qwq-32b-or": {
+            "id": "qwen/qwq-32b:free",
+            "name": "QwQ 32B",
+            "provider": "OpenRouter", "size": "32B",
+            "size_category": "medium", "context": "32k"
+        },
     },
 
     "cerebras": {
@@ -224,6 +290,24 @@ MODELS = {
             "name": "Qwen 3 32B",
             "provider": "Cerebras", "size": "32B",
             "size_category": "medium", "context": "131k"
+        },
+        "gpt-oss-120b": {
+            "id": "gpt-oss-120b",
+            "name": "GPT-OSS 120B",
+            "provider": "Cerebras", "size": "120B",
+            "size_category": "large", "context": "131k"
+        },
+        "zai-glm-4.7": {
+            "id": "zai-glm-4.7",
+            "name": "GLM 4.7",
+            "provider": "Cerebras", "size": "N/A",
+            "size_category": "large", "context": "131k"
+        },
+        "qwen3-235b": {
+            "id": "qwen-3-235b-a22b-instruct-2507",
+            "name": "Qwen 3 235B",
+            "provider": "Cerebras", "size": "235B",
+            "size_category": "large", "context": "64k"
         },
     },
 
@@ -297,15 +381,45 @@ MODELS = {
             "provider": "SambaNova", "size": "405B",
             "size_category": "large", "context": "16k"
         },
+        "llama-3.1-70b-sn": {
+            "id": "Meta-Llama-3.1-70B-Instruct",
+            "name": "Llama 3.1 70B",
+            "provider": "SambaNova", "size": "70B",
+            "size_category": "large", "context": "16k"
+        },
+        "llama-3.1-8b-sn": {
+            "id": "Meta-Llama-3.1-8B-Instruct",
+            "name": "Llama 3.1 8B",
+            "provider": "SambaNova", "size": "8B",
+            "size_category": "small", "context": "16k"
+        },
         "deepseek-r1-sn": {
             "id": "DeepSeek-R1",
             "name": "DeepSeek R1",
             "provider": "SambaNova", "size": "671B",
             "size_category": "large", "context": "32k"
         },
+        "deepseek-v3-sn": {
+            "id": "DeepSeek-V3-0324",
+            "name": "DeepSeek V3",
+            "provider": "SambaNova", "size": "671B",
+            "size_category": "large", "context": "128k"
+        },
         "qwen3-32b-sn": {
             "id": "Qwen3-32B",
             "name": "Qwen 3 32B",
+            "provider": "SambaNova", "size": "32B",
+            "size_category": "medium", "context": "131k"
+        },
+        "qwen2.5-72b-sn": {
+            "id": "Qwen2.5-72B-Instruct",
+            "name": "Qwen 2.5 72B",
+            "provider": "SambaNova", "size": "72B",
+            "size_category": "large", "context": "131k"
+        },
+        "qwen2.5-coder-32b-sn": {
+            "id": "Qwen2.5-Coder-32B-Instruct",
+            "name": "Qwen 2.5 Coder 32B",
             "provider": "SambaNova", "size": "32B",
             "size_category": "medium", "context": "131k"
         },
