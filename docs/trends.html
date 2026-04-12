@@ -12,38 +12,37 @@
   <link rel="stylesheet" href="animations.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
-    .trends-hero{background:transparent;border-bottom:1px solid var(--border);padding:48px 24px 32px;}
-    .trends-hero-inner{max-width:1600px;margin:0 auto;}
-    .trends-hero-title{font-family:var(--font-sans);font-size:34px;font-weight:700;color:var(--text-primary);letter-spacing:-0.03em;margin-bottom:10px;}
-    .trends-hero-sub{font-size:14px;color:var(--text-secondary);max-width:560px;line-height:1.6;}
-    .tier-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;}
-    .tier-tab{padding:8px 20px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-family:var(--font-sans);font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;}
-    .tier-tab:hover{border-color:var(--border-strong);color:var(--text-primary);}
-    .tier-tab.active{background:linear-gradient(135deg,#6366f1,#3b82f6);border-color:transparent;color:#fff;font-weight:600;}
-    .chart-section{margin-bottom:40px;}
-    .chart-title{font-size:18px;font-weight:700;color:var(--text-primary);margin-bottom:6px;}
-    .chart-subtitle{font-size:13px;color:var(--text-secondary);margin-bottom:16px;}
-    .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;}
-    .insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:32px;}
-    .insight-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 24px;}
-    .insight-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-secondary);margin-bottom:8px;}
-    .insight-value{font-size:22px;font-weight:700;color:var(--text-primary);margin-bottom:4px;line-height:1.2;}
+    .trends-hero{background:transparent;border-bottom:1px solid var(--border);padding:28px 32px 20px;}
+    .trends-hero-inner{}
+    .trends-hero-title{font-family:var(--font-sans);font-size:28px;font-weight:700;color:var(--text-primary);letter-spacing:-0.03em;margin-bottom:6px;}
+    .trends-hero-sub{font-size:13px;color:var(--text-secondary);max-width:560px;line-height:1.6;}
+    .chart-section{margin-bottom:32px;}
+    .chart-title{font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:4px;}
+    .chart-subtitle{font-size:12px;color:var(--text-secondary);margin-bottom:12px;}
+    .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;}
+    .insights-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px;}
+    .insight-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+    .insight-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-secondary);margin-bottom:6px;}
+    .insight-value{font-size:19px;font-weight:700;color:var(--text-primary);margin-bottom:3px;line-height:1.2;}
     .insight-value em{font-style:normal;color:var(--color-primary);}
-    .insight-sub{font-size:13px;color:var(--text-secondary);}
-    .benchmark-breakdown{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:40px;}
-    .bench-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;}
-    .bench-card-title{font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:4px;}
-    .bench-card-sub{font-size:12px;color:var(--text-secondary);margin-bottom:12px;}
-    .bench-model-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border-subtle);}
+    .insight-sub{font-size:12px;color:var(--text-secondary);}
+    .benchmark-breakdown{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:32px;}
+    .bench-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;}
+    .bench-card-title{font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;}
+    .bench-card-sub{font-size:11px;color:var(--text-secondary);margin-bottom:10px;}
+    .bench-model-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border-subtle);}
     .bench-model-row:last-child{border-bottom:none;}
-    .bench-rank{font-size:11px;color:var(--text-secondary);min-width:22px;}
-    .bench-model-name{flex:1;font-size:13px;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-    .bench-score{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;flex-shrink:0;}
-    .bench-bar{height:4px;background:var(--bar-empty);border-radius:2px;overflow:hidden;margin-top:3px;}
+    .bench-rank{font-size:11px;color:var(--text-secondary);min-width:20px;}
+    .bench-model-name{flex:1;font-size:12px;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .bench-score{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;flex-shrink:0;}
+    .bench-bar{height:3px;background:var(--bar-empty);border-radius:2px;overflow:hidden;margin-top:3px;}
     .bench-bar-fill{height:100%;border-radius:2px;transition:width 0.5s;}
     .no-data{text-align:center;padding:48px;color:var(--text-secondary);}
-    .tier-section{display:none;}
-    .tier-section.active{display:block;}
+    /* Tier sections: always visible, separated by a heading */
+    .tier-section{display:block;margin-bottom:48px;}
+    .tier-heading{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+    .tier-heading-label{font-family:var(--font-mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-secondary);}
+    .tier-heading-name{font-size:18px;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em;}
     [data-theme="light"] .chart-card,[data-theme="light"] .insight-card,[data-theme="light"] .bench-card{background:rgba(255,255,255,0.92);}
   </style>
   <script src="app.js"></script>
@@ -94,12 +93,7 @@
 </div>
 
 <main class="container">
-  <div class="tier-tabs" id="tier-tabs">
-    <button class="tier-tab active" data-tier="large">Large — 50B+</button>
-    <button class="tier-tab" data-tier="medium">Medium — 10–50B</button>
-    <button class="tier-tab" data-tier="small">Small — ≤10B</button>
-  </div>
-  <div id="tier-large" class="tier-section active"></div>
+  <div id="tier-large" class="tier-section"></div>
   <div id="tier-medium" class="tier-section"></div>
   <div id="tier-small" class="tier-section"></div>
 </main>
@@ -118,7 +112,6 @@
 <script>
 var chartInstances = [];
 var TIER_LABELS = {large:'Large (50B+)',medium:'Medium (10–50B)',small:'Small (≤10B)'};
-var TIER_COLORS = {
   large:  ['#6366f1','#8b5cf6','#a78bfa','#c4b5fd','#7c3aed','#4f46e5','#818cf8'],
   medium: ['#3b82f6','#60a5fa','#93c5fd','#2563eb','#1d4ed8','#1e40af','#38bdf8'],
   small:  ['#10b981','#34d399','#6ee7b7','#059669','#047857','#065f46','#22c55e'],
@@ -151,8 +144,10 @@ function countTests(m){
 
 function buildTier(tier, models){
   var el=document.getElementById('tier-'+tier);
-  el.innerHTML='';
-  if(!models.length){el.innerHTML='<div class="no-data">No '+TIER_LABELS[tier]+' models in this run.</div>';return;}
+  var tierEmoji={large:'🔵',medium:'🟣',small:'🟢'};
+  el.innerHTML='<div class="tier-heading"><span class="tier-heading-label">'+tierEmoji[tier]+' '+tier+'</span><span class="tier-heading-name">'+TIER_LABELS[tier]+'</span></div>';
+
+  if(!models.length){el.innerHTML+='<div class="no-data">No '+TIER_LABELS[tier]+' models in this run.</div>';return;}
 
   var sorted=[].concat(models).sort(function(a,b){return (b.quality_score||0)-(a.quality_score||0);});
   var colors=TIER_COLORS[tier];
@@ -164,16 +159,16 @@ function buildTier(tier, models){
   var html='<div class="insights-grid reveal">'
     +'<div class="insight-card"><div class="insight-label">🏆 Top scorer</div><div class="insight-value"><em>'+esc(best.model_name)+'</em></div><div class="insight-sub">'+esc(best.provider)+' · '+Math.round(best.quality_score||0)+'/100</div></div>'
     +'<div class="insight-card"><div class="insight-label">⚡ Fastest</div><div class="insight-value"><em>'+esc(fastest.model_name)+'</em></div><div class="insight-sub">'+esc(fastest.provider)+' · '+Math.round(fastest.raw_speed||0)+' tok/s</div></div>'
-    +'<div class="insight-card"><div class="insight-label">📊 Tier avg quality</div><div class="insight-value"><em>'+Math.round(avgQ)+'</em><span style="font-size:16px;color:var(--text-secondary);">/100</span></div><div class="insight-sub">across '+models.length+' model'+(models.length!==1?'s':'')+'</div></div>'
-    +'<div class="insight-card"><div class="insight-label">✅ Full response</div><div class="insight-value"><em>'+fullR+'</em><span style="font-size:16px;color:var(--text-secondary);">/'+models.length+'</span></div><div class="insight-sub">completed all 5 tests</div></div>'
+    +'<div class="insight-card"><div class="insight-label">📊 Avg quality</div><div class="insight-value"><em>'+Math.round(avgQ)+'</em><span style="font-size:13px;color:var(--text-secondary);">/100</span></div><div class="insight-sub">across '+models.length+' model'+(models.length!==1?'s':'')+'</div></div>'
+    +'<div class="insight-card"><div class="insight-label">✅ Full tests</div><div class="insight-value"><em>'+fullR+'</em><span style="font-size:13px;color:var(--text-secondary);">/'+models.length+'</span></div><div class="insight-sub">completed all 5 tests</div></div>'
     +'</div>';
 
   var canvasId='qchart-'+tier;
   html+='<div class="chart-section reveal"><div class="chart-title">Quality Scores</div>'
-    +'<div class="chart-subtitle">Overall quality score (0–100) within '+TIER_LABELS[tier]+'</div>'
-    +'<div class="chart-card"><canvas id="'+canvasId+'" height="260"></canvas></div></div>';
+    +'<div class="chart-subtitle">Overall score (0–100) — '+TIER_LABELS[tier]+'</div>'
+    +'<div class="chart-card"><div style="position:relative;height:160px;"><canvas id="'+canvasId+'"></canvas></div></div></div>';
 
-  html+='<div class="chart-title reveal" style="margin-bottom:16px;">Benchmark Breakdown</div>'
+  html+='<div class="chart-title reveal" style="margin-bottom:12px;">Benchmark Breakdown</div>'
     +'<div class="benchmark-breakdown">';
 
   BENCH.forEach(function(bench){
@@ -203,7 +198,7 @@ function buildTier(tier, models){
     html+='</div>';
   });
   html+='</div>';
-  el.innerHTML=html;
+  el.innerHTML+=html;
 
   requestAnimationFrame(function(){
     var ctx=document.getElementById(canvasId);
@@ -217,7 +212,7 @@ function buildTier(tier, models){
           data:sorted.map(function(m){return Math.round(m.quality_score||0);}),
           backgroundColor:sorted.map(function(_,i){return colors[i%colors.length]+'cc';}),
           borderColor:sorted.map(function(_,i){return colors[i%colors.length];}),
-          borderWidth:1,borderRadius:8,borderSkipped:false,
+          borderWidth:1,borderRadius:5,borderSkipped:false,
         }]
       },
       options:{
@@ -227,64 +222,31 @@ function buildTier(tier, models){
           tooltip:{
             backgroundColor:ttBg(),titleColor:ttColor(),bodyColor:ttColor(),
             borderColor:isDark()?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
-            borderWidth:1,padding:12,cornerRadius:10,displayColors:false,
+            borderWidth:1,padding:10,cornerRadius:8,displayColors:false,
             callbacks:{
               title:function(items){return sorted[items[0].dataIndex]?sorted[items[0].dataIndex].model_name:'';},
               label:function(item){
                 var m=sorted[item.dataIndex];
-                return m?['Quality: '+item.raw+'/100','Provider: '+m.provider,'Size: '+m.size]:[];
+                return m?['Quality: '+item.raw+'/100','Provider: '+m.provider]:[];
               }
             }
           }
         },
         scales:{
-          y:{beginAtZero:true,max:100,grid:{color:gridC()},border:{display:false},ticks:{color:labelC(),font:{size:11},callback:function(v){return v+'/100';}}},
-          x:{grid:{display:false},border:{display:false},ticks:{color:labelC(),font:{size:11},maxRotation:30}}
+          y:{beginAtZero:true,max:100,grid:{color:gridC()},border:{display:false},ticks:{color:labelC(),font:{size:10},callback:function(v){return v;}}},
+          x:{grid:{display:false},border:{display:false},ticks:{color:labelC(),font:{size:10},maxRotation:25}}
         },
-        animation:{duration:700,easing:'easeOutQuart'}
+        animation:{duration:600,easing:'easeOutQuart'}
       }
     });
     chartInstances.push(chart);
   });
 
-  // Reveal
   var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.07});
-  el.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  el.querySelectorAll('.reveal').forEach(function(r){io.observe(r);});
 }
 
-async function loadData(){
-  try{
-    var today=new Date().toISOString().split('T')[0];
-    var data;
-    var r1=await fetch('data/results/'+today+'.json');
-    if(r1.ok){data={results:await r1.json()};}
-    else{var r2=await fetch('data/results/latest.json');if(!r2.ok)throw new Error('HTTP '+r2.status);data=await r2.json();}
-    var all=(data.results||[]).map(function(m){
-      var spd=m.raw_speed||((m.tests&&m.tests.speed)?m.tests.speed.avg_tokens_per_sec||0:0);
-      return Object.assign({},m,{
-        quality_score:m.quality_score!=null?m.quality_score:(m.overall_score||0),
-        raw_speed:spd,
-        size_category:m.size_category||'unknown',
-        tests_completed:countTests(Object.assign({},m,{raw_speed:spd}))
-      });
-    });
-    var byTier={large:all.filter(function(m){return m.size_category==='large';}),medium:all.filter(function(m){return m.size_category==='medium';}),small:all.filter(function(m){return m.size_category==='small';})};
-    ['large','medium','small'].forEach(function(t){buildTier(t,byTier[t]);});
-  }catch(err){
-    ['large','medium','small'].forEach(function(t){document.getElementById('tier-'+t).innerHTML='<div class="no-data">Could not load: '+esc(String(err))+'</div>';});
-  }
-}
-
-document.getElementById('tier-tabs').addEventListener('click',function(e){
-  var btn=e.target.closest('.tier-tab');if(!btn)return;
-  var tier=btn.dataset.tier;
-  document.querySelectorAll('.tier-tab').forEach(function(b){b.classList.remove('active');});
-  document.querySelectorAll('.tier-section').forEach(function(s){s.classList.remove('active');});
-  btn.classList.add('active');
-  document.getElementById('tier-'+tier).classList.add('active');
-});
-
-document.addEventListener('DOMContentLoaded',loadData);
+('DOMContentLoaded',loadData);
 </script>
 
 <script>
