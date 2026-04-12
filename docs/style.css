@@ -119,14 +119,14 @@ h1,h2,h3 { font-family: var(--font-sans); font-weight: 600; line-height: 1.2; co
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   text-decoration: none;
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-right: 8px;
+  margin-right: 4px;
   flex-shrink: 0;
 }
 .logo-icon { height: 108px !important; width: 108px !important; max-height: 108px !important; max-width: 108px !important; object-fit: contain; display: inline-block; flex-shrink: 0; vertical-align: middle; position: relative; z-index: 1; }
@@ -135,7 +135,7 @@ h1,h2,h3 { font-family: var(--font-sans); font-weight: 600; line-height: 1.2; co
   position: relative;
   display: flex;
   align-items: center;
-  height: 116px;
+  height: 60px;
   padding: 0 14px;
   color: #a8bdcf;
   text-decoration: none;
