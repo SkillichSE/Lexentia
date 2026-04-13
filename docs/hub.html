@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lexentia Hub — AI Prompt Laboratory & Resources</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="AI prompt laboratory, optimized configurations, and insights from Lexentia benchmarks. Copy-paste ready prompts and settings for top models.">
+  <meta property="og:title" content="Lexentia Hub — AI Resources & Prompts">
+  <meta property="og:description" content="Prompt laboratory, model configurations, and benchmark insights from Lexentia.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-spacing.css">
+  <link rel="stylesheet" href="animations.css">
+  <script src="app.js"></script>
+</head>
+<body>
+
+<!-- Left Sidebar Navigation -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="logo">
+      <img src="media/L_logo.png" alt="Lexentia Proof logo" class="logo-icon">
+      <span>Lexentia</span>
+    </a>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-title">Main</div>
+      <a href="index.html" class="nav-item">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Rankings</span>
+      </a>
+      <a href="hub.html" class="nav-item active">
+        <span class="nav-icon">🧪</span>
+        <span class="nav-text">Hub</span>
+      </a>
+    </div>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Hub Sections</div>
+      <a href="#library" class="nav-item" data-section="library">
+        <span class="nav-icon">📝</span>
+        <span class="nav-text">Library</span>
+      </a>
+      <a href="#presets" class="nav-item" data-section="presets">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Presets</span>
+      </a>
+      <a href="#insights" class="nav-item" data-section="insights">
+        <span class="nav-icon">💡</span>
+        <span class="nav-text">Insights</span>
+      </a>
+    </div>
+  </nav>
+  
+  <div class="sidebar-footer">
+    <div class="theme-switch-wrap">
+      <span class="theme-switch-label" id="theme-label">Dark</span>
+      <label class="theme-switch" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-toggle">
+        <span class="theme-switch-track"></span>
+        <span class="theme-switch-thumb" id="thumb-icon"></span>
+      </label>
+    </div>
+  </div>
+</aside>
+
+<!-- Mobile Menu Toggle -->
+<button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- Main Content -->
+<main class="main-content">
+  <header class="hub-header">
+    <div class="hub-hero">
+      <h1 class="hub-title">Lexentia Hub</h1>
+      <p class="hub-subtitle">AI Prompt Laboratory & Resources</p>
+      <p class="hub-description">Optimized prompts, configurations, and insights based on our benchmark results</p>
+    </div>
+  </header>
+
+  <!-- Library Section -->
+  <section id="library" class="hub-section active">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="section-icon">📝</span>
+        Library
+      </h2>
+      <p class="section-subtitle">Prompt laboratory with system instructions optimized for top models</p>
+    </div>
+    
+    <div class="prompt-filters">
+      <button class="filter-chip active" data-category="all">All</button>
+      <button class="filter-chip" data-category="logic">Logic</button>
+      <button class="filter-chip" data-category="creative">Creative</button>
+      <button class="filter-chip" data-category="code">Code</button>
+      <button class="filter-chip" data-category="math">Math</button>
+    </div>
+    
+    <div class="prompts-grid" id="prompts-grid">
+      <!-- Prompts will be loaded here -->
+    </div>
+  </section>
+
+  <!-- Presets Section -->
+  <section id="presets" class="hub-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="section-icon">⚙️</span>
+        Presets
+      </h2>
+      <p class="section-subtitle">Ready-to-use API configurations for popular providers</p>
+    </div>
+    
+    <div class="provider-tabs">
+      <button class="provider-tab active" data-provider="groq">Groq</button>
+      <button class="provider-tab" data-provider="openrouter">OpenRouter</button>
+      <button class="provider-tab" data-provider="together">Together AI</button>
+    </div>
+    
+    <div class="presets-grid" id="presets-grid">
+      <!-- Presets will be loaded here -->
+    </div>
+  </section>
+
+  <!-- Insights Section -->
+  <section id="insights" class="hub-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="section-icon">💡</span>
+        Insights
+      </h2>
+      <p class="section-subtitle">Deep analysis and guides based on benchmark data</p>
+    </div>
+    
+    <div class="articles-grid" id="articles-grid">
+      <!-- Articles will be loaded here -->
+    </div>
+  </section>
+</main>
+
+<script src="hub.js"></script>
+</body>
+</html>

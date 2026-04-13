@@ -21,19 +21,54 @@
 </head>
 <body>
 
-<header class="header" id="app-bar">
-  <div class="header-content">
+<!-- Left Sidebar Navigation -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
     <a href="index.html" class="logo">
-      <img src="media/L_logo.png" alt="Lexentia Proof logo" class="logo-icon">Lexentia Proof
+      <img src="media/L_logo.png" alt="Lexentia Proof logo" class="logo-icon">
+      <span>Lexentia</span>
     </a>
-    <nav class="nav">
-      <a href="index.html" class="nav-link active">Rankings</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="search.html" class="nav-link">Search</a>
-      <a href="providers.html" class="nav-link">Providers</a>
-      <a href="trends.html" class="nav-link">Trends</a>
-      <a href="news.html" class="nav-link">News</a>
-    </nav>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-title">Main</div>
+      <a href="index.html" class="nav-item active">
+        <span class="nav-icon">???</span>
+        <span class="nav-text">Rankings</span>
+      </a>
+      <a href="hub.html" class="nav-item">
+        <span class="nav-icon">???</span>
+        <span class="nav-text">Hub</span>
+      </a>
+    </div>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Resources</div>
+      <a href="about.html" class="nav-item">
+        <span class="nav-icon">???</span>
+        <span class="nav-text">About</span>
+      </a>
+      <a href="search.html" class="nav-item">
+        <span class="nav-icon">???</span>
+        <span class="nav-text">Search</span>
+      </a>
+      <a href="providers.html" class="nav-item">
+        <span class="nav-icon">???</span>
+        <span class="nav-text">Providers</span>
+      </a>
+      <a href="trends.html" class="nav-item">
+        <span class="nav-icon">???</span>
+        <span class="nav-text">Trends</span>
+      </a>
+      <a href="news.html" class="nav-item">
+        <span class="nav-icon">???</span>
+        <span class="nav-text">News</span>
+      </a>
+    </div>
+  </nav>
+  
+  <div class="sidebar-footer">
     <div class="theme-switch-wrap">
       <span class="theme-switch-label" id="theme-label">Dark</span>
       <label class="theme-switch" aria-label="Toggle theme">
@@ -43,60 +78,54 @@
       </label>
     </div>
   </div>
-</header>
-<button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation">
+</aside>
+
+<!-- Mobile Menu Toggle -->
+<button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
   <span></span><span></span><span></span>
 </button>
-<nav class="nav-drawer" id="nav-drawer" style="display:none;">
-  <a href="index.html" class="nav-link active">Rankings</a>
-  <a href="about.html" class="nav-link">About</a>
-  <a href="search.html" class="nav-link">Search</a>
-  <a href="providers.html" class="nav-link">Providers</a>
-  <a href="trends.html" class="nav-link">Trends</a>
-  <a href="news.html" class="nav-link">News</a>
-</nav>
 
 <div class="beta-ribbon-wrapper">
   <div class="beta-ribbon">BETA</div>
 </div>
 
-
-<div class="hero">
-  <div class="hero-inner">
-    <h1 class="hero-headline" id="hero-headline">Lexentia Proof</h1>
-    <p class="hero-sub">
-      <span id="hero-sub-text">Free AI models, ranked daily</span>
-      <span class="hero-updated" id="last-update">
-        <span class="live-dot"></span>loading…
-      </span>
-    </p>
-  </div>
-</div>
-
-<main class="container">
-
-  <div class="stats-grid reveal">
-    <div class="stat-card">
-      <div class="stat-card-icon primary-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="stat-value" id="stat-models">–</div>
-      <div class="stat-label">Models Tested</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-icon tertiary-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L8 8M8 8L5 11M8 8L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 14h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="stat-value" id="stat-fastest">–</div>
-      <div class="stat-label">Fastest tok/s</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-icon secondary-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 2v1M8 13v1M2 8h1M13 8h1M3.5 3.5l.7.7M11.8 11.8l.7.7M3.5 12.5l.7-.7M11.8 4.2l.7-.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="stat-value" id="stat-quality">–</div>
-      <div class="stat-label">Top Score /100</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-icon error-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="10" width="3" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="7" width="3" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="4" width="3" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></div>
-      <div class="stat-value">3</div>
-      <div class="stat-label">Size Categories</div>
+<!-- Main Content -->
+<main class="main-content">
+  <div class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-headline" id="hero-headline">Lexentia Proof</h1>
+      <p class="hero-sub">
+        <span id="hero-sub-text">Free AI models, ranked daily</span>
+        <span class="hero-updated" id="last-update">
+          <span class="live-dot"></span>loading…
+        </span>
+      </p>
     </div>
   </div>
+
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-card-icon primary-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="stat-value" id="stat-models">-</div>
+        <div class="stat-label">Models Tested</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon tertiary-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L8 8M8 8L5 11M8 8L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 14h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="stat-value" id="stat-fastest">-</div>
+        <div class="stat-label">Fastest tok/s</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon secondary-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M8 2v1M8 13v1M2 8h1M13 8h1M3.5 3.5l.7.7M11.8 11.8l.7.7M3.5 12.5l.7-.7M11.8 4.2l.7-.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="stat-value" id="stat-quality">-</div>
+        <div class="stat-label">Top Score /100</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon error-cont"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="10" width="3" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="7" width="3" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="4" width="3" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg></div>
+        <div class="stat-value">3</div>
+        <div class="stat-label">Size Categories</div>
+      </div>
+    </div>
 
   <section style="margin-bottom:64px;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:16px;flex-wrap:wrap;">
@@ -255,6 +284,27 @@
 
 <script>
 
+// Sidebar functionality
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebar = document.getElementById('sidebar');
+
+if (sidebarToggle) {
+  sidebarToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+}
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', (e) => {
+  if (window.innerWidth <= 1024 && 
+      !sidebar.contains(e.target) && 
+      !sidebarToggle.contains(e.target) && 
+      sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+  }
+});
+
+// Theme toggle
 const themeToggle = document.getElementById('theme-toggle');
 const themeLabel  = document.getElementById('theme-label');
 
@@ -271,9 +321,6 @@ applyTheme(localStorage.getItem('theme') || 'dark');
 themeToggle.addEventListener('change', () => {
   applyTheme(themeToggle.checked ? 'light' : 'dark');
 });
-
-window.addEventListener('scroll', () =>
-  document.getElementById('app-bar').classList.toggle('scrolled', window.scrollY > 0));
 
 const compareMap = new Map();
 let allResults = [];
