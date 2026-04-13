@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lexentia Hub — Prompts, Presets & Insights</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Prompt library, API presets, and deep-dive articles for free AI models. Optimized configs for Groq, OpenRouter, Together AI.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-spacing.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="hub.css">
+</head>
+<body>
+
+<header class="header" id="app-bar">
+  <div class="header-content">
+    <a href="index.html" class="logo">
+      <img src="media/L_logo.png" alt="Lexentia Proof logo" class="logo-icon">Lexentia Proof
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Rankings</a>
+      <a href="hub.html" class="nav-link active">Hub</a>
+      <a href="search.html" class="nav-link">Search</a>
+      <a href="trends.html" class="nav-link">Trends</a>
+      <a href="news.html" class="nav-link">News</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+    <div class="theme-switch-wrap">
+      <span class="theme-switch-label" id="theme-label">Dark</span>
+      <label class="theme-switch" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-toggle">
+        <span class="theme-switch-track"></span>
+        <span class="theme-switch-thumb" id="thumb-icon"></span>
+      </label>
+    </div>
+  </div>
+</header>
+
+<button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation">
+  <span></span><span></span><span></span>
+</button>
+<nav class="nav-drawer" id="nav-drawer" style="display:none;">
+  <a href="index.html" class="nav-link">Rankings</a>
+  <a href="hub.html" class="nav-link active">Hub</a>
+  <a href="search.html" class="nav-link">Search</a>
+  <a href="trends.html" class="nav-link">Trends</a>
+  <a href="news.html" class="nav-link">News</a>
+  <a href="about.html" class="nav-link">About</a>
+</nav>
+
+<div class="beta-ribbon-wrapper">
+  <div class="beta-ribbon">BETA</div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-headline">Lexentia Hub</h1>
+    <p class="hero-sub">
+      <span id="hero-sub-text">Prompts · Presets · Insights</span>
+    </p>
+  </div>
+</div>
+
+<!-- Hub layout: sidebar + content -->
+<div class="hub-layout container">
+
+  <!-- Left sidebar -->
+  <aside class="hub-sidebar">
+    <nav class="hub-sidenav">
+      <button class="hub-sidenav-item active" data-section="library">
+        <span class="hub-sidenav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="1.5" rx=".75" fill="currentColor"/><rect x="2" y="7.25" width="8" height="1.5" rx=".75" fill="currentColor"/><rect x="2" y="11.5" width="10" height="1.5" rx=".75" fill="currentColor"/></svg>
+        </span>
+        <span class="hub-sidenav-label">Library</span>
+        <span class="hub-sidenav-sub">Prompt Lab</span>
+      </button>
+      <button class="hub-sidenav-item" data-section="presets">
+        <span class="hub-sidenav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="13" cy="4" r="2" fill="var(--accent)"/><circle cx="5" cy="8" r="2" fill="var(--accent)"/><circle cx="11" cy="12" r="2" fill="var(--accent)"/></svg>
+        </span>
+        <span class="hub-sidenav-label">Presets</span>
+        <span class="hub-sidenav-sub">API Configs</span>
+      </button>
+      <button class="hub-sidenav-item" data-section="insights">
+        <span class="hub-sidenav-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2a5 5 0 100 10A5 5 0 008 2z" stroke="currentColor" stroke-width="1.5"/><path d="M8 14v-2M5.5 13.2l.5-1.7M10.5 13.2l-.5-1.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="hub-sidenav-label">Insights</span>
+        <span class="hub-sidenav-sub">Deep Dives</span>
+      </button>
+    </nav>
+
+    <div class="hub-sidebar-footer">
+      <div class="hub-sidebar-stat">
+        <span class="hub-sidebar-stat-val" id="lib-count">12</span>
+        <span class="hub-sidebar-stat-lbl">Prompts</span>
+      </div>
+      <div class="hub-sidebar-stat">
+        <span class="hub-sidebar-stat-val">8</span>
+        <span class="hub-sidebar-stat-lbl">Presets</span>
+      </div>
+      <div class="hub-sidebar-stat">
+        <span class="hub-sidebar-stat-val">3</span>
+        <span class="hub-sidebar-stat-lbl">Articles</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="hub-main">
+
+    <!-- ══════════════════════════════════
+         SECTION: Library
+    ══════════════════════════════════ -->
+    <section class="hub-section active" id="section-library">
+      <div class="hub-section-header">
+        <div>
+          <h2 class="section-title">Prompt Lab</h2>
+          <p class="section-sub">Battle-tested system instructions. Each prompt was benchmarked across models — see which ones shine.</p>
+        </div>
+      </div>
+
+      <!-- Tag filter -->
+      <div class="hub-tag-filter">
+        <button class="hub-tag active" data-tag="all">All</button>
+        <button class="hub-tag" data-tag="logic">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Logic
+        </button>
+        <button class="hub-tag" data-tag="creative">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M4 2h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Creative
+        </button>
+        <button class="hub-tag" data-tag="code">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4L1 6l2 2M9 4l2 2-2 2M7 2l-2 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Code
+        </button>
+        <button class="hub-tag" data-tag="math">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 6h6M6 3v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Math
+        </button>
+        <button class="hub-tag" data-tag="analysis">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 9L5 6l2 2 3-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Analysis
+        </button>
+      </div>
+
+      <!-- Prompt cards grid -->
+      <div class="prompt-grid" id="prompt-grid"></div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         SECTION: Presets
+    ══════════════════════════════════ -->
+    <section class="hub-section" id="section-presets">
+      <div class="hub-section-header">
+        <div>
+          <h2 class="section-title">API Presets</h2>
+          <p class="section-sub">Ready-to-use JSON configs with optimal parameters discovered through benchmarking. Copy and drop into your API call.</p>
+        </div>
+      </div>
+
+      <!-- Provider tabs -->
+      <div class="preset-provider-tabs">
+        <button class="preset-provider-tab active" data-provider="groq">
+          <span class="provider-dot groq"></span>Groq
+        </button>
+        <button class="preset-provider-tab" data-provider="openrouter">
+          <span class="provider-dot openrouter"></span>OpenRouter
+        </button>
+        <button class="preset-provider-tab" data-provider="together">
+          <span class="provider-dot together"></span>Together AI
+        </button>
+      </div>
+
+      <div class="preset-panels">
+        <!-- Groq presets -->
+        <div class="preset-panel active" id="presets-groq">
+          <div class="preset-cards" id="preset-cards-groq"></div>
+        </div>
+        <!-- OpenRouter presets -->
+        <div class="preset-panel" id="presets-openrouter">
+          <div class="preset-cards" id="preset-cards-openrouter"></div>
+        </div>
+        <!-- Together AI presets -->
+        <div class="preset-panel" id="presets-together">
+          <div class="preset-cards" id="preset-cards-together"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         SECTION: Insights
+    ══════════════════════════════════ -->
+    <section class="hub-section" id="section-insights">
+      <div class="hub-section-header">
+        <div>
+          <h2 class="section-title">Insights</h2>
+          <p class="section-sub">Deep analysis based on real benchmark data. No hype, just numbers.</p>
+        </div>
+      </div>
+
+      <div class="insights-grid" id="insights-grid"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Toast notification -->
+<div class="hub-toast" id="hub-toast">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  Copied to clipboard
+</div>
+
+<script src="app.js"></script>
+<script src="hub.js"></script>
+</body>
+</html>
