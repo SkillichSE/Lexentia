@@ -1,0 +1,13 @@
+{
+  "model": "llama-3.3-70b",
+  "provider": "groq",
+  "parameters": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "top_k": 40,
+    "max_tokens": 4096,
+    "presence_penalty": 0.1,
+    "frequency_penalty": 0.1
+  },
+  "description": "Оптимальные настройки для Llama 3.3 70B на Groq, выявленные в бенчмарках Lexentia Proof. Обеспечивают баланс между креативностью и точностью."
+}

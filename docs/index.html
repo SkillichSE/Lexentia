@@ -16,10 +16,15 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style-spacing.css">
   <link rel="stylesheet" href="animations.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
   <script src="app.js"></script>
 </head>
 <body>
+
+<div class="mode-switcher" id="mode-switcher">
+  <button class="mode-btn active" data-mode="proof">Proof</button>
+  <button class="mode-btn" data-mode="lab">Lab</button>
+</div>
 
 <header class="header" id="app-bar">
   <div class="header-content">
@@ -60,6 +65,7 @@
   <div class="beta-ribbon">BETA</div>
 </div>
 
+<main>
 
 <div class="hero">
   <div class="hero-inner">

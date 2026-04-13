@@ -1,0 +1,13 @@
+{
+  "model": "grok-1",
+  "provider": "xai",
+  "parameters": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 50,
+    "max_tokens": 2048,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0
+  },
+  "description": "Оптимальные настройки для Grok-1 на X.AI, идеальны для креативных задач и генерации идей."
+}

@@ -116,9 +116,176 @@ function initHamburger() {
   });
 }
 
+let currentMode = 'proof'; // 'proof' or 'lab'
+let currentSubsection = 'rankings'; // for lab: 'library', 'presets', 'insights'
+
+const promptsData = [
+  {
+    title: "Креативный писатель",
+    systemPrompt: "You are a creative writing assistant. Help users generate engaging stories, poems, and creative content. Be imaginative and inspiring.",
+    optimizedFor: ["Grok-1", "Llama 3.3"],
+    tags: ["Креатив", "Письмо"]
+  },
+  {
+    title: "Логический анализатор",
+    systemPrompt: "You are a logical reasoning expert. Analyze arguments, identify fallacies, and provide structured reasoning for complex problems.",
+    optimizedFor: ["Nemotron 3", "Claude 3.5"],
+    tags: ["Логика", "Анализ"]
+  },
+  {
+    title: "Кодер Python",
+    systemPrompt: "You are an expert Python developer. Write clean, efficient, and well-documented code. Explain your solutions step by step.",
+    optimizedFor: ["DeepSeek Coder", "CodeLlama"],
+    tags: ["Код", "Python"]
+  },
+  {
+    title: "Математический помощник",
+    systemPrompt: "You are a mathematics tutor. Explain concepts clearly, solve problems step-by-step, and provide proofs when appropriate.",
+    optimizedFor: ["GPT-4o", "Mathstral"],
+    tags: ["Математика", "Обучение"]
+  }
+];
+
+function switchMode(mode) {
+  currentMode = mode;
+  const logo = document.querySelector('.logo');
+  const nav = document.querySelector('.nav');
+  const heroHeadline = document.querySelector('.hero-headline');
+  const heroSub = document.querySelector('#hero-sub-text');
+  const modeBtns = document.querySelectorAll('.mode-btn');
+  
+  modeBtns.forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+  
+  if (mode === 'proof') {
+    logo.innerHTML = '<img src="media/L_logo.png" alt="Lexentia Proof logo" class="logo-icon">Lexentia Proof';
+    heroHeadline.textContent = 'Lexentia Proof';
+    heroSub.textContent = 'Free AI models, ranked daily';
+    nav.innerHTML = `
+      <a href="index.html" class="nav-link active">Rankings</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="search.html" class="nav-link">Search</a>
+      <a href="providers.html" class="nav-link">Providers</a>
+      <a href="trends.html" class="nav-link">Trends</a>
+      <a href="news.html" class="nav-link">News</a>
+    `;
+    loadProofContent();
+  } else {
+    logo.innerHTML = '<img src="media/L_logo.png" alt="Lexentia Lab logo" class="logo-icon">Lexentia Lab';
+    heroHeadline.textContent = 'Lexentia Lab';
+    heroSub.textContent = 'AI Research & Tools';
+    nav.innerHTML = `
+      <a href="#" class="nav-link active" data-sub="library">Library</a>
+      <a href="#" class="nav-link" data-sub="presets">Presets</a>
+      <a href="#" class="nav-link" data-sub="insights">Insights</a>
+    `;
+    loadLabContent('library');
+  }
+  
+  initNavIndicator();
+}
+
+function switchSubsection(sub) {
+  currentSubsection = sub;
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => link.classList.remove('active'));
+  document.querySelector(`[data-sub="${sub}"]`).classList.add('active');
+  loadLabContent(sub);
+}
+
+function loadProofContent() {
+  // Load original rankings content
+  // This would need to be implemented based on existing logic
+  // For now, assume it's loaded by default
+}
+
+function loadLabContent(sub) {
+  const main = document.querySelector('main') || document.body;
+  let content = '';
+  
+  if (sub === 'library') {
+    content = '<div class="lab-section"><h2>Library</h2><div class="prompts-grid">';
+    promptsData.forEach(prompt => {
+      content += `
+        <div class="card prompt-card">
+          <h3>${prompt.title}</h3>
+          <p class="prompt-text">${prompt.systemPrompt}</p>
+          <div class="prompt-meta">
+            <div class="optimized-for">Optimized for: ${prompt.optimizedFor.join(', ')}</div>
+            <div class="tags">${prompt.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+          </div>
+          <button class="copy-btn" onclick="copyToClipboard('${prompt.systemPrompt.replace(/'/g, "\\'")}')">Copy</button>
+        </div>
+      `;
+    });
+    content += '</div></div>';
+    main.innerHTML = content;
+  } else if (sub === 'presets') {
+    content = '<div class="lab-section"><h2>Presets</h2><div class="presets-list">';
+    // Load presets
+    const presetFiles = ['llama-3.3-groq.json', 'grok-1-xai.json'];
+    let loaded = 0;
+    presetFiles.forEach(file => {
+      fetch(`content/presets/${file}`)
+        .then(res => res.json())
+        .then(data => {
+          content += `
+            <div class="card preset-card">
+              <h3>${data.model} on ${data.provider}</h3>
+              <p>${data.description}</p>
+              <pre>${JSON.stringify(data.parameters, null, 2)}</pre>
+              <button class="copy-btn" onclick="copyToClipboard('${JSON.stringify(data.parameters)}')">Copy JSON</button>
+            </div>
+          `;
+          loaded++;
+          if (loaded === presetFiles.length) {
+            main.innerHTML = content + '</div></div>';
+          }
+        });
+    });
+  } else if (sub === 'insights') {
+    content = '<div class="lab-section"><h2>Insights</h2><div class="articles-list">';
+    // Load articles
+    const articleFiles = ['nemotron-3-breakthrough.md', 'token-optimization-tips.md'];
+    let loaded = 0;
+    articleFiles.forEach(file => {
+      fetch(`content/articles/${file}`)
+        .then(res => res.text())
+        .then(md => {
+          const html = marked.parse(md);
+          content += `<div class="card article-card">${html}</div>`;
+          loaded++;
+          if (loaded === articleFiles.length) {
+            main.innerHTML = content + '</div></div>';
+          }
+        });
+    });
+  }
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    // Show feedback
+    alert('Copied to clipboard!');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initNavIndicator();
   initHamburger();
+  
+  // Mode switcher
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchMode(btn.dataset.mode));
+  });
+  
+  // Subsection switcher for lab
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('nav-link') && e.target.dataset.sub) {
+      e.preventDefault();
+      switchSubsection(e.target.dataset.sub);
+    }
+  });
 });
 
 // Export for use in other scripts
