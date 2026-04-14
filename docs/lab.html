@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lexentia Lab — AI Research & Experiments</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Lexentia Lab — research, prompts, specs and methods for AI evaluation.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-spacing.css">
+  <link rel="stylesheet" href="animations.css">
+  <script src="app.js"></script>
+</head>
+<body>
+
+<header class="header" id="app-bar">
+  <div class="header-content">
+    <a href="index.html" class="logo" style="padding-left:0;margin-left:0;">
+      <img src="media/L_logo.png" alt="Lexentia logo" class="logo-icon" style="margin-left:0;">
+    </a>
+    <!-- Product switcher -->
+    <div class="product-switcher" id="product-switcher">
+      <button class="product-switcher-btn" id="product-switcher-btn" aria-label="Switch product">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="product-dropdown" id="product-dropdown">
+        <div class="product-dropdown-label">Lexentia</div>
+        <a href="index.html">
+          <span class="prod-icon proof">P</span>Proof
+        </a>
+        <a href="lab.html" class="active">
+          <span class="prod-icon lab">L</span>Lab
+        </a>
+      </div>
+    </div>
+    <a href="lab.html" style="text-decoration:none;color:var(--text-primary);font-size:17px;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;flex-shrink:0;">Lexentia <span style="color:#34d399;">Lab</span></a>
+    <div style="flex:1;"></div>
+    <button class="nav-hamburger" id="sidebar-mobile-toggle" aria-label="Open sidebar" style="display:none;">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="theme-switch-wrap">
+      <span class="theme-switch-label" id="theme-label">Dark</span>
+      <label class="theme-switch" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-toggle">
+        <span class="theme-switch-track"></span>
+        <span class="theme-switch-thumb" id="thumb-icon"></span>
+      </label>
+    </div>
+  </div>
+</header>
+
+<div class="beta-ribbon-wrapper">
+  <div class="beta-ribbon" style="background:rgba(52,211,153,0.92);color:#0d1117;">LAB</div>
+</div>
+
+<!-- Sidebar overlay for mobile -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="app-layout">
+  <!-- Left sidebar with Lab nav -->
+  <aside class="left-sidebar" id="left-sidebar">
+    <div class="sidebar-product-tabs">
+      <a href="index.html" class="sidebar-product-tab proof">Proof</a>
+      <a href="lab.html" class="sidebar-product-tab active lab">Lab</a>
+    </div>
+    <nav class="sidebar-nav">
+
+      <!-- Insights -->
+      <div class="sidebar-section open" id="sec-insights">
+        <div class="sidebar-section-header" onclick="toggleSection('sec-insights')">
+          Insights
+          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="sidebar-items">
+          <div class="sidebar-sub-section open" id="sub-insights-analysis">
+            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-insights-analysis')">
+              Analysis
+              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="sidebar-sub-items">
+              <a href="#" class="sidebar-sublink active">Overview</a>
+              <a href="#" class="sidebar-sublink">Model Drift</a>
+              <a href="#" class="sidebar-sublink">Score Distributions</a>
+            </div>
+          </div>
+          <div class="sidebar-sub-section" id="sub-insights-reports">
+            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-insights-reports')">
+              Reports
+              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="sidebar-sub-items">
+              <a href="#" class="sidebar-sublink">Weekly Digest</a>
+              <a href="#" class="sidebar-sublink">Provider Reports</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Prompts -->
+      <div class="sidebar-section" id="sec-prompts">
+        <div class="sidebar-section-header" onclick="toggleSection('sec-prompts')">
+          Prompts
+          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="sidebar-items">
+          <a href="#" class="sidebar-link">Benchmark Prompts</a>
+          <a href="#" class="sidebar-link">System Prompts</a>
+          <div class="sidebar-sub-section" id="sub-prompts-templates">
+            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-prompts-templates')">
+              Templates
+              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="sidebar-sub-items">
+              <a href="#" class="sidebar-sublink">Code Eval</a>
+              <a href="#" class="sidebar-sublink">Reasoning</a>
+              <a href="#" class="sidebar-sublink">Translation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Specs -->
+      <div class="sidebar-section" id="sec-specs">
+        <div class="sidebar-section-header" onclick="toggleSection('sec-specs')">
+          Specs
+          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="sidebar-items">
+          <div class="sidebar-sub-section" id="sub-specs-benchmarks">
+            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-specs-benchmarks')">
+              Benchmarks
+              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="sidebar-sub-items">
+              <a href="#" class="sidebar-sublink">HumanEval</a>
+              <a href="#" class="sidebar-sublink">GSM8K</a>
+              <a href="#" class="sidebar-sublink">MMLU</a>
+              <a href="#" class="sidebar-sublink">Translation</a>
+            </div>
+          </div>
+          <div class="sidebar-sub-section" id="sub-specs-formats">
+            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-specs-formats')">
+              Data Formats
+              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="sidebar-sub-items">
+              <a href="#" class="sidebar-sublink">JSON Schema</a>
+              <a href="#" class="sidebar-sublink">Result Format</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Methods -->
+      <div class="sidebar-section" id="sec-methods">
+        <div class="sidebar-section-header" onclick="toggleSection('sec-methods')">
+          Methods
+          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="sidebar-items">
+          <div class="sidebar-sub-section" id="sub-methods-scoring">
+            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-methods-scoring')">
+              Scoring
+              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="sidebar-sub-items">
+              <a href="#" class="sidebar-sublink">Normalization</a>
+              <a href="#" class="sidebar-sublink">Tier Weighting</a>
+              <a href="#" class="sidebar-sublink">Quality Formula</a>
+            </div>
+          </div>
+          <div class="sidebar-sub-section" id="sub-methods-pipeline">
+            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-methods-pipeline')">
+              Pipeline
+              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="sidebar-sub-items">
+              <a href="#" class="sidebar-sublink">Data Collection</a>
+              <a href="#" class="sidebar-sublink">Automation</a>
+              <a href="#" class="sidebar-sublink">Validation</a>
+            </div>
+          </div>
+          <a href="#" class="sidebar-link">Reproducibility</a>
+        </div>
+      </div>
+
+    </nav>
+  </aside>
+
+  <!-- Main Lab content -->
+  <div class="sidebar-main">
+
+    <!-- Lab hero -->
+    <div class="hero" style="border-bottom:1px solid rgba(52,211,153,0.15);background:radial-gradient(ellipse at 20% 50%, rgba(16,185,129,0.06) 0%, transparent 60%);">
+      <div class="hero-inner">
+        <div class="lab-hero-badge">
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6 2v5L3 12a1 1 0 00.9 1.5h8.2A1 1 0 0013 12L10 7V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 2h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Research Lab
+        </div>
+        <h1 class="hero-headline" style="font-size:28px;">Lexentia <span style="color:#34d399;">Lab</span></h1>
+        <p class="hero-sub" style="color:var(--text-secondary);">
+          Methodology, prompts, specs &amp; research behind the benchmarks
+        </p>
+      </div>
+    </div>
+
+    <main class="container">
+
+      <!-- Overview cards -->
+      <div class="stats-grid reveal" style="margin-bottom:32px;">
+        <div class="stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="stat-card-icon" style="background:rgba(16,185,129,0.12);color:#34d399;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12l4-4 3 2 5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="stat-value">4</div>
+          <div class="stat-label">Benchmark Types</div>
+        </div>
+        <div class="stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="stat-card-icon" style="background:rgba(16,185,129,0.12);color:#34d399;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="3" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 8h4M8 6v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="stat-value">12+</div>
+          <div class="stat-label">Prompt Templates</div>
+        </div>
+        <div class="stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="stat-card-icon" style="background:rgba(16,185,129,0.12);color:#34d399;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="stat-value">24h</div>
+          <div class="stat-label">Update Cycle</div>
+        </div>
+        <div class="stat-card" style="border-color:rgba(52,211,153,0.2);">
+          <div class="stat-card-icon" style="background:rgba(16,185,129,0.12);color:#34d399;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M8 2v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="stat-value">Open</div>
+          <div class="stat-label">Source</div>
+        </div>
+      </div>
+
+      <!-- Insights section -->
+      <section id="insights" style="margin-bottom:56px;">
+        <h2 class="section-title reveal" style="color:#34d399;font-size:13px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">Insights — Analysis</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;">
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:#34d399;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Overview</div>
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;">Benchmark Design Overview</h3>
+            <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;">
+              Lexentia Proof runs four industry-standard benchmarks daily against free AI models.
+              Scores are normalized per size tier to ensure fair comparison across parameter counts.
+            </p>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-subtle);">
+              <a href="#" style="font-size:13px;font-weight:500;color:#34d399;text-decoration:none;">Read more →</a>
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:#34d399;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Model Drift</div>
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;">Tracking Score Changes Over Time</h3>
+            <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;">
+              Models sometimes change behavior between API versions. We track score drift daily and flag anomalies to distinguish genuine improvements from infrastructure noise.
+            </p>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-subtle);">
+              <a href="trends.html" style="font-size:13px;font-weight:500;color:#34d399;text-decoration:none;">View trends →</a>
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:#34d399;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Score Distributions</div>
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;">How Scores Cluster by Tier</h3>
+            <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;">
+              Large models cluster tightly around 70–85/100 quality, while Small models show high variance — some punch above their weight, others underperform their parameter count.
+            </p>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-subtle);">
+              <a href="index.html" style="font-size:13px;font-weight:500;color:#34d399;text-decoration:none;">See rankings →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prompts section -->
+      <section id="prompts" style="margin-bottom:56px;">
+        <h2 class="section-title reveal" style="color:#34d399;font-size:13px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">Prompts</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;">
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:#34d399;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Code Eval</div>
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;">HumanEval Prompt Template</h3>
+            <div style="background:var(--surface);border-radius:8px;padding:12px 14px;font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.7;">
+              <span style="color:#818cf8;">System:</span> You are a Python expert. Complete the function.<br>
+              <span style="color:#818cf8;">User:</span> {function_signature}<br>
+              <span style="color:#34d399;">→</span> Return only code, no explanation.
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:#34d399;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Reasoning</div>
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;">GSM8K Prompt Template</h3>
+            <div style="background:var(--surface);border-radius:8px;padding:12px 14px;font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.7;">
+              <span style="color:#818cf8;">System:</span> Solve step by step. Final answer on last line.<br>
+              <span style="color:#818cf8;">User:</span> {math_problem}<br>
+              <span style="color:#34d399;">→</span> Answer: {number}
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <div style="font-size:11px;font-family:var(--font-mono);color:#34d399;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Translation</div>
+            <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;">Translation Prompt Template</h3>
+            <div style="background:var(--surface);border-radius:8px;padding:12px 14px;font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);line-height:1.7;">
+              <span style="color:#818cf8;">System:</span> Translate the following from {src} to {tgt}.<br>
+              <span style="color:#818cf8;">User:</span> {source_text}<br>
+              <span style="color:#34d399;">→</span> Output only the translation.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Specs section -->
+      <section id="specs" style="margin-bottom:56px;">
+        <h2 class="section-title reveal" style="color:#34d399;font-size:13px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">Specs — Benchmarks</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+          <div class="card" style="border-color:rgba(99,102,241,0.2);">
+            <div class="feature-icon" style="margin-bottom:10px;">HE</div>
+            <div style="font-weight:600;margin-bottom:6px;">HumanEval</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;">164 hand-crafted Python functions. Pass@1 metric. Code executed against real test suites.</div>
+          </div>
+          <div class="card" style="border-color:rgba(59,130,246,0.2);">
+            <div class="feature-icon" style="margin-bottom:10px;">GS</div>
+            <div style="font-weight:600;margin-bottom:6px;">GSM8K</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;">8,500 grade-school math problems. Exact-match scoring. Chain-of-thought required.</div>
+          </div>
+          <div class="card" style="border-color:rgba(6,182,212,0.2);">
+            <div class="feature-icon" style="margin-bottom:10px;">ML</div>
+            <div style="font-weight:600;margin-bottom:6px;">MMLU</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;">57 subjects across STEM, humanities, social sciences. Multiple-choice format.</div>
+          </div>
+          <div class="card" style="border-color:rgba(16,185,129,0.2);">
+            <div class="feature-icon" style="margin-bottom:10px;">TR</div>
+            <div style="font-weight:600;margin-bottom:6px;">Translation</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;">EN↔RU and EN↔ES pairs. Scored via script detection and vocabulary matching.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Methods section -->
+      <section id="methods" style="margin-bottom:56px;">
+        <h2 class="section-title reveal" style="color:#34d399;font-size:13px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">Methods — Scoring</h2>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <h3 style="font-size:15px;font-weight:600;margin-bottom:12px;">Normalization</h3>
+            <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;margin-bottom:10px;">
+              Each metric is normalized 0–100 within its size tier. A Small model is only compared to other Small models, preventing unfair comparisons across parameter counts.
+            </p>
+            <div style="font-family:var(--font-mono);font-size:12px;background:var(--surface);border-radius:8px;padding:10px 14px;color:var(--text-secondary);">
+              score = (raw − min) / (max − min) × 100
+            </div>
+          </div>
+
+          <div class="card" style="border-color:rgba(52,211,153,0.15);">
+            <h3 style="font-size:15px;font-weight:600;margin-bottom:12px;">Quality Formula</h3>
+            <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;margin-bottom:10px;">
+              The final quality score is a weighted average of the four benchmark scores, with code and reasoning weighted higher due to their objective nature.
+            </p>
+            <div style="font-family:var(--font-mono);font-size:12px;background:var(--surface);border-radius:8px;padding:10px 14px;color:var(--text-secondary);">
+              Q = 0.30·HE + 0.30·GSM + 0.25·MMLU + 0.15·TR
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /.sidebar-main -->
+</div><!-- /.app-layout -->
+
+<script>
+// ── Theme ──────────────────────────────────────────────────────────────────
+const themeToggle = document.getElementById('theme-toggle');
+const themeLabel  = document.getElementById('theme-label');
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+  const isLight = t === 'light';
+  themeToggle.checked = isLight;
+  themeLabel.textContent = isLight ? 'Light' : 'Dark';
+}
+applyTheme(localStorage.getItem('theme') || 'dark');
+themeToggle.addEventListener('change', () => applyTheme(themeToggle.checked ? 'light' : 'dark'));
+window.addEventListener('scroll', () =>
+  document.getElementById('app-bar').classList.toggle('scrolled', window.scrollY > 0));
+
+// ── Product switcher ───────────────────────────────────────────────────────
+(function() {
+  const btn = document.getElementById('product-switcher-btn');
+  const dd  = document.getElementById('product-dropdown');
+  if (!btn || !dd) return;
+  btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+  document.addEventListener('click', function() { dd.classList.remove('open'); });
+})();
+
+// ── Sidebar section toggles ────────────────────────────────────────────────
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+function toggleSubSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+// ── Mobile sidebar toggle ──────────────────────────────────────────────────
+(function() {
+  const sidebar   = document.getElementById('left-sidebar');
+  const overlay   = document.getElementById('sidebar-overlay');
+  const mobileBtn = document.getElementById('sidebar-mobile-toggle');
+  function openSidebar()  { sidebar.classList.add('open'); overlay.classList.add('open'); }
+  function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+  if (mobileBtn) mobileBtn.addEventListener('click', openSidebar);
+  if (overlay)   overlay.addEventListener('click', closeSidebar);
+  function checkWidth() {
+    if (window.innerWidth <= 768) {
+      if (mobileBtn) mobileBtn.style.display = 'flex';
+    } else {
+      if (mobileBtn) mobileBtn.style.display = 'none';
+      closeSidebar();
+    }
+  }
+  checkWidth();
+  window.addEventListener('resize', checkWidth);
+})();
+
+// ── Reveal animations ──────────────────────────────────────────────────────
+(function initReveal() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal, .section-title').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

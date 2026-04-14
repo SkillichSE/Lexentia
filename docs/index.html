@@ -23,17 +23,30 @@
 
 <header class="header" id="app-bar">
   <div class="header-content">
-    <a href="index.html" class="logo">
-      <img src="media/L_logo.png" alt="Lexentia Proof logo" class="logo-icon">Lexentia Proof
+    <a href="index.html" class="logo" style="padding-left:0;margin-left:0;">
+      <img src="media/L_logo.png" alt="Lexentia logo" class="logo-icon" style="margin-left:0;">
     </a>
-    <nav class="nav">
-      <a href="index.html" class="nav-link active">Rankings</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="search.html" class="nav-link">Search</a>
-      <a href="providers.html" class="nav-link">Providers</a>
-      <a href="trends.html" class="nav-link">Trends</a>
-      <a href="news.html" class="nav-link">News</a>
-    </nav>
+    <!-- Product switcher: 3 bars between logo and name -->
+    <div class="product-switcher" id="product-switcher">
+      <button class="product-switcher-btn" id="product-switcher-btn" aria-label="Switch product">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="product-dropdown" id="product-dropdown">
+        <div class="product-dropdown-label">Lexentia</div>
+        <a href="index.html" class="active">
+          <span class="prod-icon proof">P</span>Proof
+        </a>
+        <a href="lab.html">
+          <span class="prod-icon lab">L</span>Lab
+        </a>
+      </div>
+    </div>
+    <a href="index.html" style="text-decoration:none;color:var(--text-primary);font-size:17px;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;flex-shrink:0;">Lexentia Proof</a>
+    <div style="flex:1;"></div>
+    <!-- Mobile sidebar toggle -->
+    <button class="nav-hamburger" id="sidebar-mobile-toggle" aria-label="Open sidebar" style="display:none;">
+      <span></span><span></span><span></span>
+    </button>
     <div class="theme-switch-wrap">
       <span class="theme-switch-label" id="theme-label">Dark</span>
       <label class="theme-switch" aria-label="Toggle theme">
@@ -44,22 +57,51 @@
     </div>
   </div>
 </header>
-<button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation">
-  <span></span><span></span><span></span>
-</button>
-<nav class="nav-drawer" id="nav-drawer" style="display:none;">
-  <a href="index.html" class="nav-link active">Rankings</a>
-  <a href="about.html" class="nav-link">About</a>
-  <a href="search.html" class="nav-link">Search</a>
-  <a href="providers.html" class="nav-link">Providers</a>
-  <a href="trends.html" class="nav-link">Trends</a>
-  <a href="news.html" class="nav-link">News</a>
-</nav>
 
 <div class="beta-ribbon-wrapper">
   <div class="beta-ribbon">BETA</div>
 </div>
 
+<!-- Sidebar overlay for mobile -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="app-layout">
+  <!-- Left sidebar -->
+  <aside class="left-sidebar" id="left-sidebar">
+    <div class="sidebar-product-tabs">
+      <a href="index.html" class="sidebar-product-tab active proof">Proof</a>
+      <a href="lab.html" class="sidebar-product-tab lab">Lab</a>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sidebar-topnav-link active">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="10" width="3" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="7" width="3" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="4" width="3" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+        Rankings
+      </a>
+      <a href="trends.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 12L6 8L9 10L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Trends
+      </a>
+      <a href="providers.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Providers
+      </a>
+      <a href="search.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Search
+      </a>
+      <a href="news.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        News
+      </a>
+      <a href="about.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        About
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="sidebar-main">
 
 <div class="hero">
   <div class="hero-inner">
@@ -219,6 +261,9 @@
   </section>
 
 </main>
+
+  </div><!-- /.sidebar-main -->
+</div><!-- /.app-layout -->
 
 <div style="border-top:1px solid var(--color-outline-var);margin-top:48px;">
   <footer class="footer">
@@ -753,5 +798,51 @@ document.addEventListener('click', function(e) {
 
 </script>
 
+<script>
+// ── Sidebar section toggles ────────────────────────────────────────────────
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+function toggleSubSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+// ── Product switcher dropdown ──────────────────────────────────────────────
+(function() {
+  const btn = document.getElementById('product-switcher-btn');
+  const dd  = document.getElementById('product-dropdown');
+  if (!btn || !dd) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dd.classList.toggle('open');
+  });
+  document.addEventListener('click', function() { dd.classList.remove('open'); });
+})();
+
+// ── Mobile sidebar toggle ──────────────────────────────────────────────────
+(function() {
+  const sidebar  = document.getElementById('left-sidebar');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const mobileBtn = document.getElementById('sidebar-mobile-toggle');
+  function openSidebar()  { sidebar.classList.add('open'); overlay.classList.add('open'); }
+  function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+  if (mobileBtn) mobileBtn.addEventListener('click', openSidebar);
+  if (overlay)   overlay.addEventListener('click', closeSidebar);
+
+  // Show mobile toggle on small screens
+  function checkWidth() {
+    if (window.innerWidth <= 768) {
+      if (mobileBtn) mobileBtn.style.display = 'flex';
+    } else {
+      if (mobileBtn) mobileBtn.style.display = 'none';
+      closeSidebar();
+    }
+  }
+  checkWidth();
+  window.addEventListener('resize', checkWidth);
+})();
+</script>
 </body>
 </html>
