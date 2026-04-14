@@ -19,29 +19,11 @@
 
 <header class="header" id="app-bar">
   <div class="header-content">
-    <a href="index.html" class="logo" style="padding-left:0;margin-left:0;">
+    <a href="lab.html" class="logo" style="padding-left:0;margin-left:0;">
       <img src="media/L_logo.png" alt="Lexentia logo" class="logo-icon" style="margin-left:0;">
+      <span style="font-size:17px;font-weight:700;letter-spacing:-0.02em;">Lexentia <span style="color:#34d399;">Lab</span></span>
     </a>
-    <!-- Product switcher -->
-    <div class="product-switcher" id="product-switcher">
-      <button class="product-switcher-btn" id="product-switcher-btn" aria-label="Switch product">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="product-dropdown" id="product-dropdown">
-        <div class="product-dropdown-label">Lexentia</div>
-        <a href="index.html">
-          <span class="prod-icon proof">P</span>Proof
-        </a>
-        <a href="lab.html" class="active">
-          <span class="prod-icon lab">L</span>Lab
-        </a>
-      </div>
-    </div>
-    <a href="lab.html" style="text-decoration:none;color:var(--text-primary);font-size:17px;font-weight:700;letter-spacing:-0.02em;white-space:nowrap;flex-shrink:0;">Lexentia <span style="color:#34d399;">Lab</span></a>
     <div style="flex:1;"></div>
-    <button class="nav-hamburger" id="sidebar-mobile-toggle" aria-label="Open sidebar" style="display:none;">
-      <span></span><span></span><span></span>
-    </button>
     <div class="theme-switch-wrap">
       <span class="theme-switch-label" id="theme-label">Dark</span>
       <label class="theme-switch" aria-label="Toggle theme">
@@ -52,9 +34,6 @@
     </div>
   </div>
 </header>
-
-<div class="beta-ribbon-wrapper">
-  <div class="beta-ribbon" style="background:rgba(52,211,153,0.92);color:#0d1117;">LAB</div>
 </div>
 
 <!-- Sidebar overlay for mobile -->
@@ -63,9 +42,13 @@
 <div class="app-layout">
   <!-- Left sidebar with Lab nav -->
   <aside class="left-sidebar" id="left-sidebar">
-    <div class="sidebar-product-tabs">
-      <a href="index.html" class="sidebar-product-tab proof">Proof</a>
-      <a href="lab.html" class="sidebar-product-tab active lab">Lab</a>
+    <div class="sidebar-product-btns">
+      <a href="index.html" class="sidebar-product-btn proof">
+        <span class="prod-icon proof">P</span>Proof
+      </a>
+      <a href="lab.html" class="sidebar-product-btn lab active">
+        <span class="prod-icon lab">L</span>Lab
+      </a>
     </div>
     <nav class="sidebar-nav">
 

@@ -79,14 +79,7 @@ h1,h2,h3 { font-family: var(--font-sans); font-weight: 600; line-height: 1.2; co
 
 /* beta ribbon — diagonal white stripe top-right corner */
 .beta-ribbon-wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 90px;
-  height: 90px;
-  z-index: 200;
-  overflow: hidden;
-  pointer-events: none;
+  display: none; /* removed */
 }
 .beta-ribbon {
   position: absolute;
@@ -932,8 +925,8 @@ h1,h2,h3 { font-family: var(--font-sans); font-weight: 600; line-height: 1.2; co
 
 @media (max-width: 768px) {
   .nav { display: none; }
-  .nav-hamburger { display: flex; }
-  .nav-drawer { display: flex; }
+  .nav-hamburger { display: none; }
+  .nav-drawer { display: none !important; }
   .theme-switch-wrap { margin-left: 8px; }
   .theme-switch-label { display: none; }
   .provider-grid { grid-template-columns: 1fr; }
@@ -1121,13 +1114,8 @@ main { min-height: calc(100vh - 60px); }
   padding-left: 0 !important;
 }
 
-.product-switcher {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 0 2px 0 4px;
-  flex-shrink: 0;
-}
+/* product-switcher removed — hidden */
+.product-switcher { display: none !important; }
 .product-switcher-btn {
   display: flex;
   flex-direction: column;
@@ -1246,28 +1234,61 @@ main { min-height: calc(100vh - 60px); }
 .left-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
 /* Section switcher at top of sidebar */
-.sidebar-product-tabs {
+/* Product switcher buttons at top of sidebar */
+.sidebar-product-btns {
   display: flex;
+  gap: 8px;
+  padding: 12px 12px 10px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
-.sidebar-product-tab {
+.sidebar-product-btn {
   flex: 1;
-  padding: 10px 0;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 6px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
   font-family: var(--font-mono);
-  letter-spacing: 0.06em;
-  transition: color 0.15s, border-bottom 0.15s;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: color 0.15s, background 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
-.sidebar-product-tab:hover { color: var(--text-primary); }
-.sidebar-product-tab.active.proof { color: #818cf8; border-bottom-color: #818cf8; }
-.sidebar-product-tab.active.lab   { color: #34d399; border-bottom-color: #34d399; }
+.sidebar-product-btn:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised, rgba(255,255,255,0.06));
+}
+.sidebar-product-btn.active.proof {
+  color: #818cf8;
+  background: rgba(99,102,241,0.12);
+  border-color: rgba(99,102,241,0.35);
+  box-shadow: 0 0 0 1px rgba(99,102,241,0.15);
+}
+.sidebar-product-btn.active.lab {
+  color: #34d399;
+  background: rgba(52,211,153,0.12);
+  border-color: rgba(52,211,153,0.35);
+  box-shadow: 0 0 0 1px rgba(52,211,153,0.15);
+}
+/* keep prod-icon sizing inside btn */
+.sidebar-product-btn .prod-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
 
 /* Nav tree */
 .sidebar-nav {

@@ -12,38 +12,67 @@
   <script src="app.js"></script>
 </head>
 <body>
-  <header class="header">
-    <div class="header-content">
-      <a href="index.html" class="logo"><img src="media/L_logo.png" alt="Lexentia Proof logo" class="logo-icon"><span>Lexentia Proof</span></a>
-      <nav class="nav">
-        <a href="index.html" class="nav-link">Rankings</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="search.html" class="nav-link">Search</a>
-        <a href="providers.html" class="nav-link">Providers</a>
-      <a href="trends.html" class="nav-link">Trends</a>
-        <a href="news.html" class="nav-link active">News</a>
-      </nav>
-      <div class="theme-switch-wrap">
-        <span class="theme-switch-label" id="theme-label">Dark</span>
-        <label class="theme-switch" aria-label="Toggle theme">
-          <input type="checkbox" id="theme-toggle">
-          <span class="theme-switch-track"></span>
-          <span class="theme-switch-thumb" id="thumb-icon"></span>
-        </label>
-      </div>
+  <header class="header" id="app-bar">
+  <div class="header-content">
+    <a href="index.html" class="logo" style="padding-left:0;margin-left:0;">
+      <img src="media/L_logo.png" alt="Lexentia logo" class="logo-icon" style="margin-left:0;">
+      <span style="font-size:17px;font-weight:700;letter-spacing:-0.02em;">Lexentia Proof</span>
+    </a>
+    <div style="flex:1;"></div>
+    <div class="theme-switch-wrap">
+      <span class="theme-switch-label" id="theme-label">Dark</span>
+      <label class="theme-switch" aria-label="Toggle theme">
+        <input type="checkbox" id="theme-toggle">
+        <span class="theme-switch-track"></span>
+        <span class="theme-switch-thumb" id="thumb-icon"></span>
+      </label>
     </div>
-  </header>
-<button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation">
-  <span></span><span></span><span></span>
-</button>
-<nav class="nav-drawer" id="nav-drawer" style="display:none;">
-  <a href="index.html" class="nav-link">Rankings</a>
-  <a href="about.html" class="nav-link">About</a>
-  <a href="search.html" class="nav-link">Search</a>
-  <a href="providers.html" class="nav-link">Providers</a>
-  <a href="trends.html" class="nav-link">Trends</a>
-  <a href="news.html" class="nav-link active">News</a>
-</nav>
+  </div>
+</header>
+
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="app-layout">
+  <!-- Left sidebar -->
+  <aside class="left-sidebar" id="left-sidebar">
+    <div class="sidebar-product-btns">
+      <a href="index.html" class="sidebar-product-btn proof active">
+        <span class="prod-icon proof">P</span>Proof
+      </a>
+      <a href="lab.html" class="sidebar-product-btn lab">
+        <span class="prod-icon lab">L</span>Lab
+      </a>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="10" width="3" height="4" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="6.5" y="7" width="3" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="4" width="3" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+        Rankings
+      </a>
+      <a href="trends.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 12L6 8L9 10L14 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Trends
+      </a>
+      <a href="providers.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Providers
+      </a>
+      <a href="search.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Search
+      </a>
+      <a href="news.html" class="sidebar-topnav-link active">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        News
+      </a>
+      <a href="about.html" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v5M8 5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        About
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="sidebar-main">
 
 <div class="page-hero">
   <div class="page-hero-inner">
@@ -75,7 +104,7 @@
     </div>
   </main>
 
-  <footer class="footer">
+<footer class="footer">
     <div class="footer-links">
       <a href="https://skillichse.github.io/Lexentia-Proof/" class="footer-link">GitHub</a>
       <a href="about.html" class="footer-link">About</a>
@@ -179,5 +208,9 @@
     new MutationObserver(observe).observe(document.body, { childList: true, subtree: true });
   })();
   </script>
+
+  </div><!-- /.sidebar-main -->
+</div><!-- /.app-layout -->
+
 </body>
 </html>
