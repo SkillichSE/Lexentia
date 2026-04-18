@@ -1,7 +1,63 @@
 {
-  "updated": "2026-04-17T06:16:37.537153+00:00",
+  "updated": "2026-04-18T05:48:17.580581+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "Full-Stack Optimizations for Agentic Inference with NVIDIA Dynamo",
+      "link": "https://developer.nvidia.com/blog/full-stack-optimizations-for-agentic-inference-with-nvidia-dynamo/",
+      "date": "2026-04-17T22:52:47Z",
+      "source": "NVIDIA Developer",
+      "summary": "Coding agents are starting to write production code at scale. Stripe\u2019s agents generate 1,300+ PRs per week. Ramp attributes 30% of merged PRs to agents...."
+    },
+    {
+      "title": "Introducing granular cost attribution for Amazon Bedrock",
+      "link": "https://aws.amazon.com/blogs/machine-learning/introducing-granular-cost-attribution-for-amazon-bedrock/",
+      "date": "2026-04-17T22:04:15+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we share how Amazon Bedrock's granular cost attribution works and walk through example cost tracking scenarios."
+    },
+    {
+      "title": "Optimize video semantic search intent with Amazon Nova Model Distillation on Amazon Bedrock",
+      "link": "https://aws.amazon.com/blogs/machine-learning/optimize-video-semantic-search-intent-with-amazon-nova-model-distillation-on-amazon-bedrock/",
+      "date": "2026-04-17T19:43:38+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we show you how to use Model Distillation, a model customization technique on Amazon Bedrock, to transfer routing intelligence from a large teacher model (Amazon Nova Premier) into a much smaller student model (Amazon Nova Micro). This approach cuts inference cost b"
+    },
+    {
+      "title": "Power video semantic search with Amazon Nova Multimodal Embeddings",
+      "link": "https://aws.amazon.com/blogs/machine-learning/power-video-semantic-search-with-amazon-nova-multimodal-embeddings/",
+      "date": "2026-04-17T19:43:35+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we show you how to build a video semantic search solution on Amazon Bedrock using Nova Multimodal Embeddings that intelligently understands user intent and retrieves accurate video results across all signal types simultaneously. We also share a reference implementat"
+    },
+    {
+      "title": "Build a More Secure, Always-On Local AI Agent with OpenClaw and NVIDIA NemoClaw",
+      "link": "https://developer.nvidia.com/blog/build-a-secure-always-on-local-ai-agent-with-nvidia-nemoclaw-and-openclaw/",
+      "date": "2026-04-17T18:59:12Z",
+      "source": "NVIDIA Developer",
+      "summary": "Agents are evolving from question-and-answer systems into long-running autonomous assistants that read files, call APIs, and drive multi-step workflows...."
+    },
+    {
+      "title": "Nova Forge SDK series part 2: Practical guide to fine-tune Nova models using data mixing capabilities",
+      "link": "https://aws.amazon.com/blogs/machine-learning/nova-forge-sdk-series-part-2-practical-guide-to-fine-tune-nova-models-using-data-mixing-capabilities/",
+      "date": "2026-04-17T17:27:40+00:00",
+      "source": "AWS ML Blog",
+      "summary": "This hands-on guide walks through every step of fine-tuning an Amazon Nova model with the Amazon Nova Forge SDK, from data preparation to training with data mixing to evaluation, giving you a repeatable playbook you can adapt to your own use case. This is the second part in our N"
+    },
+    {
+      "title": "From hours to minutes: How Agentic AI gave marketers time back for what matters",
+      "link": "https://aws.amazon.com/blogs/machine-learning/from-hours-to-minutes-how-agentic-ai-gave-marketers-time-back-for-what-matters/",
+      "date": "2026-04-17T17:12:10+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we share how AWS Marketing\u2019s Technology, AI, and Analytics (TAA) team worked with Gradial to build an agentic AI solution on Amazon Bedrock for accelerating content publishing workflows."
+    },
+    {
+      "title": "Building a Fast Multilingual OCR Model with Synthetic Data",
+      "link": "https://huggingface.co/blog/nvidia/nemotron-ocr-v2",
+      "date": "2026-04-17T16:17:55+00:00",
+      "source": "Hugging Face",
+      "summary": ""
+    },
     {
       "title": "Cost-efficient custom text-to-SQL using Amazon Nova Micro and Amazon Bedrock on-demand inference",
       "link": "https://aws.amazon.com/blogs/machine-learning/cost-efficient-custom-text-to-sql-using-amazon-nova-micro-and-amazon-bedrock-on-demand-inference/",
@@ -43,6 +99,13 @@
       "date": "2026-04-16T01:00:00+00:00",
       "source": "OpenAI",
       "summary": "OpenAI introduces GPT-Rosalind, a frontier reasoning model built to accelerate drug discovery, genomics analysis, protein reasoning, and scientific research workflows."
+    },
+    {
+      "title": "Ecom-RLVE: Adaptive Verifiable Environments for E-Commerce Conversational Agents",
+      "link": "https://huggingface.co/blog/ecom-rlve",
+      "date": "2026-04-16T00:00:00+00:00",
+      "source": "Hugging Face",
+      "summary": ""
     },
     {
       "title": "The PR you would have opened yourself",
@@ -148,69 +211,6 @@
       "date": "2026-04-14T16:00:00Z",
       "source": "NVIDIA Developer",
       "summary": "When you\u2019re writing CUDA applications, one of the most important things you need to focus on to write great code is data transfer performance. This applies to..."
-    },
-    {
-      "title": "NVIDIA Ising Introduces AI-Powered Workflows to Build Fault-Tolerant Quantum Systems",
-      "link": "https://developer.nvidia.com/blog/nvidia-ising-introduces-ai-powered-workflows-to-build-fault-tolerant-quantum-systems/",
-      "date": "2026-04-14T14:15:56Z",
-      "source": "NVIDIA Developer",
-      "summary": "NVIDIA Ising is the world's first family of open AI models for building quantum processors, launching with two model domains: Ising Calibration and Ising..."
-    },
-    {
-      "title": "Spring AI SDK for Amazon Bedrock AgentCore is now Generally Available",
-      "link": "https://aws.amazon.com/blogs/machine-learning/spring-ai-sdk-for-amazon-bedrock-agentcore-is-now-generally-available/",
-      "date": "2026-04-14T12:40:47+00:00",
-      "source": "AWS ML Blog",
-      "summary": "With the new Spring AI AgentCore SDK, you can build production-ready AI agents and run them on the highly scalable AgentCore Runtime. The Spring AI AgentCore SDK is an open source library that brings Amazon Bedrock AgentCore capabilities into Spring AI. In this post, we build an "
-    },
-    {
-      "title": "Bringing people together at AI for the Economy Forum",
-      "link": "https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/ai-economy-forum/",
-      "date": "2026-04-14T09:00:00+00:00",
-      "source": "Google AI Blog",
-      "summary": "Woman working with a large tool. On the left are the Google and MIT FutureTech logos, \"AI for the Economy Forum\", and \"Innovation and Adaption in the New Era\""
-    },
-    {
-      "title": "Trusted access for the next era of cyber defense",
-      "link": "https://openai.com/index/scaling-trusted-access-for-cyber-defense",
-      "date": "2026-04-14T00:00:00+00:00",
-      "source": "OpenAI",
-      "summary": "OpenAI expands its Trusted Access for Cyber program, introducing GPT-5.4-Cyber to vetted defenders and strengthening safeguards as AI cybersecurity capabilities advance."
-    },
-    {
-      "title": "How to build effective reward functions with AWS Lambda for Amazon Nova model customization",
-      "link": "https://aws.amazon.com/blogs/machine-learning/how-to-build-effective-reward-functions-with-aws-lambda-for-amazon-nova-model-customization/",
-      "date": "2026-04-13T16:01:18+00:00",
-      "source": "AWS ML Blog",
-      "summary": "This post demonstrates how Lambda enables scalable, cost-effective reward functions for Amazon Nova customization. You'll learn to choose between Reinforcement Learning via Verifiable Rewards (RLVR) for objectively verifiable tasks and Reinforcement Learning via AI Feedback (RLAI"
-    },
-    {
-      "title": "Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI",
-      "link": "https://openai.com/index/cloudflare-openai-agent-cloud",
-      "date": "2026-04-13T06:00:00+00:00",
-      "source": "OpenAI",
-      "summary": "Cloudflare brings OpenAI\u2019s GPT-5.4 and Codex to Agent Cloud, enabling enterprises to build, deploy, and scale AI agents for real-world tasks with speed and security."
-    },
-    {
-      "title": "EinsteinArena: Harnessing the collective intelligence of agents in the wild to advance science",
-      "link": "https://www.together.ai/blog/einsteinarena",
-      "date": "2026-04-13T00:00:00+00:00",
-      "source": "Together AI",
-      "summary": "EinsteinArena is a platform where AI agents collaborate and compete on open math problems. AI agents on EinsteinArena have already set 11 new state-of-the-art results on open math problems \u2014 including pushing the kissing number lower bound in dimension 11 from 593 to 604."
-    },
-    {
-      "title": "MiniMax M2.7\u00a0Advances\u00a0Scalable Agentic Workflows on\u00a0NVIDIA Platforms for Complex AI Applications",
-      "link": "https://developer.nvidia.com/blog/minimax-m2-7-advances-scalable-agentic-workflows-on-nvidia-platforms-for-complex-ai-applications/",
-      "date": "2026-04-12T01:02:44Z",
-      "source": "NVIDIA Developer",
-      "summary": "The release of&nbsp;MiniMax M2.7&nbsp;adds enhancements to the popular&nbsp;MiniMax&nbsp;M2.5 model,&nbsp;built for agentic harnesses,..."
-    },
-    {
-      "title": "AI fundamentals",
-      "link": "https://openai.com/academy/what-is-ai",
-      "date": "2026-04-10T00:00:00+00:00",
-      "source": "OpenAI",
-      "summary": "Learn what AI is, how it works, and how tools like ChatGPT use large language models. A clear, beginner-friendly guide to understanding artificial intelligence."
     }
   ]
 }
