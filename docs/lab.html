@@ -51,132 +51,22 @@
       </a>
     </div>
     <nav class="sidebar-nav">
-
-      <!-- Insights -->
-      <div class="sidebar-section open" id="sec-insights">
-        <div class="sidebar-section-header" onclick="toggleSection('sec-insights')">
-          Insights
-          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="sidebar-items">
-          <div class="sidebar-sub-section open" id="sub-insights-analysis">
-            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-insights-analysis')">
-              Analysis
-              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="sidebar-sub-items">
-              <a href="#" class="sidebar-sublink active">Overview</a>
-              <a href="#" class="sidebar-sublink">Model Drift</a>
-              <a href="#" class="sidebar-sublink">Score Distributions</a>
-            </div>
-          </div>
-          <div class="sidebar-sub-section" id="sub-insights-reports">
-            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-insights-reports')">
-              Reports
-              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="sidebar-sub-items">
-              <a href="#" class="sidebar-sublink">Weekly Digest</a>
-              <a href="#" class="sidebar-sublink">Provider Reports</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sidebar-divider"></div>
-
-      <!-- Prompts -->
-      <div class="sidebar-section" id="sec-prompts">
-        <div class="sidebar-section-header" onclick="toggleSection('sec-prompts')">
-          Prompts
-          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="sidebar-items">
-          <a href="#" class="sidebar-link">Benchmark Prompts</a>
-          <a href="#" class="sidebar-link">System Prompts</a>
-          <div class="sidebar-sub-section" id="sub-prompts-templates">
-            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-prompts-templates')">
-              Templates
-              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="sidebar-sub-items">
-              <a href="#" class="sidebar-sublink">Code Eval</a>
-              <a href="#" class="sidebar-sublink">Reasoning</a>
-              <a href="#" class="sidebar-sublink">Translation</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sidebar-divider"></div>
-
-      <!-- Specs -->
-      <div class="sidebar-section" id="sec-specs">
-        <div class="sidebar-section-header" onclick="toggleSection('sec-specs')">
-          Specs
-          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="sidebar-items">
-          <div class="sidebar-sub-section" id="sub-specs-benchmarks">
-            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-specs-benchmarks')">
-              Benchmarks
-              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="sidebar-sub-items">
-              <a href="#" class="sidebar-sublink">HumanEval</a>
-              <a href="#" class="sidebar-sublink">GSM8K</a>
-              <a href="#" class="sidebar-sublink">MMLU</a>
-              <a href="#" class="sidebar-sublink">Translation</a>
-            </div>
-          </div>
-          <div class="sidebar-sub-section" id="sub-specs-formats">
-            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-specs-formats')">
-              Data Formats
-              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="sidebar-sub-items">
-              <a href="#" class="sidebar-sublink">JSON Schema</a>
-              <a href="#" class="sidebar-sublink">Result Format</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sidebar-divider"></div>
-
-      <!-- Methods -->
-      <div class="sidebar-section" id="sec-methods">
-        <div class="sidebar-section-header" onclick="toggleSection('sec-methods')">
-          Methods
-          <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="sidebar-items">
-          <div class="sidebar-sub-section" id="sub-methods-scoring">
-            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-methods-scoring')">
-              Scoring
-              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="sidebar-sub-items">
-              <a href="#" class="sidebar-sublink">Normalization</a>
-              <a href="#" class="sidebar-sublink">Tier Weighting</a>
-              <a href="#" class="sidebar-sublink">Quality Formula</a>
-            </div>
-          </div>
-          <div class="sidebar-sub-section" id="sub-methods-pipeline">
-            <div class="sidebar-sub-header" onclick="toggleSubSection('sub-methods-pipeline')">
-              Pipeline
-              <svg class="chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="sidebar-sub-items">
-              <a href="#" class="sidebar-sublink">Data Collection</a>
-              <a href="#" class="sidebar-sublink">Automation</a>
-              <a href="#" class="sidebar-sublink">Validation</a>
-            </div>
-          </div>
-          <a href="#" class="sidebar-link">Reproducibility</a>
-        </div>
-      </div>
-
+      <a href="#insights" class="sidebar-topnav-link active">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 11l4-4 3 2.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Insights
+      </a>
+      <a href="#prompts" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h6M5 10h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Prompts
+      </a>
+      <a href="#specs" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4h8M4 8h6M4 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Specs
+      </a>
+      <a href="#methods" class="sidebar-topnav-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Methods
+      </a>
     </nav>
   </aside>
 
@@ -392,16 +282,6 @@ window.addEventListener('scroll', () =>
   btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
   document.addEventListener('click', function() { dd.classList.remove('open'); });
 })();
-
-// ── Sidebar section toggles ────────────────────────────────────────────────
-function toggleSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle('open');
-}
-function toggleSubSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle('open');
-}
 
 // ── Mobile sidebar toggle ──────────────────────────────────────────────────
 (function() {
