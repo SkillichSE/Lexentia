@@ -1226,10 +1226,10 @@ main { min-height: calc(100vh - 60px); }
 
 .left-sidebar {
   width: 52px;
-  min-width: 52px;
-  background: rgba(13,17,23,0.6);
+  background: rgba(13,17,23,0.97);
   border-right: 1px solid var(--border);
-  position: sticky;
+  position: fixed;
+  left: 0;
   top: 60px;
   height: calc(100vh - 60px);
   overflow-y: auto;
@@ -1240,14 +1240,11 @@ main { min-height: calc(100vh - 60px); }
   padding-bottom: 24px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
-  transition: width 0.25s cubic-bezier(0.4,0,0.2,1),
-              min-width 0.25s cubic-bezier(0.4,0,0.2,1);
-  z-index: 10;
+  transition: width 0.25s cubic-bezier(0.4,0,0.2,1);
+  z-index: 50;
 }
-.left-sidebar:hover {
+.left-sidebar.expanded {
   width: 220px;
-  min-width: 220px;
-  overflow-x: visible;
 }
 .left-sidebar::-webkit-scrollbar { width: 4px; }
 .left-sidebar::-webkit-scrollbar-track { background: transparent; }
@@ -1315,19 +1312,12 @@ main { min-height: calc(100vh - 60px); }
 /* Hide text labels when collapsed */
 .left-sidebar .btn-label,
 .left-sidebar .link-label {
-  opacity: 0;
-  max-width: 0;
-  overflow: hidden;
+  display: none;
   white-space: nowrap;
-  display: inline-block;
-  transition: opacity 0.2s, max-width 0.25s cubic-bezier(0.4,0,0.2,1);
-  pointer-events: none;
 }
-.left-sidebar:hover .btn-label,
-.left-sidebar:hover .link-label {
-  opacity: 1;
-  max-width: 180px;
-  pointer-events: auto;
+.left-sidebar.expanded .btn-label,
+.left-sidebar.expanded .link-label {
+  display: inline-block;
 }
 
 /* Product buttons: column when collapsed, row when expanded */
@@ -1335,9 +1325,8 @@ main { min-height: calc(100vh - 60px); }
   flex-direction: column;
   padding: 10px 6px;
   gap: 6px;
-  transition: padding 0.25s, gap 0.25s;
 }
-.left-sidebar:hover .sidebar-product-btns {
+.left-sidebar.expanded .sidebar-product-btns {
   flex-direction: row;
   padding: 12px 12px 10px;
   gap: 8px;
@@ -1347,10 +1336,9 @@ main { min-height: calc(100vh - 60px); }
 .left-sidebar .sidebar-product-btn {
   justify-content: center;
   gap: 0;
-  transition: gap 0.25s;
+  overflow: hidden;
 }
-.left-sidebar:hover .sidebar-product-btn {
-  justify-content: center;
+.left-sidebar.expanded .sidebar-product-btn {
   gap: 7px;
 }
 
@@ -1360,9 +1348,9 @@ main { min-height: calc(100vh - 60px); }
   padding: 10px 0;
   gap: 0;
   position: relative;
-  transition: padding 0.25s, gap 0.25s, background 0.12s, color 0.12s;
+  overflow: hidden;
 }
-.left-sidebar:hover .sidebar-topnav-link {
+.left-sidebar.expanded .sidebar-topnav-link {
   justify-content: flex-start;
   padding: 7px 14px 7px 16px;
   gap: 8px;
@@ -1496,6 +1484,7 @@ main { min-height: calc(100vh - 60px); }
   flex: 1;
   min-width: 0;
   overflow: hidden;
+  margin-left: 52px;
 }
 
 /* Lab accent color overrides */
@@ -1525,14 +1514,12 @@ main { min-height: calc(100vh - 60px); }
    ═══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .left-sidebar {
-    position: fixed;
     left: -220px;
-    top: 60px;
-    height: calc(100vh - 60px);
-    z-index: 100;
+    width: 220px;
     transition: left 0.25s cubic-bezier(0.4,0,0.2,1);
     box-shadow: 4px 0 24px rgba(0,0,0,0.4);
   }
+  .left-sidebar.expanded { width: 220px; }
   .left-sidebar.open { left: 0; }
   .sidebar-overlay {
     display: none;
@@ -1543,7 +1530,7 @@ main { min-height: calc(100vh - 60px); }
     backdrop-filter: blur(2px);
   }
   .sidebar-overlay.open { display: block; }
-  .sidebar-main { padding: 0; }
+  .sidebar-main { padding: 0; margin-left: 0; }
 }
 @media (min-width: 769px) {
   .sidebar-overlay { display: none !important; }

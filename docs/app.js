@@ -116,9 +116,33 @@ function initHamburger() {
   });
 }
 
+// ─── Sidebar expand/collapse ──────────────────────────────────────────────────
+function initSidebar() {
+  const sidebar = document.getElementById('left-sidebar');
+  if (!sidebar) return;
+
+  let enterTimer = null;
+  let leaveTimer = null;
+
+  sidebar.addEventListener('mouseenter', () => {
+    clearTimeout(leaveTimer);
+    enterTimer = setTimeout(() => {
+      sidebar.classList.add('expanded');
+    }, 60);
+  });
+
+  sidebar.addEventListener('mouseleave', () => {
+    clearTimeout(enterTimer);
+    leaveTimer = setTimeout(() => {
+      sidebar.classList.remove('expanded');
+    }, 120);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initNavIndicator();
   initHamburger();
+  initSidebar();
 });
 
 // Export for use in other scripts
