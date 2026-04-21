@@ -1,7 +1,56 @@
 {
-  "updated": "2026-04-20T06:37:47.623610+00:00",
+  "updated": "2026-04-21T06:47:05.006306+00:00",
   "count": 30,
   "items": [
+    {
+      "title": "How to Ground a Korean AI Agent in Real Demographics with Synthetic Personas",
+      "link": "https://huggingface.co/blog/nvidia/build-korean-agents-with-nemotron-personas",
+      "date": "2026-04-21T00:40:10+00:00",
+      "source": "Hugging Face",
+      "summary": ""
+    },
+    {
+      "title": "Maximizing Memory Efficiency to Run Bigger Models on NVIDIA Jetson",
+      "link": "https://developer.nvidia.com/blog/maximizing-memory-efficiency-to-run-bigger-models-on-nvidia-jetson/",
+      "date": "2026-04-20T23:01:04Z",
+      "source": "NVIDIA Developer",
+      "summary": "The boom in open source generative AI models is pushing beyond data centers into machines operating in the physical world. Developers are eager to deploy these..."
+    },
+    {
+      "title": "Run High-Throughput Reinforcement Learning Training with End-to-End FP8 Precision",
+      "link": "https://developer.nvidia.com/blog/run-high-throughput-reinforcement-learning-training-with-end-to-end-fp8-precision/",
+      "date": "2026-04-20T22:52:15Z",
+      "source": "NVIDIA Developer",
+      "summary": "As LLMs transition from simple text generation to complex reasoning, reinforcement learning (RL) plays a central role. Algorithms like Group Relative Policy..."
+    },
+    {
+      "title": "Accelerate Generative AI Inference on Amazon SageMaker AI with G7e Instances",
+      "link": "https://aws.amazon.com/blogs/machine-learning/accelerate-generative-ai-inference-on-amazon-sagemaker-ai-with-g7e-instances/",
+      "date": "2026-04-20T19:38:10+00:00",
+      "source": "AWS ML Blog",
+      "summary": "Today, we are thrilled to announce the availability of G7e instances powered by NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs on Amazon SageMaker AI. You can provision nodes with 1, 2, 4, and 8 RTX PRO 6000 GPU instances, with each GPU providing 96 GB of GDDR7 memory. This la"
+    },
+    {
+      "title": "ToolSimulator: scalable tool testing for AI agents",
+      "link": "https://aws.amazon.com/blogs/machine-learning/toolsimulator-scalable-tool-testing-for-ai-agents/",
+      "date": "2026-04-20T17:06:26+00:00",
+      "source": "AWS ML Blog",
+      "summary": "You can use ToolSimulator, an&nbsp;LLM-powered tool simulation framework within Strands Evals, to thoroughly and safely test AI agents that rely on external tools, at scale. Instead of risking live API calls that expose personally identifiable information (PII), trigger unintende"
+    },
+    {
+      "title": "Omnichannel ordering with Amazon Bedrock AgentCore and Amazon Nova 2 Sonic",
+      "link": "https://aws.amazon.com/blogs/machine-learning/omnichannel-ordering-with-amazon-bedrock-agentcore-and-amazon-nova-2-sonic/",
+      "date": "2026-04-20T15:03:28+00:00",
+      "source": "AWS ML Blog",
+      "summary": "In this post, we'll show you how to build a complete omnichannel ordering system using Amazon Bedrock AgentCore, an agentic platform, to build, deploy, and operate highly effective AI agents securely at scale using any framework and foundation model and Amazon Nova 2 Sonic."
+    },
+    {
+      "title": "OpenAI helps Hyatt advance AI among colleagues",
+      "link": "https://openai.com/index/hyatt-advances-ai-with-chatgpt-enterprise",
+      "date": "2026-04-20T00:00:00+00:00",
+      "source": "OpenAI",
+      "summary": "Hyatt deploys ChatGPT Enterprise across its global workforce, using GPT-5.4 and Codex to improve productivity, operations, and guest experiences."
+    },
     {
       "title": "Full-Stack Optimizations for Agentic Inference with NVIDIA Dynamo",
       "link": "https://developer.nvidia.com/blog/full-stack-optimizations-for-agentic-inference-with-nvidia-dynamo/",
@@ -50,13 +99,6 @@
       "date": "2026-04-17T17:12:10+00:00",
       "source": "AWS ML Blog",
       "summary": "In this post, we share how AWS Marketing\u2019s Technology, AI, and Analytics (TAA) team worked with Gradial to build an agentic AI solution on Amazon Bedrock for accelerating content publishing workflows."
-    },
-    {
-      "title": "Building a Fast Multilingual OCR Model with Synthetic Data",
-      "link": "https://huggingface.co/blog/nvidia/nemotron-ocr-v2",
-      "date": "2026-04-17T16:17:55+00:00",
-      "source": "Hugging Face",
-      "summary": ""
     },
     {
       "title": "Cost-efficient custom text-to-SQL using Amazon Nova Micro and Amazon Bedrock on-demand inference",
@@ -169,48 +211,6 @@
       "date": "2026-04-15T09:25:20+00:00",
       "source": "Hugging Face",
       "summary": ""
-    },
-    {
-      "title": "Parcae: Doing more with fewer parameters using stable looped models",
-      "link": "https://www.together.ai/blog/parcae",
-      "date": "2026-04-15T00:00:00+00:00",
-      "source": "Together AI",
-      "summary": "Parcae is a stable looped language model that matches the quality of a Transformer twice its size \u2014 a 770M model reaching 1.3B-level performance. We introduce the first scaling laws for looping and show that increasing recurrence, not just data, is a compute-efficient path to bet"
-    },
-    {
-      "title": "Use-case based deployments on SageMaker JumpStart",
-      "link": "https://aws.amazon.com/blogs/machine-learning/use-case-based-deployments-on-sagemaker-jumpstart/",
-      "date": "2026-04-14T18:14:54+00:00",
-      "source": "AWS ML Blog",
-      "summary": "We're excited to announce the launch of Amazon SageMaker JumpStart optimized deployments. SageMaker JumpStart improved deployments address the need for rich and straightforward deployment customization on SageMaker JumpStart by offering pre-defined deployment configurations, desi"
-    },
-    {
-      "title": "Best practices to run inference on Amazon SageMaker HyperPod",
-      "link": "https://aws.amazon.com/blogs/machine-learning/best-practices-to-run-inference-on-amazon-sagemaker-hyperpod/",
-      "date": "2026-04-14T18:09:22+00:00",
-      "source": "AWS ML Blog",
-      "summary": "This post explores how Amazon SageMaker HyperPod provides a comprehensive solution for inference workloads. We walk you through the platform\u2019s key capabilities for dynamic scaling, simplified deployment, and intelligent resource management. By the end of this post, you\u2019ll underst"
-    },
-    {
-      "title": "How Guidesly built AI-generated trip reports for outdoor guides on AWS",
-      "link": "https://aws.amazon.com/blogs/machine-learning/how-guidesly-built-ai-generated-trip-reports-for-outdoor-guides-on-aws/",
-      "date": "2026-04-14T18:02:56+00:00",
-      "source": "AWS ML Blog",
-      "summary": "In this post, we walk through how Guidesly built Jack AI on AWS using AWS Lambda, AWS Step Functions, Amazon Simple Storage Service (Amazon S3), Amazon Relational Database Service (Amazon RDS), Amazon SageMaker AI, and Amazon Bedrock to ingest trip media, enrich it with context, "
-    },
-    {
-      "title": "Turn your best AI prompts into one-click tools in Chrome",
-      "link": "https://blog.google/products-and-platforms/products/chrome/skills-in-chrome/",
-      "date": "2026-04-14T17:00:00+00:00",
-      "source": "Google AI Blog",
-      "summary": "Video showing Skills in Chrome"
-    },
-    {
-      "title": "NVIDIA NVbandwidth: Your Essential Tool for Measuring GPU Interconnect and Memory Performance",
-      "link": "https://developer.nvidia.com/blog/nvidia-nvbandwidth-your-essential-tool-for-measuring-gpu-interconnect-and-memory-performance/",
-      "date": "2026-04-14T16:00:00Z",
-      "source": "NVIDIA Developer",
-      "summary": "When you\u2019re writing CUDA applications, one of the most important things you need to focus on to write great code is data transfer performance. This applies to..."
     }
   ]
 }
