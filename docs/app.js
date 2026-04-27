@@ -126,7 +126,7 @@ function initHamburger() {
   });
 }
 
-// ─── Sidebar expand/collapse ──────────────────────────────────────────────────
+// ─── Sidebar expand/collapse (overlay mode — content does NOT shift) ──────────
 function initSidebar() {
   const sidebar = document.getElementById('left-sidebar');
   if (!sidebar) return;
@@ -134,22 +134,21 @@ function initSidebar() {
   let enterTimer = null;
   let leaveTimer = null;
 
-  const appLayout = sidebar.closest('.app-layout') || document.querySelector('.app-layout');
+  // Use CSS containment for paint optimization
+  sidebar.style.contain = 'layout style';
 
   sidebar.addEventListener('mouseenter', () => {
     clearTimeout(leaveTimer);
     enterTimer = setTimeout(() => {
       sidebar.classList.add('expanded');
-      if (appLayout) appLayout.classList.add('sidebar-expanded');
-    }, 60);
+    }, 80);
   });
 
   sidebar.addEventListener('mouseleave', () => {
     clearTimeout(enterTimer);
     leaveTimer = setTimeout(() => {
       sidebar.classList.remove('expanded');
-      if (appLayout) appLayout.classList.remove('sidebar-expanded');
-    }, 120);
+    }, 150);
   });
 }
 

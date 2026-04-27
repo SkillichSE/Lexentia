@@ -1241,8 +1241,11 @@ main { min-height: calc(100vh - 60px); }
   padding-bottom: 24px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
-  transition: width 0.25s cubic-bezier(0.4,0,0.2,1);
+  transition: width 0.2s ease;
   z-index: 50;
+  will-change: width;
+  /* Shadow that bleeds onto content when expanded */
+  box-shadow: 4px 0 20px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.2);
 }
 .left-sidebar.expanded {
   width: 220px;
@@ -1308,17 +1311,36 @@ main { min-height: calc(100vh - 60px); }
   flex-shrink: 0;
 }
 
-/* ── Collapsed sidebar: icons only, expand on hover ── */
+/* ── Collapsed sidebar: semi-transparent icons only, overlay on hover ── */
 
 /* Hide text labels when collapsed */
 .left-sidebar .btn-label,
 .left-sidebar .link-label {
   display: none;
   white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s ease;
 }
 .left-sidebar.expanded .btn-label,
 .left-sidebar.expanded .link-label {
   display: inline-block;
+  opacity: 1;
+}
+
+/* Icons semi-transparent when collapsed */
+.left-sidebar:not(.expanded) .sidebar-link svg,
+.left-sidebar:not(.expanded) .sidebar-topnav-link svg,
+.left-sidebar:not(.expanded) .sidebar-product-btn svg {
+  opacity: 0.45;
+  transition: opacity 0.15s ease;
+}
+.left-sidebar:not(.expanded) .sidebar-link:hover svg,
+.left-sidebar:not(.expanded) .sidebar-topnav-link:hover svg,
+.left-sidebar:not(.expanded) .sidebar-product-btn:hover svg {
+  opacity: 0.85;
+}
+.left-sidebar:not(.expanded) .sidebar-link.active svg {
+  opacity: 1;
 }
 
 /* Product buttons: column when collapsed, row when expanded */
@@ -1416,7 +1438,7 @@ main { min-height: calc(100vh - 60px); }
 .sidebar-items {
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.25s cubic-bezier(0.4,0,0.2,1);
+  transition: max-height 0.2s ease;
 }
 .sidebar-section.open .sidebar-items { max-height: 600px; }
 
@@ -1506,17 +1528,19 @@ main { min-height: calc(100vh - 60px); }
 }
 
 /* main content area (right of sidebar) */
+/* Sidebar now OVERLAYS content — no margin shift needed */
 .sidebar-main {
   flex: 1;
   min-width: 0;
   overflow: hidden;
-  margin-left: 52px;
-  transition: margin-left 0.25s cubic-bezier(0.4,0,0.2,1);
+  margin-left: 52px; /* only offset by collapsed width so icons don't cover edge content */
+  position: relative; /* Fix: chat-panel position:absolute must be contained here, not viewport */
 }
 
-.app-layout:has(#left-sidebar.expanded) .sidebar-main,
+/* When sidebar is expanded it overlays — no margin change */
+/* Sidebar overlays — sidebar-main margin stays fixed at 52px always */
 .app-layout.sidebar-expanded .sidebar-main {
-  margin-left: 220px;
+  margin-left: 52px;
 }
 
 /* Lab accent color overrides */
@@ -1548,8 +1572,8 @@ main { min-height: calc(100vh - 60px); }
   .left-sidebar {
     left: -220px;
     width: 220px;
-    transition: left 0.25s cubic-bezier(0.4,0,0.2,1);
-    box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+    transition: left 0.2s ease;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.5);
   }
   .left-sidebar.expanded { width: 220px; }
   .left-sidebar.open { left: 0; }
@@ -1557,9 +1581,10 @@ main { min-height: calc(100vh - 60px); }
     display: none;
     position: fixed;
     inset: 60px 0 0 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.45);
     z-index: 99;
     backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
   }
   .sidebar-overlay.open { display: block; }
   .sidebar-main { padding: 0; margin-left: 0 !important; max-width: 100vw; overflow-x: hidden; }

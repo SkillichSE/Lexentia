@@ -503,17 +503,11 @@
 
 <header class="header" id="app-bar">
   <div class="header-content">
-    <a href="index.html" class="logo">
-      <img src="media/L_logo.png" alt="Klyxe logo" class="logo-icon">Klyxe
+    <a href="index.html" class="logo" style="padding-left:0;margin-left:0;">
+      <img src="media/L_logo.png" alt="Klyxe logo" class="logo-icon" style="margin-left:0;">
+      <span style="font-size:17px;font-weight:700;letter-spacing:-0.02em;">Klyxe</span>
     </a>
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Rankings</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="search.html" class="nav-link">Search</a>
-      <a href="providers.html" class="nav-link">Providers</a>
-      <a href="trends.html" class="nav-link">Trends</a>
-      <a href="news.html" class="nav-link">News</a>
-    </nav>
+    <div style="flex:1;"></div>
     <div class="theme-switch-wrap">
       <span class="theme-switch-label" id="theme-label">Dark</span>
       <label class="theme-switch" aria-label="Toggle theme">
@@ -524,39 +518,43 @@
     </div>
   </div>
 </header>
-<button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation">
-  <span></span><span></span><span></span>
-</button>
-<nav class="nav-drawer" id="nav-drawer" style="display:none;">
-  <a href="index.html" class="nav-link">Rankings</a>
-  <a href="about.html" class="nav-link">About</a>
-  <a href="search.html" class="nav-link">Search</a>
-  <a href="providers.html" class="nav-link">Providers</a>
-  <a href="trends.html" class="nav-link">Trends</a>
-  <a href="news.html" class="nav-link">News</a>
-</nav>
 
-<div id="page-root">
+<!-- Sidebar overlay for mobile -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="app-layout">
+  <lex-sidebar></lex-sidebar>
+
+  <div class="sidebar-main">
+  <div id="page-root">
   <div class="page-loading">Loading model data…</div>
 </div>
 
 <script>
 
-(function(){
-  var themeToggle = document.getElementById('theme-toggle');
-  var themeLabel  = document.getElementById('theme-label');
-  function applyTheme(t) {
-    document.documentElement.setAttribute('data-theme', t);
-    localStorage.setItem('theme', t);
-    var isLight = t === 'light';
-    themeToggle.checked = isLight;
-    themeLabel.textContent = isLight ? 'Light' : 'Dark';
-  }
-  applyTheme(localStorage.getItem('theme') || 'dark');
-  themeToggle.addEventListener('change', function() { applyTheme(themeToggle.checked ? 'light' : 'dark'); });
-  window.addEventListener('scroll', function(){
-    document.getElementById('app-bar').classList.toggle('scrolled', window.scrollY > 0);
-  });
+const themeToggle = document.getElementById('theme-toggle');
+const themeLabel  = document.getElementById('theme-label');
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+  const isLight = t === 'light';
+  themeToggle.checked = isLight;
+  themeLabel.textContent = isLight ? 'Light' : 'Dark';
+}
+applyTheme(localStorage.getItem('theme') || 'dark');
+themeToggle.addEventListener('change', () => { applyTheme(themeToggle.checked ? 'light' : 'dark'); });
+window.addEventListener('scroll', () =>
+  document.getElementById('app-bar').classList.toggle('scrolled', window.scrollY > 0));
+
+// Mobile sidebar toggle
+(function() {
+  const sidebar  = document.getElementById('left-sidebar');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const mobileBtn = document.getElementById('sidebar-mobile-toggle');
+  function openSidebar()  { if(sidebar) sidebar.classList.add('open'); if(overlay) overlay.classList.add('open'); }
+  function closeSidebar() { if(sidebar) sidebar.classList.remove('open'); if(overlay) overlay.classList.remove('open'); }
+  if(mobileBtn) mobileBtn.addEventListener('click', openSidebar);
+  if(overlay)   overlay.addEventListener('click', closeSidebar);
 })();
 
 function esc(str) {
@@ -1580,5 +1578,9 @@ function loadHistoryChart(modelId) {
 }
 </script>
 
+  </div><!-- /.sidebar-main -->
+</div><!-- /.app-layout -->
+
+<script src="sidebar.js"></script>
 </body>
 </html>
