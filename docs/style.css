@@ -1579,12 +1579,26 @@ main { min-height: calc(100vh - 60px); }
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
+  .header-content {
+    position: relative;
+    padding-right: 46px !important;
+  }
+  .logo-icon {
+    width: 64px !important;
+    height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
+  }
 
   .mobile-menu-btn {
-    display: none;
+    display: flex !important;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 34px;
     height: 34px;
-    margin-left: 6px;
+    margin-left: 0;
     border-radius: 8px;
     border: 1px solid var(--border);
     background: var(--surface);
@@ -1593,7 +1607,9 @@ main { min-height: calc(100vh - 60px); }
     justify-content: center;
     cursor: pointer;
     flex-shrink: 0;
-    z-index: 120;
+    z-index: 1001;
+    pointer-events: auto;
+    touch-action: manipulation;
   }
   .mobile-menu-btn:hover {
     background: var(--surface-raised);
