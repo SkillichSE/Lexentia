@@ -16,9 +16,10 @@
   <link rel="stylesheet" href="chat.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib/marked.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.2/marked.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked-highlight/2.2.2/index.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
 </head>
 <body>
 
@@ -60,7 +61,8 @@
   <div class="settings-body">
 
     <div class="settings-group">
-      <div class="settings-group-label">API Configuration</div>
+      <div class="settings-group-label">Global Defaults</div>
+      <div class="settings-group-subtle">these defaults are used when provider-specific values are not set</div>
       <div class="settings-field">
         <div class="settings-field-label">API Type</div>
         <div class="key-type-tabs">
@@ -74,7 +76,7 @@
         <input type="text" class="settings-input" id="custom-base-url"
           placeholder="https://api.example.com/v1"
           oninput="saveSettings()">
-        <div class="settings-field-hint">Must be OpenAI-compatible (/chat/completions endpoint)</div>
+        <div class="settings-field-hint">openai compatible endpoint with /chat/completions</div>
       </div>
       <div class="settings-field">
         <div class="settings-field-label">API Key</div>
@@ -90,7 +92,7 @@
             </svg>
           </button>
         </div>
-        <div class="settings-field-hint" id="key-hint">Your OpenRouter key (sk-or-…). Stored only in your browser.</div>
+        <div class="settings-field-hint" id="key-hint">stored only in your browser</div>
       </div>
       <div class="settings-field" id="model-fetch-field">
         <button class="settings-btn primary" onclick="fetchAndRefreshModels()">
@@ -104,7 +106,8 @@
     </div>
 
     <div class="settings-group">
-      <div class="settings-group-label">Generation</div>
+      <div class="settings-group-label">Generation Defaults</div>
+      <div class="settings-group-subtle">applies to the active model request</div>
       <div class="settings-field">
         <div class="settings-field-label">Temperature</div>
         <div class="settings-slider-row">
@@ -134,8 +137,9 @@
       </div>
     </div>
 
-    <div class="settings-group">
+    <div class="settings-group providers-group">
       <div class="settings-group-label">Providers</div>
+      <div class="settings-group-subtle">each provider can have its own url key and default model</div>
       <div class="providers-list" id="providers-list-el" style="max-height:200px;overflow-y:auto;padding:0;"></div>
       <button class="add-provider-btn" style="margin:0;" onclick="openProviderModal()">
         <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
@@ -153,12 +157,15 @@
         </svg>
         Export session JSON
       </button>
+      <div class="settings-danger-zone">
       <button class="settings-btn danger" onclick="clearAllData()">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
           <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
         Clear saved key &amp; settings
       </button>
+      <div class="settings-field-hint">destructive action you must type CLEAR</div>
+      </div>
     </div>
 
   </div>
@@ -248,7 +255,7 @@
   </div>
 </div>
 
-<input type="file" id="file-input" accept=".pdf,.txt,.md,.docx,.csv" multiple style="display:none;" onchange="handleFileUpload(this.files)">
+<input type="file" id="file-input" accept=".pdf,.docx,.txt,.md,.csv,.py,.ts,.tsx,.js,.jsx,.json,.yaml,.yml,.xml,.html,.css,.java,.go,.rs,.c,.cpp,.h,.hpp,.sh,.sql,.log" multiple style="display:none;" onchange="handleFileUpload(this.files)">
 
 <div class="app-layout">
   <lex-sidebar></lex-sidebar>
@@ -304,11 +311,11 @@
                 <path d="M4 4h10l4 4v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
                 <path d="M14 4v4h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
               </svg>
-              Add your sources to start
+              Add your first source to start chatting
             </div>
           </div>
           <div class="upload-drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
-            ↑ Drop PDF, TXT, MD here
+            ↑ Drop PDF, DOCX, TXT, MD, CSV, PY, TS and other text files here
           </div>
           <div class="url-fetch-row">
             <input class="url-fetch-input" id="url-fetch-input" placeholder="Paste a URL…" type="url">
@@ -355,8 +362,8 @@
                   <div class="suggestion-card__text">List the most important facts and figures.</div>
                 </button>
                 <button class="suggestion-card" onclick="useSuggestion(this)">
-                  <div class="suggestion-card__label">Compare</div>
-                  <div class="suggestion-card__text">How do the sources differ on this topic?</div>
+                  <div class="suggestion-card__label">Clarify</div>
+                  <div class="suggestion-card__text">Explain this topic in simple terms with examples.</div>
                 </button>
                 <button class="suggestion-card" onclick="useSuggestion(this)">
                   <div class="suggestion-card__label">Deep dive</div>
@@ -374,7 +381,15 @@
               <circle cx="8" cy="8" r="6.5" stroke="#f87171" stroke-width="1.4"/>
               <path d="M8 5v4M8 11v.5" stroke="#f87171" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
-            <span id="input-error-text"></span>
+            <div class="input-error-body">
+              <span id="input-error-text"></span>
+              <div id="input-error-meta" class="input-error-meta hidden">
+                <span id="input-error-cooldown-label"></span>
+                <button class="input-error-details-btn" id="input-error-details-btn" onclick="toggleErrorDetails()">Details</button>
+              </div>
+              <div id="input-error-progress" class="input-error-progress hidden"><div id="input-error-progress-fill"></div></div>
+              <div id="input-error-details" class="input-error-details hidden"></div>
+            </div>
           </div>
 
           <div class="rag-status-bar" id="rag-status-bar">
@@ -396,7 +411,8 @@
               </svg>
               System
             </button>
-            <select class="model-select-compact" id="model-select" onchange="onMainModelChange()"></select>
+            <span class="model-context-hint" title="active model for current response">Model</span>
+            <select class="model-select-compact" id="model-select" onchange="onMainModelChange()" title="Select the model used for the next response"></select>
             <button class="studio-toggle-btn" id="studio-btn" onclick="toggleRightPanel('studio')">
               <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 4h4l-3 2.5 1 4L8 9l-4 2.5 1-4L2 5h4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="currentColor" opacity="0.7"/></svg>
               Studio
@@ -549,6 +565,17 @@
 
 <script src="app.js"></script>
 <script src="sidebar.js"></script>
+<script src="chat-engine.js"></script>
+<script src="chat-local-db.js"></script>
+<script src="chat-ui.js"></script>
+<script src="chat-settings.js"></script>
+<script src="chat-api.js"></script>
+<script src="chat-rag.js"></script>
+<script src="chat-sources.js"></script>
+<script src="chat-studio.js"></script>
+<script src="chat-core.js"></script>
+<script src="chat-prompts.js"></script>
+<script src="chat-sessions.js"></script>
 <script src="chat.js"></script>
 </body>
 </html>

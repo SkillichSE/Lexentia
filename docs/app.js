@@ -130,6 +130,7 @@ function initHamburger() {
 function initSidebar() {
   const sidebar = document.getElementById('left-sidebar');
   if (!sidebar) return;
+  const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
 
   let enterTimer = null;
   let leaveTimer = null;
@@ -138,6 +139,7 @@ function initSidebar() {
   sidebar.style.contain = 'layout style';
 
   sidebar.addEventListener('mouseenter', () => {
+    if (isMobileViewport()) return;
     clearTimeout(leaveTimer);
     enterTimer = setTimeout(() => {
       sidebar.classList.add('expanded');
@@ -145,11 +147,59 @@ function initSidebar() {
   });
 
   sidebar.addEventListener('mouseleave', () => {
+    if (isMobileViewport()) return;
     clearTimeout(enterTimer);
     leaveTimer = setTimeout(() => {
       sidebar.classList.remove('expanded');
     }, 150);
   });
+
+  const ensureMobileControls = () => {
+    let overlay = document.getElementById('sidebar-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'sidebar-overlay';
+      overlay.className = 'sidebar-overlay';
+      document.body.appendChild(overlay);
+    }
+
+    let btn = document.getElementById('sidebar-mobile-toggle');
+    if (!btn) {
+      const header = document.querySelector('.header-content');
+      if (!header) return;
+      btn = document.createElement('button');
+      btn.id = 'sidebar-mobile-toggle';
+      btn.className = 'mobile-menu-btn';
+      btn.setAttribute('aria-label', 'Open menu');
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      header.appendChild(btn);
+    }
+
+    const openSidebar = () => {
+      sidebar.classList.add('open');
+      overlay.classList.add('open');
+    };
+    const closeSidebar = () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+    };
+
+    btn.onclick = () => (sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
+    overlay.onclick = closeSidebar;
+
+    const sync = () => {
+      if (isMobileViewport()) {
+        btn.style.display = 'flex';
+      } else {
+        btn.style.display = 'none';
+        closeSidebar();
+      }
+    };
+    sync();
+    window.addEventListener('resize', sync);
+  };
+
+  ensureMobileControls();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

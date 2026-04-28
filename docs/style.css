@@ -1599,3 +1599,89 @@ main { min-height: calc(100vh - 60px); }
   padding-top: 8px;
   border-top: 1px solid var(--border-subtle);
 }
+
+/* global mobile hardening for all pages */
+@media (max-width: 768px) {
+  .container,
+  .hero-inner,
+  .page-hero-inner,
+  .size-filter-inner {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .grid-cards,
+  .feature-grid,
+  .grid-2,
+  .provider-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .model-card,
+  .provider-card,
+  .feature-card,
+  .stat-card {
+    padding: 14px !important;
+  }
+
+  .category-header {
+    align-items: flex-start !important;
+  }
+
+  .compare-bar {
+    left: 10px;
+    right: 10px;
+    transform: none;
+    width: auto;
+    justify-content: space-between;
+  }
+
+  .dialog-scrim {
+    padding: 10px;
+  }
+
+  .dialog {
+    max-height: calc(100vh - 20px);
+    border-radius: 10px;
+  }
+
+  .dialog-body {
+    overflow-x: auto;
+  }
+
+  .cmp-table {
+    min-width: 620px;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats-grid,
+  .summary-grid,
+  .speed-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-headline {
+    font-size: 20px !important;
+  }
+
+  .page-hero-title {
+    font-size: 22px !important;
+  }
+
+  .size-chip,
+  .sort-chip,
+  .seg-btn {
+    font-size: 11px !important;
+  }
+
+  .header {
+    height: 52px;
+    max-height: 52px;
+  }
+
+  main {
+    min-height: calc(100vh - 52px);
+  }
+}
