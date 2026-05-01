@@ -26,3 +26,9 @@ secrets.json
 
 # Data (don't ignore - we want to commit results)
 # data/ is intentionally not ignored
+
+# Node.js / Next.js
+node_modules/
+.next/
+dist/
+*.log
