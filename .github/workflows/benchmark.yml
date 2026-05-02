@@ -28,10 +28,6 @@ jobs:
 
       - run: pip install requests feedparser
 
-      # ------------------------------------------------------------------ #
-      # Groq
-      # ------------------------------------------------------------------ #
-
       - name: Groq — llama-3.1-8b
         continue-on-error: true
         timeout-minutes: 12
@@ -80,10 +76,6 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: cd src && python benchmark.py --providers groq --models kimi-k2 --merge
-
-      # ------------------------------------------------------------------ #
-      # OpenRouter  (10 rotating keys passed to every step)
-      # ------------------------------------------------------------------ #
 
       - name: OpenRouter — batch 1 (nemotron, trinity)
         continue-on-error: true
@@ -181,10 +173,6 @@ jobs:
           OPENROUTER_API_KEY_10: ${{ secrets.OPENROUTER_API_KEY_10 }}
         run: cd src && python benchmark.py --providers openrouter --models llama-3.2-90b-or,llama-3.2-11b-or,llama-3.2-1b-or,deepseek-r1-or,deepseek-v3-or,qwen2.5-72b-or,qwen2.5-coder-32b-or,qwq-32b-or --merge
 
-      # ------------------------------------------------------------------ #
-      # Google
-      # ------------------------------------------------------------------ #
-
       - name: Google — gemini-2.5-flash
         continue-on-error: true
         timeout-minutes: 20
@@ -205,10 +193,6 @@ jobs:
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: cd src && python benchmark.py --providers google --models gemma-3-27b-google --merge
-
-      # ------------------------------------------------------------------ #
-      # SambaNova
-      # ------------------------------------------------------------------ #
 
       - name: SambaNova — llama-4-maverick
         continue-on-error: true
@@ -287,10 +271,6 @@ jobs:
           SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
         run: cd src && python benchmark.py --providers sambanova --models qwen2.5-coder-32b-sn --merge
 
-      # ------------------------------------------------------------------ #
-      # Cerebras
-      # ------------------------------------------------------------------ #
-
       - name: Cerebras — llama-3.1-8b
         continue-on-error: true
         timeout-minutes: 16
@@ -333,10 +313,6 @@ jobs:
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
         run: cd src && python benchmark.py --providers cerebras --models qwen3-235b --merge
 
-      # ------------------------------------------------------------------ #
-      # Together
-      # ------------------------------------------------------------------ #
-
       - name: Together — llama-3.3-70b
         continue-on-error: true
         timeout-minutes: 16
@@ -358,13 +334,17 @@ jobs:
           TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
         run: cd src && python benchmark.py --providers together --models deepseek-r1-free --merge
 
-      # ------------------------------------------------------------------ #
-      # News + Commit
-      # ------------------------------------------------------------------ #
 
       - name: News
         continue-on-error: true
         run: cd src && python news_parser.py
+
+      - name: Telegram report
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python src/notify_telegram.py
 
       - name: Commit
         run: |
