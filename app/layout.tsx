@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Klyxe — AI Hub',
   description: 'Daily automated benchmark of the best free AI models. Compare quality, speed, and reasoning across Groq, OpenRouter, and Google.',
+  icons: {
+    icon: '/media/L_Logo.png',
+  },
 };
 
 export default function RootLayout({
@@ -13,9 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="dark">
-      <head>
-        <link rel="icon" href="/media/L_Logo.png" type="image/png" />
-      </head>
       <body>{children}</body>
     </html>
   );
