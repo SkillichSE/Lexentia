@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Klyxe — AI Hub',
   description: 'Daily automated benchmark of the best free AI models. Compare quality, speed, and reasoning across Groq, OpenRouter, and Google.',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({
