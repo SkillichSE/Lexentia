@@ -13,7 +13,7 @@ from pathlib import Path
 # config
 BOT_TOKEN   = os.environ["TELEGRAM_BOT_TOKEN"]
 CHAT_ID     = os.environ["TELEGRAM_CHAT_ID"]  # channel id like -100xxxxxxxxxx
-RESULTS_DIR = Path(__file__).parent.parent / "public" / "data" / "results"
+RESULTS_DIR = Path(__file__).parent.parent / "docs" / "data" / "results"
 SITE_URL    = "https://klyxe-ai.vercel.app"
 
 # alert thresholds
